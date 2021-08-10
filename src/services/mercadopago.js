@@ -1,11 +1,13 @@
 import axios from 'axios'
 
-const getPreferenceMP = async () => {
+const getPreferenceMP = async ({ inscription }) => {
   try {
     const response = await axios({
       method: 'POST',
-      url: 'http://localhost:9000/api/payments/create_preference'
+      url: '/api/mercadopago/create_preference',
+      data: inscription
     })
+    console.log(response)
     return response
   } catch (error) {
     return error

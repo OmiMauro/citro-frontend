@@ -12,7 +12,7 @@ const addInscription = async ({ inscription }) => {
   const response = await axios({
     method: 'POST',
     data: inscription,
-    url: `${API}/inscription`
+    url: '/api/inscription'
   })
   return response
 }
@@ -22,7 +22,7 @@ const getInscriptions = async ({ userId, token }) => {
     method: 'GET',
     mode: 'cors',
     headers: { Authorization: `Bearer ${token}` },
-    url: `${API}/inscription/${userId}`
+    url: `/api/inscription/${userId}`
   })
   console.log(response)
   return response

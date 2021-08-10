@@ -5,7 +5,7 @@ import { getPreferenceMP } from '../services/mercadopago'
 import { Alert } from './Alert'
 import ButtonMP from './ButtonMP'
 import Input from './Input'
-import MercadoPago from 'mercadopago'
+const FORM_ID = 'payment_form'
 const Inscription = () => {
   const [values, setValues] = useState({
     name: '',
@@ -69,8 +69,8 @@ const Inscription = () => {
       name, lastname, DNI, numberCell, email, provinceOrigin, locationOrigin
     }
     const response = await addInscription({ inscription })
-    if (response) {
-      setToast(true)
+  }
+  /* setToast(true)
       setValues.name('')
       setValues.lastname('')
       setValues.DNI('')
@@ -78,25 +78,8 @@ const Inscription = () => {
       setValues.numberCell('')
       setValues.provinceOrigin('')
       setValues.locationOrigin('')
-      /*  setSelectTermsConditions(false)
+       setSelectTermsConditions(false)
          setTimeout(() => { setToast(false) }, 6000) */
-    }
-  }
-  /*
-  const mp = new MercadoPago('PUBLIC_KEY', {
-    locale: 'es-AR'
-  })
-
-  mp.checkout({
-    preference: {
-      id: 'YOUR_PREFERENCE_ID'
-    },
-    render: {
-      container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
-      label: 'Pagar' // Cambia el texto del botón de pago (opcional)
-    }
-  })  */
-
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value })
   }
@@ -107,7 +90,7 @@ const Inscription = () => {
           <div className='text-center col-md-10 col-lg-8 mx-auto'>
             <h2 className='section-heading text-uppercase text-dark mb-1'>Formulario de Inscripción</h2>
             <h3 className='section-subheading text-muted'>Lorem ipsum dolor sit amet consectetur.</h3>
-            <form id='inscriptionForm' method='POST'>
+            <form id='inscriptionForm' onSubmit={handleInscription}>
               <Input
                 value={name} onChange={handleChange('name')}
                 classInput='' id='name' type='text' placeholder='Nombre/s'
@@ -183,13 +166,12 @@ const Inscription = () => {
               </div>
               {/*               <ButtonMP /> */}
               <button
-                disabled={!selectTermsConditions &&
-                !name && !lastname && !provinceOrigin && !numberCell && !locationOrigin}
-                className='btn btn-primary mx-auto mt-2' type='submit' onSubmit={handleInscription}
+                disabled={!selectTermsConditions}
+                className='btn btn-primary mx-auto mt-2' type='submit'
               >Inscribirme
               </button>
               {toast && <Alert />}
-
+              <ButtonMP />
             </form>
           </div>
         </div>
