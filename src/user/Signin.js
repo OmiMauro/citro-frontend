@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import Layout from '../core/Layout'
-import { signin, authenticate, isAuthenricated } from '../auth/index'
+import { signin, authenticate, isAuthenticated } from '../auth/index'
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -13,7 +13,7 @@ const Signin = () => {
   })
 
   const { email, password, loading, error, redirectToReferrer } = values
-  const { user } = isAuthenricated()
+  const { user } = isAuthenticated()
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value })
@@ -24,7 +24,7 @@ const Signin = () => {
     setValues({ ...values, error: false, loading: true })
     signin({ email, password })
       .then(data => {
-        if (data.error) {
+        if (data && data.error) {
           setValues({ ...values, error: data.error, loading: false })
         } else {
           authenticate(data, () => {
@@ -45,7 +45,7 @@ const Signin = () => {
           <input onChange={handleChange('email')} type='email' className='form-control' value={email} />
         </div>
         <div className='form-group'>
-          <label className='text-muted'>Password</label>
+          <label className='text-muted'>Contraseña</label>
           <input onChange={handleChange('password')} type='password' className='form-control' value={password} />
         </div>
         <button onClick={clickSubmit} className='btn btn-primary'>Submit</button>
@@ -81,15 +81,15 @@ const Signin = () => {
           <Redirect to='/user/dashboard' />
         )
       }
-    } if (isAuthenricated()) {
+    } if (isAuthenticated()) {
       return (
-        <Redirect to='/' />
+        <Redirect to='/admin/dashboard' />
       )
     }
   }
 
   return (
-    <Layout title='Signup' description='Signup to Node React E-Commerce App' className='container col-md-8 offset-md-2'>
+    <Layout title='Signup' description='Inicio de Session' className='container col-md-8 offset-md-2'>
       {showLoading()}
       {showError()}
       {signUpForm()}

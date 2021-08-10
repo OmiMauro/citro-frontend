@@ -1,5 +1,5 @@
 import './App.css'
-import './scripts.js'
+import '../public/js/scripts.js'
 import './styles.css'
 import Nav from './core/Nav'
 import Header from './core/Header'
@@ -12,17 +12,7 @@ import Modals from './core/Modals'
 import Footer from './core/Footer'
 function App () {
   return (
-    <div className='App' id='page-top'>
-      <Nav />
-      <Header />
-      <Services />
-      <Portfolio />
-      <About />
-      <Team />
-      <Inscription />
-      <Modals />
-      <Footer />
-    </div>
+    
 
   )
 }

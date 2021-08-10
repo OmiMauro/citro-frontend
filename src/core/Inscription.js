@@ -1,6 +1,11 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { getProvinces, getLocalidades } from '../services/locations'
+import { addInscription } from '../services/inscriptions'
+import { getPreferenceMP } from '../services/mercadopago'
+import { Alert } from './Alert'
+import ButtonMP from './ButtonMP'
 import Input from './Input'
+import MercadoPago from 'mercadopago'
 const Inscription = () => {
   const [values, setValues] = useState({
     name: '',
@@ -13,6 +18,10 @@ const Inscription = () => {
     error: '',
     loading: ''
   })
+
+  // State for preference id
+  const [preferenceId, setPreferenceId] = useState(null)
+
   const [toast, setToast] = useState(false)
   const [provinces, setProvinces] = useState([])
   const [locations, setLocations] = useState([])
@@ -54,9 +63,40 @@ const Inscription = () => {
     email
   } = values
 
-  const handleInscription = () => {
-
+  const handleInscription = async event => {
+    event.preventDefault()
+    const inscription = {
+      name, lastname, DNI, numberCell, email, provinceOrigin, locationOrigin
+    }
+    const response = await addInscription({ inscription })
+    if (response) {
+      setToast(true)
+      setValues.name('')
+      setValues.lastname('')
+      setValues.DNI('')
+      setValues.email('')
+      setValues.numberCell('')
+      setValues.provinceOrigin('')
+      setValues.locationOrigin('')
+      /*  setSelectTermsConditions(false)
+         setTimeout(() => { setToast(false) }, 6000) */
+    }
   }
+  /*
+  const mp = new MercadoPago('PUBLIC_KEY', {
+    locale: 'es-AR'
+  })
+
+  mp.checkout({
+    preference: {
+      id: 'YOUR_PREFERENCE_ID'
+    },
+    render: {
+      container: '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+      label: 'Pagar' // Cambia el texto del botón de pago (opcional)
+    }
+  })  */
+
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value })
   }
@@ -67,7 +107,7 @@ const Inscription = () => {
           <div className='text-center col-md-10 col-lg-8 mx-auto'>
             <h2 className='section-heading text-uppercase text-dark mb-1'>Formulario de Inscripción</h2>
             <h3 className='section-subheading text-muted'>Lorem ipsum dolor sit amet consectetur.</h3>
-            <form id='inscriptionForm'>
+            <form id='inscriptionForm' method='POST'>
               <Input
                 value={name} onChange={handleChange('name')}
                 classInput='' id='name' type='text' placeholder='Nombre/s'
@@ -141,10 +181,16 @@ const Inscription = () => {
                   He leído y acepto los <a href='privacy_policy.html' target='_blank' rel='noreferrer'>Terminos y Condiciones</a>
                 </label>
               </div>
-              <button disabled={!selectTermsConditions} className='btn btn-primary mx-auto mt-2' type='submit'>Enviar</button>
-              {/* toast && <Toast type='success' title='Te esperamos!' description='Se inscribio con exito' position='bottomup' duration={10000} closeButton /> */}
+              {/*               <ButtonMP /> */}
+              <button
+                disabled={!selectTermsConditions &&
+                !name && !lastname && !provinceOrigin && !numberCell && !locationOrigin}
+                className='btn btn-primary mx-auto mt-2' type='submit' onSubmit={handleInscription}
+              >Inscribirme
+              </button>
+              {toast && <Alert />}
+
             </form>
-            {toast}
           </div>
         </div>
       </div>

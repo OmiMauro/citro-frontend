@@ -13,6 +13,8 @@ const Footer = () => {
           <div className='col-lg-4 text-lg-end'>
             <a className='link-dark text-decoration-none me-3' href='#!'>Políticas de Privacidad</a>
             <a className='link-dark text-decoration-none' href='#!'>Terminos y Condiciones</a>
+            <a className='link-dark text-decoration-none' href='/signin'>Login</a>
+
           </div>
         </div>
       </div>
