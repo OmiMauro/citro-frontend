@@ -4,7 +4,7 @@ const getPreferenceMP = async ({ inscription }) => {
   try {
     const response = await axios({
       method: 'POST',
-      url: '/api/mercadopago/create_preference',
+      url: 'http://localhost:9000/api/mercadopago/create_preference',
       data: inscription
     })
     console.log(response)

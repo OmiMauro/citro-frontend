@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { getProvinces, getLocalidades } from '../services/locations'
-import { addInscription } from '../services/inscriptions'
+/* import { addInscription } from '../services/inscriptions' */
 import { getPreferenceMP } from '../services/mercadopago'
 import { Alert } from './Alert'
-import ButtonMP from './ButtonMP'
 import Input from './Input'
-const FORM_ID = 'payment_form'
 const Inscription = () => {
   const [values, setValues] = useState({
     name: '',
@@ -18,9 +16,6 @@ const Inscription = () => {
     error: '',
     loading: ''
   })
-
-  // State for preference id
-  const [preferenceId, setPreferenceId] = useState(null)
 
   const [toast, setToast] = useState(false)
   const [provinces, setProvinces] = useState([])
@@ -68,18 +63,19 @@ const Inscription = () => {
     const inscription = {
       name, lastname, DNI, numberCell, email, provinceOrigin, locationOrigin
     }
-    const response = await addInscription({ inscription })
+    const response = await getPreferenceMP({ inscription })
+    setToast(true)
+    setValues[name] = ''
+    setValues[lastname] = ''
+    setValues[DNI] = ''
+    setValues[email] = ''
+    setValues[numberCell] = ''
+    setValues[provinceOrigin] = ''
+    setValues[locationOrigin] = ''
+    setSelectTermsConditions(false)
+    setTimeout(() => { setToast(false) }, 6000)
+    window.location.href = response.data.init_point
   }
-  /* setToast(true)
-      setValues.name('')
-      setValues.lastname('')
-      setValues.DNI('')
-      setValues.email('')
-      setValues.numberCell('')
-      setValues.provinceOrigin('')
-      setValues.locationOrigin('')
-       setSelectTermsConditions(false)
-         setTimeout(() => { setToast(false) }, 6000) */
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value })
   }
@@ -164,14 +160,12 @@ const Inscription = () => {
                   He leído y acepto los <a href='privacy_policy.html' target='_blank' rel='noreferrer'>Terminos y Condiciones</a>
                 </label>
               </div>
-              {/*               <ButtonMP /> */}
               <button
                 disabled={!selectTermsConditions}
                 className='btn btn-primary mx-auto mt-2' type='submit'
               >Inscribirme
               </button>
               {toast && <Alert />}
-              <ButtonMP />
             </form>
           </div>
         </div>
