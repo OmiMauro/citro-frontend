@@ -16,20 +16,20 @@ const signin = async ({ email, password }) => {
     console.log(error)
   }
 }
-const authenticate = async (data, next) => {
+const authenticate = (data, next) => {
   if (typeof window !== 'undefined') {
     console.log(data)
-    await localStorage.setItem('jwt', JSON.stringify(data))
+    localStorage.setItem('jwt', JSON.stringify(data))
     next()
   }
 }
 
-const isAuthenticated = async () => {
+const isAuthenticated = () => {
   if (typeof window === 'undefined') {
     return false
-  } if (await localStorage.getItem('jwt')) {
-    const obj = await JSON.parse(localStorage.getItem('jwt'))
-    console.log('auth index', obj.data.user.role)
+  } if (localStorage.getItem('jwt')) {
+    const obj = JSON.parse(localStorage.getItem('jwt'))
+    console.log(obj, obj.data)
     return obj.data
   } else {
     return false

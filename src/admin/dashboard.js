@@ -3,7 +3,7 @@ import { isAuthenticated } from '../auth'
 import { Link } from 'react-router-dom'
 
 const AdminDashboard = async () => {
-  const { _id, name, email, role } = await isAuthenticated().user
+  const { name, email, role } = await isAuthenticated().user
   const adminLinks = () => {
     return (
       <div className='card'>
