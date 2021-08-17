@@ -1,12 +1,5 @@
 import axios from 'axios'
-import { API } from '../config'
-/* const getCount = async () => {
-  const response = await axios({
-    method: 'get',
-    url: '/inscription/length'
-  })
-  return response.data.count
-} */
+
 const addInscription = async ({ inscription }) => {
   // const { name, lastName, DNI, numberCell, email, provinceOrigin, locationOrigin, distanceTour } = inscription
   const response = await axios({
@@ -14,18 +7,16 @@ const addInscription = async ({ inscription }) => {
     data: inscription,
     url: '/api/inscription'
   })
+  console.log(response)
   return response
 }
 const getInscriptions = async ({ userId, token }) => {
-  console.log(userId)
   const response = await axios({
     method: 'GET',
     mode: 'cors',
     headers: { Authorization: `Bearer ${token}` },
     url: `/api/inscription/${userId}`
   })
-  console.log(response)
   return response
-  /* return response */
 }
 export { getInscriptions, addInscription }

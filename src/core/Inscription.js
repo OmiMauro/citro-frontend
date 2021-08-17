@@ -81,11 +81,11 @@ const Inscription = () => {
   }
   return (
     <section className='page-section signup-section' id='contact'>
-      <div className='container'>
+      <div className='container '>
         <div className='row'>
           <div className='text-center col-md-10 col-lg-8 mx-auto'>
             <h2 className='section-heading text-uppercase text-dark mb-1'>Formulario de Inscripción</h2>
-            <h3 className='section-subheading text-muted'>Lorem ipsum dolor sit amet consectetur.</h3>
+            <h3 className='section-subheading text-muted '>Lorem ipsum dolor sit amet consectetur.</h3>
             <form id='inscriptionForm' onSubmit={handleInscription}>
               <Input
                 value={name} onChange={handleChange('name')}
@@ -162,7 +162,7 @@ const Inscription = () => {
               </div>
               <button
                 disabled={!selectTermsConditions}
-                className='btn btn-primary mx-auto mt-2' type='submit'
+                className='btn btn-success mx-auto mt-2' type='submit'
               >Inscribirme
               </button>
               {toast && <Alert />}

@@ -2,8 +2,8 @@ import React from 'react'
 import { isAuthenticated } from '../auth'
 import { Link } from 'react-router-dom'
 
-const AdminDashboard = () => {
-  const { user: { _id, name, email, role } } = isAuthenticated()
+const AdminDashboard = async () => {
+  const { _id, name, email, role } = await isAuthenticated().user
   const adminLinks = () => {
     return (
       <div className='card'>
@@ -25,7 +25,6 @@ const AdminDashboard = () => {
           <li className='list-group-item'>{name}</li>
           <li className='list-group-item'>{email}</li>
           <li className='list-group-item'>{role === 1 ? 'Administrador' : 'Usuario registrado'}</li>
-
         </ul>
       </div>
     )

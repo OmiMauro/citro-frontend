@@ -3,9 +3,8 @@ const Services = () => {
     <section className='page-section' id='services'>
       <div className='container'>
         <div className='text-center'>
-          <h2 className='section-heading text-uppercase'>Tips</h2>
-          <h3 className='section-subheading text-muted'>Los participantes podrán ingresar a los lugares previstos con el abono de la inscripcion vía transferencia bancaria.
-            Dicho CBU es 123123431241, en "Motivo": especificar el nombre, apellido y DNI. .
+          <h2 className='section-heading text-uppercase'>Premios y reconocimientos</h2>
+          <h3 className='section-subheading text-muted'>Alguna descripción
           </h3>
         </div>
         <div className='row text-center'>
@@ -14,7 +13,7 @@ const Services = () => {
               <i className='fas fa-circle fa-stack-2x text-primary' />
               <i className='fas fa-trophy fa-stack-1x' />
             </span>
-            <h4 className='my-3'>Premios</h4>
+            <h4 className='my-3'>Trofeo</h4>
             <p className='text-muted'>Premio al auto más lejano del pais</p>
           </div>
           <div className='col-md-4'>
@@ -22,7 +21,7 @@ const Services = () => {
               <i className='fas fa-circle fa-stack-2x text-primary' />
               <i className='fas fa-medal fa-stack-1x ' />
             </span>
-            <h4 className='my-3'>Premio</h4>
+            <h4 className='my-3'>Medalla</h4>
             <p className='text-muted'>Premio al auto mas antiguo.</p>
           </div>
           <div className='col-md-4'>
@@ -30,8 +29,8 @@ const Services = () => {
               <i className='fas fa-circle fa-stack-2x text-primary' />
               <i className='fas fa-award fa-stack-1x ' />
             </span>
-            <h4 className='my-3'>Premio</h4>
-            <p className='text-muted'>Premio al auto mejor cuidado por votacion de todos</p>
+            <h4 className='my-3'>Medalla</h4>
+            <p className='text-muted'>Premio al auto más despintado</p>
           </div>
         </div>
       </div>

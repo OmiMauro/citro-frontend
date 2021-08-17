@@ -15,16 +15,16 @@ const About = () => {
               /> */}
               <img className='rounded-circle img-fluid' src='assets/img/about/1.jpg' alt='...' />
             </div>
-            <div className='timeline-panel'>
+            <div className='timeline-panel text-center'>
               <div className='timeline-heading'>
                 <h4>20 de Noviembre 2021</h4>
               </div>
               <div className='timeline-body'>
-                <ul className='text-muted align-start'>
-                  <li>10:00 Encuentro en la Axion San Ignacio</li>
-                  <li>11:00 Salida a las Ruinas de San Ignacio</li>
-                  <li>14:00 Salida a la Cooperativa Flor de Jardín</li>
-                  <li>16:00 Recorrido en la Cooperativa</li>
+                <ul className='text-muted text-start list-unstyled'>
+                  <li><b>10:00</b> Encuentro en la Axion San Ignacio</li>
+                  <li><b>11:00</b> Salida a las Ruinas de San Ignacio</li>
+                  <li><b>14:00</b> Salida a la Cooperativa Flor de Jardín</li>
+                  <li><b>16:00</b> Recorrido en la Cooperativa</li>
                 </ul>
                 <p><a href='https://goo.gl/maps/RvMAa9PzKAU9kwPA6'>Recorrido en Google Maps</a></p>
               </div>
@@ -33,17 +33,16 @@ const About = () => {
 
           <li className='timeline-inverted'>
             <div className='timeline-image'><img className='rounded-circle img-fluid' src='assets/img/about/2.jpg' alt='...' /></div>
-            <div className='timeline-panel'>
+            <div className='timeline-panel text-center'>
               <div className='timeline-heading'>
                 <h4>21 de Noviembre 2021</h4>
-                <h4 className='subheading'>An Agency is Born</h4>
               </div>
               <div className='timeline-body'>
-                <ul className='text-muted align-start'>
-                  <li>10:00 Encuentro en la Axion San Ignacio</li>
-                  <li>11:00 Salida a las Ruinas de San Ignacio</li>
-                  <li>14:00 Salida a la Cooperativa Flor de Jardín</li>
-                  <li>16:00 Recorrido en la Cooperativa</li>
+                <ul className='text-muted text-start list-unstyled'>
+                  <li><b>10:00</b> Encuentro en la Axion San Ignacio</li>
+                  <li><b>11:00</b> Salida a las Ruinas de San Ignacio</li>
+                  <li><b>14:00</b> Salida a la Cooperativa Flor de Jardín</li>
+                  <li><b>16:00</b> Recorrido en la Cooperativa</li>
                 </ul>
                 <p><a href='https://goo.gl/maps/RvMAa9PzKAU9kwPA6'>Recorrido en Google Maps</a></p>
               </div>
@@ -52,40 +51,22 @@ const About = () => {
           </li>
           <li>
             <div className='timeline-image'><img className='rounded-circle img-fluid' src='assets/img/about/3.jpg' alt='...' /></div>
-            <div className='timeline-panel'>
+            <div className='timeline-panel text-center'>
               <div className='timeline-heading'>
                 <h4>22 de Noviembre 2022</h4>
-                <h4 className='subheading'>Transition to Full Service</h4>
               </div>
               <div className='timeline-body'>
-                <ul className='text-muted align-start'>
-                  <li>10:00 Encuentro en la Axion San Ignacio</li>
-                  <li>11:00 Salida a las Ruinas de San Ignacio</li>
-                  <li>14:00 Salida a la Cooperativa Flor de Jardín</li>
-                  <li>16:00 Recorrido en la Cooperativa</li>
+                <ul className='text-muted text-start list-unstyled'>
+                  <li><b>10:00</b> Encuentro en la Axion San Ignacio</li>
+                  <li><b>11:00</b> Salida a las Ruinas de San Ignacio</li>
+                  <li><b>14:00</b> Salida a la Cooperativa Flor de Jardín</li>
+                  <li><b>16:00</b> Recorrido en la Cooperativa</li>
                 </ul>
-                <p><a href='https://goo.gl/maps/RvMAa9PzKAU9kwPA6'>Recorrido en Google Maps</a></p>
+                <p className='text-center'><a href='https://goo.gl/maps/RvMAa9PzKAU9kwPA6'>Recorrido en Google Maps</a></p>
               </div>
             </div>
           </li>
-          <li className='timeline-inverted'>
-            <div className='timeline-image'><img className='rounded-circle img-fluid' src='assets/img/about/4.jpg' alt='...' /></div>
-            <div className='timeline-panel'>
-              <div className='timeline-heading'>
-                <h4>23 de Noviembre 2021</h4>
-                <h4 className='subheading'>Phase Two Expansion</h4>
-              </div>
-              <div className='timeline-body'>
-                <ul className='text-muted align-start'>
-                  <li>10:00 Encuentro en la Axion San Ignacio</li>
-                  <li>11:00 Salida a las Ruinas de San Ignacio</li>
-                  <li>14:00 Salida a la Cooperativa Flor de Jardín</li>
-                  <li>16:00 Recorrido en la Cooperativa</li>
-                </ul>
-                <p><a href='https://goo.gl/maps/RvMAa9PzKAU9kwPA6'>Recorrido en Google Maps</a></p>
-              </div>
-            </div>
-          </li>
+
           <li className='timeline-inverted'>
             <div className='timeline-image'>
               <h4>

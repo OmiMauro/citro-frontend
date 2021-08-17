@@ -10,10 +10,8 @@ const Nav = () => {
         </button>
         <div className='collapse navbar-collapse' id='navbarResponsive'>
           <ul className='navbar-nav text-uppercase ms-auto py-4 py-lg-0'>
-            <li className='nav-item'><a className='nav-link' href='#services'>Premios</a></li>
-            <li className='nav-item'><a className='nav-link' href='#portfolio'>Telefonos útiles</a></li>
+            <li className='nav-item'><a className='nav-link' href='#portfolio'>Alojamientos</a></li>
             <li className='nav-item'><a className='nav-link' href='#about'>Cronograma</a></li>
-            <li className='nav-item'><a className='nav-link' href='#team'>Organizadores</a></li>
             <li className='nav-item'><a className='nav-link' href='#contact'>Inscripciones</a></li>
           </ul>
         </div>

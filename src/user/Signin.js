@@ -27,12 +27,7 @@ const Signin = () => {
         if (data && data.error) {
           setValues({ ...values, error: data.error, loading: false })
         } else {
-          authenticate(data, () => {
-            setValues({
-              ...values,
-              redirectToReferrer: true
-            })
-          })
+          authenticate(data, () => setValues({ ...values, redirectToReferrer: true }))
         }
       })
   }
@@ -76,20 +71,16 @@ const Signin = () => {
         return (
           <Redirect to='/admin/dashboard' />
         )
-      } else {
-        return (
-          <Redirect to='/user/dashboard' />
-        )
       }
     } if (isAuthenticated()) {
       return (
-        <Redirect to='/admin/dashboard' />
+        <Redirect to='/' />
       )
     }
   }
 
   return (
-    <Layout title='Signup' description='Inicio de Session' className='container col-md-8 offset-md-2'>
+    <Layout title='Inicio de Session' description='Inicio de Session' className='container col-md-8 offset-md-2'>
       {showLoading()}
       {showError()}
       {signUpForm()}
