@@ -11,14 +11,13 @@ const signin = async ({ email, password }) => {
       },
       data: { email, password }
     })
-    return response.json()
+    return response.data
   } catch (error) {
     console.log(error)
   }
 }
 const authenticate = (data, next) => {
   if (typeof window !== 'undefined') {
-    console.log(data)
     localStorage.setItem('jwt', JSON.stringify(data))
     next()
   }
@@ -29,8 +28,7 @@ const isAuthenticated = () => {
     return false
   } if (localStorage.getItem('jwt')) {
     const obj = JSON.parse(localStorage.getItem('jwt'))
-    console.log(obj, obj.data)
-    return obj.data
+    return obj
   } else {
     return false
   }

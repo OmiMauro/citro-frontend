@@ -21,7 +21,7 @@ const Routes = () => {
       <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/signin' exact component={Signin} />
-        <Route path='/success' component={Success} />
+        <Route path='/success' exact component={Success} />
         <Route path='/pending' component={Pending} />
         <Route path='/rejected' component={Rejected} />
         <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />

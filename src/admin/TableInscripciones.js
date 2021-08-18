@@ -1,5 +1,6 @@
 import { getInscriptions } from '../services/inscriptions'
 import { isAuthenticated } from '../auth/index'
+import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 const TableInscripciones = () => {
   const [inscription, setInscription] = useState([])
@@ -15,12 +16,10 @@ const TableInscripciones = () => {
 
   return (
     <>
-
       <div className='table-responsive'>
         <div>
-          <a className='p-5 text-dark' href='/'>Inicio</a>
-
-          <a className='p-5 text-dark' href='/admin/dashboard'>Panel de Administrador</a>
+          <Link className='p-5 text-dark' to='/'>Inicio</Link>
+          <Link className='p-5 text-dark' to='/admin/dashboard'>Panel de Administrador</Link>
         </div>
         <table className='table table-striped table-dark table-bordered table-hover'>
           <thead className='thead-dark'>

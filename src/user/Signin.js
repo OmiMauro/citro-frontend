@@ -19,20 +19,23 @@ const Signin = () => {
     setValues({ ...values, error: false, [name]: event.target.value })
   }
 
-  const clickSubmit = (event) => {
+  const clickSubmit = async (event) => {
     event.preventDefault()
     setValues({ ...values, error: false, loading: true })
-    signin({ email, password })
-      .then(data => {
-        if (data && data.error) {
-          setValues({ ...values, error: data.error, loading: false })
-        } else {
-          authenticate(data, () => setValues({ ...values, redirectToReferrer: true }))
-        }
-      })
+    try {
+      const logIn = await signin({ email, password })
+      console.log(logIn)
+      if (logIn && logIn.error) {
+        setValues({ ...values, error: logIn.error, loading: false })
+      } else {
+        authenticate(logIn, () => setValues({ ...values, redirectToReferrer: true }))
+      }
+    } catch (e) {
+      setValues({ ...values, error: e.error, loading: false })
+    }
   }
 
-  const signUpForm = () => {
+  const signInForm = () => {
     return (
       <form>
         <div className='form-group'>
@@ -67,6 +70,7 @@ const Signin = () => {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
+      console.log(user)
       if (user && user.role === 1) {
         return (
           <Redirect to='/admin/dashboard' />
@@ -83,7 +87,7 @@ const Signin = () => {
     <Layout title='Inicio de Session' description='Inicio de Session' className='container col-md-8 offset-md-2'>
       {showLoading()}
       {showError()}
-      {signUpForm()}
+      {signInForm()}
       {redirectUser()}
     </Layout>
   )

@@ -2,8 +2,8 @@ import React from 'react'
 import { isAuthenticated } from '../auth'
 import { Link } from 'react-router-dom'
 
-const AdminDashboard = async () => {
-  const { name, email, role } = await isAuthenticated().user
+const AdminDashboard = () => {
+  const { user: { name, email, role } } = isAuthenticated()
   const adminLinks = () => {
     return (
       <div className='card'>

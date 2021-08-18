@@ -1,8 +1,10 @@
+import Inscription from './Inscription'
+import { Link } from 'react-router-dom'
 const Nav = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-dark fixed-top' id='mainNav'>
       <div className='container'>
-        <a className='navbar-brand' href='#page-top'>Citro Rodando</a>
+        <a className='navbar-brand' href='http://localhost:3000'>Citro Rodandoo</a>
         {/* <img src='assets/img/navbar-logo.svg' alt='...' /> */}
         <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation'>
           Menu
