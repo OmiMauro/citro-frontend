@@ -28,6 +28,7 @@ const isAuthenticated = () => {
     return false
   } if (localStorage.getItem('jwt')) {
     const obj = JSON.parse(localStorage.getItem('jwt'))
+    console.log(obj)
     return obj
   } else {
     return false

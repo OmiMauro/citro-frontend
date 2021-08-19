@@ -127,12 +127,34 @@ const Modals = () => {
                     <p>El domingo a las 9hs, se prevee salir desde Jardín América, en la Axion, con destino a Papel Misionero. Luego a las 11hs se continua con el viaje hacia el Salto Capioví.</p>
                     <ul className='list-inline'>
                       <li>
-                        <strong>Client:</strong>
-                        Finish
+                      <strong>Hospedajes</strong>
+                    </li>
+                      <li>
+                        <strong>La Martina Apart:</strong>
+                        <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
                       </li>
                       <li>
-                        <strong>Category:</strong>
-                        Identity
+                        <strong>La Toscana Apart:</strong>
+                        <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
+                      </li>
+                      <li>
+                        <strong>La Martina Apart:</strong>
+                        <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
+                      </li>
+                      <li>
+                        <strong>Restaurantes & deliveries:</strong>
+                      </li>
+                      <li>
+                        <strong>La Martina Apart:</strong>
+                        <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
+                      </li>
+                      <li>
+                        <strong>La Toscana Apart:</strong>
+                        <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
+                      </li>
+                      <li>
+                        <strong>La Martina Apart:</strong>
+                        <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
                       </li>
                     </ul>
                     <button className='btn btn-primary btn-xl text-uppercase' data-bs-dismiss='modal' type='button'>

@@ -24,10 +24,12 @@ const Routes = () => {
         <Route path='/success' component={Success} />
         <Route path='/pending' component={Pending} />
         <Route path='/rejected' component={Rejected} />
+        <Route path='/admin/dashboardd' exact component={AdminDashboard} />
+        <Route path='/admin/inscripcioness' exact component={TableInscripciones} />
+
         <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
         <AdminRoute path='/admin/inscripciones' exact component={TableInscripciones} />
         <Route path='*' component={PageNotFound} />
-        {/* <AdminRoute path='/admin/product/update/:productId' exact component={UpdateProduct} /> */}
       </Switch>
     </BrowserRouter>
   )

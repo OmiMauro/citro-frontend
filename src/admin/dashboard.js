@@ -1,5 +1,5 @@
 import React from 'react'
-import { isAuthenticated } from '../auth'
+import { isAuthenticated } from '../auth/index'
 import { Link } from 'react-router-dom'
 
 const AdminDashboard = () => {
@@ -24,13 +24,14 @@ const AdminDashboard = () => {
         <ul className='list-group'>
           <li className='list-group-item'>{name}</li>
           <li className='list-group-item'>{email}</li>
-          <li className='list-group-item'>{role === 1 ? 'Administrador' : 'Usuario registrado'}</li>
+          <li className='list-group-item'>Administrador{role}</li>
         </ul>
       </div>
     )
   }
   return (
     <div className='row'>
+      {console.log('dashboard', isAuthenticated().data)}
       <div className='col-4'>
         {adminLinks()}
       </div>

@@ -24,8 +24,7 @@ const Signin = () => {
     setValues({ ...values, error: false, loading: true })
     try {
       const logIn = await signin({ email, password })
-      console.log(logIn)
-      if (logIn && logIn.error) {
+      if (logIn.error) {
         setValues({ ...values, error: logIn.error, loading: false })
       } else {
         authenticate(logIn, () => setValues({ ...values, redirectToReferrer: true }))
@@ -70,7 +69,6 @@ const Signin = () => {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
-      console.log(user)
       if (user && user.role === 1) {
         return (
           <Redirect to='/admin/dashboard' />

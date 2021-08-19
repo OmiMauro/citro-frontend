@@ -8,11 +8,15 @@ const TableInscripciones = () => {
 
   useEffect(() => {
     async function inscriptionHook () {
-      const response = await getInscriptions({ userId: user._id, token })
-      await setInscription(response.data.listInscriptions)
+      try {
+        const response = await getInscriptions({ userId: user._id, token })
+        await setInscription(response.data.listInscriptions)
+      } catch (err) {
+        console.error(err)
+      }
     }
     inscriptionHook()
-  }, [])
+  }, [user, token])
 
   return (
     <>
