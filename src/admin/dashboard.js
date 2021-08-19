@@ -1,6 +1,7 @@
 import React from 'react'
 import { isAuthenticated } from '../auth/index'
 import { Link } from 'react-router-dom'
+import Menu from '../core/Menu'
 
 const AdminDashboard = () => {
   const { user: { name, email, role } } = isAuthenticated()
@@ -31,7 +32,8 @@ const AdminDashboard = () => {
   }
   return (
     <div className='row'>
-      {console.log('dashboard', isAuthenticated().data)}
+      <Menu />
+      {console.log('dashboard', isAuthenticated())}
       <div className='col-4'>
         {adminLinks()}
       </div>

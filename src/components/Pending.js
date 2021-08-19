@@ -20,10 +20,10 @@ const Pending = () => {
         <Header />
         <div className='text-center'>
           <h2>CitroRodando</h2>
-          <h4 className='text-warning'>Su pago de la inscripción, se encuentra pendiente. </h4>
-          <p>{`Id is ${queryString.get('id')}`}</p>
-          <p>{`DNI is ${queryString.get('DNI')}`}</p>
-          <p>{`location is ${queryString.get('location')}`}</p>
+          <h4 className='text-success'>El pago de la inscripción, se encuentra pendiente. </h4>
+          <p className='text-center'>Datos del pago:</p>
+          <p>{`Estado del pago ${queryString.get('status') === 'approved' ? 'Aprobado y acreditado' : 'Pendiente'}`}</p>
+          <p>{`Numero de pago: ${queryString.get('payment_id')}`}</p>
         </div>
         <Footer />
       </div>

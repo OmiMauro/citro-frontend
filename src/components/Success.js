@@ -10,7 +10,8 @@ const Success = () => {
     const location = useLocation()
     return new URLSearchParams(location.search)
   }
-  const queryString = useQueryString()
+
+  /*   external_reference=611e52c4709261001649bb34&payment_type=credit_card&merchant_order_id=3125433401&preference_id=806459734-9e82d6fc-43b6-4b52-b2b7-d620fb7e1eea&site_id=MLA&processing_mode=aggregator&merchant_account_id=null */ const queryString = useQueryString()
   return (
     <>
       <div className='App' id='page-top'>
@@ -18,10 +19,10 @@ const Success = () => {
         <Header />
         <div className='text-center'>
           <h2>CitroRodando</h2>
-          <h4 className='text-success'>Su pago de la inscripción, se encuentra realizado. Te esperamos para el encuentro! Saludos!.</h4>
-          <p>{`Id is ${queryString.get('id')}`}</p>
-          <p>{`DNI is ${queryString.get('DNI')}`}</p>
-          <p>{`location is ${queryString.get('location')}`}</p>
+          <h4 className='text-success'>Su pago de la inscripción, se encuentra acreditado. Te esperamos para el encuentro! </h4>
+          <p className='text-center'>Datos del pago:</p>
+          <p>{`Estado del pago ${queryString.get('status') === 'approved' ? 'Aprobado y acreditado' : 'Aprobado'}`}</p>
+          <p>{`Numero de pago: ${queryString.get('payment_id')}`}</p>
         </div>
         <Footer />
       </div>

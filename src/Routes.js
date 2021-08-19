@@ -1,5 +1,6 @@
 import React from 'react'
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
+import './styles.css'
 
 import Home from './core/Home'
 
@@ -24,9 +25,6 @@ const Routes = () => {
         <Route path='/success' component={Success} />
         <Route path='/pending' component={Pending} />
         <Route path='/rejected' component={Rejected} />
-        <Route path='/admin/dashboardd' exact component={AdminDashboard} />
-        <Route path='/admin/inscripcioness' exact component={TableInscripciones} />
-
         <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
         <AdminRoute path='/admin/inscripciones' exact component={TableInscripciones} />
         <Route path='*' component={PageNotFound} />

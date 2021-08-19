@@ -17,7 +17,7 @@ const Menu = ({ history }) => {
       {log}
       <ul className='nav nav-tabs bg-primary'>
         <li className='nav-item'>
-          <Link className='nav-link' style={isActive(history, '/')} to='/'>Home</Link>
+          <Link className='nav-link' style={isActive(history, '/')} to='/'>Inicio</Link>
         </li>
         {!isAuthenticated() && (
           <li className='nav-item'>
@@ -29,18 +29,18 @@ const Menu = ({ history }) => {
             <Link
               className='nav-link' style={isActive(history, '/admin/dashboard')}
               to='/admin/dashboard'
-            >Dashboard
+            >Panel de control
             </Link>
           </li>)}
-        {isAuthenticated() & (
+        {isAuthenticated() && (
           <li className='nav-item'>
-            <span
-              className='nav-link' style={{ cursor: 'pointer', color: '#fff' }}
+            <Link
+              className='nav-link' style={isActive(history, '/signout')}
               onClick={() => signout(() => {
                 history.push('/')
               })}
-            >Salir
-            </span>
+            >Signout
+            </Link>
           </li>
         )}
       </ul>
@@ -48,3 +48,4 @@ const Menu = ({ history }) => {
   )
 }
 export default withRouter(Menu)
+/* withRouter(Menu) */

@@ -19,11 +19,10 @@ const Rejected = () => {
         <Header />
         <div className='text-center'>
           <h2>CitroRodando</h2>
-          <h4 className='text-danger'>Su pago de la inscripción, se encuentra rechazado. Por favor, intente devuelta.</h4>
-          <p>{`Id is ${queryString.get('id')}`}</p>
-          <p>{`DNI is ${queryString.get('DNI')}`}</p>
-          <p>{`location is ${queryString.get('location')}`}</p>
-
+          <h4 className='text-success'>Su pago de la inscripción, se encuentra rechazado. Por favor, vuelva a intentarlo! </h4>
+          <p className='text-center'>Datos del pago:</p>
+          <p>{`Estado del pago ${queryString.get('status') === 'approved' ? 'Aprobado y acreditado' : 'Rechazado'}`}</p>
+          <p>{`Numero de pago: ${queryString.get('payment_id')}`}</p>
         </div>
 
         <Footer />

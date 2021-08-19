@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { isAuthenticated } from '../auth'
 const Footer = () => {
   const year = new Date().getFullYear()
   return (
@@ -15,7 +16,15 @@ const Footer = () => {
             <a className='link-dark text-decoration-none' href='#!'>Terminos y Condiciones</a>
             <br />
             {/*             <a className='link-dark text-decoration-none' href='/signin'>Login</a> */}
-            <Link className='link-dark text-decoration-none' to='/signin'>LogIn</Link>
+            {
+              isAuthenticated() && isAuthenticated().user.role === 1
+                ? <Link
+                    className='nav-link' to='/admin/dashboard'
+                  >Panel de control
+                </Link>
+                : <Link className='link-dark text-decoration-none' to='/signin'>LogIn</Link>
+            }
+
           </div>
         </div>
       </div>

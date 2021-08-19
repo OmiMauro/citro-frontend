@@ -11,7 +11,10 @@ const signin = async ({ email, password }) => {
       },
       data: { email, password }
     })
-    return response.data
+    if (response) return response.data
+    else {
+      console.log('error')
+    }
   } catch (error) {
     console.log(error)
   }
@@ -22,29 +25,28 @@ const authenticate = (data, next) => {
     next()
   }
 }
+const signout = async (next) => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('jwt')
+    next()
+
+    const response = await axios({
+      method: 'GET',
+      url: '/api/signout'
+    })
+    return response
+  }
+}
 
 const isAuthenticated = () => {
   if (typeof window === 'undefined') {
     return false
   } if (localStorage.getItem('jwt')) {
-    const obj = JSON.parse(localStorage.getItem('jwt'))
-    console.log(obj)
-    return obj
+    /*  const obj = JSON.parse(localStorage.getItem('jwt')) */
+    return JSON.parse(localStorage.getItem('jwt'))
   } else {
     return false
   }
 }
-const signout = async (next) => {
-  if (typeof window !== 'undefined') {
-    try {
-      localStorage.removeItem('jwt')
-      next()
-      const response = await axios({
-        method: 'GET',
-        url: '/api/signout'
-      })
-      return response
-    } catch (error) { console.error(error) }
-  }
-}
+
 export { isAuthenticated, authenticate, signin, signout }

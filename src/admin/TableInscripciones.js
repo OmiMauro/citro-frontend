@@ -16,7 +16,7 @@ const TableInscripciones = () => {
       }
     }
     inscriptionHook()
-  }, [user, token])
+  }, [])
 
   return (
     <>
@@ -36,6 +36,11 @@ const TableInscripciones = () => {
               <th scope='col'>Celular</th>
               <th scope='col'>Provincia</th>
               <th scope='col'>Localidad</th>
+              <th scope='col'>Precio</th>
+              <th scope='col'>Estado</th>
+              <th scope='col'>Detalle del Pago</th>
+              <th scope='col'>Neto Recibido</th>
+              <th scope='col'>Total Pago</th>
             </tr>
           </thead>
           <tbody className='table-striped'>
@@ -49,6 +54,11 @@ const TableInscripciones = () => {
                 <th>{item.numberCell}</th>
                 <th>{item.provinceOrigin}</th>
                 <th>{item.locationOrigin}</th>
+                <th>{item.orders[0].unit_price}</th>
+                <th>{item.orders[0].status}</th>
+                <th>{item.orders[0].status_detail}</th>
+                <th>{item.orders[0].net_received_amount}</th>
+                <th>{item.orders[0].total_paid_amount}</th>
               </tr>
             ))}
           </tbody>
