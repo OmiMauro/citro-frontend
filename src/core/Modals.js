@@ -1,7 +1,7 @@
 const Modals = () => {
   return (
     <>
-      <div className='portfolio-modal modal fade' id='portfolioModal1' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div className='portfolio-modal modal fade' id='portfolioModal1' tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='close-modal' data-bs-dismiss='modal'><img src='assets/img/close-icon.svg' alt='Close modal' /></div>
@@ -57,7 +57,7 @@ const Modals = () => {
           </div>
         </div>
       </div>
-      <div className='portfolio-modal modal fade' id='portfolioModal2' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div className='portfolio-modal modal fade' id='portfolioModal2' tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='close-modal' data-bs-dismiss='modal'><img src='assets/img/close-icon.svg' alt='Close modal' /></div>
@@ -113,7 +113,7 @@ const Modals = () => {
           </div>
         </div>
       </div>
-      <div className='portfolio-modal modal fade' id='portfolioModal3' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div className='portfolio-modal modal fade' id='portfolioModal3' tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='close-modal' data-bs-dismiss='modal'><img src='assets/img/close-icon.svg' alt='Close modal' /></div>
@@ -127,8 +127,8 @@ const Modals = () => {
                     <p>El domingo a las 9hs, se prevee salir desde Jardín América, en la Axion, con destino a Papel Misionero. Luego a las 11hs se continua con el viaje hacia el Salto Capioví.</p>
                     <ul className='list-inline'>
                       <li>
-                      <strong>Hospedajes</strong>
-                    </li>
+                        <strong>Hospedajes</strong>
+                      </li>
                       <li>
                         <strong>La Martina Apart:</strong>
                         <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
@@ -168,7 +168,7 @@ const Modals = () => {
           </div>
         </div>
       </div>
-      {/*  <div className='portfolio-modal modal fade' id='portfolioModal4' tabindex='-1' role='dialog' aria-hidden='true'>
+      {/*  <div className='portfolio-modal modal fade' id='portfolioModal4' tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='close-modal' data-bs-dismiss='modal'><img src='assets/img/close-icon.svg' alt='Close modal' /></div>
@@ -201,7 +201,7 @@ const Modals = () => {
           </div>
         </div>
       </div>
-      <div className='portfolio-modal modal fade' id='portfolioModal5' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div className='portfolio-modal modal fade' id='portfolioModal5' tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='close-modal' data-bs-dismiss='modal'><img src='assets/img/close-icon.svg' alt='Close modal' /></div>
@@ -234,7 +234,7 @@ const Modals = () => {
           </div>
         </div>
       </div>
-      <div className='portfolio-modal modal fade' id='portfolioModal6' tabindex='-1' role='dialog' aria-hidden='true'>
+      <div className='portfolio-modal modal fade' id='portfolioModal6' tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>
             <div className='close-modal' data-bs-dismiss='modal'><img src='assets/img/close-icon.svg' alt='Close modal' /></div>

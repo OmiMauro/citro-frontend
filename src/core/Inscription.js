@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { getProvinces, getLocalidades } from '../services/locations'
 /* import { addInscription } from '../services/inscriptions' */
 import { getPreferenceMP } from '../services/mercadopago'
-import { Alert } from './Alert'
 import Input from './Input'
 const Inscription = () => {
   const [values, setValues] = useState({
@@ -14,10 +13,9 @@ const Inscription = () => {
     locationOrigin: '',
     email: '',
     error: '',
-    loading: ''
+    loading: false
   })
 
-  const [toast, setToast] = useState(false)
   const [provinces, setProvinces] = useState([])
   const [locations, setLocations] = useState([])
   const [selectTermsConditions, setSelectTermsConditions] = useState(false)
@@ -55,27 +53,52 @@ const Inscription = () => {
     numberCell,
     provinceOrigin,
     locationOrigin,
-    email
+    email,
+    error,
+    loading
   } = values
-
   const handleInscription = async event => {
     event.preventDefault()
+    setValues({ ...values, error: false, loading: true })
     const inscription = {
       name, lastname, DNI, numberCell, email, provinceOrigin, locationOrigin
     }
+
     const response = await getPreferenceMP({ inscription })
-    setToast(true)
-    setValues[name] = ''
-    setValues[lastname] = ''
-    setValues[DNI] = ''
-    setValues[email] = ''
-    setValues[numberCell] = ''
-    setValues[provinceOrigin] = ''
-    setValues[locationOrigin] = ''
-    setSelectTermsConditions(false)
-    setTimeout(() => { setToast(false) }, 6000)
-    window.location.href = response.data.init_point
+      .then(res => {
+        if (res.status === 400) {
+          setValues({ ...values, error: res.data.error, loading: false })
+        } else {
+          setValues({ ...values, error: false, loading: false })
+          setValues[name] = ''
+          setValues[lastname] = ''
+          setValues[DNI] = ''
+          setValues[email] = ''
+          setValues[numberCell] = ''
+          setValues[provinceOrigin] = ''
+          setValues[locationOrigin] = ''
+          setSelectTermsConditions(false)
+          window.location.href = res.data.init_point
+        }
+      })
   }
+
+  const showError = () => {
+    return (
+      <div className='alert alert-danger' style={{ display: error ? '' : 'none' }}>
+        {error}
+      </div>
+    )
+  }
+  const showLoading = () => {
+    return (
+      loading && (
+        <div className='alert alert-info'>
+          <h2>Cargando...</h2>
+        </div>)
+    )
+  }
+
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value })
   }
@@ -84,8 +107,7 @@ const Inscription = () => {
       <div className='container '>
         <div className='row'>
           <div className='text-center col-md-10 col-lg-8 mx-auto'>
-            <h2 className='section-heading text-uppercase text-dark mb-1'>Formulario de Inscripción</h2>
-            <h3 className='section-subheading text-muted '>Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 className='section-heading text-uppercase text-white mb-1'>Formulario de Inscripción </h2>
             <form id='inscriptionForm' onSubmit={handleInscription}>
               <Input
                 value={name} onChange={handleChange('name')}
@@ -150,22 +172,43 @@ const Inscription = () => {
                   </select>
                 </div>
               </div>
+              <div className='form-row mt-2'>
+                <div className='col'>
+                  <input
+                    className='form-control flex-fill  mr-0 mr-sm-2 mb-3 mb-sm-0'
+                    placeholder={`Costo de Inscripción: $${process.env.REACT_APP_PRICE_INSCRIPTION} `} disabled
+                  />
+                </div>
+              </div>
               <div className='input-group mt-2 '>
-                <input
-                  className='form-check-input ' type='checkbox' value={selectTermsConditions} onClick={e => {
-                    setSelectTermsConditions(e.target.checked)
-                  }} id='termsAndConditions'
-                />
-                <label className='form-check-label ' for='termsAndConditions' style={{ color: 'white' }}>
-                  He leído y acepto los <a href='privacy_policy.html' target='_blank' rel='noreferrer'>Terminos y Condiciones</a>
-                </label>
+                <div className='col'>
+                  <p className='text-white font-italic' style={{ 'font-size': '14px' }}>
+                    Al completar todos los campos y presionar el boton "Inscribirme",
+                    se redireccionará a la página de MercadoPago
+                    para completar el proceso de inscripción.
+                  </p>
+                </div>
+              </div>
+              <div className='input-group mt-2 '>
+                <div className='col'>
+                  <input
+                    className='form-check-input ' type='checkbox' value={selectTermsConditions} onClick={e => {
+                      setSelectTermsConditions(e.target.checked)
+                    }} id='termsAndConditions'
+                  />
+
+                  <label className='form-check-label' htmlFor='termsAndConditions' style={{ color: 'white' }}>
+                    He leído y acepto los <a href='terms_conditions.html' target='_blank' rel='noreferrer'>Terminos y Condiciones</a>
+                  </label>
+                </div>
               </div>
               <button
                 disabled={!selectTermsConditions}
                 className='btn btn-success mx-auto mt-2' type='submit'
               >Inscribirme
               </button>
-              {toast && <Alert />}
+              {showLoading()}
+              {showError()}
             </form>
           </div>
         </div>

@@ -1,8 +1,10 @@
+import { Link } from 'react-router-dom'
+
 const Nav = () => {
   return (
     <nav className='navbar navbar-expand-lg navbar-dark fixed-top' id='mainNav'>
       <div className='container'>
-        <a className='navbar-brand' href='http://citrorodando.herokuapp.com'>Citro Rodandoo</a>
+        <Link className='nav-link navbar-brand' to='/'>{process.env.REACT_APP_NAME_APPLICATION}</Link>
         {/* <img src='assets/img/navbar-logo.svg' alt='...' /> */}
         <button className='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarResponsive' aria-controls='navbarResponsive' aria-expanded='false' aria-label='Toggle navigation'>
           Menu
