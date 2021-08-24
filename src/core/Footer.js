@@ -15,9 +15,10 @@ const Footer = () => {
                 ? <Link
                     className='nav-link' to='/admin/dashboard'
                   >Panel de control
-                  </Link>
+                </Link>
                 : <Link className='link-dark text-decoration-none' to='/signin'>LogIn</Link>
             }
+            <Link className='link-dark text-decoration-none' to='/findinscription'>Buscar Inscripción</Link>
           </div>
           <div className='col-lg-4 text-lg-end'>
             <a className='link-dark text-decoration-none me-3' href='privacy_policy.html' target='_blank' rel='noreferrer'>Políticas de Privacidad</a>

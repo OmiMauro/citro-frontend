@@ -12,6 +12,9 @@ const AdminDashboard = () => {
         <ul className='list-group'>
           <li className='list-group-item'>
             <Link className='nav-link' to='/admin/inscripciones'>Ver Inscripciones</Link>
+            <Link className='nav-link' to='/admin/inscripciones/approved'>Pagos Aprobados</Link>
+            <Link className='nav-link' to='/admin/inscripciones/pending'>Pagos Pendientes</Link>
+            <Link className='nav-link' to='/admin/inscripciones/rejected'>Pagos Rechazados</Link>
           </li>
         </ul>
       </div>
@@ -20,25 +23,28 @@ const AdminDashboard = () => {
 
   const adminInfo = () => {
     return (
-      <div className='card mb-5'>
+      <div className='card mb-5 container'>
         <h3 className='card-header'>Informacion del administrador</h3>
         <ul className='list-group'>
           <li className='list-group-item'>{name}</li>
           <li className='list-group-item'>{email}</li>
-          <li className='list-group-item'>Administrador{role}</li>
+          <li className='list-group-item'>Administrador: {role}</li>
         </ul>
       </div>
     )
   }
   return (
-    <div className='row'>
+    <div className='container'>
       <Menu />
-      {console.log('dashboard', isAuthenticated())}
-      <div className='col-4'>
-        {adminLinks()}
-      </div>
-      <div className='col-8'>
-        {adminInfo()}
+
+      <div className='row'>
+
+        <div className='col-12'>
+          {adminInfo()}
+        </div>
+        <div className='col-12'>
+          {adminLinks()}
+        </div>
       </div>
     </div>
   )
