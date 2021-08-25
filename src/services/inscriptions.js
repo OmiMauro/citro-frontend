@@ -17,9 +17,9 @@ const getInscriptions = async ({ userId, token }) => {
 }
 const getInscriptionByDNI = async ({ inscription }) => {
   const response = await axios({
-    method: 'GET',
+    method: 'POST',
     data: inscription,
-    url: '/api/inscription'
+    url: '/api/inscriptionByDNI'
   })
   return response
 }
