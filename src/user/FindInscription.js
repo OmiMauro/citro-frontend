@@ -27,6 +27,8 @@ const FindInscription = () => {
       .then(res => {
         if (res.status === 400) {
           setValues({ ...values, error: res.data.error, loading: false })
+        } else if (res.status === 404) {
+          setValues({ ...values, error: res.data.message, loading: false })
         } else {
           const { name, lastname, DNI, status, orders } = res.data.findInscription
           setValues({ ...values, error: false, loading: false, name, lastname, DNI, status, orders, table: true })

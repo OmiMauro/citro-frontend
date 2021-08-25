@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 const InscriptionsPending = () => {
   const [orders, setOrders] = useState([])
   const { user, token } = isAuthenticated()
-
+  const netReceived = 0
   useEffect(() => {
     async function inscriptionHook () {
       try {
@@ -58,7 +58,8 @@ const InscriptionsPending = () => {
                 <th>{item.date_last_updated}</th>
                 <th>{item.net_received_amount}</th>
               </tr>
-            ))}
+            )
+            )}
           </tbody>
         </table>
       </div>

@@ -10,7 +10,12 @@ const TableInscripciones = () => {
     async function inscriptionHook () {
       try {
         const response = await getInscriptions({ userId: user._id, token })
-        await setInscription(response.data.listInscriptions)
+        const sorted = await response.data.listInscriptions.sort(function (a, b) {
+          if (a.inscription.lastname > b.inscription.lastname) return 1
+          if (a.inscription.lastname < b.inscription.lastname) return -1
+          return 0
+        })
+        await setInscription(sorted)
       } catch (err) {
         console.error(err)
       }
@@ -20,7 +25,6 @@ const TableInscripciones = () => {
 
   return (
     <>
-
       <div className=''>
         <Link className='p-5 text-dark' to='/'>Inicio</Link>
         <Link className='p-5 text-dark' to='/admin/dashboard'>Panel de Administrador</Link>
