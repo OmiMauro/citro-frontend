@@ -30,7 +30,7 @@ const TableInscripciones = () => {
         <Link className='p-5 text-dark' to='/admin/dashboard'>Panel de Administrador</Link>
       </div>
       <div className='table-responsive'>
-        <table className='table table-striped table-dark table-bordered table-hover'>
+        <table className='table table-striped table-dark table-bordered table-hover mt-3'>
           <thead className='thead-dark'>
             <tr>
               <th scope='col'>#</th>
@@ -41,10 +41,10 @@ const TableInscripciones = () => {
               <th scope='col'>Celular</th>
               <th scope='col'>Provincia</th>
               <th scope='col'>Localidad</th>
-              <th scope='col'>Precio</th>
               <th scope='col'>Nro. Operacion</th>
               <th scope='col'>Estado</th>
               <th scope='col'>Detalle del Pago</th>
+              <th scope='col'>Precio</th>
               <th scope='col'>Neto Recibido</th>
             </tr>
           </thead>
@@ -59,10 +59,10 @@ const TableInscripciones = () => {
                 <th>{item.inscription.numberCell}</th>
                 <th>{item.inscription.provinceOrigin}</th>
                 <th>{item.inscription.locationOrigin}</th>
-                <th>{item.unit_price}</th>
                 <th>{item.id_Operacion ? item.id_Operacion : '-'}</th>
-                <th>{item.status}</th>
+                <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : 'RECHAZADO'}</th>
                 <th>{item.status_detail}</th>
+                <th>{item.unit_price}</th>
                 <th>{item.net_received_amount}</th>
               </tr>
             ))}

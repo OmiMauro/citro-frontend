@@ -176,20 +176,20 @@ const Inscription = () => {
                 <div className='col'>
                   <input
                     className='form-control flex-fill  mr-0 mr-sm-2 mb-3 mb-sm-0'
-                    placeholder={`Costo de Inscripción: $${process.env.REACT_APP_PRICE_INSCRIPTION} `} disabled
+                    placeholder={`Costo de la inscripción: $ ${process.env.REACT_APP_PRICE_INSCRIPTION} `} disabled
                   />
                 </div>
               </div>
-              <div className='input-group mt-2 '>
+              <div className='input-group mt-1 '>
                 <div className='col'>
                   <p className='text-white font-italic' style={{ 'font-size': '14px' }}>
                     Al completar todos los campos y presionar el boton "Inscribirme",
                     se redireccionará a la página de MercadoPago
-                    para completar el proceso de inscripción.
+                    para realizar el pago de la inscripción.
                   </p>
                 </div>
               </div>
-              <div className='input-group mt-2 '>
+              <div className='input-group'>
                 <div className='col'>
                   <input
                     className='form-check-input ' type='checkbox' value={selectTermsConditions} onClick={e => {

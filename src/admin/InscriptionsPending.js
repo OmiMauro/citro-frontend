@@ -34,12 +34,11 @@ const InscriptionsPending = () => {
               <th scope='col'>Nombre</th>
               <th scope='col'>DNI</th>
               <th scope='col'>ID Operación</th>
-
+              <th scope='col'>Fecha Actualizacion</th>
               <th scope='col'>Estado</th>
               <th scope='col'>Detalle del Pago</th>
               <th scope='col'>Precio Unitario</th>
               <th scope='col'>Total del Pago </th>
-              <th scope='col'>Fecha Actualizacion</th>
               <th scope='col'>Neto Recibido</th>
             </tr>
           </thead>
@@ -51,11 +50,11 @@ const InscriptionsPending = () => {
                 <th>{item.inscription.name}</th>
                 <th>{item.inscription.DNI}</th>
                 <th>{item.id_Operacion}</th>
-                <th>{item.status}</th>
+                <th>{item.date_last_updated}</th>
+                <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : 'RECHAZADO'}</th>
                 <th>{item.status_detail}</th>
                 <th>{item.unit_price}</th>
                 <th>{item.total_paid_amount}</th>
-                <th>{item.date_last_updated}</th>
                 <th>{item.net_received_amount}</th>
               </tr>
             )
