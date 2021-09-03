@@ -50,7 +50,11 @@ const InscriptionsRejected = () => {
                 <th>{item.inscription.name}</th>
                 <th>{item.inscription.DNI}</th>
                 <th>{item.id_Operacion === undefined ? '-' : item.id_Operacion}</th>
-                <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : 'RECHAZADO'}</th>
+                <th>{item.status === 'approved'
+                  ? 'APROBADO' : item.status === 'pending'
+                      ? 'PENDIENTE' : item.status === 'rejected'
+                          ? 'RECHAZADO' : item.status}
+                </th>
                 <th>{item.status_detail}</th>
                 <th>{item.date_last_updated}</th>
                 <th>{item.unit_price}</th>

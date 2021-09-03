@@ -60,7 +60,13 @@ const TableInscripciones = () => {
                 <th>{item.inscription.provinceOrigin}</th>
                 <th>{item.inscription.locationOrigin}</th>
                 <th>{item.id_Operacion ? item.id_Operacion : '-'}</th>
-                <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : 'RECHAZADO'}</th>
+                <th>{
+                item.status === 'approved'
+                  ? 'APROBADO' : item.status === 'pending'
+                      ? 'PENDIENTE' : item.status === 'rejected'
+                          ? 'RECHAZADO' : item.status
+}
+                </th>
                 <th>{item.status_detail}</th>
                 <th>{item.unit_price}</th>
                 <th>{item.net_received_amount}</th>
