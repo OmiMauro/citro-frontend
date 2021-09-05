@@ -38,7 +38,7 @@ const FindInscription = () => {
 
   const showError = () => {
     return (
-      <div className='alert alert-danger' style={{ display: error ? '' : 'none' }}>
+      <div className='alert alert-danger mt-2' style={{ display: error ? '' : 'none' }}>
         {error}
       </div>
     )
@@ -88,8 +88,8 @@ const FindInscription = () => {
       <div className='container '>
         <div className='row'>
           <div className='text-center col-md-10 col-lg-8 mx-auto'>
-            <h2 className='section-heading text-uppercase text-white mb-1'>Consultar el estado de la inscripción </h2>
-            <p className='text-muted'>Para consultar si ya te inscribiste para el evento, por favor, ingresá tú email y DNI.</p>
+            <h2 className='text-center  mb-1'>Consultar el estado de la inscripción </h2>
+            <p className='text-muted'>Para consultar el estado de tú pago, por favor, ingresá tú email y DNI que ingresaste al momento de completar la inscripción.</p>
             <form id='findInscriptionForm' onSubmit={handleFindInscription}>
               <input
                 value={email} onChange={handleChange('email')}

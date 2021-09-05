@@ -7,12 +7,14 @@ import Inscription from './Inscription'
 import Team from './Team'
 import Modals from './Modals'
 import Footer from './Footer'
+import Description from './Description'
 const Home = () => {
   return (
 
     <div className='App' id='page-top'>
       <Nav />
       <Header />
+      <Description />
       <Services />
       <Portfolio />
       <About />

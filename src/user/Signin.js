@@ -82,7 +82,7 @@ const Signin = () => {
   }
 
   return (
-    <Layout title='Inicio de Session' description='Inicio de Session' className='container col-md-8 offset-md-2'>
+    <Layout title='Inicio de Session' description='Disponible unicamente para los organizadores' className='container col-md-8 offset-md-2'>
       {showLoading()}
       {showError()}
       {signInForm()}

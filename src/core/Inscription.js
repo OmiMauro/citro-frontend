@@ -146,24 +146,30 @@ const Inscription = () => {
           <div className='text-center col-md-10 col-lg-8 mx-auto'>
             <h2 className='section-heading text-uppercase text-white mb-1'>Formulario de Inscripción </h2>
             <form id='inscriptionForm' onSubmit={handleInscription}>
-              <Input
-                value={name} onChange={handleChange('name')}
-                classInput='form-control' id='name' type='text' placeholder='Nombre/s'
-                nameField='name' required='required'
-              />
-              <Input
-                value={lastname} onChange={handleChange('lastname')}
-                classInput='' id='lastname' type='text' placeholder='Apellido/s'
-                nameField='lastname' required='required'
-              />
-              <Input
-                value={DNI}
-                onChange={e => setValues({ ...values, error: false, DNI: e.target.value.replace(/[^0-9]/g, '') })}
-                classInput=''
-                id='DNI' type='text' placeholder='DNI'
-                nameField='DNI' required='required'
-                minLength={7} maxLength={9}
-              />
+              <div className='form-floating'>
+                <Input
+                  value={name} onChange={handleChange('name')}
+                  classInput='form-control' id='name' type='text' placeholder='Nombre/s'
+                  nameField='name' required='required'
+                />
+              </div>
+              <div className='form-floating'>
+                <Input
+                  value={lastname} onChange={handleChange('lastname')}
+                  classInput='' id='lastname' type='text' placeholder='Apellido/s'
+                  nameField='lastname' required='required'
+                />
+              </div>
+              <div className='form-floating'>
+                <Input
+                  value={DNI}
+                  onChange={e => setValues({ ...values, error: false, DNI: e.target.value.replace(/[^0-9]/g, '') })}
+                  classInput=''
+                  id='DNI' type='text' placeholder='DNI'
+                  nameField='DNI' required='required'
+                  minLength={7} maxLength={9}
+                />
+              </div>
               <div className='form-floating'>
                 <input
                   value={dateBirth} onChange={handleChange('dateBirth')} id='dateBirth' type='date'
@@ -172,17 +178,20 @@ const Inscription = () => {
                 />
                 <label for='dateBirth'>Fecha de Nacimiento</label>
               </div>
-              <Input
-                value={email} onChange={handleChange('email')}
-                classInput='' id='email' type='text'
-                placeholder='Correo Electronico' nameField='email' required='required'
-              />
-              <Input
-                value={numberCell} onChange={handleChange('numberCell')}
-                classInput='' id='numberCell' type='tel'
-                placeholder='Número de Celular' nameField='numberCell' required='required'
-              />
-
+              <div className='form-floating'>
+                <Input
+                  value={email} onChange={handleChange('email')}
+                  classInput='' id='email' type='text'
+                  placeholder='Correo Electronico' nameField='email' required='required'
+                />
+              </div>
+              <div className='form-floating'>
+                <Input
+                  value={numberCell} onChange={handleChange('numberCell')}
+                  classInput='' id='numberCell' type='tel'
+                  placeholder='Número de Celular' nameField='numberCell' required='required'
+                />
+              </div>
               <div className='form-row '>
                 <div className='col '>
                   <div className='form-floating'>
@@ -218,26 +227,32 @@ const Inscription = () => {
                     </select>
                     <label for='locationOrigin'>Localidad de Origen</label>
                   </div>
-                  <Input
-                    value={nameCar} onChange={handleChange('nameCar')}
-                    classInput='' id='nameCar' type='text'
-                    placeholder='Nombre del Auto' nameField='nameCar' required='required'
-                  />
-                  <Input
-                    value={registrationCar} onChange={handleChange('registrationCar')}
-                    classInput='' id='registrationCar' type='text'
-                    placeholder='Patente' nameField='registrationCar' required='required'
-                  />
-                  <Input
-                    value={colorCar} onChange={handleChange('colorCar')}
-                    classInput='' id='colorCar' type='text'
-                    placeholder='Color' nameField='colorCar' required='required'
-                  />
+                  <div className='form-floating'>
+                    <Input
+                      value={nameCar} onChange={handleChange('nameCar')}
+                      classInput='' id='nameCar' type='text'
+                      placeholder='Nombre del Auto' nameField='nameCar' required='required'
+                    />
+                  </div>
+                  <div className='form-floating'>
+                    <Input
+                      value={registrationCar} onChange={handleChange('registrationCar')}
+                      classInput='' id='registrationCar' type='text'
+                      placeholder='Patente del auto' nameField='registrationCar' required='required'
+                    />
+                  </div>
+                  <div className='form-floating'>
+                    <Input
+                      value={colorCar} onChange={handleChange('colorCar')}
+                      classInput='' id='colorCar' type='text'
+                      placeholder='Color del auto' nameField='colorCar' required='required'
+                    />
+                  </div>
                   <div className='form-floating'>
                     <select
                       value={styleCar}
                       onChange={e => setValues({ ...values, error: false, styleCar: e.target.value })}
-                      className='form-select flex-fill mr-0 mr-sm-2  mb-sm-0 mt-2'
+                      className='form-select flex-fill mr-0 mr-sm-2 mb-sm-0 mt-2'
                       id='styleCar' name='styleCar' required='required'
                     >
                       <option hidden />
@@ -262,12 +277,14 @@ const Inscription = () => {
                     </select>
                     <label for='versionCar'>Modelo del Auto</label>
                   </div>
-                  <Input
-                    value={yearCar}
-                    onChange={e => setValues({ ...values, error: false, yearCar: e.target.value.replace(/[^0-9]/g, '') })}
-                    classInput='' id='yearCar'
-                    placeholder='Año de fabricación del auto' nameField='yearCar' required='required'
-                  />
+                  <div className='form-floating'>
+                    <Input
+                      value={yearCar}
+                      onChange={e => setValues({ ...values, error: false, yearCar: e.target.value.replace(/[^0-9]/g, '') })}
+                      classInput='' id='yearCar'
+                      placeholder='Año de fabricación del auto' nameField='yearCar' required='required'
+                    />
+                  </div>
                   <div className='form-floating'>
                     <select
                       value={VTV}
@@ -289,7 +306,7 @@ const Inscription = () => {
                       name='arrivalDate' required='required' className='form-select flex-fill mr-sm-2  mb-sm-0 mt-2'
                       placeholder='Fecha estimada que calcula llegar a la Provincia'
                     />
-                    <label for='arrivalDate'>¿Fecha estimada que calcula llegar a la Provincia?</label>
+                    <label for='arrivalDate'>¿Fecha estimada que llegará a Misiones?</label>
                   </div>
                   <div className='form-floating'>
                     <input
@@ -297,7 +314,7 @@ const Inscription = () => {
                       name='dateToProvince' required='required' className='form-control flex-fill mr-sm-2  mb-sm-0 mt-2'
                       placeholder='¿Fecha estimada que calcula regresar a su provincia?'
                     />
-                    <label for='dateToProvince'>¿Fecha estimada que calcula regresar a su provincia?</label>
+                    <label for='dateToProvince'>¿Fecha estimada que regresará a {provinceOrigin || 'su provincia'}?</label>
                   </div>
                   <div className='form-floating'>
                     <select
@@ -348,7 +365,7 @@ const Inscription = () => {
               </div>
               <button
                 disabled={!selectTermsConditions}
-                className='btn btn-success mx-auto mt-2' type='submit'
+                className='btn btn-success mx-auto m-2' type='submit'
               >Inscribirme
               </button>
               {showLoading()}

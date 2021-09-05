@@ -37,6 +37,7 @@ const TableInscripciones = () => {
               <th scope='col'>Apellido</th>
               <th scope='col'>Nombre</th>
               <th scope='col'>DNI</th>
+              <th scope='col'>F. Nacimiento</th>
               <th scope='col'>Email</th>
               <th scope='col'>Celular</th>
               <th scope='col'>Provincia</th>
@@ -46,6 +47,17 @@ const TableInscripciones = () => {
               <th scope='col'>Detalle del Pago</th>
               <th scope='col'>Precio</th>
               <th scope='col'>Neto Recibido</th>
+              <th scope='col'>Nombre Auto</th>
+              <th scope='col'>Patente</th>
+              <th scope='col'>Color</th>
+              <th scope='col'>Estilo</th>
+              <th scope='col'>Modelo</th>
+              <th scope='col'>Version</th>
+              <th scope='col'>VTV</th>
+              <th scope='col'>Llegada </th>
+              <th scope='col'>Retirada</th>
+              <th scope='col'>Nro. de Personas</th>
+
             </tr>
           </thead>
           <tbody className='table-striped'>
@@ -55,6 +67,15 @@ const TableInscripciones = () => {
                 <th>{item.inscription.lastname}</th>
                 <th>{item.inscription.name}</th>
                 <th>{item.inscription.DNI}</th>
+                <th>{item.inscription.dateBirth
+                  ? new Intl.DateTimeFormat('es-AR', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: '2-digit'
+                    }).format(new Date(item.inscription.dateBirth))
+                  : item.inscription.dateBirth}
+                </th>
+
                 <th>{item.inscription.email}</th>
                 <th>{item.inscription.numberCell}</th>
                 <th>{item.inscription.provinceOrigin}</th>
@@ -68,8 +89,48 @@ const TableInscripciones = () => {
 }
                 </th>
                 <th>{item.status_detail}</th>
-                <th>{item.unit_price}</th>
-                <th>{item.net_received_amount}</th>
+                <th>{item.unit_price
+                  ? new Intl.NumberFormat('es-AR', {
+                      style: 'currency',
+                      currency: 'ARS',
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0
+                    }).format(item.unit_price)
+                  : item.unit_price}
+                </th>
+                <th>{item.net_received_amount
+                  ? new Intl.NumberFormat('es-AR', {
+                      style: 'currency',
+                      currency: 'ARS',
+                      minimumFractionDigits: 0,
+                      maximumFractionDigits: 0
+                    }).format(item.net_received_amount)
+                  : item.net_received_amount}
+                </th>
+                <th>{item.inscription.nameCar}</th>
+                <th>{item.inscription.registrationCar}</th>
+                <th>{item.inscription.colorCar}</th>
+                <th>{item.inscription.styleCar}</th>
+                <th>{item.inscription.yearCar}</th>
+                <th>{item.inscription.versionCar === 'OTHER' ? 'OTRO' : item.inscription.versionCar}</th>
+                <th>{item.inscription.VTV ? 'Si VTV' : 'No VTV'}</th>
+                <th>{item.inscription.arrivalDate
+                  ? new Intl.DateTimeFormat('es-AR', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: '2-digit'
+                    }).format(new Date(item.inscription.arrivalDate))
+                  : item.inscription.arrivalDate}
+                </th>
+                <th>{item.inscription.dateToProvince
+                  ? new Intl.DateTimeFormat('es-AR', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: '2-digit'
+                    }).format(new Date(item.inscription.dateToProvince))
+                  : item.inscription.dateToProvince}
+                </th>
+                <th>{item.inscription.travelPeople}</th>
               </tr>
             ))}
           </tbody>

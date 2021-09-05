@@ -41,21 +41,20 @@ const Pending = () => {
         <Nav> </Nav>
         <Header />
         <div className='container mt-4 mb-4'>
-          <h2 className='text-center text-uppercase'>{`${process.env.REACT_APP_NAME_APPLICATION}`}</h2>
-          <h4 className=''>Proceso de Inscripción</h4>
+          <h4 className='text-center text-warning'>Proceso de Inscripción</h4>
           <p className>{`
             El proceso de inscripción ${name}, ${lastname} de DNI ${DNI} cuyo número de pago es 
             ${queryString.get('payment_id')}, se
-            encuentra en estado ${queryString.get('status') === 'pending'
-            ? 'pendiente, ésto puede deberse a que eligió el medio de pago en efectivo.'
-            : 'aprobado'}`}
+            encuentra ${queryString.get('status') === 'pending'
+            ? 'pendiente, ésto puede deberse a que eligió cómo medio de pago en efectivo .'
+            : queryString.get('status')}`}
           </p>
           <p>{`En caso de tener algún inconveniente para realizar éste pago,
-            puede volver a intentarlo nuevamente, completando sus datos y ingresando el mismo DNI: ${DNI}
-            en el formulario de inscripción que se encuentra disponible en la página`}
+            puede volver a intentarlo nuevamente, completando sus datos e ingresando el mismo DNI: ${DNI}
+            en el formulario de inscripción que se encuentra en la página`}
           </p>
-          <p>Ante cualquier duda, puede comunicarse con los organizadores del evento.</p>
-          <p className='text-center'>¡Saludos!</p>
+          <p>Ante cualquier inconveniente, puede comunicarse con los organizadores del evento.</p>
+          <p className='text-center text-secondary'>¡Saludos!</p>
         </div>
 
         <Footer />

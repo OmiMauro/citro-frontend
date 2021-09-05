@@ -10,9 +10,9 @@ const Modals = () => {
                 <div className='col-lg-8'>
                   <div className='modal-body'>
                     <h2 className='text-uppercase'>San Ignacio</h2>
-                    <p className='item-intro text-muted'>Ciudad de los Jesuitas</p>
+                    {/*  <p className='item-intro text-muted'>Ciudad de los Jesuitas</p> */}
                     <img className='img-fluid d-block mx-auto' alt='...' src='assets/img/SanIgnacioRuinas.jpg' />
-                    <p>Ubicaciones Utiles:</p>
+                    {/*  <p>Ubicaciones Utiles:</p> */}
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>
@@ -30,6 +30,7 @@ const Modals = () => {
                         <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
                       </li>
                       <li>
+                        <br />
                         <strong>Restaurantes & deliveries:</strong>
                       </li>
                       <li>
@@ -66,10 +67,11 @@ const Modals = () => {
                 <div className='col-lg-8'>
                   <div className='modal-body'>
                     <h2 className='text-uppercase'>Jardín América</h2>
-                    <p className='item-intro text-muted'>Capital de los Saltos</p>
-                    <img className='img-fluid d-block mx-auto' src='../assets/img/jardinAmericaSaltoTabay.jpg' alt='...' />
-                    <p>Al llegar a Jardín América, se prevee recorrer las Instalaciones de la Coop. Flor De Jardín. A la noche esta prevista una exposición de todos los participantes en el predio Polideportivo de Jardín America a las 20hs.</p>
-                    <p>Ubicaciones Utiles:</p>
+                    {/*  <p className='item-intro text-muted'>Capital de los Saltos</p> */}
+                    <img className='img-fluid d-block mx-auto' src='../assets/img/jardinAmericaCristo.jpg' alt='...' />
+                    {/*                     <p>Al llegar a Jardín América, se prevee recorrer las Instalaciones de la Coop. Flor De Jardín. A la noche esta prevista una exposición de todos los participantes en el predio Polideportivo de Jardín America a las 20hs.</p>
+ */}
+                    {/*  <p>Ubicaciones Utiles:</p> */}
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>
@@ -87,6 +89,7 @@ const Modals = () => {
                         <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
                       </li>
                       <li>
+                        <br />
                         <strong>Restaurantes & deliveries:</strong>
                       </li>
                       <li>
@@ -122,9 +125,10 @@ const Modals = () => {
                 <div className='col-lg-8'>
                   <div className='modal-body'>
                     <h2 className='text-uppercase'>Capioví</h2>
-                    <p className='item-intro text-muted'>Capital de la Navidad</p>
-                    <img className='img-fluid d-block mx-auto' src='assets/img/saltoCapiovi2.jpg' alt='...' />
-                    <p>El domingo a las 9hs, se prevee salir desde Jardín América, en la Axion, con destino a Papel Misionero. Luego a las 11hs se continua con el viaje hacia el Salto Capioví.</p>
+                    {/*  <p className='item-intro text-muted'>Capital de la Navidad</p> */}
+                    <img className='img-fluid d-block mx-auto' src='assets/img/iglesiaCapiovi.jpg' alt='...' />
+                    {/*                     <p>El domingo a las 9hs, se prevee salir desde Jardín América, en la Axion, con destino a Papel Misionero. Luego a las 11hs se continua con el viaje hacia el Salto Capioví.</p>
+ */}
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>
@@ -142,6 +146,7 @@ const Modals = () => {
                         <a href='https://goo.gl/maps/FjQHxAmf7yvcBryz7'> La Apart Resort</a>
                       </li>
                       <li>
+                        <br />
                         <strong>Restaurantes & deliveries:</strong>
                       </li>
                       <li>

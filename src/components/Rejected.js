@@ -40,25 +40,25 @@ const Rejected = () => {
       <div className='App' id='page-top'>
         <Nav> </Nav>
         <Header />
-        <div className='text-center'>
-          <h2>{`${process.env.REACT_APP_NAME_APPLICATION}`}</h2>
-          <h4 className='text-success'>Proceso de Inscripción</h4>
-          <br />
-          <p className>{`
-            El proceso de inscripción de ${name}, ${lastname} de DNI ${DNI} que ingresó en el formulario de inscripción, se
-            encuentra rechazado, ésto puede deberse a razones relacionadas por falta de fondos en el medio de
-            pago seleccionado o algun inconveniente con la plataforma de MercadoPago.`}
-          </p>
-          <br />
-          <p>{`Puede volver a intentarlo nuevamente y seleccionar otro medio de pago disponible,
-            completando todos sus datos e ingresando el mismo DNI ${DNI}
-            en el formulario de inscripción que se encuentra disponible en la página.`}
-          </p>
-          <br />
-          <p>Ante cualquier duda, puede comunicarse con los organizadores del evento.</p>
-          <p>¡Saludos!</p>
-        </div>
+        <div className='container'>
 
+          <h4 className='text-danger text-center mt-2'>Proceso de Inscripción</h4>
+          <br />
+          <p className='text-start'>{`
+            La inscripción de ${name}, ${lastname} cuyo DNI es ${DNI}, se
+            encuentra RECHAZADO, ésto puede deberse a razones relacionadas por falta de fondos en el medio de
+            pago seleccionado o algun inconveniente con el medio de pago seleccionado.`}
+          </p>
+          <br />
+          <p className='text-start'>{`Puede volver a intentarlo nuevamente completanto el formulario de inscripción
+            con sus datos e ingresar el mismo DNI ${DNI}, y luego seleccionar otro medio de pago disponible.
+          
+            `}
+          </p>
+          <br />
+          <p className='text-start'>Ante cualquier duda, puede comunicarse con los organizadores del evento.</p>
+          <p className='text-secondary text-center'>¡Saludos!</p>
+        </div>
         <Footer />
       </div>
     </>
