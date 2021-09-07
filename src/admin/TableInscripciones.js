@@ -102,8 +102,8 @@ const TableInscripciones = () => {
                   ? new Intl.NumberFormat('es-AR', {
                       style: 'currency',
                       currency: 'ARS',
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 4
                     }).format(item.net_received_amount)
                   : item.net_received_amount}
                 </th>

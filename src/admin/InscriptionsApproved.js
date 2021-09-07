@@ -64,9 +64,10 @@ const InscriptionsApproved = () => {
           </thead>
           <tbody className='table-striped'>
             {orders.map((item, index) => {
-              { netReceived += item.net_received_amount }
-              { netRefunded += item.transaction_amount_refunded }
-              { cantidadPersonas += item.travelPeople }
+              { netReceived += item.net_received_amount
+                netRefunded += item.transaction_amount_refunded
+                cantidadPersonas += item.inscription.travelPeople }
+
               return (
                 <tr key={item.inscription.DNI.toString()}>
                   <th>{index + 1}</th>
@@ -96,14 +97,14 @@ const InscriptionsApproved = () => {
                       }).format(new Date(item.date_last_updated))
                     : item.date_last_updated}
                   </th>
-                  <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : 'RECHAZADO'}</th>
+                  <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : item.status}</th>
                   <th>{item.status_detail}</th>
                   <th>{item.unit_price
                     ? new Intl.NumberFormat('es-AR', {
                         style: 'currency',
                         currency: 'ARS',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 4
                       }).format(item.unit_price)
                     : item.unit_price}
                   </th>
@@ -111,8 +112,8 @@ const InscriptionsApproved = () => {
                     ? new Intl.NumberFormat('es-AR', {
                         style: 'currency',
                         currency: 'ARS',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 4
                       }).format(item.transaction_amount_refunded)
                     : item.transaction_amount_refunded}
                   </th>
@@ -160,7 +161,7 @@ const InscriptionsApproved = () => {
           <p>Neto Recibido: {netReceived}</p>
           <p>Total de Inscripciones Aprobadas: {orders.length}</p>
           <p>Total de dinero Reembolsado: {netRefunded}</p>
-          <p>Cantidad de Acompañantes: {cantidadPersonas}</p>
+          <p>Total de Acompañantes: {cantidadPersonas}</p>
         </div>
 
       </div>
