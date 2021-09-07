@@ -64,10 +64,9 @@ const InscriptionsApproved = () => {
           </thead>
           <tbody className='table-striped'>
             {orders.map((item, index) => {
-              { netReceived += item.net_received_amount
-                netRefunded += item.transaction_amount_refunded
-                cantidadPersonas += item.inscription.travelPeople }
-
+              { netReceived += item.net_received_amount }
+              { netRefunded += item.transaction_amount_refunded }
+              { cantidadPersonas += item.inscription.travelPeople }
               return (
                 <tr key={item.inscription.DNI.toString()}>
                   <th>{index + 1}</th>
@@ -85,7 +84,7 @@ const InscriptionsApproved = () => {
                   <th>{item.inscription.email}</th>
                   <th>{item.inscription.numberCell}</th>
                   <th>{item.inscription.provinceOrigin}</th>
-                  <th>{item.inscription.locationOrigin}</th>
+                  <th>{item.inscription.locatioonOrigin}</th>
                   <th>{item.id_Operacion}</th>
                   <th>{item.date_last_updated
                     ? new Intl.DateTimeFormat('es-AR', {
@@ -121,8 +120,8 @@ const InscriptionsApproved = () => {
                     ? new Intl.NumberFormat('es-AR', {
                         style: 'currency',
                         currency: 'ARS',
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 4
                       }).format(item.net_received_amount)
                     : item.net_received_amount}
                   </th>
