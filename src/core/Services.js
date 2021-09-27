@@ -3,7 +3,7 @@ const Services = () => {
     <section className='page-section' id='services'>
       <div className='container'>
         <div className='text-center '>
-          <h2 className='section-heading text-uppercase'>Premios</h2>
+          <h2 className='section-heading text-uppercase'>Reconocimientos</h2>
           {/* <h3 className='section-subheading text-muted'>Alguna descripción
           </h3> */}
         </div>

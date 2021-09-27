@@ -21,7 +21,7 @@ const InscriptionsApproved = () => {
   }, [])
   let netReceived = 0
   let netRefunded = 0
-  let cantidadPersonas = 1110
+  let cantidadPersonas = 0
   return (
     <>
       <div className='table-responsive'>
