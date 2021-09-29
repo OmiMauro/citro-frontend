@@ -10,7 +10,8 @@ const FindInscription = () => {
     name: '',
     lastname: '',
     status: '',
-    orders: [],
+    orders: '',
+    init_point: '',
     error: false,
     loading: false,
     table: false
@@ -21,7 +22,9 @@ const FindInscription = () => {
     orders,
     name,
     lastname,
-
+    init_point,
+    status,
+    status_detail,
     loading,
     error,
     table
@@ -45,7 +48,15 @@ const FindInscription = () => {
       } else if (res.status === 404) {
         setValues({ ...values, error: res.data.message, loading: false })
       } else {
-        const { name, lastname, DNI, status, orders } = res.data.findInscription
+        const {
+          name,
+          lastname,
+          DNI,
+          status,
+          orders,
+          init_point,
+          status_detail
+        } = res.data.inscription
         setValues({
           ...values,
           error: false,
@@ -55,6 +66,8 @@ const FindInscription = () => {
           DNI,
           status,
           orders,
+          init_point,
+          status_detail,
           table: true
         })
       }
@@ -91,6 +104,9 @@ const FindInscription = () => {
                 <th scope='col'>Apellido</th>
                 <th scope='col'>DNI</th>
                 <th scope='col'>Estado del Pago</th>
+                {status_detail !== 'efectivo' && (
+                  <th scope='col'>Enlace para pagar</th>
+                )}
               </tr>
             </thead>
             <tbody className='table-striped'>
@@ -110,6 +126,7 @@ const FindInscription = () => {
                         : item.status
                     }`}
                   </th>
+                  {status_detail !== 'efectivo' && <th>{init_point}</th>}
                 </tr>
               ))}
             </tbody>
@@ -149,8 +166,7 @@ const FindInscription = () => {
                     ...values,
                     error: false,
                     DNI: e.target.value.replace(/[^0-9]/g, '')
-                  })
-                }
+                  })}
                 id='DNI'
                 type='tel'
                 placeholder='DNI'

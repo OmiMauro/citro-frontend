@@ -23,10 +23,10 @@ const Inscription = () => {
     arrivalDate: '2021-11-19',
     dateToProvince: '2021-11-21',
     travelPeople: '',
+    paymentWithMP: true,
     error: '',
     loading: false,
-    success: false,
-    paymentWithMP: true
+    success: false
   })
 
   const [provinces, setProvinces] = useState([])
@@ -83,9 +83,10 @@ const Inscription = () => {
     success,
     paymentWithMP
   } = values
+
   const handleInscription = async event => {
     event.preventDefault()
-    setValues({ ...values, error: false, loading: true })
+    setValues({ ...values, error: false, loading: true, success: false })
     const inscription = {
       name,
       lastname,
@@ -116,7 +117,7 @@ const Inscription = () => {
           success: false
         })
       } else if (res.status === 201 && res.message === 'inscription') {
-        setValues({ ...values, error: false, loading: false, success: true })
+        setValues({ error: false, loading: false, success: true })
       } else {
         setValues({ ...values, error: false, loading: false, success: false })
         window.location.href = res.data.init_point
