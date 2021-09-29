@@ -17,7 +17,7 @@ const Description = () => {
           <p>
             Contaremos con la participación de personas y clubes citroneros de
             distintas provincias, que vendrán a participar de un evento
-            inolvidable a realizarse los días 19, 20 y 21 de noviembre en la
+            inolvidable a realizarse los días 20 y 21 de noviembre en la
             provincia de Misiones, dónde se recorrerá distintos lugares de San
             Ignacio, Jardín América y Capioví.
           </p>

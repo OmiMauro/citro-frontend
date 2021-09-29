@@ -18,50 +18,34 @@ const Modals = () => {
                 <div className='col-lg-8'>
                   <div className='modal-body'>
                     <h2 className='text-uppercase'>San Ignacio</h2>
-                    {/*  <p className='item-intro text-muted'>Ciudad de los Jesuitas</p> */}
                     <img
                       className='img-fluid d-block mx-auto'
                       alt='...'
                       src='assets/img/SanIgnacioRuinas.jpg'
                     />
                     <p>
-                      El almuerzo se realizará en La Carpa Azul que incluirá
-                      <b> "Entrada + Plato principal + Postre" </b>
+                      El almuerzo del día sábado, se realizará en La Carpa Azul
+                      en San Ignacio, que incluirá
+                      <b> "Entrada + Plato principal + Postre" </b>, dónde el
+                      plato principal podrán optar entre varias opciones
+                      disponibles.{' '}
                     </p>
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>
                       </li>
                       <li>
-                        <strong>Hotel América: </strong>
-                        <a href='tel:543743460521'>+543743460521</a>
+                        <strong>Hotel La Toscana: </strong>
+                        <a href='tel:543764470777'>+543764470777</a>
                       </li>
                       <li>
-                        <strong>Cabañas Kito: </strong>
+                        <strong>Hotel y Cabañas San Ignacio: </strong>
                         <a
-                          href='https://api.whatsapp.com/send?phone=543743435856&text=Hola Kito. Quiero consultarte por disponibilidad de las Cabañas. Me llamo ....'
+                          href='https://api.whatsapp.com/send?phone=543764855841&text=Hola. Quiero consultarte por disponibilidad de habitaciones. Me llamo ....'
                           target='_blank'
                           rel='noreferrer'
                         >
-                          +543743435856
-                        </a>
-                      </li>
-                      <li>
-                        <strong>Baden Baden: </strong>
-                        <a href='tel:543743460923'>+543743460923</a>
-                      </li>
-                      <li>
-                        <strong>Paraíso Lodge: </strong>
-                        <a href='tel:543743460517'>+543743460517</a>
-                      </li>
-                      <li>
-                        <strong>Hotel Las Azaleas: </strong>
-                        <a
-                          href='https://api.whatsapp.com/send?phone=543743444378&text=Hola. Quiero consultarte por disponibilidad de habitaciones. Me llamo ....'
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          +543743444378
+                          +543764855841
                         </a>
                       </li>
                     </ul>
@@ -97,28 +81,22 @@ const Modals = () => {
                 <div className='col-lg-8'>
                   <div className='modal-body'>
                     <h2 className='text-uppercase'>Jardín América</h2>
-                    {/*  <p className='item-intro text-muted'>Capital de los Saltos</p> */}
                     <img
                       className='img-fluid d-block mx-auto'
                       src='../assets/img/jardinAmericaCristo.jpg'
                       alt='...'
                     />
                     <p>
-                      Al llegar a Jardín América, se recorrerá las Instalaciones
-                      de la Coop. Flor De Jardín y a la noche se prevee la cena
-                      con el menu a definir y como opción "Choripan de Pernil
-                      con Mandioca Frita" .
+                      La cena del día sábado, se realizará en "El Rodeo" en
+                      Jardín América y podrán optar entre el menu principal (a
+                      definir) y/o Choripanes y Pernil con mandioca frita.
                     </p>
 
-                    {/*  <p>Ubicaciones Utiles:</p> */}
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>
                       </li>
-                      {/* <li>
-                        <strong>Complejos Saltos del Tabay: </strong>
-                        <a href='tel:543743400421'>+543743400421</a>
-                      </li> */}
+
                       <li>
                         <strong>Hotel América: </strong>
                         <a href='tel:543743460521'>+543743460521</a>
@@ -190,43 +168,36 @@ const Modals = () => {
                       src='assets/img/iglesiaCapiovi.jpg'
                       alt='...'
                     />
-                    {/*                     <p>El domingo a las 9hs, se prevee salir desde Jardín América, en la Axion, con destino a Papel Misionero. Luego a las 11hs se continua con el viaje hacia el Salto Capioví.</p>
-                     */}
+                    <p>
+                      El almuerzo del día domingo se realizará en el predio de
+                      <b>"Agroturismo Sof"</b> en la localidad de <b>Capioví</b>{' '}
+                      y podrán elegir entre: asado vacuno, pollo, pescado a la
+                      parrilla, pescado frito, ensalada rusa, mandioca y/o
+                      ensaladas regionales. <br />
+                      La cena se realizará en <b>"Don Justo"</b> en la localidad
+                      de <b>Puerto Rico</b> y podrán degustar un Rodicio de
+                      Pizzas acompañado con una variedad de platos tipícos.
+                    </p>
+
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>
                       </li>
                       <li>
-                        <strong>Hotel América: </strong>
-                        <a href='tel:543743460521'>+543743460521</a>
+                        <strong>Hotel Castillo: </strong>
+                        <a href='tel:543743493147'>+543743493147</a>
                       </li>
                       <li>
-                        <strong>Cabañas Kito: </strong>
-                        <a
-                          href='https://api.whatsapp.com/send?phone=543743435856&text=Hola Kito. Quiero consultarte por disponibilidad de las Cabañas. Me llamo ....'
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          +543743435856
-                        </a>
+                        <strong>Cabañas El Sueño: </strong>
+                        <a href='tel:543743493404'>+543743493404</a>
                       </li>
                       <li>
-                        <strong>Baden Baden: </strong>
-                        <a href='tel:543743460923'>+543743460923</a>
+                        <strong>Cabaña Don Juan: </strong>
+                        <a href='tel:543743456446'>+543743456446</a>
                       </li>
                       <li>
-                        <strong>Paraíso Lodge: </strong>
-                        <a href='tel:543743460517'>+543743460517</a>
-                      </li>
-                      <li>
-                        <strong>Hotel Las Azaleas: </strong>
-                        <a
-                          href='https://api.whatsapp.com/send?phone=543743444378&text=Hola. Quiero consultarte por disponibilidad de habitaciones. Me llamo ....'
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          +543743444378
-                        </a>
+                        <strong>Hospedaje Capioví: </strong>
+                        <a href='tel:543743493183'>+543743493183</a>
                       </li>
                     </ul>
                     <button

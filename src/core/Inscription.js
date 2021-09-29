@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { getProvinces, getLocalidades } from '../services/locations'
 /* import { addInscription } from '../services/inscriptions' */
-import { getPreferenceMP, saveInscription } from '../services/mercadopago'
+import { getPreferenceMP } from '../services/mercadopago'
 import Input from './Input'
 const Inscription = () => {
   const [values, setValues] = useState({
@@ -80,6 +80,7 @@ const Inscription = () => {
     dateToProvince,
     error,
     loading,
+    success,
     paymentWithMP
   } = values
   const handleInscription = async event => {
@@ -103,26 +104,24 @@ const Inscription = () => {
       VTV,
       travelPeople,
       arrivalDate,
-      dateToProvince
+      dateToProvince,
+      paymentWithMP
     }
-    if (paymentWithMP) {
-      const response = await getPreferenceMP({ inscription }).then(res => {
-        if (res.status === 400) {
-          setValues({ ...values, error: res.data.error, loading: false })
-        } else {
-          setValues({ ...values, error: false, loading: false })
-          window.location.href = res.data.init_point
-        }
-      })
-    } else {
-      const response = await saveInscription({ inscription }).then(res => {
-        if (res.status === 400) {
-          setValues({ ...values, error: res.data.error, loading: false })
-        } else {
-          setValues({ ...values, error: false, loading: false, success: true })
-        }
-      })
-    }
+    await getPreferenceMP({ inscription }).then(res => {
+      if (res.status === 400) {
+        setValues({
+          ...values,
+          error: res.data.error,
+          loading: false,
+          success: false
+        })
+      } else if (res.status === 201 && res.message === 'inscription') {
+        setValues({ ...values, error: false, loading: false, success: true })
+      } else {
+        setValues({ ...values, error: false, loading: false, success: false })
+        window.location.href = res.data.init_point
+      }
+    })
   }
 
   const showError = () => {
@@ -146,9 +145,11 @@ const Inscription = () => {
   }
   const showSuccess = () => {
     return (
-      <div className='alert alert-success'>
-        <h2>Su inscripción se registró con éxito. ¡Te esperamos!</h2>
-      </div>
+      success && (
+        <div className='alert alert-success'>
+          <h2>Su inscripción se registró con éxito. ¡Te esperamos!</h2>
+        </div>
+      )
     )
   }
   const handleChange = name => event => {
@@ -222,7 +223,8 @@ const Inscription = () => {
                       ...values,
                       error: false,
                       DNI: e.target.value.replace(/[^0-9]/g, '')
-                    })}
+                    })
+                  }
                   classInput=''
                   id='DNI'
                   type='text'
@@ -307,7 +309,8 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           locationOrigin: e.target.value
-                        })}
+                        })
+                      }
                       className='form-select flex-fill mr-sm-2 mb-sm-0 mt-2'
                       id='locationOrigin'
                       name='locationOrigin'
@@ -367,7 +370,8 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           styleCar: e.target.value
-                        })}
+                        })
+                      }
                       className='form-select flex-fill mr-0 mr-sm-2 mb-sm-0 mt-2'
                       id='styleCar'
                       name='styleCar'
@@ -390,7 +394,8 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           versionCar: e.target.value
-                        })}
+                        })
+                      }
                       className='form-select flex-fill mr-0 mr-sm-2  mb-sm-0 mt-2'
                       id='versionCar'
                       namerequired='required'
@@ -413,7 +418,8 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           yearCar: e.target.value.replace(/[^0-9]/g, '')
-                        })}
+                        })
+                      }
                       classInput=''
                       id='yearCar'
                       placeholder='Año de fabricación del auto'
@@ -484,7 +490,8 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           travelPeople: e.target.value
-                        })}
+                        })
+                      }
                       className='form-select flex-fill mr-0 mr-sm-2  mb-sm-0 mt-2'
                       id='travelPeople'
                       name='travelPeople'

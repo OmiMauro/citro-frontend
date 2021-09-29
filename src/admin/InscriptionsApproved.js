@@ -1,24 +1,26 @@
-
 import { getInscriptionsApproved } from '../services/inscriptions'
 import { isAuthenticated } from '../auth/index'
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 const InscriptionsApproved = () => {
-  const date_last_updated = new Date()
   const [orders, setOrders] = useState([])
   const { user, token } = isAuthenticated()
 
   useEffect(() => {
     async function inscriptionHook () {
       try {
-        const response = await getInscriptionsApproved({ userId: user._id, token })
+        const response = await getInscriptionsApproved({
+          userId: user._id,
+          token
+        })
         await setOrders(response.data.response)
       } catch (err) {
         console.error(err)
       }
     }
     inscriptionHook()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   let netReceived = 0
   let netRefunded = 0
   let cantidadPersonas = 0
@@ -26,8 +28,12 @@ const InscriptionsApproved = () => {
     <>
       <div className='table-responsive'>
         <div>
-          <Link className='p-5 text-dark' to='/'>Inicio</Link>
-          <Link className='p-5 text-dark' to='/admin/dashboard'>Panel de Administrador</Link>
+          <Link className='p-5 text-dark' to='/'>
+            Inicio
+          </Link>
+          <Link className='p-5 text-dark' to='/admin/dashboard'>
+            Panel de Administrador
+          </Link>
         </div>
 
         <table className='table table-striped table-dark table-bordered table-hover mt-5'>
@@ -59,71 +65,81 @@ const InscriptionsApproved = () => {
               <th scope='col'>Llegada </th>
               <th scope='col'>Retirada</th>
               <th scope='col'>Nro. de Personas</th>
-
             </tr>
           </thead>
           <tbody className='table-striped'>
             {orders.map((item, index) => {
-              { netReceived += item.net_received_amount }
-              { netRefunded += item.transaction_amount_refunded }
-              { cantidadPersonas += item.inscription.travelPeople }
+              netReceived += item.net_received_amount
+              netRefunded += item.transaction_amount_refunded
+              cantidadPersonas += item.inscription.travelPeople
               return (
                 <tr key={item.inscription.DNI.toString()}>
                   <th>{index + 1}</th>
                   <th>{item.inscription.lastname}</th>
                   <th>{item.inscription.name}</th>
                   <th>{item.inscription.DNI}</th>
-                  <th>{item.inscription.dateBirth
-                    ? new Intl.DateTimeFormat('es-AR', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: '2-digit'
-                      }).format(new Date(item.inscription.dateBirth))
-                    : item.inscription.dateBirth}
+                  <th>
+                    {item.inscription.dateBirth
+                      ? new Intl.DateTimeFormat('es-AR', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: '2-digit'
+                        }).format(new Date(item.inscription.dateBirth))
+                      : item.inscription.dateBirth}
                   </th>
                   <th>{item.inscription.email}</th>
                   <th>{item.inscription.numberCell}</th>
                   <th>{item.inscription.provinceOrigin}</th>
                   <th>{item.inscription.locatioonOrigin}</th>
                   <th>{item.id_Operacion}</th>
-                  <th>{item.date_last_updated
-                    ? new Intl.DateTimeFormat('es-AR', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: '2-digit',
-                        hour: 'numeric',
-                        minute: 'numeric'
-                      }).format(new Date(item.date_last_updated))
-                    : item.date_last_updated}
+                  <th>
+                    {item.date_last_updated
+                      ? new Intl.DateTimeFormat('es-AR', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: '2-digit',
+                          hour: 'numeric',
+                          minute: 'numeric'
+                        }).format(new Date(item.date_last_updated))
+                      : item.date_last_updated}
                   </th>
-                  <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : item.status}</th>
+                  <th>
+                    {item.status === 'approved'
+                      ? 'APROBADO'
+                      : item.status === 'pending'
+                        ? 'PENDIENTE'
+                        : item.status}
+                  </th>
                   <th>{item.status_detail}</th>
-                  <th>{item.unit_price
-                    ? new Intl.NumberFormat('es-AR', {
-                        style: 'currency',
-                        currency: 'ARS',
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 4
-                      }).format(item.unit_price)
-                    : item.unit_price}
+                  <th>
+                    {item.unit_price
+                      ? new Intl.NumberFormat('es-AR', {
+                          style: 'currency',
+                          currency: 'ARS',
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 4
+                        }).format(item.unit_price)
+                      : item.unit_price}
                   </th>
-                  <th>{item.transaction_amount_refunded
-                    ? new Intl.NumberFormat('es-AR', {
-                        style: 'currency',
-                        currency: 'ARS',
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 4
-                      }).format(item.transaction_amount_refunded)
-                    : item.transaction_amount_refunded}
+                  <th>
+                    {item.transaction_amount_refunded
+                      ? new Intl.NumberFormat('es-AR', {
+                          style: 'currency',
+                          currency: 'ARS',
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 4
+                        }).format(item.transaction_amount_refunded)
+                      : item.transaction_amount_refunded}
                   </th>
-                  <th>{item.net_received_amount
-                    ? new Intl.NumberFormat('es-AR', {
-                        style: 'currency',
-                        currency: 'ARS',
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 4
-                      }).format(item.net_received_amount)
-                    : item.net_received_amount}
+                  <th>
+                    {item.net_received_amount
+                      ? new Intl.NumberFormat('es-AR', {
+                          style: 'currency',
+                          currency: 'ARS',
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 4
+                        }).format(item.net_received_amount)
+                      : item.net_received_amount}
                   </th>
                   <th>{item.inscription.nameCar}</th>
                   <th>{item.inscription.registrationCar}</th>
@@ -132,27 +148,28 @@ const InscriptionsApproved = () => {
                   <th>{item.inscription.yearCar}</th>
                   <th>{item.inscription.versionCar}</th>
                   <th>{item.inscription.VTV}</th>
-                  <th>{item.inscription.arrivalDate
-                    ? new Intl.DateTimeFormat('es-AR', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: '2-digit'
-                      }).format(new Date(item.inscription.arrivalDate))
-                    : item.inscription.arrivalDate}
+                  <th>
+                    {item.inscription.arrivalDate
+                      ? new Intl.DateTimeFormat('es-AR', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: '2-digit'
+                        }).format(new Date(item.inscription.arrivalDate))
+                      : item.inscription.arrivalDate}
                   </th>
-                  <th>{item.inscription.dateToProvince
-                    ? new Intl.DateTimeFormat('es-AR', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: '2-digit'
-                      }).format(new Date(item.inscription.dateToProvince))
-                    : item.inscription.dateToProvince}
+                  <th>
+                    {item.inscription.dateToProvince
+                      ? new Intl.DateTimeFormat('es-AR', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: '2-digit'
+                        }).format(new Date(item.inscription.dateToProvince))
+                      : item.inscription.dateToProvince}
                   </th>
                   <th>{item.inscription.travelPeople}</th>
                 </tr>
               )
-            }
-            )}
+            })}
           </tbody>
         </table>
 
@@ -162,7 +179,6 @@ const InscriptionsApproved = () => {
           <p>Total de dinero Reembolsado: {netRefunded}</p>
           <p>Total de Acompañantes: {cantidadPersonas}</p>
         </div>
-
       </div>
     </>
   )

@@ -34,29 +34,36 @@ const Rejected = () => {
       await handleFindInscription()
     }
     getInscriptionHook()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <>
       <div className='App' id='page-top'>
         <Nav> </Nav>
         <Header />
         <div className='container'>
-
-          <h4 className='text-danger text-center mt-2'>Proceso de Inscripción</h4>
+          <h4 className='text-danger text-center mt-2'>
+            Proceso de Inscripción
+          </h4>
           <br />
-          <p className='text-start'>{`
+          <p className='text-start'>
+            {`
             La inscripción de ${name}, ${lastname} cuyo DNI es ${DNI}, se
             encuentra RECHAZADO, ésto puede deberse a razones relacionadas por falta de fondos en el medio de
             pago seleccionado o algun inconveniente con el medio de pago seleccionado.`}
           </p>
           <br />
-          <p className='text-start'>{`Puede volver a intentarlo nuevamente completanto el formulario de inscripción
-            con sus datos e ingresar el mismo DNI ${DNI}, y luego seleccionar otro medio de pago disponible.
-          
+          <p className='text-start'>
+            {`Puede volver a realizar el pago ingresando su email y DNI en la seccion 
+          "Consultar Inscripción", dónde obtendrá
+          el enlace para intentarlo nuevamente. 
             `}
           </p>
           <br />
-          <p className='text-start'>Ante cualquier duda, puede comunicarse con los organizadores del evento.</p>
+          <p className='text-start'>
+            Ante cualquier duda, puede comunicarse con los organizadores del
+            evento.
+          </p>
           <p className='text-secondary text-center'>¡Saludos!</p>
         </div>
         <Footer />

@@ -33,20 +33,24 @@ const Success = () => {
       await handleFindInscription()
     }
     getInscriptionHook()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <>
       <div className='App' id='page-top'>
         <Nav />
         <Header />
         <div className='container mt-4 mb-4'>
-
           <h4 className='text-center text-success'>Proceso de Inscripción</h4>
           <br />
           <p className='text-start'>
             {`El proceso de inscripción de ${name}, ${lastname} de DNI ${DNI}
           cuyo número de pago es ${queryString.get('payment_id')} se
-          ${queryString.get('status') === 'approved' ? 'aprobó con éxito' : queryString.get('status')}`}
+          ${
+            queryString.get('status') === 'approved'
+              ? 'aprobó con éxito'
+              : queryString.get('status')
+          }`}
           </p>
           <p>¡Te esperamos para el encuentro! </p>
           <p className='text-center text-secondary'>¡Saludos!</p>

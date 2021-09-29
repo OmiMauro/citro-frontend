@@ -1,4 +1,3 @@
-
 import { getInscriptionsPending } from '../services/inscriptions'
 import { isAuthenticated } from '../auth/index'
 import { Link } from 'react-router-dom'
@@ -6,25 +5,31 @@ import React, { useEffect, useState } from 'react'
 const InscriptionsPending = () => {
   const [orders, setOrders] = useState([])
   const { user, token } = isAuthenticated()
-  const netReceived = 0
   useEffect(() => {
     async function inscriptionHook () {
       try {
-        const response = await getInscriptionsPending({ userId: user._id, token })
+        const response = await getInscriptionsPending({
+          userId: user._id,
+          token
+        })
         await setOrders(response.data.response)
       } catch (err) {
         console.error(err)
       }
     }
     inscriptionHook()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <div className='table-responsive'>
         <div>
-          <Link className='p-5 text-dark' to='/'>Inicio</Link>
-          <Link className='p-5 text-dark' to='/admin/dashboard'>Panel de Administrador</Link>
+          <Link className='p-5 text-dark' to='/'>
+            Inicio
+          </Link>
+          <Link className='p-5 text-dark' to='/admin/dashboard'>
+            Panel de Administrador
+          </Link>
         </div>
         <table className='table table-striped table-dark table-bordered table-hover'>
           <thead className='thead-dark'>
@@ -51,14 +56,19 @@ const InscriptionsPending = () => {
                 <th>{item.inscription.DNI}</th>
                 <th>{item.id_Operacion}</th>
                 <th>{item.date_last_updated}</th>
-                <th>{item.status === 'approved' ? 'APROBADO' : item.status === 'pending' ? 'PENDIENTE' : 'RECHAZADO'}</th>
+                <th>
+                  {item.status === 'approved'
+                    ? 'APROBADO'
+                    : item.status === 'pending'
+                      ? 'PENDIENTE'
+                      : 'RECHAZADO'}
+                </th>
                 <th>{item.status_detail}</th>
                 <th>{item.unit_price}</th>
                 <th>{item.total_paid_amount}</th>
                 <th>{item.net_received_amount}</th>
               </tr>
-            )
-            )}
+            ))}
           </tbody>
         </table>
       </div>

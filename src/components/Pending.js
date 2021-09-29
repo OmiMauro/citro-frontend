@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react'
 import Nav from '../core/Nav'
 import Footer from '../core/Footer'
@@ -34,7 +33,8 @@ const Pending = () => {
       await handleFindInscription()
     }
     getInscriptionHook()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   return (
     <>
       <div className='App' id='page-top'>
@@ -42,18 +42,27 @@ const Pending = () => {
         <Header />
         <div className='container mt-4 mb-4'>
           <h4 className='text-center text-warning'>Proceso de Inscripción</h4>
-          <p className>{`
+          <p className>
+            {`
             El proceso de inscripción ${name}, ${lastname} de DNI ${DNI} cuyo número de pago es 
             ${queryString.get('payment_id')}, se
-            encuentra ${queryString.get('status') === 'pending'
-            ? 'pendiente, ésto puede deberse a que eligió cómo medio de pago en efectivo .'
-            : queryString.get('status')}`}
+            encuentra ${
+              queryString.get('status') === 'pending'
+                ? 'pendiente, ésto puede deberse a que eligió cómo medio de pago en efectivo .'
+                : queryString.get('status')
+            }`}
           </p>
-          <p>{`En caso de tener algún inconveniente para realizar éste pago,
-            puede volver a intentarlo nuevamente, completando sus datos e ingresando el mismo DNI: ${DNI}
-            en el formulario de inscripción que se encuentra en la página`}
+          <p>
+            {`En caso de tener algún inconveniente para realizar éste pago,
+            Puede volver a realizarlo ingresando su email y DNI en la sección 
+            "Consultar Inscripción", dónde obtendrá
+            el enlace para intentarlo nuevamente. 
+              `}
           </p>
-          <p>Ante cualquier inconveniente, puede comunicarse con los organizadores del evento.</p>
+          <p>
+            Ante cualquier inconveniente, puede comunicarse con los
+            organizadores del evento.
+          </p>
           <p className='text-center text-secondary'>¡Saludos!</p>
         </div>
 

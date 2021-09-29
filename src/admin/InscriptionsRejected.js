@@ -1,4 +1,3 @@
-
 import { getInscriptionsRejected } from '../services/inscriptions'
 import { isAuthenticated } from '../auth/index'
 import { Link } from 'react-router-dom'
@@ -10,21 +9,28 @@ const InscriptionsRejected = () => {
   useEffect(() => {
     async function inscriptionHook () {
       try {
-        const response = await getInscriptionsRejected({ userId: user._id, token })
+        const response = await getInscriptionsRejected({
+          userId: user._id,
+          token
+        })
         await setOrders(response.data.response)
       } catch (err) {
         console.error(err)
       }
     }
     inscriptionHook()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <div className='table-responsive'>
         <div>
-          <Link className='p-5 text-dark' to='/'>Inicio</Link>
-          <Link className='p-5 text-dark' to='/admin/dashboard'>Panel de Administrador</Link>
+          <Link className='p-5 text-dark' to='/'>
+            Inicio
+          </Link>
+          <Link className='p-5 text-dark' to='/admin/dashboard'>
+            Panel de Administrador
+          </Link>
         </div>
         <table className='table table-striped table-dark table-bordered table-hover mt-5'>
           <thead className='thead-dark'>
@@ -49,11 +55,17 @@ const InscriptionsRejected = () => {
                 <th>{item.inscription.lastname}</th>
                 <th>{item.inscription.name}</th>
                 <th>{item.inscription.DNI}</th>
-                <th>{item.id_Operacion === undefined ? '-' : item.id_Operacion}</th>
-                <th>{item.status === 'approved'
-                  ? 'APROBADO' : item.status === 'pending'
-                      ? 'PENDIENTE' : item.status === 'rejected'
-                          ? 'RECHAZADO' : item.status}
+                <th>
+                  {item.id_Operacion === undefined ? '-' : item.id_Operacion}
+                </th>
+                <th>
+                  {item.status === 'approved'
+                    ? 'APROBADO'
+                    : item.status === 'pending'
+                    ? 'PENDIENTE'
+                    : item.status === 'rejected'
+                    ? 'RECHAZADO'
+                    : item.status}
                 </th>
                 <th>{item.status_detail}</th>
                 <th>{item.date_last_updated}</th>

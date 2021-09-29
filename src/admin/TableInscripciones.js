@@ -10,7 +10,10 @@ const TableInscripciones = () => {
     async function inscriptionHook () {
       try {
         const response = await getInscriptions({ userId: user._id, token })
-        const sorted = await response.data.listInscriptions.sort(function (a, b) {
+        const sorted = await response.data.listInscriptions.sort(function (
+          a,
+          b
+        ) {
           if (a.inscription.lastname > b.inscription.lastname) return 1
           if (a.inscription.lastname < b.inscription.lastname) return -1
           return 0
@@ -21,13 +24,17 @@ const TableInscripciones = () => {
       }
     }
     inscriptionHook()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
       <div className=''>
-        <Link className='p-5 text-dark' to='/'>Inicio</Link>
-        <Link className='p-5 text-dark' to='/admin/dashboard'>Panel de Administrador</Link>
+        <Link className='p-5 text-dark' to='/'>
+          Inicio
+        </Link>
+        <Link className='p-5 text-dark' to='/admin/dashboard'>
+          Panel de Administrador
+        </Link>
       </div>
       <div className='table-responsive'>
         <table className='table table-striped table-dark table-bordered table-hover mt-3'>
@@ -57,7 +64,6 @@ const TableInscripciones = () => {
               <th scope='col'>Llegada </th>
               <th scope='col'>Retirada</th>
               <th scope='col'>Nro. de Personas</th>
-
             </tr>
           </thead>
           <tbody className='table-striped'>
@@ -67,13 +73,14 @@ const TableInscripciones = () => {
                 <th>{item.inscription.lastname}</th>
                 <th>{item.inscription.name}</th>
                 <th>{item.inscription.DNI}</th>
-                <th>{item.inscription.dateBirth
-                  ? new Intl.DateTimeFormat('es-AR', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: '2-digit'
-                    }).format(new Date(item.inscription.dateBirth))
-                  : item.inscription.dateBirth}
+                <th>
+                  {item.inscription.dateBirth
+                    ? new Intl.DateTimeFormat('es-AR', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit'
+                      }).format(new Date(item.inscription.dateBirth))
+                    : item.inscription.dateBirth}
                 </th>
 
                 <th>{item.inscription.email}</th>
@@ -81,54 +88,64 @@ const TableInscripciones = () => {
                 <th>{item.inscription.provinceOrigin}</th>
                 <th>{item.inscription.locationOrigin}</th>
                 <th>{item.id_Operacion ? item.id_Operacion : '-'}</th>
-                <th>{
-                item.status === 'approved'
-                  ? 'APROBADO' : item.status === 'pending'
-                      ? 'PENDIENTE' : item.status === 'rejected'
-                          ? 'RECHAZADO' : item.status
-}
+                <th>
+                  {item.status === 'approved'
+                    ? 'APROBADO'
+                    : item.status === 'pending'
+                    ? 'PENDIENTE'
+                    : item.status === 'rejected'
+                    ? 'RECHAZADO'
+                    : item.status}
                 </th>
                 <th>{item.status_detail}</th>
-                <th>{item.unit_price
-                  ? new Intl.NumberFormat('es-AR', {
-                      style: 'currency',
-                      currency: 'ARS',
-                      minimumFractionDigits: 0,
-                      maximumFractionDigits: 0
-                    }).format(item.unit_price)
-                  : item.unit_price}
+                <th>
+                  {item.unit_price
+                    ? new Intl.NumberFormat('es-AR', {
+                        style: 'currency',
+                        currency: 'ARS',
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
+                      }).format(item.unit_price)
+                    : item.unit_price}
                 </th>
-                <th>{item.net_received_amount
-                  ? new Intl.NumberFormat('es-AR', {
-                      style: 'currency',
-                      currency: 'ARS',
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 4
-                    }).format(item.net_received_amount)
-                  : item.net_received_amount}
+                <th>
+                  {item.net_received_amount
+                    ? new Intl.NumberFormat('es-AR', {
+                        style: 'currency',
+                        currency: 'ARS',
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 4
+                      }).format(item.net_received_amount)
+                    : item.net_received_amount}
                 </th>
                 <th>{item.inscription.nameCar}</th>
                 <th>{item.inscription.registrationCar}</th>
                 <th>{item.inscription.colorCar}</th>
                 <th>{item.inscription.styleCar}</th>
                 <th>{item.inscription.yearCar}</th>
-                <th>{item.inscription.versionCar === 'OTHER' ? 'OTRO' : item.inscription.versionCar}</th>
-                <th>{item.inscription.VTV ? 'Si VTV' : 'No VTV'}</th>
-                <th>{item.inscription.arrivalDate
-                  ? new Intl.DateTimeFormat('es-AR', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: '2-digit'
-                    }).format(new Date(item.inscription.arrivalDate))
-                  : item.inscription.arrivalDate}
+                <th>
+                  {item.inscription.versionCar === 'OTHER'
+                    ? 'OTRO'
+                    : item.inscription.versionCar}
                 </th>
-                <th>{item.inscription.dateToProvince
-                  ? new Intl.DateTimeFormat('es-AR', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: '2-digit'
-                    }).format(new Date(item.inscription.dateToProvince))
-                  : item.inscription.dateToProvince}
+                <th>{item.inscription.VTV ? 'Si VTV' : 'No VTV'}</th>
+                <th>
+                  {item.inscription.arrivalDate
+                    ? new Intl.DateTimeFormat('es-AR', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit'
+                      }).format(new Date(item.inscription.arrivalDate))
+                    : item.inscription.arrivalDate}
+                </th>
+                <th>
+                  {item.inscription.dateToProvince
+                    ? new Intl.DateTimeFormat('es-AR', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: '2-digit'
+                      }).format(new Date(item.inscription.dateToProvince))
+                    : item.inscription.dateToProvince}
                 </th>
                 <th>{item.inscription.travelPeople}</th>
               </tr>
