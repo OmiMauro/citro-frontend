@@ -14,12 +14,16 @@ const Footer = () => {
           <div className='col-lg-4  '>
             <a
               className='btn btn-dark btn-social mx-2'
+              target='_blank'
+              rel='noreferrer'
               href='https://www.facebook.com/Citroneros-Misioneros-100606658117780/'
             >
               <i className='fab fa-facebook-f' />
             </a>
             <a
               className='btn btn-dark btn-social mx-2'
+              target='_blank'
+              rel='noreferrer'
               href='https://chat.whatsapp.com/DNBNHlsYo4L4nFrWxXnxzk'
             >
               <i className='fab fa-whatsapp' />

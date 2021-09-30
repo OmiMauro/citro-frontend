@@ -109,15 +109,28 @@ const Inscription = () => {
       paymentWithMP
     }
     await getPreferenceMP({ inscription }).then(res => {
+      console.log(res)
       if (res.status === 400) {
-        setValues({
+        return setValues({
           ...values,
           error: res.data.error,
           loading: false,
           success: false
         })
-      } else if (res.status === 201 && res.message === 'inscription') {
-        setValues({ error: false, loading: false, success: true })
+      } else if (res.status === 201 && res.data.inscription === 'efectivo') {
+        return setValues({
+          values: '',
+          error: false,
+          loading: false,
+          success: true
+        })
+      } else if (res.status === 202 && res.data.inscription === 'exists') {
+        return setValues({
+          ...values,
+          error: 'El DNI ingresado ya se encuentra inscripto.',
+          loading: false,
+          success: false
+        })
       } else {
         setValues({ ...values, error: false, loading: false, success: false })
         window.location.href = res.data.init_point
@@ -158,6 +171,7 @@ const Inscription = () => {
       ...values,
       success: false,
       error: false,
+      loading: false,
       [name]: event.target.value
     })
   }
@@ -437,7 +451,7 @@ const Inscription = () => {
                           VTV: e.target.value
                         })
                       }}
-                      className='form-select flex-fillmr-sm-2  mb-sm-0 mt-2'
+                      className='form-select flex-fill mr-sm-2  mb-sm-0 mt-2'
                       id='VTV'
                       name='VTV'
                       required='required'
@@ -505,14 +519,13 @@ const Inscription = () => {
                         </option>
                       ))}
                     </select>
-
                     <label for='travelPeople'>
                       ¿Cuántas personas viajan en su auto?
                     </label>
                   </div>
                   <div className='form-floating'>
                     <input
-                      className='form-control flex-fill mr-0 mr-sm-2  mb-sm-0 mt-2'
+                      className='form-control flex-fill mr-0 mr-sm-2 mb-sm-0 mt-2'
                       id='price'
                       disabled
                       value={process.env.REACT_APP_PRICE_INSCRIPTION}
@@ -522,25 +535,26 @@ const Inscription = () => {
                   <div className='form-floating'>
                     <select
                       value={paymentWithMP}
-                      onChange={e => {
+                      onChange={e =>
                         setValues({
                           ...values,
                           error: false,
                           paymentWithMP: e.target.value
                         })
-                      }}
-                      className='form-select flex-fillmr-sm-2  mb-sm-0 mt-2'
+                      }
+                      className='form-select flex-fill mr-sm-2 mb-sm-0 mt-2'
                       id='paymentWithMP'
                       name='paymentWithMP'
                       required='required'
                     >
                       <option hidden />
-                      <option value='true' key='1'>
+                      <option value='true' key='MP'>
                         Realizar transferencia bancaria vía MercadoPago (T.
                         Debito, T. Crédito o Puntos de Efectivo)
                       </option>
-                      <option value='false' key='2'>
-                        Pagar en efectivo en el evento
+                      <option value='false' key='EFECTIVO'>
+                        Pagar en efectivo en el evento. Tendrá un costo
+                        adicional
                       </option>
                     </select>
                     <label for='paymentWithMP'>
@@ -584,7 +598,7 @@ const Inscription = () => {
                       target='_blank'
                       rel='noreferrer'
                     >
-                      Terminos y Condiciones
+                      Términos y Condiciones
                     </a>
                   </label>
                 </div>

@@ -90,7 +90,7 @@ const InscriptionsApproved = () => {
                   <th>{item.inscription.email}</th>
                   <th>{item.inscription.numberCell}</th>
                   <th>{item.inscription.provinceOrigin}</th>
-                  <th>{item.inscription.locatioonOrigin}</th>
+                  <th>{item.inscription.locationOrigin}</th>
                   <th>{item.id_Operacion}</th>
                   <th>
                     {item.date_last_updated
@@ -107,8 +107,8 @@ const InscriptionsApproved = () => {
                     {item.status === 'approved'
                       ? 'APROBADO'
                       : item.status === 'pending'
-                        ? 'PENDIENTE'
-                        : item.status}
+                      ? 'PENDIENTE'
+                      : item.status}
                   </th>
                   <th>{item.status_detail}</th>
                   <th>

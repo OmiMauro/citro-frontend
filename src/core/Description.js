@@ -18,8 +18,8 @@ const Description = () => {
             Contaremos con la participación de personas y clubes citroneros de
             distintas provincias, que vendrán a participar de un evento
             inolvidable a realizarse los días 20 y 21 de noviembre en la
-            provincia de Misiones, dónde se recorrerá distintos lugares de San
-            Ignacio, Jardín América y Capioví.
+            provincia de Misiones, dónde se recorrerá distintos lugares de las
+            localidades de San Ignacio, Jardín América, Capioví y Puerto Rico.
           </p>
           <p>
             Podrán disfrutar de los Citroen 3cv, 2cv, Mehari, Ami8, Dyane,
@@ -31,8 +31,8 @@ const Description = () => {
           </p>
 
           <p>
-            Tendrá un costo de $4099, qué incluirá el almuerzo y cena durante
-            los días del evento.
+            Tendrá un costo de <b>$4099</b>, qué incluirá el almuerzo y cena
+            durante los días del evento.
           </p>
           <p>
             Les solicitamos que realice su inscripción lo más pronto posible.

@@ -48,15 +48,14 @@ const FindInscription = () => {
       } else if (res.status === 404) {
         setValues({ ...values, error: res.data.message, loading: false })
       } else {
+        const { name, lastname, DNI } = res.data.inscription
         const {
-          name,
-          lastname,
-          DNI,
           status,
           orders,
           init_point,
           status_detail
-        } = res.data.inscription
+        } = res.data.inscription.orders
+        console.log(res.data)
         setValues({
           ...values,
           error: false,
@@ -103,32 +102,43 @@ const FindInscription = () => {
                 <th scope='col'>Nombre</th>
                 <th scope='col'>Apellido</th>
                 <th scope='col'>DNI</th>
-                <th scope='col'>Estado del Pago</th>
+                <th scope='col'>Estado del pago</th>
                 {status_detail !== 'efectivo' && (
-                  <th scope='col'>Enlace para pagar</th>
+                  <th scope='col'>Enlace de pago</th>
                 )}
               </tr>
             </thead>
             <tbody className='table-striped'>
-              {orders.map((item, index) => (
-                <tr key={DNI + 1}>
-                  <th>{name}</th>
-                  <th>{lastname}</th>
-                  <th>{DNI}</th>
+              <tr key={DNI + 1}>
+                <th>{name}</th>
+                <th>{lastname}</th>
+                <th>{DNI}</th>
+                <th>
+                  {`${
+                    status === 'approved'
+                      ? 'Aprobado'
+                      : status === 'pending' && status_detail === 'efectivo'
+                      ? 'Paga en el día del evento'
+                      : status === 'pending'
+                      ? 'Pago pendiente'
+                      : status === 'rejected'
+                      ? 'Rechazado. Vuelva a intentarlo'
+                      : status
+                  }`}
+                </th>
+                {status_detail !== 'efectivo' && (
                   <th>
-                    {`${
-                      item.status === 'approved'
-                        ? 'Aprobado'
-                        : item.status === 'pending'
-                        ? 'Pendiente'
-                        : item.status === 'rejected'
-                        ? 'Rechazado'
-                        : item.status
-                    }`}
+                    <a
+                      className='btn btn-danger mx-auto'
+                      target='_blank'
+                      rel='noreferrer'
+                      href={init_point}
+                    >
+                      Pagar la inscripción
+                    </a>
                   </th>
-                  {status_detail !== 'efectivo' && <th>{init_point}</th>}
-                </tr>
-              ))}
+                )}
+              </tr>
             </tbody>
           </table>
         </div>
