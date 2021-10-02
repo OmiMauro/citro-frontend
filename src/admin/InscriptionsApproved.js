@@ -43,18 +43,12 @@ const InscriptionsApproved = () => {
               <th scope='col'>Apellido</th>
               <th scope='col'>Nombre</th>
               <th scope='col'>DNI</th>
-              <th scope='col'>F. Nacimiento</th>
+              <th scope='col'>F. Nac</th>
               <th scope='col'>Email</th>
               <th scope='col'>Celular</th>
               <th scope='col'>Provincia</th>
               <th scope='col'>Localidad</th>
-              <th scope='col'>ID Operación</th>
-              <th scope='col'>Fecha Actualizacion</th>
-              <th scope='col'>Estado</th>
-              <th scope='col'>Detalle</th>
-              <th scope='col'>Precio</th>
-              <th scope='col'>Reembolso</th>
-              <th scope='col'>Neto Recibido</th>
+
               <th scope='col'>Nombre Auto</th>
               <th scope='col'>Patente</th>
               <th scope='col'>Color</th>
@@ -62,9 +56,14 @@ const InscriptionsApproved = () => {
               <th scope='col'>Modelo</th>
               <th scope='col'>Version</th>
               <th scope='col'>VTV</th>
-              <th scope='col'>Llegada </th>
-              <th scope='col'>Retirada</th>
-              <th scope='col'>Nro. de Personas</th>
+              <th scope='col'>ID Operación</th>
+              <th scope='col'>Fecha Actualizacion</th>
+              <th scope='col'>Estado</th>
+              <th scope='col'>Detalle</th>
+              <th scope='col'>Precio</th>
+              <th scope='col'>Nro. Acompañantes</th>
+              <th scope='col'>Reembolso</th>
+              <th scope='col'>Neto Recibido</th>
             </tr>
           </thead>
           <tbody className='table-striped'>
@@ -82,8 +81,8 @@ const InscriptionsApproved = () => {
                     {item.inscription.dateBirth
                       ? new Intl.DateTimeFormat('es-AR', {
                           year: 'numeric',
-                          month: 'short',
-                          day: '2-digit'
+                          month: 'numeric',
+                          day: 'numeric'
                         }).format(new Date(item.inscription.dateBirth))
                       : item.inscription.dateBirth}
                   </th>
@@ -91,13 +90,20 @@ const InscriptionsApproved = () => {
                   <th>{item.inscription.numberCell}</th>
                   <th>{item.inscription.provinceOrigin}</th>
                   <th>{item.inscription.locationOrigin}</th>
-                  <th>{item.id_Operacion}</th>
+                  <th>{item.inscription.nameCar}</th>
+                  <th>{item.inscription.registrationCar}</th>
+                  <th>{item.inscription.colorCar}</th>
+                  <th>{item.inscription.styleCar}</th>
+                  <th>{item.inscription.yearCar}</th>
+                  <th>{item.inscription.versionCar}</th>
+                  <th>{item.inscription.VTV ? 'Si VTV' : 'No VTV'}</th>
+                  <th>{item.id_Operacion ? item.id_Operacion : '---'}</th>
                   <th>
                     {item.date_last_updated
                       ? new Intl.DateTimeFormat('es-AR', {
                           year: 'numeric',
-                          month: 'short',
-                          day: '2-digit',
+                          month: 'numeric',
+                          day: 'numeric',
                           hour: 'numeric',
                           minute: 'numeric'
                         }).format(new Date(item.date_last_updated))
@@ -107,8 +113,8 @@ const InscriptionsApproved = () => {
                     {item.status === 'approved'
                       ? 'APROBADO'
                       : item.status === 'pending'
-                      ? 'PENDIENTE'
-                      : item.status}
+                        ? 'PENDIENTE'
+                        : item.status}
                   </th>
                   <th>{item.status_detail}</th>
                   <th>
@@ -121,6 +127,7 @@ const InscriptionsApproved = () => {
                         }).format(item.unit_price)
                       : item.unit_price}
                   </th>
+                  <th>{item.inscription.travelPeople}</th>
                   <th>
                     {item.transaction_amount_refunded
                       ? new Intl.NumberFormat('es-AR', {
@@ -141,32 +148,6 @@ const InscriptionsApproved = () => {
                         }).format(item.net_received_amount)
                       : item.net_received_amount}
                   </th>
-                  <th>{item.inscription.nameCar}</th>
-                  <th>{item.inscription.registrationCar}</th>
-                  <th>{item.inscription.colorCar}</th>
-                  <th>{item.inscription.styleCar}</th>
-                  <th>{item.inscription.yearCar}</th>
-                  <th>{item.inscription.versionCar}</th>
-                  <th>{item.inscription.VTV}</th>
-                  <th>
-                    {item.inscription.arrivalDate
-                      ? new Intl.DateTimeFormat('es-AR', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: '2-digit'
-                        }).format(new Date(item.inscription.arrivalDate))
-                      : item.inscription.arrivalDate}
-                  </th>
-                  <th>
-                    {item.inscription.dateToProvince
-                      ? new Intl.DateTimeFormat('es-AR', {
-                          year: 'numeric',
-                          month: 'short',
-                          day: '2-digit'
-                        }).format(new Date(item.inscription.dateToProvince))
-                      : item.inscription.dateToProvince}
-                  </th>
-                  <th>{item.inscription.travelPeople}</th>
                 </tr>
               )
             })}

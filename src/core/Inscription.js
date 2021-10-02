@@ -20,10 +20,8 @@ const Inscription = () => {
     yearCar: '',
     versionCar: '',
     VTV: '',
-    arrivalDate: '2021-11-19',
-    dateToProvince: '2021-11-21',
-    travelPeople: '',
-    paymentWithMP: true,
+    travelPeople: 0,
+    paymentWithMP: '',
     error: '',
     loading: false,
     success: false
@@ -76,8 +74,6 @@ const Inscription = () => {
     versionCar,
     VTV,
     travelPeople,
-    arrivalDate,
-    dateToProvince,
     error,
     loading,
     success,
@@ -104,8 +100,6 @@ const Inscription = () => {
       versionCar,
       VTV,
       travelPeople,
-      arrivalDate,
-      dateToProvince,
       paymentWithMP
     }
     await getPreferenceMP({ inscription }).then(res => {
@@ -120,6 +114,7 @@ const Inscription = () => {
       } else if (res.status === 201 && res.data.inscription === 'efectivo') {
         return setValues({
           values: '',
+          travelPeople: 0,
           error: false,
           loading: false,
           success: true
@@ -196,7 +191,7 @@ const Inscription = () => {
     '3CV Azian M28',
     '3CV Pretige'
   ]
-  const numberPeople = [1, 2, 3, 4, 5]
+  const numberPeople = [0, 1, 2, 3, 4, 5]
   return (
     <section className='page-section signup-section' id='contact'>
       <div className='container '>
@@ -466,37 +461,7 @@ const Inscription = () => {
                     </select>
                     <label for='VTV'>¿Tiene VTV?</label>
                   </div>
-                  <div className='form-floating'>
-                    <input
-                      value={arrivalDate}
-                      onChange={handleChange('arrivalDate')}
-                      id='arrivalDate'
-                      type='date'
-                      name='arrivalDate'
-                      required='required'
-                      className='form-select flex-fill mr-sm-2  mb-sm-0 mt-2'
-                      placeholder='Fecha estimada que calcula llegar a la Provincia'
-                    />
-                    <label for='arrivalDate'>
-                      ¿Fecha estimada que llegará a Misiones?
-                    </label>
-                  </div>
-                  <div className='form-floating'>
-                    <input
-                      value={dateToProvince}
-                      onChange={handleChange('dateToProvince')}
-                      id='dateToProvince'
-                      type='date'
-                      name='dateToProvince'
-                      required='required'
-                      className='form-control flex-fill mr-sm-2  mb-sm-0 mt-2'
-                      placeholder='¿Fecha estimada que calcula regresar a su provincia?'
-                    />
-                    <label for='dateToProvince'>
-                      ¿Fecha estimada que regresará a{' '}
-                      {provinceOrigin || 'su provincia'}?
-                    </label>
-                  </div>
+
                   <div className='form-floating'>
                     <select
                       value={travelPeople}
@@ -520,17 +485,30 @@ const Inscription = () => {
                       ))}
                     </select>
                     <label for='travelPeople'>
-                      ¿Cuántas personas viajan en su auto?
+                      ¿Cuántos acompañantes viajarán en su automóvil?
                     </label>
                   </div>
                   <div className='form-floating'>
                     <input
-                      className='form-control flex-fill mr-0 mr-sm-2 mb-sm-0 mt-2'
+                      className='form-control flex-fill mr-0 mr-sm-2 mb-sm-0 mt-2 text-success'
                       id='price'
                       disabled
-                      value={process.env.REACT_APP_PRICE_INSCRIPTION}
+                      value={
+                        travelPeople !== 0
+                          ? process.env.REACT_APP_PRICE_INSCRIPTION *
+                            (parseInt(travelPeople) + 1)
+                          : process.env.REACT_APP_PRICE_INSCRIPTION
+                      }
                     />
-                    <label for='price'>Costo de la inscripción</label>
+                    <label for='price'>
+                      Costo de la inscripción para{' '}
+                      <b className='text-success'>
+                        {`${
+                          travelPeople !== 0 ? parseInt(travelPeople) + 1 : 1
+                        } `}
+                      </b>
+                      persona/s
+                    </label>
                   </div>
                   <div className='form-floating'>
                     <select
@@ -549,8 +527,8 @@ const Inscription = () => {
                     >
                       <option hidden />
                       <option value='true' key='MP'>
-                        Realizar transferencia bancaria vía MercadoPago (T.
-                        Debito, T. Crédito o Puntos de Efectivo)
+                        Pagar ahora con T. Debito, T. Crédito o Puntos de
+                        Efectivo(Rapipago o PagoFácil)
                       </option>
                       <option value='false' key='EFECTIVO'>
                         Pagar en efectivo en el evento. Tendrá un costo

@@ -3,11 +3,10 @@ const Description = () => {
     <section className='page-section' id='services'>
       <div className='container'>
         <div className='text-center '>
-          <h2 className='section-heading '>
+          <h2 className='section-heading text-uppercase'>
             Encuentro Nacional de Autos Citroen
           </h2>
-          {/*  <h3 className='section-subheading text-muted'>Alguna descripción
-          </h3> */}
+          <h3 className='section-subheading text-muted'>Citro Rodando</h3>
         </div>
         <div className='row text-center fst-italic text-muted'>
           <p>
@@ -22,6 +21,13 @@ const Description = () => {
             localidades de San Ignacio, Jardín América, Capioví y Puerto Rico.
           </p>
           <p>
+            Visitaremos las Ruinas Jesuíticas de San Ignacio Miní, la casa del
+            escritor Horacio Quiroga, los Saltos del Tabay, la Coop. de
+            Productores Yerbateros y la fábrica de Almidón de Mandioca, el
+            complejo Agroturismo Soft, los adornos navideños de Capioví y el
+            aserradero Todo Maderas.
+          </p>
+          <p>
             Podrán disfrutar de los Citroen 3cv, 2cv, Mehari, Ami8, Dyane,
             Forgen, IES, entre muchos otros.
           </p>
@@ -30,13 +36,6 @@ const Description = () => {
             <b>El Garage TV</b>, que dejarán grabado todo el encuentro.
           </p>
 
-          <p>
-            Tendrá un costo de <b>$4099</b>, qué incluirá el almuerzo y cena
-            durante los días del evento.
-          </p>
-          <p>
-            Les solicitamos que realice su inscripción lo más pronto posible.
-          </p>
           {/* <p>
             También, queremos agradecer a nuestros auspiciantes,
             <a

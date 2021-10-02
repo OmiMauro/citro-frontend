@@ -24,8 +24,9 @@ const Modals = () => {
                       src='assets/img/SanIgnacioRuinas.jpg'
                     />
                     <p>
-                      El almuerzo del día sábado, se realizará en La Carpa Azul
-                      en San Ignacio, que incluirá
+                      El desayuno se realizará en la plaza que está en frente al
+                      predio de la Carpa Azul. El almuerzo del día sábado, se
+                      realizará en La Carpa Azul en San Ignacio, que incluirá
                       <b> "Entrada + Plato principal + Postre" </b>, dónde el
                       plato principal podrán optar entre varias opciones
                       disponibles.{' '}
@@ -48,7 +49,33 @@ const Modals = () => {
                           +543764855841
                         </a>
                       </li>
+                      <li>
+                        <strong>Club de Río: </strong>
+                        <a href='tel:543755340592'>+543755340592</a>
+                      </li>
+                      <li>
+                        <strong>Hotel Portal del Sol: </strong>
+                        <a href='tel:543764470005'>+543764470005</a>
+                      </li>
+                      <li>
+                        <strong>Rancho Cué Lodge: </strong>
+                        <a href='tel:543764227903'>+543764227903</a>
+                      </li>
+                      <li>
+                        <strong>Cabañas Doña Ana: </strong>
+                        <a href='tel:543743250388'>+543743250388</a>
+                      </li>
                     </ul>
+                    <a
+                      className='btn btn-info'
+                      href='https://instagram.com/turismo.sanignacio'
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      Turismo San Ignacio
+                    </a>
+                    <br />
+                    <br />
                     <button
                       className='btn btn-primary btn-xl text-uppercase'
                       data-bs-dismiss='modal'
@@ -88,10 +115,9 @@ const Modals = () => {
                     />
                     <p>
                       La cena del día sábado, se realizará en "El Rodeo" en
-                      Jardín América y podrán optar entre el menu principal (a
-                      definir) y/o Choripanes y Pernil con mandioca frita.
+                      Jardín América y el menú será "Choripanes y Pernil con
+                      mandioca frita".
                     </p>
-
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>

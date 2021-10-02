@@ -73,16 +73,15 @@ const Team = () => {
                 src='assets/img/team/3.jpg'
                 alt='...'
               />
-              <h4>Lore Refrigerados</h4>
-
-              <a
+              <h4>Lorena Cano</h4>
+              {/* <a
                 className='btn btn-dark btn-social mx-2'
-                href='https://www.instagram.com/'
+                href='https://www.facebook.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <i className='fab fa-instagram' />
-              </a>
+                <i className='fab fa-facebook' />
+              </a> */}
               <a
                 className='btn btn-dark btn-social mx-2'
                 href='https://api.whatsapp.com/send?phone=543743564219&text=Hola Lore, quiero consultarte por el evento. Soy ...'

@@ -54,14 +54,25 @@ const InscriptionsPending = () => {
                 <th>{item.inscription.lastname}</th>
                 <th>{item.inscription.name}</th>
                 <th>{item.inscription.DNI}</th>
-                <th>{item.id_Operacion}</th>
-                <th>{item.date_last_updated}</th>
+                <th>{item.id_Operacion ? item.id_Operacion : '----'}</th>
+                <th>
+                  {' '}
+                  {item.date_last_updated
+                    ? new Intl.DateTimeFormat('es-AR', {
+                        year: 'numeric',
+                        month: 'numeric',
+                        day: 'numeric',
+                        hour: 'numeric',
+                        minute: 'numeric'
+                      }).format(new Date(item.date_last_updated))
+                    : item.date_last_updated}
+                </th>
                 <th>
                   {item.status === 'approved'
                     ? 'APROBADO'
                     : item.status === 'pending'
                       ? 'PENDIENTE'
-                      : 'RECHAZADO'}
+                      : item.status}
                 </th>
                 <th>{item.status_detail}</th>
                 <th>{item.unit_price}</th>

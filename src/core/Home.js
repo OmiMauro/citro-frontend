@@ -8,9 +8,9 @@ import Team from './Team'
 import Modals from './Modals'
 import Footer from './Footer'
 import Description from './Description'
+import Information from './Information'
 const Home = () => {
   return (
-
     <div className='App' id='page-top'>
       <Nav />
       <Header />
@@ -18,13 +18,12 @@ const Home = () => {
       <Services />
       <Portfolio />
       <About />
-
+      <Information />
       <Inscription />
       <Team />
       <Modals />
       <Footer />
     </div>
-
   )
 }
 

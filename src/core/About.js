@@ -26,19 +26,32 @@ const About = () => {
               <div className='timeline-body'>
                 <ul className='text-muted text-start list-unstyled'>
                   <li>
-                    <b>08:00</b> Desayuno en la Carpa Azul
+                    <b>07:00</b> Acreditación en la Plaza Carpa Azul
                   </li>
                   <li>
-                    <b>09:00</b> Ruinas de San Ignacio
+                    <b>08:00</b> Desayuno en la Plaza
                   </li>
                   <li>
-                    <b>11:00</b> Almuerzo en la Carpa Azul
+                    <b>09:00</b> Ingreso a Ruinas Jesuiticas
+                  </li>
+                  <li>
+                    <b>11:15</b> Almuerzo en la Carpa Azul
+                  </li>
+                  <li>
+                    <b>13:45</b> Salida a la Casa de Horacio Quiroga
                   </li>
                   <li>
                     <b>14:00</b> Casa de Horacio Quiroga
                   </li>
                   <li>
-                    <b>17:00</b> Saltos del Tabay
+                    <b>15:15</b> Salida a los Saltos del Tabay
+                  </li>
+                  <li>
+                    <b>17:00</b> Ingreso a los Saltos del Tabay
+                  </li>
+
+                  <li>
+                    <b>19:00</b> Fin de la visita a los Salto del Tabay
                   </li>
                   <li>
                     <b>21:00</b> Cena en El Rodeo
@@ -67,22 +80,33 @@ const About = () => {
               <div className='timeline-body'>
                 <ul className='text-muted text-start list-unstyled'>
                   <li>
-                    <b>08:00</b> Desayuno en Plaza Colón
+                    <b>08:00</b> Desayuno en la Plaza Colón
+                  </li>
+
+                  <li>
+                    <b>09:00</b> Ingreso a Coop. de Yerba Flor de Jardín
                   </li>
                   <li>
-                    <b>09:00</b> Coop. de Yerba Flor de Jardín
+                    <b>10:00</b> Salida a Fábrica de Fécula de Mancioca
                   </li>
                   <li>
                     <b>10:30</b> Fábrica de Fécula de Mancioca
                   </li>
                   <li>
+                    <b>11:15</b> Salida a Agroturismo Soft
+                  </li>
+                  <li>
                     <b>12:00</b> Almuerzo en Agroturismo Sof
                   </li>
+
                   <li>
                     <b>15:00</b> Adornos Navideños
                   </li>
                   <li>
-                    <b>16:30</b> Maderera Puerto Madera
+                    <b>15:45</b> Salida a Puerto Madera
+                  </li>
+                  <li>
+                    <b>16:30</b> Ingreso Maderera Puerto Madera
                   </li>
                   <li>
                     <b>18:00</b> Fotografías de recuerdo
