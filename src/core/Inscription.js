@@ -74,12 +74,32 @@ const Inscription = () => {
     versionCar,
     VTV,
     travelPeople,
+    paymentWithMP,
     error,
     loading,
-    success,
-    paymentWithMP
+    success
   } = values
-
+  const clearValues = () => {
+    setValues({
+      name: '',
+      lastname: '',
+      dateBirth: '1980-01-01',
+      DNI: '',
+      numberCell: '',
+      provinceOrigin: '',
+      locationOrigin: '',
+      email: '',
+      nameCar: '',
+      registrationCar: '',
+      colorCar: '',
+      styleCar: '',
+      yearCar: '',
+      versionCar: '',
+      VTV: '',
+      travelPeople: 0,
+      paymentWithMP: ''
+    })
+  }
   const handleInscription = async event => {
     event.preventDefault()
     setValues({ ...values, error: false, loading: true, success: false })
@@ -103,7 +123,6 @@ const Inscription = () => {
       paymentWithMP
     }
     await getPreferenceMP({ inscription }).then(res => {
-      console.log(res)
       if (res.status === 400) {
         return setValues({
           ...values,
@@ -112,9 +131,9 @@ const Inscription = () => {
           success: false
         })
       } else if (res.status === 201 && res.data.inscription === 'efectivo') {
+        clearValues()
         return setValues({
-          values: '',
-          travelPeople: 0,
+          ...values,
           error: false,
           loading: false,
           success: true

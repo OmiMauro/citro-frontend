@@ -47,15 +47,15 @@ const FindInscription = () => {
         setValues({ ...values, error: res.data.error, loading: false })
       } else if (res.status === 404) {
         setValues({ ...values, error: res.data.message, loading: false })
+      } else if (res.status === 500) {
+        setValues({ ...values, error: res.data.message, loading: false })
       } else {
         const { name, lastname, DNI } = res.data.inscription
         const {
           status,
-          orders,
           init_point,
           status_detail
         } = res.data.inscription.orders
-        console.log(res.data)
         setValues({
           ...values,
           error: false,
@@ -64,7 +64,6 @@ const FindInscription = () => {
           lastname,
           DNI,
           status,
-          orders,
           init_point,
           status_detail,
           table: true
@@ -103,7 +102,7 @@ const FindInscription = () => {
                 <th scope='col'>Apellido</th>
                 <th scope='col'>DNI</th>
                 <th scope='col'>Estado del pago</th>
-                {status_detail !== 'efectivo' && (
+                {!(status_detail === 'efectivo' || status === 'approved') && (
                   <th scope='col'>Enlace de pago</th>
                 )}
               </tr>
@@ -126,7 +125,7 @@ const FindInscription = () => {
                       : status
                   }`}
                 </th>
-                {status_detail !== 'efectivo' && (
+                {!(status_detail === 'efectivo' || status === 'approved') && (
                   <th>
                     <a
                       className='btn btn-danger mx-auto'
