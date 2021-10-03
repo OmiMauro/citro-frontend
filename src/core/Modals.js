@@ -35,6 +35,7 @@ const Modals = () => {
                       <li>
                         <strong>Hospedajes</strong>
                       </li>
+                      <br />
                       <li>
                         <strong>Hotel La Toscana: </strong>
                         <a href='tel:543764470777'>+543764470777</a>
@@ -66,16 +67,7 @@ const Modals = () => {
                         <a href='tel:543743250388'>+543743250388</a>
                       </li>
                     </ul>
-                    <a
-                      className='btn btn-info'
-                      href='https://instagram.com/turismo.sanignacio'
-                      target='_blank'
-                      rel='noreferrer'
-                    >
-                      Turismo San Ignacio
-                    </a>
-                    <br />
-                    <br />
+
                     <button
                       className='btn btn-primary btn-xl text-uppercase'
                       data-bs-dismiss='modal'
@@ -122,7 +114,7 @@ const Modals = () => {
                       <li>
                         <strong>Hospedajes</strong>
                       </li>
-
+                      <br />
                       <li>
                         <strong>Hotel América: </strong>
                         <a href='tel:543743460521'>+543743460521</a>
@@ -200,15 +192,13 @@ const Modals = () => {
                       y podrán elegir entre: asado vacuno, pollo, pescado a la
                       parrilla, pescado frito, ensalada rusa, mandioca y/o
                       ensaladas regionales. <br />
-                      La cena se realizará en <b>"Don Justo"</b> en la localidad
-                      de <b>Puerto Rico</b> y podrán degustar un Rodicio de
-                      Pizzas acompañado con una variedad de platos tipícos.
                     </p>
 
                     <ul className='list-inline'>
                       <li>
                         <strong>Hospedajes</strong>
                       </li>
+                      <br />
                       <li>
                         <strong>Hotel Castillo: </strong>
                         <a href='tel:543743493147'>+543743493147</a>
@@ -241,31 +231,76 @@ const Modals = () => {
           </div>
         </div>
       </div>
-      {/*  <div className='portfolio-modal modal fade' id='portfolioModal4' tabIndex='-1' role='dialog' aria-hidden='true'>
+      <div
+        className='portfolio-modal modal fade'
+        id='portfolioModal4'
+        tabIndex='-1'
+        role='dialog'
+        aria-hidden='true'
+      >
         <div className='modal-dialog'>
           <div className='modal-content'>
-            <div className='close-modal' data-bs-dismiss='modal'><img src='assets/img/close-icon.svg' alt='Close modal' /></div>
+            <div className='close-modal' data-bs-dismiss='modal'>
+              <img src='assets/img/close-icon.svg' alt='Close modal' />
+            </div>
             <div className='container'>
               <div className='row justify-content-center'>
                 <div className='col-lg-8'>
                   <div className='modal-body'>
-                    <h2 className='text-uppercase'>Project Name</h2>
-                    <p className='item-intro text-muted'>Lorem ipsum dolor sit amet consectetur.</p>
-                    <img className='img-fluid d-block mx-auto' src='../assets/img/portfolio/4.jpg' alt='...' />
-                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                    <h2 className='text-uppercase'>Puerto Rico</h2>
+                    {/*  <p className='item-intro text-muted'>
+                      Lorem ipsum dolor sit amet consectetur.
+                    </p> */}
+                    <img
+                      className='img-fluid d-block mx-auto'
+                      src='assets/img/PuertoRicoCostanera.jpg'
+                      alt='...'
+                    />
+                    <br />
+                    <p>
+                      La cena se realizará en <b>"Don Justo"</b> en la localidad
+                      de <b>Puerto Rico</b> y podrán degustar un Rodicio de
+                      Pizzas acompañado con una variedad de platos tipícos.
+                      Luego, para finalizar el evento, realizaremos los sorteos
+                      y reconocimientos a los participantes.
+                    </p>
                     <ul className='list-inline'>
                       <li>
-                        <strong>Client:</strong>
-                        Lines
+                        <strong>Hospedajes</strong>
+                      </li>
+                      <br />
+                      <li>
+                        <strong>Hotel Paris: </strong>
+                        <a href='tel:543743476500'>+543743476500</a>
                       </li>
                       <li>
-                        <strong>Category:</strong>
-                        Branding
+                        <strong>Cabañas del Prado, Hotel y Resort: </strong>
+                        <a href='tel:543743476989'>+543743476989</a>
+                      </li>
+                      <li>
+                        <strong>Patio del Puerto Hotel Boutique: </strong>
+                        <a href='tel:543743421153'>+543743421153</a>
+                      </li>
+                      <li>
+                        <strong>Alojamiento Peter: </strong>
+                        <a href='tel:543743477070'>+543743477070</a>
+                      </li>
+                      <li>
+                        <strong>Hospedaje La Nona: </strong>
+                        <a href='tel:543743520677'>+543743520677</a>
+                      </li>
+                      <li>
+                        <strong>Hostel Tekoafro: </strong>
+                        <a href='tel:543743500012'>+543743500012</a>
                       </li>
                     </ul>
-                    <button className='btn btn-primary btn-xl text-uppercase' data-bs-dismiss='modal' type='button'>
+                    <button
+                      className='btn btn-primary btn-xl text-uppercase'
+                      data-bs-dismiss='modal'
+                      type='button'
+                    >
                       <i className='fas fa-times me-1' />
-                      Close Project
+                      Cerrar
                     </button>
                   </div>
                 </div>
@@ -274,6 +309,7 @@ const Modals = () => {
           </div>
         </div>
       </div>
+      {/*
       <div className='portfolio-modal modal fade' id='portfolioModal5' tabIndex='-1' role='dialog' aria-hidden='true'>
         <div className='modal-dialog'>
           <div className='modal-content'>

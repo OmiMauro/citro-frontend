@@ -6,7 +6,7 @@ const Portfolio = () => {
           <h2 className='section-heading text-uppercase'>Hospedajes y Menús</h2>
         </div>
         <div className='row'>
-          <div className='col-lg-4 col-sm-6 mb-4'>
+          <div className='col-lg-6 col-sm-6 mb-4'>
             {/* <!-- Portfolio item 1--> */}
             <div className='portfolio-item'>
               <a
@@ -32,7 +32,7 @@ const Portfolio = () => {
               </div>
             </div>
           </div>
-          <div className='col-lg-4 col-sm-6 mb-4'>
+          <div className='col-lg-6 col-sm-6 mb-4'>
             {/*  <!-- Portfolio item 2--> */}
             <div className='portfolio-item'>
               <a
@@ -58,7 +58,7 @@ const Portfolio = () => {
               </div>
             </div>
           </div>
-          <div className='col-lg-4 col-sm-6 mb-4'>
+          <div className='col-lg-6 col-sm-6 mb-4'>
             {/* <!-- Portfolio item 3--> */}
             <div className='portfolio-item'>
               <a
@@ -80,6 +80,32 @@ const Portfolio = () => {
               </a>
               <div className='portfolio-caption'>
                 <div className='portfolio-caption-heading'>Capioví</div>
+                {/*  <div className='portfolio-caption-subheading text-muted'>Alguna descripción.</div> */}
+              </div>
+            </div>{' '}
+          </div>
+          <div className='col-lg-6 col-sm-6 mb-4'>
+            {/* <!-- Portfolio item 3--> */}
+            <div className='portfolio-item'>
+              <a
+                className='portfolio-link'
+                data-bs-toggle='modal'
+                href='#portfolioModal4'
+              >
+                <div className='portfolio-hover'>
+                  <div className='portfolio-hover-content'>
+                    <i className='fas fa-plus fa-3x' />
+                  </div>
+                </div>
+                <img
+                  className='img-fluid'
+                  style={{ height: '350px' }}
+                  src='assets/img/PuertoRico.jpg'
+                  alt='...'
+                />
+              </a>
+              <div className='portfolio-caption'>
+                <div className='portfolio-caption-heading'>Puerto Rico</div>
                 {/*  <div className='portfolio-caption-subheading text-muted'>Alguna descripción.</div> */}
               </div>
             </div>

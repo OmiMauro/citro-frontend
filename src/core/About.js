@@ -58,7 +58,11 @@ const About = () => {
                   </li>
                 </ul>
                 <p>
-                  <a href='https://goo.gl/maps/dGJSWWQRUJEzwu7x5'>
+                  <a
+                    href='https://goo.gl/maps/KwLyebsEL4PFHwqZ6'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     Recorrido en Google Maps
                   </a>
                 </p>
@@ -103,10 +107,10 @@ const About = () => {
                     <b>15:00</b> Adornos Navideños
                   </li>
                   <li>
-                    <b>15:45</b> Salida a Puerto Madera
+                    <b>15:45</b> Salida a Aserradero Puerto Madera
                   </li>
                   <li>
-                    <b>16:30</b> Ingreso Maderera Puerto Madera
+                    <b>16:30</b> Ingreso Aserradero Puerto Madera
                   </li>
                   <li>
                     <b>18:00</b> Fotografías de recuerdo
@@ -119,7 +123,11 @@ const About = () => {
                   </li>
                 </ul>
                 <p className='text-center'>
-                  <a href='https://goo.gl/maps/gFZkDUcyuTUk9Xb46'>
+                  <a
+                    href='https://goo.gl/maps/DxZoNky1GhXKtZdG8'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
                     Recorrido en Google Maps
                   </a>
                 </p>

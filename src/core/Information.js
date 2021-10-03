@@ -12,17 +12,16 @@ const Information = () => {
             Tendrá un costo de <b>$4099</b> por participante.
           </p>
           <p>
-            El costo de la inscripción incluirá el desayuno, almuerzo, cena,
-            fotos de recuerdos y/o asistencia mecánica durante los días del
-            evento.
+            El costo de la inscripción incluirá el desayuno, almuerzo, cena y
+            fotos de recuerdos durante los días del evento.
           </p>
           <p>
             {' '}
-            Durante todo el recorrido se dispondrá de asistencia mecánica, que
-            contará con acarreo y/o servicio de mecánica, en caso de que el
-            automóvil del participante se averíe. De ser necesario, los
-            repuestos utilizados para la reparación del vehículo quedan por
-            cuenta y cargo del propietario del automóvil.
+            Durante todo el recorrido se dispondrá de asistencia mecánica
+            gratuita, que contará con acarreo y/o servicio de mecánica gratuita,
+            en caso de que el automóvil del participante se averíe. De ser
+            necesario, los repuestos utilizados para la reparación del vehículo
+            quedan por cuenta y cargo del propietario del automóvil.
           </p>
           <p />
 

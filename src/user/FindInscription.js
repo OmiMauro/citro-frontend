@@ -19,7 +19,6 @@ const FindInscription = () => {
   const {
     email,
     DNI,
-    orders,
     name,
     lastname,
     init_point,
@@ -175,7 +174,8 @@ const FindInscription = () => {
                     ...values,
                     error: false,
                     DNI: e.target.value.replace(/[^0-9]/g, '')
-                  })}
+                  })
+                }
                 id='DNI'
                 type='tel'
                 placeholder='DNI'

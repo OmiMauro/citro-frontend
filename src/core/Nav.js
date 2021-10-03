@@ -7,7 +7,8 @@ const Nav = () => {
     <nav className='navbar navbar-expand-lg navbar-dark fixed-top' id='mainNav'>
       <div className='container'>
         <Link className='nav-link navbar-brand' to='/'>
-          {process.env.REACT_APP_NAME_APPLICATION}
+          <img src='assets/img/navbar-logo.png' alt='...' />
+          {/* {process.env.REACT_APP_NAME_APPLICATION} */}
         </Link>
 
         <button

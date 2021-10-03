@@ -79,27 +79,7 @@ const Inscription = () => {
     loading,
     success
   } = values
-  const clearValues = () => {
-    setValues({
-      name: '',
-      lastname: '',
-      dateBirth: '1980-01-01',
-      DNI: '',
-      numberCell: '',
-      provinceOrigin: '',
-      locationOrigin: '',
-      email: '',
-      nameCar: '',
-      registrationCar: '',
-      colorCar: '',
-      styleCar: '',
-      yearCar: '',
-      versionCar: '',
-      VTV: '',
-      travelPeople: 0,
-      paymentWithMP: ''
-    })
-  }
+
   const handleInscription = async event => {
     event.preventDefault()
     setValues({ ...values, error: false, loading: true, success: false })
