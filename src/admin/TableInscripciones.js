@@ -102,10 +102,10 @@ const TableInscripciones = () => {
                   {item.status === 'approved'
                     ? 'APROBADO'
                     : item.status === 'pending'
-                    ? 'PENDIENTE'
-                    : item.status === 'rejected'
-                    ? 'RECHAZADO'
-                    : item.status}
+                      ? 'PENDIENTE'
+                      : item.status === 'rejected'
+                        ? 'RECHAZADO'
+                        : item.status}
                 </th>
                 <th>{item.status_detail}</th>
                 <th>

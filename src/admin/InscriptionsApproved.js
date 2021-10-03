@@ -13,7 +13,12 @@ const InscriptionsApproved = () => {
           userId: user._id,
           token
         })
-        await setOrders(response.data.response)
+        const sorted = await response.data.response.sort(function (a, b) {
+          if (a.inscription.lastname > b.inscription.lastname) return 1
+          if (a.inscription.lastname < b.inscription.lastname) return -1
+          return 0
+        })
+        await setOrders(sorted)
       } catch (err) {
         console.error(err)
       }
@@ -113,8 +118,8 @@ const InscriptionsApproved = () => {
                     {item.status === 'approved'
                       ? 'APROBADO'
                       : item.status === 'pending'
-                        ? 'PENDIENTE'
-                        : item.status}
+                      ? 'PENDIENTE'
+                      : item.status}
                   </th>
                   <th>{item.status_detail}</th>
                   <th>

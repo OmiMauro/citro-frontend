@@ -131,9 +131,24 @@ const Inscription = () => {
           success: false
         })
       } else if (res.status === 201 && res.data.inscription === 'efectivo') {
-        clearValues()
         return setValues({
-          ...values,
+          name: '',
+          lastname: '',
+          dateBirth: '1980-01-01',
+          DNI: '',
+          numberCell: '',
+          provinceOrigin: '',
+          locationOrigin: '',
+          email: '',
+          nameCar: '',
+          registrationCar: '',
+          colorCar: '',
+          styleCar: '',
+          yearCar: '',
+          versionCar: '',
+          VTV: '',
+          travelPeople: 0,
+          paymentWithMP: '',
           error: false,
           loading: false,
           success: true
@@ -210,7 +225,7 @@ const Inscription = () => {
     '3CV Azian M28',
     '3CV Pretige'
   ]
-  const numberPeople = [0, 1, 2, 3, 4, 5]
+  const numberPeople = [0, 1, 2, 3, 4, 5, 6]
   return (
     <section className='page-section signup-section' id='contact'>
       <div className='container '>
