@@ -247,8 +247,7 @@ const Inscription = () => {
                       ...values,
                       error: false,
                       DNI: e.target.value.replace(/[^0-9]/g, '')
-                    })
-                  }
+                    })}
                   classInput=''
                   id='DNI'
                   type='text'
@@ -333,8 +332,7 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           locationOrigin: e.target.value
-                        })
-                      }
+                        })}
                       className='form-select flex-fill mr-sm-2 mb-sm-0 mt-2'
                       id='locationOrigin'
                       name='locationOrigin'
@@ -394,8 +392,7 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           styleCar: e.target.value
-                        })
-                      }
+                        })}
                       className='form-select flex-fill mr-0 mr-sm-2 mb-sm-0 mt-2'
                       id='styleCar'
                       name='styleCar'
@@ -418,8 +415,7 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           versionCar: e.target.value
-                        })
-                      }
+                        })}
                       className='form-select flex-fill mr-0 mr-sm-2  mb-sm-0 mt-2'
                       id='versionCar'
                       namerequired='required'
@@ -442,8 +438,7 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           yearCar: e.target.value.replace(/[^0-9]/g, '')
-                        })
-                      }
+                        })}
                       classInput=''
                       id='yearCar'
                       placeholder='Año de fabricación del auto'
@@ -484,8 +479,7 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           travelPeople: e.target.value
-                        })
-                      }
+                        })}
                       className='form-select flex-fill mr-0 mr-sm-2  mb-sm-0 mt-2'
                       id='travelPeople'
                       name='travelPeople'
@@ -532,8 +526,7 @@ const Inscription = () => {
                           ...values,
                           error: false,
                           paymentWithMP: e.target.value
-                        })
-                      }
+                        })}
                       className='form-select flex-fill mr-sm-2 mb-sm-0 mt-2'
                       id='paymentWithMP'
                       name='paymentWithMP'
@@ -545,8 +538,7 @@ const Inscription = () => {
                         Efectivo(Rapipago o PagoFácil)
                       </option>
                       <option value='false' key='EFECTIVO'>
-                        Pagar en efectivo en el evento. Tendrá un costo
-                        adicional
+                        Pagar en efectivo en el evento
                       </option>
                     </select>
                     <label for='paymentWithMP'>

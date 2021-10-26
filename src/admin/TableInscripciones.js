@@ -84,8 +84,6 @@ const TableInscripciones = () => {
                 <th>{item.inscription.numberCell}</th>
                 <th>{item.inscription.provinceOrigin}</th>
                 <th>{item.inscription.locationOrigin}</th>
-                {console.log(item.inscription.dateBirth)}
-
                 <th>{item.inscription.nameCar}</th>
                 <th>{item.inscription.registrationCar}</th>
                 <th>{item.inscription.colorCar}</th>

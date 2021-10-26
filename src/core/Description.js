@@ -22,20 +22,25 @@ const Description = () => {
           </p>
           <p>
             Visitaremos las Ruinas Jesuíticas de San Ignacio Miní, la casa del
-            escritor Horacio Quiroga, los Saltos del Tabay, la Coop. de
-            Productores Yerbateros y la fábrica de Almidón de Mandioca, el
-            complejo Agroturismo Soft, los adornos navideños de Capioví y el
-            aserradero Todo Maderas.
+            escritor Horacio Quiroga, las instalaciones de la Cooperativa Yerba
+            Mate Flor de Jardín, la fábrica de Fécula de Mandioca de Jardín
+            América, los Saltos del Tabay, el complejo Agroturismo Soft, los
+            adornos navideños de Capioví y el aserradero Puerto Maderas.
           </p>
           <p>
             Podrán disfrutar de los Citroen 3cv, 2cv, Mehari, Ami8, Dyane,
             Forgen, IES, entre muchos otros.
           </p>
           <p>
-            También contaremos con las cámaras de nuestros amigos de{' '}
-            <b>El Garage TV</b>, que dejarán grabado todo el encuentro.
+            Contaremos con las cámaras de nuestros amigos de <b>El Garage TV</b>
+            , que dejarán grabado todo el encuentro.
           </p>
-
+          <p>
+            También contaremos con la presencia de <b>Angel Ortiga</b> que
+            exibirá el motor y caja escuela y la presencia de{' '}
+            <b>Pablo Castro</b> que nos mostrará los encendidos e inyección
+            eletrónica.
+          </p>
           {/* <p>
             También, queremos agradecer a nuestros auspiciantes,
             <a

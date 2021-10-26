@@ -108,7 +108,9 @@ const Modals = () => {
                     <p>
                       La cena del día sábado, se realizará en "El Rodeo" en
                       Jardín América y el menú será "Choripanes y Pernil con
-                      mandioca frita".
+                      mandioca frita". También podremos observar la exposición
+                      del motor y caja escuela de Angel Ortiga y encendido e
+                      inyección electrónica de Pablo Castro.
                     </p>
                     <ul className='list-inline'>
                       <li>

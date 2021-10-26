@@ -107,10 +107,10 @@ const About = () => {
                     <b>15:00</b> Adornos Navideños
                   </li>
                   <li>
-                    <b>15:45</b> Salida a Aserradero Puerto Madera
+                    <b>15:45</b> Salida a Aserradero Puerto Maderas
                   </li>
                   <li>
-                    <b>16:30</b> Ingreso Aserradero Puerto Madera
+                    <b>16:30</b> Ingreso Aserradero Puerto Maderas
                   </li>
                   <li>
                     <b>18:00</b> Fotografías de recuerdo
