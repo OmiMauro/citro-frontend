@@ -91,10 +91,10 @@ const About = () => {
                     <b>09:00</b> Ingreso a Coop. de Yerba Flor de Jardín
                   </li>
                   <li>
-                    <b>10:00</b> Salida a Fábrica de Fécula de Mancioca
+                    <b>10:00</b> Salida a Fábrica de Fécula de Mandioca
                   </li>
                   <li>
-                    <b>10:30</b> Fábrica de Fécula de Mancioca
+                    <b>10:30</b> Fábrica de Fécula de Mandioca
                   </li>
                   <li>
                     <b>11:15</b> Salida a Agroturismo Soft

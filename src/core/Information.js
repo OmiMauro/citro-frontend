@@ -30,9 +30,7 @@ const Information = () => {
             alimentación, se comuniquen con anticipación con algunos de los
             organizadores del evento.
           </p>
-          <p>
-            Tendrá tiempo de realizar su inscripción hasta el 5 de noviembre.
-          </p>
+
           <p className='text-muted '>
             Ante cualquier duda, no dudes en consultarnos...{' '}
           </p>
