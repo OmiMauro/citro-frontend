@@ -79,7 +79,7 @@ const About = () => {
             </div>
             <div className='timeline-panel text-center'>
               <div className='timeline-heading'>
-                <h4>21 de Noviembre 2022</h4>
+                <h4>21 de Noviembre 2021</h4>
               </div>
               <div className='timeline-body'>
                 <ul className='text-muted text-start list-unstyled'>

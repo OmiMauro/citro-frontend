@@ -25,6 +25,8 @@ const TableInscripciones = () => {
     }
     inscriptionHook()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  const peoples = 0
+  let acompañantes = 0
 
   return (
     <>
@@ -117,7 +119,6 @@ const TableInscripciones = () => {
                     : item.unit_price}
                 </th>
                 <th>{item.inscription.travelPeople}</th>
-
                 <th>
                   {item.net_received_amount
                     ? new Intl.NumberFormat('es-AR', {
@@ -132,6 +133,27 @@ const TableInscripciones = () => {
             ))}
           </tbody>
         </table>
+        <div className='container text-black-60'>
+          <div>
+            Total de Acompañantes:{' '}
+            <span className='text-success'>
+              {inscription.forEach(
+                value => (acompañantes += value.inscription.travelPeople)
+              )}
+              {acompañantes}
+            </span>
+          </div>
+          <div>
+            Total de Participantes:{' '}
+            <span className='text-success'>{inscription.length}</span>
+          </div>
+          <div>
+            Participantes + Acompañantes={' '}
+            <span className='text-success'>
+              {acompañantes + inscription.length}
+            </span>
+          </div>
+        </div>
       </div>
     </>
   )
