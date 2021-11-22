@@ -3,7 +3,8 @@ import Header from './Header'
 import Services from './Services'
 import Portfolio from './Portfolio'
 import About from './About'
-import Inscription from './Inscription'
+// import Inscription from './Inscription'
+import ImageEvent from './ImagesEvent'
 import Team from './Team'
 import Modals from './Modals'
 import Footer from './Footer'
@@ -15,11 +16,12 @@ const Home = () => {
       <Nav />
       <Header />
       <Description />
-      <Services />
+      {/*  <Services /> */}
       <Portfolio />
       <About />
-      <Information />
-      <Inscription />
+      {/* <Information />
+      <Inscription /> */}
+      <ImageEvent />
       <Team />
       <Modals />
       <Footer />
