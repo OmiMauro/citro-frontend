@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import './styles.css'
-
+import 'react-image-lightbox/style.css'
 import Home from './core/Home'
 
 import Signin from './user/Signin'
