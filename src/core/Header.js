@@ -3,14 +3,14 @@ const Masthead = () => {
     <header className='masthead'>
       <div className='container'>
         <div className='masthead-heading text-uppercase'>
-          Encuentro de Autos Citroen
+          Citroneros Misiones
         </div>
-        <div className='masthead-subheading '>
+        {/* <div className='masthead-subheading '>
           A realizarse los días 20 y 21 de Noviembre del 2021 en Misiones
         </div>
         <div className=' masthead-subheading text-warning'>
           ¿Te lo vas a perder?
-        </div>
+        </div> */}
         {/*  <a className='btn btn-primary btn-xl text-uppercase' href='#services'>Tell Me More</a> */}
       </div>
     </header>

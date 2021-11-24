@@ -19,6 +19,7 @@ import Pending from './components/Pending'
 import Rejected from './components/Rejected'
 import PageNotFound from './components/PageNotFound'
 import FindInscription from './user/FindInscription'
+import AddImage from './admin/AddImage'
 
 const Routes = () => {
   return (
@@ -31,10 +32,27 @@ const Routes = () => {
         <Route path='/pending' component={Pending} />
         <Route path='/rejected' component={Rejected} />
         <AdminRoute path='/admin/dashboard' exact component={AdminDashboard} />
-        <AdminRoute path='/admin/inscripciones' exact component={TableInscripciones} />
-        <AdminRoute path='/admin/inscripciones/approved' exact component={InscriptionsApproved} />
-        <AdminRoute path='/admin/inscripciones/pending' exact component={InscriptionsPending} />
-        <AdminRoute path='/admin/inscripciones/rejected' exact component={InscriptionsRejected} />
+        <AdminRoute
+          path='/admin/inscripciones'
+          exact
+          component={TableInscripciones}
+        />
+        <AdminRoute
+          path='/admin/inscripciones/approved'
+          exact
+          component={InscriptionsApproved}
+        />
+        <AdminRoute
+          path='/admin/inscripciones/pending'
+          exact
+          component={InscriptionsPending}
+        />
+        <AdminRoute
+          path='/admin/inscripciones/rejected'
+          exact
+          component={InscriptionsRejected}
+        />
+        <AdminRoute path='/admin/images/agregar' exact component={AddImage} />
 
         <Route path='*' component={PageNotFound} />
       </Switch>
