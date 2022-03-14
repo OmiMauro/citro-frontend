@@ -9,6 +9,7 @@
     "axios": "^0.21.1",
     "cloudinary-react": "^1.7.0",
     "dotenv": "^8.2.0",
+    "env-cmd": "^10.1.0",
     "mdbreact": "^5.2.0",
     "mercadopago": "^1.5.8",
     "query-string": "^4.3.4",
