@@ -1,5 +1,5 @@
 import { getInscriptionsPending } from '../services/inscriptions'
-import { isAuthenticated } from '../auth/index'
+import { isAuthenticated } from '../../auth/index'
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 const InscriptionsPending = () => {

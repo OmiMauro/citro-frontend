@@ -2,24 +2,24 @@ import React from 'react'
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import './styles.css'
 import 'react-image-lightbox/style.css'
-import Home from './core/Home'
+import Home from '../core/Home'
 
-import Signin from './user/Signin'
+import Signin from '../user/Signin'
 
-import AdminRoute from './auth/AdminRoute'
+import AdminRoute from '../auth/AdminRoute'
 
-import AdminDashboard from './admin/dashboard'
-import TableInscripciones from './admin/TableInscripciones'
-import InscriptionsApproved from './admin/InscriptionsApproved'
-import InscriptionsRejected from './admin/InscriptionsRejected'
-import InscriptionsPending from './admin/InscriptionsPending'
+import AdminDashboard from '../admin/dashboard'
+import TableInscripciones from '../admin/TableInscripciones'
+import InscriptionsApproved from '../admin/InscriptionsApproved'
+import InscriptionsRejected from '../admin/InscriptionsRejected'
+import InscriptionsPending from '../admin/InscriptionsPending'
 
-import Success from './components/Success'
-import Pending from './components/Pending'
-import Rejected from './components/Rejected'
-import PageNotFound from './components/PageNotFound'
-import FindInscription from './user/FindInscription'
-import AddImage from './admin/AddImage'
+import Success from '../components/Success'
+import Pending from '../components/Pending'
+import Rejected from '../components/Rejected'
+import PageNotFound from '../components/PageNotFound'
+import FindInscription from '../user/FindInscription'
+import AddImage from '../admin/AddImage'
 
 const Routes = () => {
   return (
