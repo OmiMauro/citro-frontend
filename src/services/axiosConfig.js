@@ -1,7 +1,7 @@
 const config = {
-    baseURL: process.env.REACT_APP_URL_API_BASE,
-    headers: {
-        Accept: 'application/jsonm text/plain'
-    }
-}
-export default config
+	baseURL: process.env.REACT_APP_API_BASE_URL,
+	headers: {
+		Accept: 'application/json text/plain'
+	}
+};
+export default config;
