@@ -20,7 +20,7 @@ const Footer = (props) => {
 								target='_blank'
 								rel='noreferrer'
 								href={organization.urlFacebook}>
-								<i className='fab fa-facebook-f' />
+								<i className='fa fa-facebook' aria-hidden='true'></i>
 							</a>
 						)}
 						{organization.urlWhatsapp && (
@@ -29,18 +29,16 @@ const Footer = (props) => {
 								target='_blank'
 								rel='noreferrer'
 								href={organization.urlWhatsapp}>
-								<i className='fab fa-whatsapp' />
+								<i className='fa fa-whatsapp' aria-hidden='true'></i>
 							</a>
 						)}
-						{console.log(organization.urlInstagram)}
-
 						{organization.urlInstagram && (
 							<a
 								className='btn btn-dark btn-social mx-2'
 								target='_blank'
 								rel='noreferrer'
 								href={organization.urlInstagram}>
-								<i className='fab fa-instagram' />
+								<i className='fa fa-instagram'></i>
 							</a>
 						)}
 						{organization.phone && (
@@ -49,7 +47,7 @@ const Footer = (props) => {
 								target='_blank'
 								rel='noreferrer'
 								href={`tel:${organization.phone}`}>
-								<i className='fab fa-twitter' />
+								<i class='fa fa-phone'></i>
 							</a>
 						)}
 					</div>
