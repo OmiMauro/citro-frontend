@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 const isAuthenticated = () => {};
 
-const Nav = () => {
-	const [organization, setOrganization] = useState({});
-	useEffect(() => {}, []);
+const Nav = (props) => {
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm'>
 			<div className='container  '>
@@ -40,7 +38,7 @@ const Nav = () => {
 					<Link
 						className='navbar-brand fw-bold fs-4 mx-auto text-uppercase'
 						to='/'>
-						{process.env.REACT_APP_NAME_APPLICATION}
+						{props.organization.name}
 					</Link>
 
 					<div className='buttons'>
