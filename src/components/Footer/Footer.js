@@ -1,7 +1,7 @@
 import React from 'react';
 const Footer = (props) => {
 	const year = new Date().getFullYear();
-	const { organization } = props.organization;
+	const { organization } = props;
 	return (
 		<footer className='footer py-4'>
 			<div className='container'>
@@ -32,12 +32,14 @@ const Footer = (props) => {
 								<i className='fab fa-whatsapp' />
 							</a>
 						)}
+						{console.log(organization.urlInstagram)}
+
 						{organization.urlInstagram && (
 							<a
 								className='btn btn-dark btn-social mx-2'
 								target='_blank'
 								rel='noreferrer'
-								href={props.organization.urlInstagram}>
+								href={organization.urlInstagram}>
 								<i className='fab fa-instagram' />
 							</a>
 						)}
@@ -46,7 +48,7 @@ const Footer = (props) => {
 								className='btn btn-dark btn-social mx-2'
 								target='_blank'
 								rel='noreferrer'
-								href={props.organization.phone}>
+								href={`tel:${organization.phone}`}>
 								<i className='fab fa-twitter' />
 							</a>
 						)}
