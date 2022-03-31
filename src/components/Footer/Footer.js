@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 const Footer = (props) => {
-	const year = new Date().getFullYear();
-	const { organization } = props;
+	const year = new Date().getFullYear()
+	const { organization } = props
 	return (
 		<footer className='footer py-4'>
 			<div className='container'>
@@ -11,7 +11,6 @@ const Footer = (props) => {
 							{/*  {process.env.REACT_APP_NAME_APPLICATION} {year} */}
 							Desarrollado por &copy;Omiñuka, Mauro
 						</div>
-						{/* <a className='btn btn-dark btn-social mx-2' href='#!'><i className='fab fa-facebook-f' /></a> */}
 					</div>
 					<div className='col-lg-4  '>
 						{organization.urlFacebook && (
@@ -47,7 +46,7 @@ const Footer = (props) => {
 								target='_blank'
 								rel='noreferrer'
 								href={`tel:${organization.phone}`}>
-								<i class='fa fa-phone'></i>
+								<i className='fa fa-phone'></i>
 							</a>
 						)}
 					</div>
@@ -71,6 +70,6 @@ const Footer = (props) => {
 				</div>
 			</div>
 		</footer>
-	);
-};
-export default Footer;
+	)
+}
+export default Footer
