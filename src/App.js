@@ -6,8 +6,9 @@ import { useState, useEffect } from 'react'
 import { getOrganization } from './services/organizationsServices'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
-import Error404 from './pages/Error404'
-import Error404Page from './pages/Error404'
+import Error404 from './pages/Error404Page'
+import Error404Page from './pages/Error404Page'
+import BackofficePage from './pages/BackofficePage'
 const App = () => {
 	const publics = ['/', '/activities', '/login', '/register']
 	const privates = ['/backoffice', '/backofice/*']
@@ -38,7 +39,8 @@ const App = () => {
 						path='/login'
 						element={<LoginPage organization={organization} />}
 					/>
-					<Route path='register' element={<RegisterPage />} />
+					<Route path='/register' element={<RegisterPage />} />
+					<Route path='/backoffice' element={<BackofficePage />} />
 
 					{/* we want to protect these routes */}
 					{/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
