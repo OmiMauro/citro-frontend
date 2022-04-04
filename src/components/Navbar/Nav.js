@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 // import { isAuthenticated } from '../../data/services/auth/index'
-import React, { useState, useEffect } from 'react';
-const isAuthenticated = () => {};
+import React, { useState, useEffect } from 'react'
+const isAuthenticated = () => {}
 
 const Nav = (props) => {
 	return (
-		<nav className='navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm'>
+		<nav
+			className='navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm'
+			id='mainNav'>
 			<div className='container  '>
 				<button
 					className='navbar-toggler'
@@ -52,6 +54,6 @@ const Nav = (props) => {
 				</div>
 			</div>
 		</nav>
-	);
-};
-export default Nav;
+	)
+}
+export default Nav

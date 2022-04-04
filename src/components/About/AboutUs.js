@@ -1,5 +1,5 @@
+import './styles.css'
 const AboutUs = (props) => {
-	console.log('about us', props.organization)
 	const { aboutUs, name, welcomeText } = props.organization
 	const splitedDescription = aboutUs ? aboutUs.split('. ') : ['']
 	return (

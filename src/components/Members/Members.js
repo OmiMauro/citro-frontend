@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { getMembers } from '../../services/membersServices';
-
+import { useState, useEffect } from 'react'
+import { getMembers } from '../../services/membersServices'
+import './styles.css'
 const Members = () => {
-	const [members, setMembers] = useState([]);
+	const [members, setMembers] = useState([])
 
 	useEffect(() => {
 		const fetchMembers = async () => {
-			const response = await getMembers();
-			setMembers(response.data.data);
-		};
-		fetchMembers();
-	}, []);
+			const response = await getMembers()
+			setMembers(response.data.data)
+		}
+		fetchMembers()
+	}, [])
 
 	return (
 		<section className='page-section bg-light' id='team'>
@@ -61,11 +61,11 @@ const Members = () => {
 										)}
 									</div>
 								</div>
-							);
+							)
 						})}
 				</div>
 			</div>
 		</section>
-	);
-};
-export default Members;
+	)
+}
+export default Members

@@ -1,4 +1,4 @@
-import React from 'react'
+import './styles.css'
 const Footer = (props) => {
 	const year = new Date().getFullYear()
 	const { organization } = props
@@ -8,7 +8,6 @@ const Footer = (props) => {
 				<div className='row align-items-center'>
 					<div className='col-lg-4 my-3 my-lg-0'>
 						<div className='mx-auto text-uppercase text-black-50'>
-							{/*  {process.env.REACT_APP_NAME_APPLICATION} {year} */}
 							Desarrollado por &copy;Omiñuka, Mauro
 						</div>
 					</div>
