@@ -1,15 +1,12 @@
-import React from 'react';
-import Login from '../components/Auth/Login';
-import Titles from '../components/Titles/Titles';
-import LayoutPublic from '../components/LayoutPublic/LayoutPublic';
+import Login from '../components/Auth/Login'
+import LayoutPublic from '../components/LayoutPublic/LayoutPublic'
 
-const LoginPage = () => {
+const LoginPage = (props) => {
 	return (
-		<LayoutPublic>
-			<Titles title='Iniciar Sesion'></Titles>
+		<LayoutPublic organization={props.organization}>
 			<Login></Login>
 		</LayoutPublic>
-	);
-};
+	)
+}
 
-export default LoginPage;
+export default LoginPage
