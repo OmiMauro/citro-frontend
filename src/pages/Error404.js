@@ -1,16 +1,16 @@
-import React from 'react';
-import Titles from '../components/Titles/Titles';
-import Error404 from '../components/Error404/Error404';
-const Error404 = () => {
+import React from 'react'
+import Titles from '../components/Titles/Titles'
+import Error404 from '../components/Error404/Error404'
+import LayoutPublic from '../components/LayoutPublic/LayoutPublic'
+
+const Error404Page = () => {
 	return (
-		<React.Fragment>
-			<Titles
-				title='Pagina no encontrada'
-				description='La URL ingresada no se encontró en el servidor'></Titles>
+		<>
+			<LayoutPublic>
+				<Error404></Error404>
+			</LayoutPublic>
+		</>
+	)
+}
 
-			<Error404></Error404>
-		</React.Fragment>
-	);
-};
-
-export default Error404;
+export default Error404Page
