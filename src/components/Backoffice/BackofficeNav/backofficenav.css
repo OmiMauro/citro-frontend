@@ -1,0 +1,20 @@
+.nav .nav-link .sb-nav-link-icon,
+.sb-sidenav-menu .nav-link .sb-nav-link-icon {
+	margin-right: 0.5rem;
+}
+
+.sb-topnav {
+	padding-left: 0;
+	height: 56px;
+	z-index: 1039;
+}
+.sb-topnav .navbar-brand {
+	width: 225px;
+	margin: 0;
+}
+.sb-topnav.navbar-dark #sidebarToggle {
+	color: rgba(255, 255, 255, 0.5);
+}
+.sb-topnav.navbar-light #sidebarToggle {
+	color: #212529;
+}
