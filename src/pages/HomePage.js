@@ -3,13 +3,14 @@ import LayoutPublic from '../components/LayoutPublic/LayoutPublic'
 import Carousel from '../components/Carousel/Carousel'
 import Members from '../components/Members/Members'
 import AboutUs from '../components/About/AboutUs'
-const HomePage = (props) => {
-	const { organization } = props
+import ImageEvent from '../components/Galery/Galery'
 
+const HomePage = (props) => {
 	return (
-		<LayoutPublic organization={organization}>
+		<LayoutPublic>
 			<Carousel></Carousel>
-			<AboutUs organization={organization}></AboutUs>
+			<AboutUs></AboutUs>
+			{/* 	<ImageEvent></ImageEvent> */}
 			<Members></Members>
 		</LayoutPublic>
 	)

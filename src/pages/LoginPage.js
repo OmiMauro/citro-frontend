@@ -1,9 +1,9 @@
 import Login from '../components/Auth/Login'
 import LayoutPublic from '../components/LayoutPublic/LayoutPublic'
 
-const LoginPage = (props) => {
+const LoginPage = () => {
 	return (
-		<LayoutPublic organization={props.organization}>
+		<LayoutPublic>
 			<Login></Login>
 		</LayoutPublic>
 	)

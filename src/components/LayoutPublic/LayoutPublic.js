@@ -1,14 +1,19 @@
 import React from 'react'
 import Navbar from '../Navbar/Nav'
 import Footer from '../Footer/Footer'
-const LayoutPublic = ({ children, organization }) => {
+import { useSelector } from 'react-redux'
+import { selectorOrganization } from '../../redux/slices/organization-slice'
+
+const LayoutPublic = ({ children }) => {
+	const { organization, status } = useSelector(selectorOrganization)
+	const { aboutUs, name, welcomeText } = organization
 	return (
 		<>
 			{organization && (
 				<>
-					<Navbar organization={organization}></Navbar>
+					<Navbar></Navbar>
 					<main>{children}</main>
-					<Footer organization={organization}></Footer>
+					<Footer></Footer>
 				</>
 			)}
 		</>

@@ -2,12 +2,15 @@ import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 
-import organizationSlice from './reducers/organization/organizationSlice'
-import membersSlice from './reducers/members/membersSlice'
+// reducers
+import organizationReducer from './slices/organization-slice'
+import membersReducer from './slices/members-slice'
+import slidesReducer from './slices/slides-slice'
 
 const reducers = combineReducers({
-	organization: organizationSlice,
-	members: membersSlice
+	organization: organizationReducer,
+	slides: slidesReducer,
+	members: membersReducer
 })
 
 const store = configureStore({

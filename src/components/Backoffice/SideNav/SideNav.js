@@ -1,5 +1,5 @@
 import React from 'react'
-import './sidenav.css'
+import './styles.css'
 const SideNav = () => {
 	return (
 		<div id='layoutSidenav_nav'>

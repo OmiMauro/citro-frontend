@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
-import { getSlides } from '../../services/slidesServices';
-import './styles.css';
+import { useSelector, useDispatch } from 'react-redux'
+import { selectorSlides, fetchSlides } from '../../redux/slices/slides-slice'
+import { useEffect } from 'react'
+import './styles.css'
+
 const Carousel = () => {
-	const [slides, setSlides] = useState([]);
+	const dispatch = useDispatch()
+	const { slides, status } = useSelector(selectorSlides)
+
 	useEffect(() => {
-		const fetchSlides = async () => {
-			const response = await getSlides();
-			setSlides(response.data.data);
-		};
-		fetchSlides();
-	}, []);
+		dispatch(fetchSlides())
+	}, [])
 
 	return (
 		<div
@@ -31,10 +31,10 @@ const Carousel = () => {
 									key={item._id}
 								/>
 							</div>
-						);
+						)
 					})}
 			</div>
 		</div>
-	);
-};
-export default Carousel;
+	)
+}
+export default Carousel
