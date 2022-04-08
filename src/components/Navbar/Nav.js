@@ -1,14 +1,18 @@
-import { Link } from 'react-router-dom'
 // import { isAuthenticated } from '../../data/services/auth/index'
-import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { selectorOrganization } from '../../redux/slices/organization-slice'
+import { Link } from 'react-router-dom'
+
 const isAuthenticated = () => {}
 
-const Nav = (props) => {
+const Nav = () => {
+	const { organization, status } = useSelector(selectorOrganization)
+
 	return (
 		<nav
 			className='navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm'
 			id='mainNav'>
-			<div className='container  '>
+			<div className='container'>
 				<button
 					className='navbar-toggler'
 					type='button'
@@ -40,7 +44,7 @@ const Nav = (props) => {
 					<Link
 						className='navbar-brand fw-bold fs-4 mx-auto text-uppercase'
 						to='/'>
-						{props.organization.name}
+						{organization.name}
 					</Link>
 
 					<div className='buttons'>

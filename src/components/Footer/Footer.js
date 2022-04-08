@@ -1,7 +1,10 @@
+import { useSelector } from 'react-redux'
+import { selectorOrganization } from '../../redux/slices/organization-slice'
 import './styles.css'
-const Footer = (props) => {
+
+const Footer = () => {
+	const { organization, status } = useSelector(selectorOrganization)
 	const year = new Date().getFullYear()
-	const { organization } = props
 	return (
 		<footer className='footer py-4'>
 			<div className='container'>
