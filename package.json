@@ -8,11 +8,16 @@
 		"bootstrap": "^5.1.3",
 		"env-cmd": "^10.1.0",
 		"font-awesome": "^4.7.0",
+<<<<<<< HEAD
 		"i": "^0.3.7",
 		"npm": "^8.6.0",
 		"react": "^18.0.0",
 		"react-dom": "^18.0.0",
 		"react-photo-album": "^1.12.0",
+=======
+		"react": "^18.0.0",
+		"react-dom": "^18.0.0",
+>>>>>>> 4a22957e474d3735b9f70d4bf27a6a6661196fc1
 		"react-redux": "^7.2.8",
 		"react-router-dom": "^6.3.0",
 		"react-scripts": "^5.0.0",

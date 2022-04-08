@@ -31,6 +31,7 @@ const Carousel = () => {
 									key={item._id}
 								/>
 							</div>
+<<<<<<< HEAD
 						)
 					})}
 			</div>
@@ -38,3 +39,12 @@ const Carousel = () => {
 	)
 }
 export default Carousel
+=======
+						);
+					})}
+			</div>
+		</div>
+	);
+};
+export default Carousel;
+>>>>>>> 4a22957e474d3735b9f70d4bf27a6a6661196fc1

@@ -44,7 +44,11 @@ const Nav = () => {
 					<Link
 						className='navbar-brand fw-bold fs-4 mx-auto text-uppercase'
 						to='/'>
+<<<<<<< HEAD
 						{organization.name}
+=======
+						{props.organization.name}
+>>>>>>> 4a22957e474d3735b9f70d4bf27a6a6661196fc1
 					</Link>
 
 					<div className='buttons'>
