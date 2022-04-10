@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchGalery, selectorGalery } from '../../redux/slices/galery-slice'
 import { PhotoAlbum } from 'react-photo-album'
 // import Image from './Image'
 import Pagination from './Pagination'
 import SigleImage from './SingleImage'
 import { getGalery } from '../../services/galeryServices'
 const ImageEvent = () => {
-	const [images, setImages] = useState([])
 	const [pageOffset, setPageOffset] = useState(0)
 	const [index, setIndex] = useState(0)
 	/* /api/images?limit=${perPage}&page=${pageOffset + 1} */
+	const dispatch = useDispatch()
+	const galery = useSelector(selectorGalery)
+
 	useEffect(() => {
-		const fetchImages = async () => {
-			const response = await getGalery()
-			console.log(response.data.data)
-			setImages(response.data.data)
-		}
-		fetchImages()
+		dispatch(fetchGalery())
 	}, [pageOffset])
 
 	const handlePageChange = (e) => {
@@ -26,9 +24,9 @@ const ImageEvent = () => {
 		<div className='container '>
 			<h2 className='text-center'>Imágenes de nuestros eventos</h2>
 			<div className='row'>
-				{images && (
+				{galery && (
 					<PhotoAlbum
-						photos={images.image_id.url}
+						photos={galery.image_id.url}
 						layout='rows'
 						onClick={(event, photo, index) => {
 							setIndex(index)
@@ -36,9 +34,8 @@ const ImageEvent = () => {
 					/>
 				)}
 			</div>
-			{console.log(images)}
 			{index && (
-				<SigleImage images={images} index={index} setIndex={setIndex} />
+				<SigleImage images={galery} index={index} setIndex={setIndex} />
 			)}
 			<div className='m-0 row justify-content-center'>
 				<div className='col-auto text-center'>
