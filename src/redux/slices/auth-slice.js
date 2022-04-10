@@ -1,32 +1,64 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import {} from '../../services/auth-services'
+import { login, register } from '../../services/auth-services'
 import { STATUS } from '../constants/action-types'
 
-export const fetchGalery = createAsyncThunk('galery/get', async () => {
-	const {
-		data: { data }
-	} = await getGalery()
-	return data
+export const logged = createAsyncThunk('authLogin/post', async (data) => {
+	const response = await login(data)
+	localStorage.setItem('token', response.data.data.token)
+	return response.data.data
 })
-const galerySlice = createSlice({
-	name: 'galery',
+
+export const registered = createAsyncThunk(
+	'authRegister/post',
+	async (data) => {
+		const response = await register(data)
+		localStorage.setItem('token', response.data.data.token)
+		return response.data.data
+	}
+)
+const authSlice = createSlice({
+	name: 'auth',
 	initialState: {
-		galery: [],
+		auth: false,
+		user: {},
+		token: '',
+		isLoading: false,
 		status: null
 	},
 	extraReducers: {
-		[fetchGalery.pending]: (state) => {
+		[logged.pending]: (state) => {
 			state.status = STATUS.PENDING
+			state.isLoading = true
 		},
-		[fetchGalery.fulfilled]: (state, action) => {
+		[logged.fulfilled]: (state, action) => {
 			state.status = STATUS.SUCCESSFUL
-			state.galery = action.payload
+			state.auth = true
+			state.user = action.payload.user
+			state.token = action.payload.token
+			state.isLoading = false
 		},
-		[fetchGalery.rejected]: (state) => {
+		[logged.rejected]: (state) => {
 			state.status = STATUS.FAILED
+			state.isLoading = false
+		},
+		[registered.pending]: (state) => {
+			state.status = STATUS.PENDING
+			state.isLoading = true
+		},
+		[registered.fulfilled]: (state, action) => {
+			state.status = STATUS.SUCCESSFUL
+			state.auth = true
+			state.user = action.payload.user
+			state.token = action.payload.token
+			state.isLoading = false
+		},
+		[registered.rejected]: (state) => {
+			state.status = STATUS.FAILED
+			state.isLoading = false
 		}
 	}
 })
 
-export const selectorGalery = (state) => state.galery
-export default galerySlice.reducer
+export const selectorAuth = (state) => state.auth
+
+export default authSlice.reducer

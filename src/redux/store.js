@@ -9,12 +9,14 @@ import organizationReducer from './slices/organization-slice'
 import membersReducer from './slices/members-slice'
 import slidesReducer from './slices/slides-slice'
 import galeryReducer from './slices/galery-slice'
+import authReducer from './slices/auth-slice'
 
 const reducers = combineReducers({
 	organization: organizationReducer,
 	slides: slidesReducer,
 	members: membersReducer,
-	galery: galeryReducer
+	galery: galeryReducer,
+	auth: authReducer
 })
 
 const persistConfig = {
