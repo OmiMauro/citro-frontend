@@ -18,4 +18,10 @@ const get = async (url, search = null, id = null) => {
 	return await instance.get(url, { params: search })
 }
 
+const post = async (url, data) => await instance.post(url, data)
+
+const put = async (url, data, id) => await instance.put(`${url}/${id}`, data)
+
+const remove = async (url, id) => await instance.delete(`${url}/${id}`)
+
 export { get }
