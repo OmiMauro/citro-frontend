@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getGalery } from '../../services/galery-services'
+import {} from '../../services/auth-services'
 import { STATUS } from '../constants/action-types'
 
 export const fetchGalery = createAsyncThunk('galery/get', async () => {

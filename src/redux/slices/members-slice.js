@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getMembers } from '../../services/membersServices'
+import { getMembers } from '../../services/members-services'
 import { STATUS } from '../constants/action-types'
 
 export const fetchMembers = createAsyncThunk('members/get', async () => {

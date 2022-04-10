@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getSlides } from '../../services/slidesServices'
+import { getSlides } from '../../services/slides-services'
 import { STATUS } from '../constants/action-types'
 
 export const fetchSlides = createAsyncThunk('slides/get', async () => {

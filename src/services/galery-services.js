@@ -1,4 +1,4 @@
-import { get } from './publicApiServices'
+import { get } from './public-api-services'
 
 const ENDPOINT = process.env.REACT_APP_API_GALERY_ENDPOINT
 

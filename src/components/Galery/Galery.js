@@ -5,7 +5,6 @@ import { PhotoAlbum } from 'react-photo-album'
 // import Image from './Image'
 import Pagination from './Pagination'
 import SigleImage from './SingleImage'
-import { getGalery } from '../../services/galeryServices'
 const ImageEvent = () => {
 	const [pageOffset, setPageOffset] = useState(0)
 	const [index, setIndex] = useState(0)

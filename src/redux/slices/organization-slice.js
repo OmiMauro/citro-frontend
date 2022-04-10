@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { getOrganization } from '../../services/organizationsServices'
+import { getOrganization } from '../../services/organizations-services'
 import { STATUS } from '../constants/action-types'
 
 export const fetchOrganization = createAsyncThunk(
