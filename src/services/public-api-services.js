@@ -24,4 +24,4 @@ const put = async (url, data, id) => await instance.put(`${url}/${id}`, data)
 
 const remove = async (url, id) => await instance.delete(`${url}/${id}`)
 
-export { get }
+export { get, post, put, remove }
