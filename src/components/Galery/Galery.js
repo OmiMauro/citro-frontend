@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchGalery, selectorGalery } from '../../redux/slices/galery-slice'
 import { PhotoAlbum } from 'react-photo-album'
@@ -10,30 +10,34 @@ const ImageEvent = () => {
 	const [index, setIndex] = useState(0)
 	/* /api/images?limit=${perPage}&page=${pageOffset + 1} */
 	const dispatch = useDispatch()
-	const galery = useSelector(selectorGalery)
+	const { galery } = useSelector(selectorGalery)
 
+	const [photos, setPhotos] = useState([])
 	useEffect(() => {
 		dispatch(fetchGalery())
+		setPhotos(
+			galery.map((item) => {
+				return { src: item.image_id.url, width: 200, height: 502 }
+			})
+		)
 	}, [pageOffset])
-
 	const handlePageChange = (e) => {
 		setPageOffset(e.selected)
 	}
+
 	return (
 		<div className='container '>
 			<h2 className='text-center'>Imágenes de nuestros eventos</h2>
-			<div className='row'>
-				{galery && (
-					<PhotoAlbum
-						photos={galery.image_id.url}
-						layout='rows'
-						onClick={(event, photo, index) => {
+			{photos && (
+				<PhotoAlbum
+					photos={photos}
+					layout='columns'
+					/* onClick={(event, photo, index) => {
 							setIndex(index)
-						}}
-					/>
-				)}
-			</div>
-			{index && (
+						}} */
+				/>
+			)}
+			{/* {index && (
 				<SigleImage images={galery} index={index} setIndex={setIndex} />
 			)}
 			<div className='m-0 row justify-content-center'>
@@ -43,7 +47,7 @@ const ImageEvent = () => {
 						pageOffset={pageOffset}
 					/>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	)
 }
