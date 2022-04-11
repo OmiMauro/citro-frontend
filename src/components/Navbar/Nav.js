@@ -2,7 +2,7 @@
 import { useSelector } from 'react-redux'
 import { selectorOrganization } from '../../redux/slices/organization-slice'
 import { Link } from 'react-router-dom'
-
+import logo from './navbar-logo.png'
 const isAuthenticated = () => {}
 
 const Nav = () => {
@@ -44,17 +44,16 @@ const Nav = () => {
 					<Link
 						className='navbar-brand fw-bold fs-4 mx-auto text-uppercase'
 						to='/'>
-						{organization.name}
+						{/* {organization.name} */}
+						<img src={logo} alt='logo-organization'></img>
 					</Link>
 
-					<div className='buttons'>
-						<Link className='btn btn-outline-dark ' to='/login'>
-							<i className='fa fa-sign-in me-1 '></i>Log In
-						</Link>
-						<Link className='btn btn-outline-dark ' to='/register'>
-							<i className='fa fa-user-plus me-1 '></i>Registrarse
-						</Link>
-					</div>
+					<Link className='btn btn-outline-dark ' to='/login'>
+						<i className='fa fa-sign-in me-1 '></i>Log In
+					</Link>
+					<Link className='btn btn-outline-dark ' to='/register'>
+						<i className='fa fa-user-plus me-1 '></i>Registrarse
+					</Link>
 				</div>
 			</div>
 		</nav>
