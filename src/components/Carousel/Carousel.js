@@ -22,11 +22,11 @@ const Carousel = () => {
 						return (
 							<div
 								className={`carousel-item ${index === 0 ? 'active' : ''}`}
-								key={index}>
+								key={item._id}>
 								<img
 									width='100%'
 									height='100%'
-									src={item.image}
+									src={item.image_id.url}
 									alt={item.text}
 									key={item._id}
 								/>
