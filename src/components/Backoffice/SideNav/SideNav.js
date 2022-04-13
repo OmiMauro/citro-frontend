@@ -2,152 +2,169 @@ import React from 'react'
 import './styles.css'
 const SideNav = () => {
 	return (
-		<div id='layoutSidenav_nav'>
-			<nav
-				className='sb-sidenav accordion sb-sidenav-dark'
-				id='sidenavAccordion'>
-				<div className='sb-sidenav-menu'>
-					<div className='nav'>
-						<div className='sb-sidenav-menu-heading'>Core</div>
-						<a className='nav-link' href='index.html'>
-							<div className='sb-nav-link-icon'>
-								<i className='fas fa-tachometer-alt'></i>
-							</div>
-							Dashboard
+		<div className='col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark'>
+			<div className='d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100'>
+				<a
+					href='/'
+					className='d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none'>
+					<span className='fs-5 d-none d-sm-inline'>Menu</span>
+				</a>
+				<ul
+					className='nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start'
+					id='menu'>
+					<li className='nav-item'>
+						<a href='#' className='nav-link align-middle px-0'>
+							<i className='fs-4 bi-house'></i>{' '}
+							<span className='ms-1 d-none d-sm-inline'>Home</span>
 						</a>
-						<div className='sb-sidenav-menu-heading'>Interface</div>
+					</li>
+					<li>
 						<a
-							className='nav-link collapsed'
-							href='#'
+							href='#submenu1'
 							data-bs-toggle='collapse'
-							data-bs-target='#collapseLayouts'
-							aria-expanded='false'
-							aria-controls='collapseLayouts'>
-							<div className='sb-nav-link-icon'>
-								<i className='fas fa-columns'></i>
-							</div>
-							Layouts
-							<div className='sb-sidenav-collapse-arrow'>
-								<i className='fas fa-angle-down'></i>
-							</div>
+							className='nav-link px-0 align-middle'>
+							<i className='fs-4 bi-speedometer2'></i>{' '}
+							<span className='ms-1 d-none d-sm-inline'>Dashboard</span>{' '}
 						</a>
-						<div
-							className='collapse'
-							id='collapseLayouts'
-							aria-labelledby='headingOne'
-							data-bs-parent='#sidenavAccordion'>
-							<nav className='sb-sidenav-menu-nested nav'>
-								<a className='nav-link' href='layout-static.html'>
-									Static Navigation
+						<ul
+							className='collapse show nav flex-column ms-1'
+							id='submenu1'
+							data-bs-parent='#menu'>
+							<li className='w-100'>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Item</span> 1{' '}
 								</a>
-								<a className='nav-link' href='layout-sidenav-light.html'>
-									Light Sidenav
+							</li>
+							<li>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Item</span> 2{' '}
 								</a>
-							</nav>
-						</div>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href='#' className='nav-link px-0 align-middle'>
+							<i className='fs-4 bi-table'></i>{' '}
+							<span className='ms-1 d-none d-sm-inline'>Orders</span>
+						</a>
+					</li>
+					<li>
 						<a
-							className='nav-link collapsed'
-							href='#'
+							href='#submenu2'
 							data-bs-toggle='collapse'
-							data-bs-target='#collapsePages'
-							aria-expanded='false'
-							aria-controls='collapsePages'>
-							<div className='sb-nav-link-icon'>
-								<i className='fas fa-book-open'></i>
-							</div>
-							Pages
-							<div className='sb-sidenav-collapse-arrow'>
-								<i className='fas fa-angle-down'></i>
-							</div>
+							className='nav-link px-0 align-middle '>
+							<i className='fs-4 bi-bootstrap'></i>{' '}
+							<span className='ms-1 d-none d-sm-inline'>Bootstrap</span>
 						</a>
-						<div
-							className='collapse'
-							id='collapsePages'
-							aria-labelledby='headingTwo'
-							data-bs-parent='#sidenavAccordion'>
-							<nav
-								className='sb-sidenav-menu-nested nav accordion'
-								id='sidenavAccordionPages'>
-								<a
-									className='nav-link collapsed'
-									href='#'
-									data-bs-toggle='collapse'
-									data-bs-target='#pagesCollapseAuth'
-									aria-expanded='false'
-									aria-controls='pagesCollapseAuth'>
-									Authentication
-									<div className='sb-sidenav-collapse-arrow'>
-										<i className='fas fa-angle-down'></i>
-									</div>
+						<ul
+							className='collapse nav flex-column ms-1'
+							id='submenu2'
+							data-bs-parent='#menu'>
+							<li className='w-100'>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Item</span> 1
 								</a>
-								<div
-									className='collapse'
-									id='pagesCollapseAuth'
-									aria-labelledby='headingOne'
-									data-bs-parent='#sidenavAccordionPages'>
-									<nav className='sb-sidenav-menu-nested nav'>
-										<a className='nav-link' href='login.html'>
-											Login
-										</a>
-										<a className='nav-link' href='register.html'>
-											Register
-										</a>
-										<a className='nav-link' href='password.html'>
-											Forgot Password
-										</a>
-									</nav>
-								</div>
-								<a
-									className='nav-link collapsed'
-									href='#'
-									data-bs-toggle='collapse'
-									data-bs-target='#pagesCollapseError'
-									aria-expanded='false'
-									aria-controls='pagesCollapseError'>
-									Error
-									<div className='sb-sidenav-collapse-arrow'>
-										<i className='fas fa-angle-down'></i>
-									</div>
+							</li>
+							<li>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Item</span> 2
 								</a>
-								<div
-									className='collapse'
-									id='pagesCollapseError'
-									aria-labelledby='headingOne'
-									data-bs-parent='#sidenavAccordionPages'>
-									<nav className='sb-sidenav-menu-nested nav'>
-										<a className='nav-link' href='401.html'>
-											401 Page
-										</a>
-										<a className='nav-link' href='404.html'>
-											404 Page
-										</a>
-										<a className='nav-link' href='500.html'>
-											500 Page
-										</a>
-									</nav>
-								</div>
-							</nav>
-						</div>
-						<div className='sb-sidenav-menu-heading'>Addons</div>
-						<a className='nav-link' href='charts.html'>
-							<div className='sb-nav-link-icon'>
-								<i className='fas fa-chart-area'></i>
-							</div>
-							Charts
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a
+							href='#submenu3'
+							data-bs-toggle='collapse'
+							className='nav-link px-0 align-middle'>
+							<i className='fs-4 bi-grid'></i>{' '}
+							<span className='ms-1 d-none d-sm-inline'>Products</span>{' '}
 						</a>
-						<a className='nav-link' href='tables.html'>
-							<div className='sb-nav-link-icon'>
-								<i className='fas fa-table'></i>
-							</div>
-							Tables
+						<ul
+							className='collapse nav flex-column ms-1'
+							id='submenu3'
+							data-bs-parent='#menu'>
+							<li className='w-100'>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Product</span> 1
+								</a>
+							</li>
+							<li>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Product</span> 2
+								</a>
+							</li>
+							<li>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Product</span> 3
+								</a>
+							</li>
+							<li>
+								<a href='#' className='nav-link px-0'>
+									{' '}
+									<span className='d-none d-sm-inline'>Product</span> 4
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href='#' className='nav-link px-0 align-middle'>
+							<i className='fs-4 bi-people'></i>{' '}
+							<span className='ms-1 d-none d-sm-inline'>Customers</span>{' '}
 						</a>
-					</div>
+					</li>
+				</ul>
+				<hr />
+				<div className='dropdown pb-4'>
+					<a
+						href='#'
+						className='d-flex align-items-center text-white text-decoration-none dropdown-toggle'
+						id='dropdownUser1'
+						data-bs-toggle='dropdown'
+						aria-expanded='false'>
+						<img
+							src='https://github.com/mdo.png'
+							alt='hugenerd'
+							width='30'
+							height='30'
+							className='rounded-circle'
+						/>
+						<span className='d-none d-sm-inline mx-1'>loser</span>
+					</a>
+					<ul className='dropdown-menu dropdown-menu-dark text-small shadow'>
+						<li>
+							<a className='dropdown-item' href='#'>
+								New project...
+							</a>
+						</li>
+						<li>
+							<a className='dropdown-item' href='#'>
+								Settings
+							</a>
+						</li>
+						<li>
+							<a className='dropdown-item' href='#'>
+								Profile
+							</a>
+						</li>
+						<li>
+							<hr className='dropdown-divider' />
+						</li>
+						<li>
+							<a className='dropdown-item' href='#'>
+								Sign out
+							</a>
+						</li>
+					</ul>
 				</div>
-				<div className='sb-sidenav-footer'>
-					<div className='small'>Logged in as:</div>
-					Start Bootstrap
-				</div>
-			</nav>
+			</div>
 		</div>
 	)
 }
