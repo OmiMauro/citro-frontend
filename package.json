@@ -21,7 +21,7 @@
 		"redux-thunk": "^2.4.1"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "env-cmd -f ./enviroments/.env.production react-scripts start",
 		"start:dev": "env-cmd -f ./enviroments/.env.development react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
