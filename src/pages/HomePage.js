@@ -10,7 +10,7 @@ const HomePage = (props) => {
 		<LayoutPublic>
 			<Carousel></Carousel>
 			<AboutUs></AboutUs>
-			{/* 	<ImageEvent></ImageEvent> */}
+			<ImageEvent></ImageEvent>
 			<Members></Members>
 		</LayoutPublic>
 	)
