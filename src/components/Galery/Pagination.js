@@ -1,9 +1,10 @@
-/* import ReactPaginate from 'react-paginate' */
+import ReactPaginate from 'react-paginate'
 
 const Pagination = ({ handlePageChange, pageOffset }) => {
 	return (
 		<div>
-			{/* 	<ReactPaginate
+			<ReactPaginate
+				pageCount={5}
 				previousLabel='Anterior'
 				nextLabel='Siguiente'
 				pageClassName='page-item'
@@ -21,7 +22,7 @@ const Pagination = ({ handlePageChange, pageOffset }) => {
 				containerClassName='pagination'
 				activeClassName='active'
 				forcePage={pageOffset}
-			/> */}
+			/>
 		</div>
 	)
 }
