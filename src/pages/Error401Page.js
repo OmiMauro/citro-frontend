@@ -11,4 +11,4 @@ const Error401Page = () => {
 	)
 }
 
-export default Error404Page
+export default Error401Page
