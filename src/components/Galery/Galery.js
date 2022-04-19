@@ -19,7 +19,7 @@ const ImageEvent = () => {
 		setPhotos(
 			galery.map((item) => {
 				return {
-					src: item.image_id.url,
+					src: item.image_id.secure_url,
 					width: item.image_id.width || 200,
 					height: item.image_id.height || 200
 				}
@@ -42,6 +42,7 @@ const ImageEvent = () => {
 					}} */
 				/>
 			)}
+
 			{/* {index && (
 				<SigleImage images={galery} index={index} setIndex={setIndex} />
 			)} */}

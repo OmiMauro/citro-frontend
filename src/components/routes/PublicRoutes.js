@@ -20,28 +20,23 @@ const RegisterPage = lazy(() =>
 const publicRoute = [
 	{
 		path: '/',
-		exact: true,
-		component: HomePage
+		element: HomePage
 	},
 	{
 		path: '/aboutus',
-		exact: true,
-		component: AboutPage
+		element: AboutPage
 	},
 	{
 		path: '/contact',
-		exact: true,
-		component: ContactPage
+		element: ContactPage
 	},
 	{
 		path: '/login',
-		exact: true,
-		component: LoginPage
+		element: LoginPage
 	},
 	{
 		path: '/register',
-		exact: true,
-		component: RegisterPage
+		element: RegisterPage
 	}
 ]
 export default publicRoute
