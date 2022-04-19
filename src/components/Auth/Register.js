@@ -13,19 +13,24 @@ const Register = () => {
 		confirmPassword: '',
 		lastname: '',
 		name: '',
-		image: '',
+		phone: '',
 		conditions: false
 	})
-	const { email, password, confirmPassword, lastname, name, conditions } =
-		values
+	const {
+		email,
+		password,
+		confirmPassword,
+		lastname,
+		name,
+		phone,
+		conditions
+	} = values
 	const { auth, user, isLoading } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 
 	const handleChange = (e) => {
-		console.log(e.target.name, e.target.value)
 		const { name, value } = e.target
 		setValues({ ...values, [name]: value })
-		/* 	console.log(email, password, confirmPassword, lastname, name, conditions) */
 	}
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -33,57 +38,13 @@ const Register = () => {
 			email,
 			name,
 			lastname,
-			password
+			password,
+			phone
 		}
 		dispatch(registered(body))
 	}
 	return (
 		<>
-			{/* <div id='layoutAuthentication'>
-				<div id='layoutAuthentication_content'>
-					<div className='container'>
-						<div className='row justify-content-center'>
-							<div className='col-lg-7'>
-								<div className='card shadow-lg border-0 rounded-lg mt-5'>
-									<div className='card-header'>
-										<h3 className='text-center font-weight-light my-4'>
-											Crear una nueva cuenta
-										</h3>
-									</div>
-									<div className='card-body'>
-										<form>
-											<div className='row mb-3'>
-												<div className='col-md-6'>
-													<div className='form-floating mb-3 mb-md-0'>
-														
-													</div>
-												</div>
-												<div className='col-md-6'>
-													<div className='form-floating'>
-														
-													</div>
-												</div>
-											</div>
-											<div className='form-floating mb-3'>
-												
-											
-												</div>
-											
-												</div>
-											</div>
-											
-												</div>
-											</div>
-										</form>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> */}
-
 			<div className='vh-90' style={{ 'background-color': '#eee' }}>
 				<div className='container h-100'>
 					<div className='row d-flex justify-content-center align-items-center h-100'>
@@ -119,7 +80,7 @@ const Register = () => {
 															name='name'
 														/>
 														<label htmlFor='name' className='form-label'>
-															Nombre/s
+															Nombre/s*
 														</label>
 													</div>
 												</div>
@@ -136,7 +97,24 @@ const Register = () => {
 															name='lastname'
 														/>
 														<label htmlFor='lastname' className='form-label'>
-															Apellido
+															Apellido*
+														</label>
+													</div>
+												</div>
+												<div className='d-flex flex-row align-items-center mb-4'>
+													<i class='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+													<div className='form-outline flex-fill mb-0'>
+														<input
+															className='form-control'
+															onChange={handleChange}
+															id='phone'
+															type='text'
+															placeholder='Ingrese su nro de celular'
+															value={phone}
+															name='phone'
+														/>
+														<label htmlFor='phone' className='form-label'>
+															Celular *
 														</label>
 													</div>
 												</div>
@@ -153,7 +131,7 @@ const Register = () => {
 															onChange={handleChange}
 														/>
 														<label className='form-label' htmlFor='email'>
-															Correo Electronico
+															Correo Electronico*
 														</label>
 													</div>
 												</div>
@@ -171,7 +149,7 @@ const Register = () => {
 															className='form-control'
 														/>
 														<label className='form-label' htmlFor='password'>
-															Contraseña
+															Contraseña*
 														</label>
 													</div>
 												</div>
@@ -191,7 +169,7 @@ const Register = () => {
 														<label
 															className='form-label'
 															htmlFor='confirmPassword'>
-															Repetir la contraseña
+															Repetir la contraseña*
 														</label>
 													</div>
 												</div>
