@@ -2,7 +2,7 @@ import { ROLES } from '../../config'
 import Backoffice from '../../containers/Backoffice/Backoffice'
 import BackofficeCards from '../../containers/Backoffice/BackofficeCards'
 import OrganizationContainer from '../../containers/Organization/OrganizationContainer'
-
+import OrganizationFormContainer from '../../containers/Organization/OrganizationFormContainer'
 import SlidesListContainer from '../../containers/Slides/SlidesListContainer'
 import SlidesToBackoffice from '../../containers/Slides/SlidesToBackoffice'
 
@@ -104,7 +104,7 @@ const routesPrivates = [
 	},
 	{
 		path: 'organizations/edit/:id',
-		element: Backoffice,
+		element: OrganizationFormContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
