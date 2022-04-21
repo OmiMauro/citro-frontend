@@ -5,6 +5,9 @@ import OrganizationContainer from '../../containers/Organization/OrganizationCon
 
 import SlidesListContainer from '../../containers/Slides/SlidesListContainer'
 import SlidesToBackoffice from '../../containers/Slides/SlidesToBackoffice'
+
+import UsersContainer from '../../containers/Users/UsersContainer'
+import UsersListContainer from '../../containers/Users/UsersListContainer'
 /* Routes Publics */
 
 import HomePage from '../../pages/HomePage'
@@ -81,17 +84,17 @@ const routesPrivates = [
 	},
 	{
 		path: 'users',
-		element: Backoffice,
+		element: UsersListContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
 		path: 'users/create',
-		element: Backoffice,
+		element: UsersContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
 		path: 'users/edit/:id',
-		element: Backoffice,
+		element: UsersContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
