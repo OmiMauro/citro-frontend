@@ -63,12 +63,12 @@ const routesPrivates = [
 	},
 	{
 		path: 'slides/create',
-		element: SlidesToBackoffice,
+		element: SlidesListContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
 		path: 'slides/edit/:id',
-		element: SlidesToBackoffice,
+		element: SlidesListContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 
