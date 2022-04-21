@@ -20,7 +20,7 @@ const Members = () => {
 				<div className='row'>
 					{members?.map((item) => {
 						return (
-							<div className='col-lg-4'>
+							<div className='col-lg-4' key={item._id}>
 								<div className='team-member'>
 									{item.image_id.url && (
 										<img
