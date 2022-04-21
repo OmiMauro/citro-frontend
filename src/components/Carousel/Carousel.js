@@ -26,7 +26,7 @@ const Carousel = () => {
 								<img
 									width='100%'
 									height='100%'
-									src={item.image_id.secure_url}
+									src={item.image_id.url}
 									alt={item.text}
 									key={item._id}
 								/>

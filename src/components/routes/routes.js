@@ -35,93 +35,129 @@ const routesPrivates = [
 	{
 		path: '',
 		element: Backoffice,
-		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+		styles: 'nav-link align-middle px-0',
+		name: 'Home'
 	},
 	{
 		path: 'home',
 		element: BackofficeCards,
-		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+		styles: 'nav-link align-middle px-0',
+		name: 'cards'
 	},
 	{
 		path: 'activities',
 		element: Backoffice,
-		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+		styles: 'nav-link align-middle px-0',
+		name: 'activities'
 	},
 	{
 		path: 'activities/create',
 		element: Backoffice,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Crear Actividad'
 	},
 	{
 		path: 'activities/edit/:id',
 		element: Backoffice,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Editar Actividad'
 	},
 	{
 		path: 'slides',
 		element: SlidesListContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'slides'
 	},
 	{
 		path: 'slides/create',
 		element: SlidesListContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Crear Slides'
 	},
 	{
 		path: 'slides/edit/:id',
 		element: SlidesListContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Editar Slide'
 	},
 
 	{
 		path: 'members',
 		element: MembersListContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Organizadores'
 	},
 	{
 		path: 'members/create',
 		element: MembersFormContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Crear Organizador'
 	},
 	{
 		path: 'members/edit/:id',
 		element: MembersFormContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Editar Organizador'
 	},
 	{
 		path: 'users',
 		element: UsersListContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Usuarios'
 	},
 	{
 		path: 'users/create',
 		element: UsersContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Crear usuario'
 	},
 	{
 		path: 'users/edit/:id',
 		element: UsersContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Editar Usuario'
 	},
 	{
 		path: 'organizations',
 		element: OrganizationContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: 'Organizacion'
 	},
 	{
 		path: 'organizations/edit/:id',
 		element: OrganizationFormContainer,
-		allowedRoles: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN],
+		styles: 'nav-link align-middle px-0',
+		name: ''
 	},
 	{
 		path: 'profile',
 		element: ProfileContainer,
-		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+		styles: 'nav-link align-middle px-0',
+		name: 'Perfil'
 	},
 	{
 		path: 'profile/edit/:id',
 		element: ProfileFormContainer,
-		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+		styles: 'nav-link align-middle px-0',
+		name: 'Editar Perfil'
 	}
 ]
 
