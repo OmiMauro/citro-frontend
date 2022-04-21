@@ -1,12 +1,12 @@
 import React from 'react'
 import SlidesForm from '../../components/Slides/SlidesForm'
-const SlidesToBackoffice = () => {
+const SlidesFormContainer = () => {
 	return (
 		<div>
-			<p>SlidesToBackoffice</p>
+			<p>SlidesFormContainer</p>
 			<SlidesForm></SlidesForm>
 		</div>
 	)
 }
 
-export default SlidesToBackoffice
+export default SlidesFormContainer

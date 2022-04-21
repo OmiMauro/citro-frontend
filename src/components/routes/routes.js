@@ -9,7 +9,7 @@ import OrganizationContainer from '../../containers/Organization/OrganizationCon
 import OrganizationFormContainer from '../../containers/Organization/OrganizationFormContainer'
 
 import SlidesListContainer from '../../containers/Slides/SlidesListContainer'
-import SlidesToBackoffice from '../../containers/Slides/SlidesToBackoffice'
+import SlidesFormContainer from '../../containers/Slides/SlidesFormContainer'
 
 import UsersContainer from '../../containers/Users/UsersContainer'
 import UsersListContainer from '../../containers/Users/UsersListContainer'
