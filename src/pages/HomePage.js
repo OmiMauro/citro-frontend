@@ -4,7 +4,7 @@ import Members from '../components/Members/Members'
 import AboutUs from '../components/About/AboutUs'
 import ImageEvent from '../components/Galery/Galery'
 
-const HomePage = (props) => {
+const HomePage = () => {
 	return (
 		<>
 			<Carousel></Carousel>
