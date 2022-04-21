@@ -7,7 +7,8 @@ import MembersListContainer from '../../containers/Members/MembersListContainer'
 
 import OrganizationContainer from '../../containers/Organization/OrganizationContainer'
 import OrganizationFormContainer from '../../containers/Organization/OrganizationFormContainer'
-
+import ProfileFormContainer from '../../containers/Profile/ProfileFormContainer'
+import ProfileContainer from '../../containers/Profile/ProfileContainer'
 import SlidesListContainer from '../../containers/Slides/SlidesListContainer'
 import SlidesFormContainer from '../../containers/Slides/SlidesFormContainer'
 
@@ -114,12 +115,12 @@ const routesPrivates = [
 	},
 	{
 		path: 'profile',
-		element: Backoffice,
+		element: ProfileContainer,
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
 	},
 	{
 		path: 'profile/edit/:id',
-		element: Backoffice,
+		element: ProfileFormContainer,
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
 	}
 ]
