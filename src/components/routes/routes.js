@@ -1,8 +1,13 @@
 import { ROLES } from '../../config'
 import Backoffice from '../../containers/Backoffice/Backoffice'
 import BackofficeCards from '../../containers/Backoffice/BackofficeCards'
+
+import MembersFormContainer from '../../containers/Members/MembersFormContainer'
+import MembersListContainer from '../../containers/Members/MembersListContainer'
+
 import OrganizationContainer from '../../containers/Organization/OrganizationContainer'
 import OrganizationFormContainer from '../../containers/Organization/OrganizationFormContainer'
+
 import SlidesListContainer from '../../containers/Slides/SlidesListContainer'
 import SlidesToBackoffice from '../../containers/Slides/SlidesToBackoffice'
 
@@ -69,17 +74,17 @@ const routesPrivates = [
 
 	{
 		path: 'members',
-		element: Backoffice,
+		element: MembersListContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
 		path: 'members/create',
-		element: Backoffice,
+		element: MembersFormContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
 		path: 'members/edit/:id',
-		element: Backoffice,
+		element: MembersFormContainer,
 		allowedRoles: [ROLES.ADMIN]
 	},
 	{
