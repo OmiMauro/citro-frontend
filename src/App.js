@@ -6,12 +6,7 @@ import LayoutPublic from './components/Layout/LayoutPublic'
 import LayoutPrivate from './components/Layout/LayoutPrivate'
 import ProtectedRoutes from './components/routes/ProtectedRoutes'
 
-import HomePage from './pages/HomePage'
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage'
-import Error404Page from './pages/Error404Page'
-import Error401Page from './pages/Error401Page'
-
+import { routesPublics, routesPrivates } from './components/routes/routes'
 import {
 	selectorOrganization,
 	fetchOrganization
@@ -29,28 +24,28 @@ const App = () => {
 	return (
 		<>
 			<Routes>
-				<Route element={<LayoutPublic />}>
-					{/* public routes */}
-					<Route path='/' element={<HomePage></HomePage>} />
-					<Route path='/login' element={<LoginPage />} />
-					<Route path='/register' element={<RegisterPage />} />
+				<Route path='/' element={<LayoutPublic />}>
+					{routesPublics.map(({ path, element: Element }) => {
+						return <Route key={path} path={path} element={<Element />}></Route>
+					})}
 				</Route>
 
-				{/* protect these routes */}
-				<Route element={<ProtectedRoutes />}>
-					<Route path='/backoffice' element={<LayoutPrivate />}>
-						<Route element={<ProtectedRoutes allowedRoles={[ROLES.ADMIN]} />}>
-							<Route path='organization'></Route>
-						</Route>
-						<Route element={<ProtectedRoutes allowedRoles={[ROLES.ADMIN]} />}>
-							<Route path='login' />
-						</Route>
+				<Route
+					element={
+						<ProtectedRoutes allowedRoles={[ROLES.ADMIN, ROLES.CUSTOMER]} />
+					}>
+					<Route path='backoffice' element={<LayoutPrivate />}>
+						{routesPrivates.map(({ path, element: Element, allowedRoles }) => {
+							return (
+								<Route
+									key={path}
+									element={<ProtectedRoutes allowedRoles={allowedRoles} />}>
+									<Route path={path} element={<Element />}></Route>
+								</Route>
+							)
+						})}
 					</Route>
 				</Route>
-				{/* catch all */}
-				<Route path='/unauthorized' element={<Error401Page />} />
-
-				<Route path='*' element={<Error404Page />} />
 			</Routes>
 		</>
 	)

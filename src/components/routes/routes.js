@@ -1,99 +1,119 @@
 import { ROLES } from '../../config'
 import Backoffice from '../../containers/Backoffice/Backoffice'
 import BackofficeCards from '../../containers/Backoffice/BackofficeCards'
+import OrganizationContainer from '../../containers/Organization/OrganizationContainer'
 
-const routes = [
+import SlidesListContainer from '../../containers/Slides/SlidesListContainer'
+import SlidesToBackoffice from '../../containers/Slides/SlidesToBackoffice'
+/* Routes Publics */
+
+import HomePage from '../../pages/HomePage'
+import LoginPage from '../../pages/LoginPage'
+import RegisterPage from '../../pages/RegisterPage'
+import Error404Page from '../../pages/Error404Page'
+import Error401Page from '../../pages/Error401Page'
+import LayoutPublic from '../Layout/LayoutPublic'
+import LayoutPrivate from '../Layout/LayoutPrivate'
+
+const routesPublics = [
+	{ path: '/', element: HomePage },
+	{ path: 'login', element: LoginPage },
+	{ path: 'register', element: RegisterPage },
+	{ path: '/unauthorized', element: Error401Page },
+	{ path: '*', element: Error404Page }
+]
+const routesPrivates = [
 	{
-		path: '/backoffice',
+		path: '',
 		element: Backoffice,
-		permission: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
 	},
 	{
-		path: '/backoffice/home',
+		path: 'home',
 		element: BackofficeCards,
-		permission: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
 	},
 	{
-		path: '/backoffice/activities',
+		path: 'activities',
 		element: Backoffice,
-		permission: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
 	},
 	{
-		path: '/backoffice/activities/create',
+		path: 'activities/create',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/activities/edit/:id',
+		path: 'activities/edit/:id',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/slides',
-		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		path: 'slides',
+		element: SlidesListContainer,
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/slides/create',
-		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		path: 'slides/create',
+		element: SlidesToBackoffice,
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/slides/edit/:id',
-		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		path: 'slides/edit/:id',
+		element: SlidesToBackoffice,
+		allowedRoles: [ROLES.ADMIN]
 	},
 
 	{
-		path: '/backoffice/members',
+		path: 'members',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/members/create',
+		path: 'members/create',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/members/edit/:id',
+		path: 'members/edit/:id',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/users',
+		path: 'users',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/users/create',
+		path: 'users/create',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/users/edit/:id',
+		path: 'users/edit/:id',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/organization',
-		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		path: 'organizations',
+		element: OrganizationContainer,
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/organization/edit/:id',
+		path: 'organizations/edit/:id',
 		element: Backoffice,
-		permission: [ROLES.ADMIN]
+		allowedRoles: [ROLES.ADMIN]
 	},
 	{
-		path: '/backoffice/profile',
+		path: 'profile',
 		element: Backoffice,
-		permission: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
 	},
 	{
-		path: '/backoffice/profile/edit/:id',
+		path: 'profile/edit/:id',
 		element: Backoffice,
-		permission: [ROLES.ADMIN, ROLES.CUSTOMER]
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER]
 	}
 ]
 
-export default routes
+export { routesPrivates, routesPublics }
