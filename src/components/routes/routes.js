@@ -39,13 +39,7 @@ const routesPrivates = [
 		styles: 'nav-link align-middle px-0',
 		name: 'Home'
 	},
-	{
-		path: 'home',
-		element: BackofficeCards,
-		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
-		styles: 'nav-link align-middle px-0',
-		name: 'cards'
-	},
+
 	{
 		path: 'activities',
 		element: Backoffice,
@@ -76,14 +70,14 @@ const routesPrivates = [
 	},
 	{
 		path: 'slides/create',
-		element: SlidesListContainer,
+		element: SlidesFormContainer,
 		allowedRoles: [ROLES.ADMIN],
 		styles: 'nav-link align-middle px-0',
 		name: 'Crear Slides'
 	},
 	{
 		path: 'slides/edit/:id',
-		element: SlidesListContainer,
+		element: SlidesFormContainer,
 		allowedRoles: [ROLES.ADMIN],
 		styles: 'nav-link align-middle px-0',
 		name: 'Editar Slide'
