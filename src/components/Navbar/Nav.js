@@ -1,13 +1,15 @@
 // import { isAuthenticated } from '../../data/services/auth/index'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { selectorOrganization } from '../../redux/slices/organization-slice'
+import { selectorAuth, logout } from '../../redux/slices/auth-slice'
 import { Link } from 'react-router-dom'
 import logo from './navbar-logo.png'
 const isAuthenticated = () => {}
 
 const Nav = () => {
 	const { organization, status } = useSelector(selectorOrganization)
-
+	const { auth } = useSelector(selectorAuth)
+	const dispatch = useDispatch()
 	return (
 		<nav
 			className='navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm'
@@ -47,13 +49,22 @@ const Nav = () => {
 						{/* {organization.name} */}
 						<img src={logo} alt='logo-organization'></img>
 					</Link>
-
-					<Link className='btn btn-outline-dark ' to='/login'>
-						<i className='fa fa-sign-in me-1 '></i>Log In
-					</Link>
-					<Link className='btn btn-outline-dark ' to='/register'>
-						<i className='fa fa-user-plus me-1 '></i>Registrarse
-					</Link>
+					{auth ? (
+						<button
+							className='btn btn-outline-dark '
+							onClick={() => dispatch(logout())}>
+							<i className='fa fa-sign-in me-1 '></i>Cerrar Sesion
+						</button>
+					) : (
+						<>
+							<Link className='btn btn-outline-dark ' to='/login'>
+								<i className='fa fa-sign-in me-1 '></i>Log In
+							</Link>
+							<Link className='btn btn-outline-dark ' to='/register'>
+								<i className='fa fa-user-plus me-1 '></i>Registrarse
+							</Link>
+						</>
+					)}
 				</div>
 			</div>
 		</nav>
