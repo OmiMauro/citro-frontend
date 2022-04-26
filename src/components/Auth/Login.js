@@ -2,22 +2,28 @@ import './auth-styles.css'
 import { selectorAuth, logged } from '../../redux/slices/auth-slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import imageLogin from './image-login.jpg'
 import Spinner from '../Spinner/Spinner'
 const Login = () => {
 	const [values, setValues] = useState({
 		email: '',
-		password: ''
+		password: '',
+		submitted: false
 	})
 	const { email, password, submitted } = values
-	const { auth, user, isLoading } = useSelector(selectorAuth)
+	const { auth, user, isLoading, status } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const handleChange = (e) => {
 		const { name, value } = e.target
 		setValues({ ...values, [name]: value })
 	}
-	useEffect(() => {}, [auth])
+	useEffect(() => {
+		if (auth) {
+			navigate('/backoffice')
+		}
+	}, [auth])
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const body = {
@@ -28,18 +34,6 @@ const Login = () => {
 	}
 	return (
 		<>
-			{/* 
-					
-									
-											
-												
-									</div>
-								</div>
-							</div>
-						)}
-					</div>
-				</div>
-			</div> */}
 			<div className='vh-90' style={{ 'background-color': '#eee' }}>
 				<div className='container h-100'>
 					<div className='row d-flex justify-content-center align-items-center h-100'>
@@ -53,7 +47,6 @@ const Login = () => {
 											<p className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
 												Iniciar Sesion
 											</p>
-
 											<form className='mx-1 mx-md-4' onSubmit={handleSubmit}>
 												<div className='d-flex flex-row align-items-center mb-4'>
 													<i class='fa fa-at fa-lg me-3 fa-fw'></i>
