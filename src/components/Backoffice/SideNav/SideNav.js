@@ -1,9 +1,13 @@
-import React from 'react'
-import './styles.css'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { routesPrivates } from '../../routes/routes'
+import './styles.css'
+import { logout } from '../../../redux/slices/auth-slice'
 const routes = {}
+
 const SideNav = () => {
+	const dispatch = useDispatch()
+
 	return (
 		<div className='col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark'>
 			<div className='d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100'>
@@ -54,9 +58,11 @@ const SideNav = () => {
 							<hr className='dropdown-divider' />
 						</li>
 						<li>
-							<Link to='/logout' className='dropdown-item'>
+							<button
+								className='dropdown-item'
+								onClick={() => dispatch(logout())}>
 								Cerrar Sesion
-							</Link>
+							</button>
 						</li>
 					</ul>
 				</div>
