@@ -24,8 +24,7 @@ const Carousel = () => {
 								className={`carousel-item ${index === 0 ? 'active' : ''}`}
 								key={item._id}>
 								<img
-									width='100%'
-									height='100%'
+									className='d-block w-100'
 									src={item.image_id.url}
 									alt={item.text}
 									key={item._id}
