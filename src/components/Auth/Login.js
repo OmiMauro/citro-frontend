@@ -12,7 +12,7 @@ const Login = () => {
 		submitted: false
 	})
 	const { email, password, submitted } = values
-	const { auth, user, isLoading, status } = useSelector(selectorAuth)
+	const { auth, user, isLoading, status, errors } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const handleChange = (e) => {
@@ -32,6 +32,7 @@ const Login = () => {
 		}
 		dispatch(logged(body))
 	}
+
 	return (
 		<>
 			<div className='vh-90' style={{ 'background-color': '#eee' }}>
@@ -45,11 +46,11 @@ const Login = () => {
 									<div className='row justify-content-center'>
 										<div className='col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1'>
 											<p className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
-												Iniciar Sesion
+												Iniciar Sesión
 											</p>
-											<form className='mx-1 mx-md-4' onSubmit={handleSubmit}>
+											<form className='mx-1 mx-md-4 ' onSubmit={handleSubmit}>
 												<div className='d-flex flex-row align-items-center mb-4'>
-													<i class='fa fa-at fa-lg me-3 fa-fw'></i>
+													<i className='fa fa-at fa-lg me-3 fa-fw'></i>
 
 													<div className='form-outline flex-fill mb-0'>
 														<input
@@ -64,6 +65,12 @@ const Login = () => {
 														<label className='form-label' htmlFor='email'>
 															Correo Electronico
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'email' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 
@@ -83,6 +90,12 @@ const Login = () => {
 														<label className='form-label' htmlFor='password'>
 															Contraseña
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'password' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger'>
@@ -90,20 +103,36 @@ const Login = () => {
 														Olvidó su contraseña?
 													</Link>
 												</div>
-
+												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger'>
+													{errors?.map(
+														(err) =>
+															err.msg &&
+															!err.param && (
+																<div className='text-danger'>{err.msg}</div>
+															)
+													)}
+												</div>
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
-													<button
-														type='button'
-														className='btn btn-primary btn-lg'
-														onClick={handleSubmit}>
-														Iniciar sesion
-													</button>
+													{isLoading ? (
+														<div className='progress'>
+															<div
+																className='progress-bar progress-bar-striped bg-success'
+																role='progressbar'
+																style={{ width: '25%' }}
+																aria-valuenow='25'
+																aria-valuemin='0'
+																aria-valuemax='100'></div>
+														</div>
+													) : (
+														<button
+															type='button'
+															className='btn btn-primary btn-lg'
+															onClick={handleSubmit}>
+															Iniciar sesion
+														</button>
+													)}
 												</div>
 											</form>
-											{/* <div className='text-center py-3 h5 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
-												Necesitas una nueva cuenta?
-												<Link to='/register'> Registrarse</Link>
-											</div> */}
 										</div>
 
 										<div className='col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2'>
