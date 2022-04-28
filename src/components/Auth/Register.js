@@ -25,7 +25,7 @@ const Register = () => {
 		phone,
 		conditions
 	} = values
-	const { auth, user, isLoading } = useSelector(selectorAuth)
+	const { auth, user, isLoading, errors } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 
 	const handleChange = (e) => {
@@ -82,6 +82,12 @@ const Register = () => {
 														<label htmlFor='name' className='form-label'>
 															Nombre/s*
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'name' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 												<div className='d-flex flex-row align-items-center mb-4'>
@@ -99,6 +105,12 @@ const Register = () => {
 														<label htmlFor='lastname' className='form-label'>
 															Apellido*
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'lastname' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 												<div className='d-flex flex-row align-items-center mb-4'>
@@ -116,6 +128,12 @@ const Register = () => {
 														<label htmlFor='phone' className='form-label'>
 															Celular *
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'phone' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 												<div className='d-flex flex-row align-items-center mb-4'>
@@ -133,6 +151,12 @@ const Register = () => {
 														<label className='form-label' htmlFor='email'>
 															Correo Electronico*
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'email' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 
@@ -151,6 +175,12 @@ const Register = () => {
 														<label className='form-label' htmlFor='password'>
 															Contraseña*
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'password' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 
@@ -171,6 +201,12 @@ const Register = () => {
 															htmlFor='confirmPassword'>
 															Repetir la contraseña*
 														</label>
+														{errors?.map(
+															(err) =>
+																err.param == 'confirmPassword' && (
+																	<div className='text-danger'>{err.msg}</div>
+																)
+														)}
 													</div>
 												</div>
 
@@ -199,8 +235,23 @@ const Register = () => {
 														</a>
 													</label>
 												</div>
-
+												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger'>
+													{errors?.map(
+														(err) =>
+															err.msg &&
+															!err.param && (
+																<div className='text-danger'>{err.msg}</div>
+															)
+													)}
+												</div>
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
+													{isLoading && (
+														<div className='progress-outer'>
+															<div
+																className={`progress-bar`}
+																style={{ width: '50%' }}></div>
+														</div>
+													)}
 													<button
 														type='button'
 														className='btn btn-primary btn-lg'
