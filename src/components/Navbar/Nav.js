@@ -50,11 +50,16 @@ const Nav = () => {
 						<img src={logo} alt='logo-organization'></img>
 					</Link>
 					{auth ? (
-						<button
-							className='btn btn-outline-dark '
-							onClick={() => dispatch(logout())}>
-							<i className='fa fa-sign-in me-1 '></i>Cerrar Sesion
-						</button>
+						<>
+							<Link to='/backoffice' className='btn btn-outline-dark '>
+								<i className='fa fa-sign-in me-1 '></i>Backoffice
+							</Link>
+							<button
+								className='btn btn-outline-dark '
+								onClick={() => dispatch(logout())}>
+								<i className='fa fa-sign-in me-1 '></i>Cerrar Sesion
+							</button>
+						</>
 					) : (
 						<>
 							<Link className='btn btn-outline-dark ' to='/login'>
