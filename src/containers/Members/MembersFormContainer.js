@@ -23,6 +23,11 @@ const MembersFormContainer = () => {
 	}, [dispatch])
 
 	const handleSubmit = (data) => {
+		if (id) {
+			data._id = id
+			return dispatch(putMember(data))
+		}
+
 		dispatch(createMember(data))
 	}
 
