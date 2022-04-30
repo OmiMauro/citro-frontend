@@ -22,7 +22,7 @@ instance.interceptors.response.use(
 
 const get = async (url, search = null, id = null) => {
 	let processedURL = id ? `${url}/${id}` : url
-	return await instance.get(url, { params: search })
+	return await instance.get(processedURL, { params: search })
 }
 
 const post = async (url, data) => await instance.post(url, data)
