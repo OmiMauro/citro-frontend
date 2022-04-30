@@ -39,7 +39,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 								<div className='col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1'>
 									<form className='mx-1 mx-md-4' onSubmit={onSubmit}>
 										<div className='d-flex flex-row align-items-center mb-4'>
-											<i class='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+											<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
 												<input
 													className='form-control'
@@ -62,7 +62,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 											</div>
 										</div>
 										<div className='d-flex flex-row align-items-center mb-4'>
-											<i class='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+											<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
 												<input
 													className='form-control'
@@ -85,7 +85,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 											</div>
 										</div>
 										<div className='d-flex flex-row align-items-center mb-4'>
-											<i class='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+											<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
 												<input
 													className='form-control'
@@ -108,7 +108,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 											</div>
 										</div>
 										<div className='d-flex flex-row align-items-center mb-4'>
-											<i class='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+											<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
 												<input
 													className='form-control'
@@ -131,7 +131,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 											</div>
 										</div>
 										<div className='d-flex flex-row align-items-center mb-4'>
-											<i class='fa fa-at fa-lg me-3 fa-fw'></i>
+											<i className='fa fa-at fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
 												<input
 													type='text'
@@ -154,7 +154,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 											</div>
 										</div>
 										<div className='d-flex flex-row align-items-center mb-4'>
-											<i class='fa fa-at fa-lg me-3 fa-fw'></i>
+											<i className='fa fa-at fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
 												<input
 													type='text'

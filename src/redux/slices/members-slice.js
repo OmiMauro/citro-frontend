@@ -13,7 +13,7 @@ export const fetchMembers = createAsyncThunk(
 	async (param = null, { rejectWithValue }) => {
 		try {
 			const response = await getMembers()
-			if (response) return response.data
+			if (response) return response.data.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -24,7 +24,7 @@ export const fetchMemberById = createAsyncThunk(
 	async (id, { rejectWithValue }) => {
 		try {
 			const response = await getMemberById(id)
-			if (response) return response.data
+			if (response) return response.data.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -46,7 +46,7 @@ export const putMember = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const response = await editMember(data, data._id)
-			if (response) return response.data
+			if (response) return response.data.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -77,7 +77,7 @@ const membersSlice = createSlice({
 		},
 		[fetchMembers.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.members = payload.data
+			state.members = payload
 		},
 		[fetchMembers.rejected]: (state, action) => {
 			state.status = STATUS.FAILED
@@ -116,7 +116,7 @@ const membersSlice = createSlice({
 		},
 		[putMember.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
-			state.errors = payload
+			state.errors = payload.errors
 		},
 		[removeMember.pending]: (state) => {
 			state.status = STATUS.PENDING
