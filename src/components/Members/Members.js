@@ -16,11 +16,13 @@ const Members = () => {
 				<div className='text-center'>
 					<h2 className='section-heading text-uppercase'>Organizadores</h2>
 				</div>
-				<div className='row'>
-					<div className='d-flex justify-content-evenly'>
+				<div className='row justify-content-center'>
+					<div className='d-lg-flex justify-content-lg-around '>
 						{members?.map((item) => {
 							return (
-								<div className='' key={item._id}>
+								<div
+									className={`col col-lg-${12 / members.length}`}
+									key={item._id}>
 									<div className='team-member'>
 										{item.image_id.url && (
 											<img
