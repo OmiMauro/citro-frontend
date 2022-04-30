@@ -10,10 +10,10 @@ import { STATUS } from '../constants/action-types'
 
 export const fetchSlides = createAsyncThunk(
 	'slides/get',
-	async ({ rejectWithValue }) => {
+	async (param = null, { rejectWithValue }) => {
 		try {
 			const response = await getSlides()
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -24,7 +24,7 @@ export const fetchSlideById = createAsyncThunk(
 	async (id, { rejectWithValue }) => {
 		try {
 			const response = await getSlideById(id)
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -35,7 +35,7 @@ export const createSlide = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const response = await newSlide(data)
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -46,7 +46,7 @@ export const updateSlide = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const response = await putSlide(data, data._id)
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -57,7 +57,7 @@ export const removeSlide = createAsyncThunk(
 	async (id, { rejectWithValue }) => {
 		try {
 			const response = await deleteSlide(id)
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -77,7 +77,7 @@ const slidesSlice = createSlice({
 		},
 		[fetchSlides.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.slides = payload
+			state.slides = payload.data
 			state.errors = []
 		},
 		[fetchSlides.rejected]: (state, { payload }) => {
@@ -89,7 +89,7 @@ const slidesSlice = createSlice({
 		},
 		[fetchSlideById.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.slide = payload
+			state.slide = payload.data
 		},
 		[fetchSlideById.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -100,7 +100,7 @@ const slidesSlice = createSlice({
 		},
 		[createSlide.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.slide = payload
+			state.slide = payload.data
 			state.slides = state.slides.push(payload)
 		},
 		[createSlide.rejected]: (state, { payload }) => {
@@ -112,7 +112,7 @@ const slidesSlice = createSlice({
 		},
 		[updateSlide.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.slide = payload
+			state.slide = payload.data
 		},
 		[updateSlide.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
