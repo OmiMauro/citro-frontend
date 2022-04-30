@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { selectorSlides, fetchSlides } from '../../redux/slices/slides-slice'
 import { useEffect } from 'react'
-import './styles.css'
+import 'bootstrap/js/dist/carousel'
+//import './styles.css'
 
 const Carousel = () => {
 	const dispatch = useDispatch()
@@ -12,26 +13,20 @@ const Carousel = () => {
 	}, [])
 
 	return (
-		<div
-			id='carouselExampleSlidesOnly'
-			className='carousel slide'
-			data-bs-ride='carousel'>
+		<div className='carousel slide' data-bs-ride='carousel'>
 			<div className='carousel-inner'>
-				{slides &&
-					slides.map((item, index) => {
-						return (
-							<div
-								className={`carousel-item ${index === 0 ? 'active' : ''}`}
-								key={item._id}>
-								<img
-									className='d-block w-100'
-									src={item.image_id.url}
-									alt={item.text}
-									key={item._id}
-								/>
-							</div>
-						)
-					})}
+				{slides?.map((item) => (
+					<div
+						className={`carousel-item ${item.order === 1 ? 'active' : ''}`}
+						key={item._id}>
+						<img
+							className='d-block w-100'
+							src={item.image_id.url}
+							alt={item.text}
+							key={item._id}
+						/>
+					</div>
+				))}
 			</div>
 		</div>
 	)
