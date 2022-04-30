@@ -8,7 +8,7 @@ import { STATUS } from '../constants/action-types'
 
 export const fetchGalery = createAsyncThunk(
 	'galery/get',
-	async ({ rejectWithValue }) => {
+	async (param = null, { rejectWithValue }) => {
 		try {
 			const response = await getGalery()
 			if (response) return response.data.data
