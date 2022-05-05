@@ -16,7 +16,7 @@ const ProtectedRoutes = ({ allowedRoles }) => {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		const decodedToken = parseToken(token)
-		if (decodedToken.exp * 1000 < Date.now()) {
+		if (decodedToken?.exp * 1000 < Date.now()) {
 			dispatch(logout())
 		}
 	}, [auth])
