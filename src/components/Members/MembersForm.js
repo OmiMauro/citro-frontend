@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react'
-const MembersForm = ({ member = {}, handleSubmit, errors }) => {
+import { Link } from 'react-router-dom'
+const MembersForm = ({ member = {}, handleSubmit, errors, title }) => {
 	const [values, setValues] = useState({
-		name: member.name ?? '',
-		lastname: member.lastname ?? '',
-		urlFacebook: member.urlFacebook ?? '',
-		urlInstagram: member.urlInstagram ?? '',
-		urlWhatsapp: member.urlWhatsapp ?? '',
-		image: member.image ?? '',
+		name: member?.name ?? '',
+		lastname: member?.lastname ?? '',
+		urlFacebook: member?.urlFacebook ?? '',
+		urlInstagram: member?.urlInstagram ?? '',
+		urlWhatsapp: member?.urlWhatsapp ?? '',
+		image_url: member?.image_id?.url ?? '',
+		image: '',
 		phone: member.phone ?? ''
 	})
 	const {
@@ -16,6 +18,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 		urlInstagram,
 		urlWhatsapp,
 		image,
+		image_url,
 		phone
 	} = values
 	const handleChange = (e) => {
@@ -28,9 +31,15 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 		const formData = new FormData(e.currentTarget)
 		handleSubmit(formData)
 	}
+	const onSubmitImage = (e) => {
+		e.preventDefault()
+		const formData = new FormData(e.currentTarget)
+		handleSubmit(formData)
+	}
 
 	return (
 		<div className='container'>
+			<h3 className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>{title}</h3>
 			<div className='row d-flex justify-content-center align-items-center '>
 				<div className='col-lg-12 col-xl-11'>
 					<div className=' text-black'>
@@ -41,6 +50,13 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 										<div className='d-flex flex-row align-items-center mb-4'>
 											<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
+												{image_url && (
+													<img
+														src={image_url}
+														alt={image_url}
+														className='mt-2 w-50'
+													/>
+												)}
 												<input
 													className='form-control'
 													id='image'
@@ -51,8 +67,19 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 													name='image'
 												/>
 												<label htmlFor='image' className='form-label'>
-													image*
+													Imagen*
 												</label>
+												{image_url && (
+													<div
+														className='d-flex justify-content-center'
+														onClick={(e) => {
+															e.preventDefault()
+														}}>
+														<button className='btn btn-outline-dark'>
+															Cambiar imagen
+														</button>
+													</div>
+												)}
 												{errors?.map(
 													(err) =>
 														err.param == 'image' && (
@@ -61,6 +88,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 												)}
 											</div>
 										</div>
+
 										<div className='d-flex flex-row align-items-center mb-4'>
 											<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
 											<div className='form-outline flex-fill mb-0'>
@@ -202,7 +230,7 @@ const MembersForm = ({ member = {}, handleSubmit, errors }) => {
 										</div>
 										<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
 											<button type='submit' className='btn btn-primary btn-lg'>
-												Crear / Editar
+												{member?._id ? 'Actualizar datos' : 'Crear organizador'}
 											</button>
 										</div>
 									</form>

@@ -52,6 +52,17 @@ export const putMember = createAsyncThunk(
 		}
 	}
 )
+export const patchMemberImage = createAsyncThunk(
+	'members/patch/image',
+	async (id, { rejectWithValue }) => {
+		try {
+			const response = await editMemberImage(data, data._id)
+			if (response) return response.data.data
+		} catch (error) {
+			return rejectWithValue(error.response.data)
+		}
+	}
+)
 export const removeMember = createAsyncThunk(
 	'members/delete',
 	async (id, { rejectWithValue }) => {
@@ -78,6 +89,7 @@ const membersSlice = createSlice({
 		[fetchMembers.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.members = payload
+			state.member = {}
 		},
 		[fetchMembers.rejected]: (state, action) => {
 			state.status = STATUS.FAILED
@@ -118,11 +130,28 @@ const membersSlice = createSlice({
 			state.status = STATUS.FAILED
 			state.errors = payload.errors
 		},
+		[patchMemberImage.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[patchMemberImage.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.member = payload
+		},
+		[patchMemberImage.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.errors
+		},
+		[removeMember.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
 		[removeMember.pending]: (state) => {
 			state.status = STATUS.PENDING
 		},
 		[removeMember.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
+			state.members = state.members.filter(
+				(member) => member._id !== payload._id
+			)
 			state.member = payload
 		},
 		[removeMember.rejected]: (state, { payload }) => {

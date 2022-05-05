@@ -7,9 +7,11 @@ import {
 	fetchMemberById,
 	createMember,
 	putMember,
+	patchMemberImage,
 	removeMember,
 	fetchMembers
 } from '../../redux/slices/members-slice'
+import { STATUS } from '../../redux/constants/action-types'
 
 const MembersFormContainer = () => {
 	const { id } = useParams()
@@ -27,21 +29,41 @@ const MembersFormContainer = () => {
 			data._id = id
 			return dispatch(putMember(data))
 		}
-
 		dispatch(createMember(data))
 	}
-
+	const handleSubmitImage = (data) => {
+		if (id) {
+			data._id = id
+			return dispatch(patchMemberImage(data))
+		}
+	}
 	return (
 		<>
 			<div>
-				<h3 className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
-					Crear un nuevo organizador
-				</h3>
-				<MembersForm
-					handleSubmit={handleSubmit}
-					member={member}
-					errors={errors}
-				/>
+				{status === STATUS.SUCCESSFUL && (
+					<MembersForm
+						handleSubmit={handleSubmit}
+						handleSubmitImage={handleSubmitImage}
+						member={member}
+						errors={errors}
+						title={
+							id
+								? 'Actualizar los datos del organizador'
+								: 'Crear un nuevo organizador'
+						}
+					/>
+				)}
+				{status === STATUS.PENDING && (
+					<div className='progress'>
+						<div
+							className='progress-bar progress-bar-striped bg-success'
+							role='progressbar'
+							style={{ width: '25%' }}
+							aria-valuenow='25'
+							aria-valuemin='0'
+							aria-valuemax='100'></div>
+					</div>
+				)}
 			</div>
 		</>
 	)
