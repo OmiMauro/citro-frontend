@@ -7,10 +7,12 @@ const token = localStorage.getItem('token')
 
 instance.interceptors.request.use(
 	(config) => {
-		config.headers.Authorization = token ? `Bearer ${token}` : {}
+		config.headers.Authorization = token ? `Bearer ${token}` : ''
 		return config
 	},
-	(error) => error
+	(error) => {
+		return Promise.reject(error)
+	}
 )
 
 instance.interceptors.response.use(
@@ -29,6 +31,8 @@ const post = async (url, data) => await instance.post(url, data)
 
 const put = async (url, data, id) => await instance.put(`${url}/${id}`, data)
 
+const patch = async (url, data) => await instance.patch(url, data)
+
 const remove = async (url, id) => await instance.delete(`${url}/${id}`)
 
-export { get, post, put, remove }
+export { get, post, put, remove, patch }
