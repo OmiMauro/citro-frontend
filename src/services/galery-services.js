@@ -4,7 +4,7 @@ import { get } from './public-api-services'
 const ENDPOINT = process.env.REACT_APP_API_GALERY_ENDPOINT
 
 export const getGalery = async (search = null) => {
-	return await get(ENDPOINT)
+	return await get(ENDPOINT, search, null)
 }
 export const newPictures = async (data) => {
 	return await post(ENDPOINT, data)

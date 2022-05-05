@@ -8,9 +8,9 @@ import { STATUS } from '../constants/action-types'
 
 export const fetchGalery = createAsyncThunk(
 	'galery/get',
-	async (param = null, { rejectWithValue }) => {
+	async (page = 1, { rejectWithValue }) => {
 		try {
-			const response = await getGalery()
+			const response = await getGalery({ page })
 			if (response) return response.data.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
@@ -50,9 +50,9 @@ const galerySlice = createSlice({
 		[fetchGalery.pending]: (state) => {
 			state.status = STATUS.PENDING
 		},
-		[fetchGalery.fulfilled]: (state, action) => {
+		[fetchGalery.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.galery = action.payload
+			state.galery = payload
 			errors: []
 		},
 		[fetchGalery.rejected]: (state, { payload }) => {
