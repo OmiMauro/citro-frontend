@@ -47,6 +47,7 @@ const authSlice = createSlice({
 			state.auth = false
 			state.token = ''
 			state.user = ''
+			state.isLoading = false
 		}
 	},
 	extraReducers: {
@@ -54,36 +55,36 @@ const authSlice = createSlice({
 			state.status = STATUS.PENDING
 			state.isLoading = true
 		},
-		[logged.fulfilled]: (state, action) => {
+		[logged.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.auth = true
-			state.user = action.payload.user
-			state.token = action.payload.token
-			state.errors = []
 			state.isLoading = false
+			state.token = payload.token
+			state.user = payload.user
+			state.errors = []
 		},
-		[logged.rejected]: (state, action) => {
+		[logged.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.isLoading = false
-			state.errors = action.payload.response.data.errors
+			state.errors = payload.response.data.errors
 		},
 		[registered.pending]: (state) => {
 			state.status = STATUS.PENDING
 			state.isLoading = true
 		},
 
-		[registered.rejected]: (state, action) => {
+		[registered.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
-			state.isLoading = true
-			state.errors = action.payload.response.data.errors
+			state.isLoading = false
+			state.errors = payload.response.data.errors
 		},
-		[registered.fulfilled]: (state, action) => {
+		[registered.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.auth = true
-			state.user = action.payload.user
-			state.token = action.payload.token
-			state.isLoading = false
+			state.user = payload.user
+			state.token = payload.token
 			state.errors = []
+			state.isLoading = false
 		}
 	}
 })
