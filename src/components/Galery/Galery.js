@@ -4,6 +4,7 @@ import { PhotoAlbum } from 'react-photo-album'
 
 import { fetchGalery, selectorGalery } from '../../redux/slices/galery-slice'
 import Pagination from '../Pagination/Pagination'
+import { STATUS } from '../../redux/constants/action-types'
 
 const ImageEvent = () => {
 	const [values, setValues] = useState({
@@ -44,30 +45,34 @@ const ImageEvent = () => {
 	}
 
 	return (
-		<div className='container '>
-			<h2 className='text-center py-5'>Imágenes de nuestros eventos</h2>
-			<PhotoAlbum
-				photos={photos}
-				layout='rows'
-				/* onClick={(event, photo, index) => {
-					setLigthbox({
-						...ligthbox,
-						openLightbox: true,
-						currentImage: photo,
-						indexImage: index
-					})
-				}} */
-			/>
-			<div className='m-0 row justify-content-center mt-2'>
-				<div className='col-auto text-center'>
-					<Pagination
-						handlePageChange={handlePageChange}
-						total={galery.total}
-						pages={galery.pages}
-					/>
-				</div>
+		<>
+			<div className='container '>
+				<h2 className='text-center py-5 text-uppercase'>
+					Imágenes de nuestros eventos
+				</h2>
+
+				{status === STATUS.SUCCESSFUL ? (
+					<div>
+						<PhotoAlbum photos={photos} layout='rows' />
+						<div className='m-0 row justify-content-center mt-2'>
+							<div className='col-auto text-center'>
+								<Pagination
+									handlePageChange={handlePageChange}
+									total={galery.total}
+									pages={galery.pages}
+								/>
+							</div>
+						</div>
+					</div>
+				) : (
+					<div className='d-flex justify-content-center '>
+						<div className='spinner-grow text-secondary ' role='status'>
+							<span class='visually-hidden'>Loading...</span>
+						</div>
+					</div>
+				)}
 			</div>
-		</div>
+		</>
 	)
 }
 export default ImageEvent

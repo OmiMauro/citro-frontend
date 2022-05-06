@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import imageLogin from './image-login.jpg'
 import Spinner from '../Spinner/Spinner'
+import { STATUS } from '../../redux/constants/action-types'
 const Login = () => {
 	const [values, setValues] = useState({
 		email: '',
@@ -12,7 +13,7 @@ const Login = () => {
 		submitted: false
 	})
 	const { email, password, submitted } = values
-	const { auth, user, isLoading, status, errors } = useSelector(selectorAuth)
+	const { auth, user, status, errors } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const handleChange = (e) => {
@@ -111,20 +112,21 @@ const Login = () => {
 													)}
 												</div>
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
-													{isLoading ? (
-														<div className='progress'>
-															<div
-																className='progress-bar progress-bar-striped bg-success'
-																role='progressbar'
-																style={{ width: '25%' }}
-																aria-valuenow='25'
-																aria-valuemin='0'
-																aria-valuemax='100'></div>
-														</div>
+													{status === STATUS.PENDING ? (
+														<button
+															class='btn btn-primary btn-lg '
+															type='button'
+															disabled>
+															<span
+																class='spinner-border spinner-border-sm'
+																role='status'
+																aria-hidden='true'></span>
+															Loading...
+														</button>
 													) : (
 														<button
 															type='button'
-															className='btn btn-primary btn-lg'
+															className='btn btn-primary btn-lg col-10'
 															onClick={handleSubmit}>
 															Iniciar sesion
 														</button>

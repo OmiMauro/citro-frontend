@@ -5,6 +5,7 @@ import { useState } from 'react'
 import imageLogin from './image-login.jpg'
 
 import './auth-styles.css'
+import { STATUS } from '../../redux/constants/action-types'
 
 const Register = () => {
 	const [values, setValues] = useState({
@@ -25,7 +26,7 @@ const Register = () => {
 		phone,
 		conditions
 	} = values
-	const { auth, user, isLoading, errors } = useSelector(selectorAuth)
+	const { auth, user, errors, status } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 
 	const handleChange = (e) => {
@@ -245,20 +246,26 @@ const Register = () => {
 													)}
 												</div>
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
-													{isLoading && (
-														<div className='progress-outer'>
-															<div
-																className={`progress-bar`}
-																style={{ width: '50%' }}></div>
-														</div>
+													{status === STATUS.PENDING ? (
+														<button
+															class='btn btn-primary btn-lg '
+															type='button'
+															disabled>
+															<span
+																class='spinner-border spinner-border-sm'
+																role='status'
+																aria-hidden='true'></span>
+															Loading...
+														</button>
+													) : (
+														<button
+															type='button'
+															className='btn btn-primary btn-lg'
+															onClick={handleSubmit}
+															disabled={!conditions}>
+															Registrarse
+														</button>
 													)}
-													<button
-														type='button'
-														className='btn btn-primary btn-lg'
-														onClick={handleSubmit}
-														disabled={!conditions}>
-														Registrarse
-													</button>
 												</div>
 											</form>
 										</div>
