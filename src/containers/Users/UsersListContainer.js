@@ -13,7 +13,9 @@ const UsersListContainer = () => {
 
 	return (
 		<>
-			<UsersList users={users} errors={errors} />
+			<div className='col'>
+				<UsersList users={users} errors={errors} />
+			</div>
 		</>
 	)
 }
