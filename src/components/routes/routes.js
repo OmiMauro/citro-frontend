@@ -23,6 +23,8 @@ import Error404Page from '../../pages/Error404Page'
 import Error401Page from '../../pages/Error401Page'
 import LayoutPublic from '../Layout/LayoutPublic'
 import LayoutPrivate from '../Layout/LayoutPrivate'
+import GaleriesListContainer from '../../containers/Galeries/GaleriesListContainer'
+import GaleriesContainer from '../../containers/Galeries/GaleriesContainer'
 
 const routesPublics = [
 	{ path: '/', element: HomePage },
@@ -152,6 +154,16 @@ const routesPrivates = [
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
 		styles: 'nav-link align-middle px-0',
 		name: 'Editar Perfil'
+	},
+	{
+		path: 'galery',
+		element: GaleriesListContainer,
+		allowedRoles: [ROLES.ADMIN]
+	},
+	{
+		path: 'galery/create',
+		element: GaleriesContainer,
+		allowedRoles: [ROLES.ADMIN]
 	}
 ]
 
