@@ -13,7 +13,7 @@ export const fetchGalery = createAsyncThunk(
 			const response = await getGalery({ page })
 			if (response) return response.data.data
 		} catch (error) {
-			return rejectWithValue(error.response.data)
+			return rejectWithValue(error.response)
 		}
 	}
 )
@@ -24,7 +24,7 @@ const addImagesToGalery = createAsyncThunk(
 			const response = await newPictures(data)
 			if (response) return response.data.data
 		} catch (error) {
-			return rejectWithValue(error.response.data)
+			return rejectWithValue(error.response)
 		}
 	}
 )
@@ -35,7 +35,7 @@ const removePicture = createAsyncThunk(
 			const response = await deletePicture(id)
 			if (response) return response.data.data
 		} catch (error) {
-			return rejectWithValue(error.response.data)
+			return rejectWithValue(error.response)
 		}
 	}
 )
