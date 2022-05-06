@@ -58,18 +58,18 @@ const SideNav = () => {
 						</li>
 						<li>
 							<Link
-								to='/backoffice/users'
+								to='/backoffice/galery'
 								className='nav-link align-middle px-0'>
 								<i className='fs-4 bi-grid'></i>{' '}
-								<span className='ms-1 d-none d-sm-inline'>Users</span>
+								<span className='ms-1 d-none d-sm-inline'>Galería</span>
 							</Link>
 						</li>
 						<li>
 							<Link
-								to='/backoffice/slides'
+								to='/backoffice/users'
 								className='nav-link align-middle px-0'>
 								<i className='fs-4 bi-grid'></i>{' '}
-								<span className='ms-1 d-none d-sm-inline'>Slides</span>
+								<span className='ms-1 d-none d-sm-inline'>Usuarios</span>
 							</Link>
 						</li>
 					</ul>
