@@ -39,31 +39,33 @@ const MembersFormContainer = () => {
 	}
 	return (
 		<>
-			<div>
-				{status === STATUS.SUCCESSFUL && (
-					<MembersForm
-						handleSubmit={handleSubmit}
-						handleSubmitImage={handleSubmitImage}
-						member={member}
-						errors={errors}
-						title={
-							id
-								? 'Actualizar los datos del organizador'
-								: 'Crear un nuevo organizador'
-						}
-					/>
-				)}
-				{status === STATUS.PENDING && (
-					<div className='progress'>
-						<div
-							className='progress-bar progress-bar-striped bg-success'
-							role='progressbar'
-							style={{ width: '25%' }}
-							aria-valuenow='25'
-							aria-valuemin='0'
-							aria-valuemax='100'></div>
-					</div>
-				)}
+			<div className='col'>
+				<div className='container'>
+					{status === STATUS.SUCCESSFUL && (
+						<MembersForm
+							handleSubmit={handleSubmit}
+							handleSubmitImage={handleSubmitImage}
+							member={member}
+							errors={errors}
+							title={
+								id
+									? 'Actualizar los datos del organizador'
+									: 'Crear un nuevo organizador'
+							}
+						/>
+					)}
+					{status === STATUS.PENDING && (
+						<div className='progress'>
+							<div
+								className='progress-bar progress-bar-striped bg-success'
+								role='progressbar'
+								style={{ width: '25%' }}
+								aria-valuenow='25'
+								aria-valuemin='0'
+								aria-valuemax='100'></div>
+						</div>
+					)}
+				</div>
 			</div>
 		</>
 	)
