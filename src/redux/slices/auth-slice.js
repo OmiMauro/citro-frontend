@@ -45,19 +45,19 @@ const authSlice = createSlice({
 			localStorage.clear()
 			state.auth = false
 			state.token = ''
-			state.user = ''
+			state.user = {}
 		}
 	},
 	extraReducers: {
 		[logged.pending]: (state) => {
 			state.status = STATUS.PENDING
-			state.isLoading = true
 		},
 		[logged.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.auth = true
 			state.token = payload.token
 			state.user = payload.user
+			localStorage.setItem('token', payload.token)
 			state.errors = []
 		},
 		[logged.rejected]: (state, { payload }) => {
