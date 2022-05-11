@@ -16,7 +16,6 @@ const OrganizationContainer = () => {
 	return (
 		<>
 			<div className='col py-3'>
-				<p>This is container for organization</p>
 				<Organization organization={organization} />
 			</div>
 		</>
