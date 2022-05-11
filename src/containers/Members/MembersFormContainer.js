@@ -16,13 +16,13 @@ import { STATUS } from '../../redux/constants/action-types'
 const MembersFormContainer = () => {
 	const { id } = useParams()
 	const dispatch = useDispatch()
-	const { member, errors, status } = useSelector(selectorMembers)
+	const { member, errors, status, msg } = useSelector(selectorMembers)
 
 	useEffect(() => {
 		if (id) {
 			dispatch(fetchMemberById(id))
 		}
-	}, [dispatch])
+	}, [dispatch, id])
 
 	const handleSubmit = (data) => {
 		if (id) {
@@ -31,10 +31,9 @@ const MembersFormContainer = () => {
 		}
 		dispatch(createMember(data))
 	}
-	const handleSubmitImage = (data) => {
+	const handleUpdateImage = (data) => {
 		if (id) {
-			data._id = id
-			return dispatch(patchMemberImage(data))
+			dispatch(patchMemberImage({ data, id }))
 		}
 	}
 	return (
@@ -44,9 +43,10 @@ const MembersFormContainer = () => {
 					{status === STATUS.SUCCESSFUL && (
 						<MembersForm
 							handleSubmit={handleSubmit}
-							handleSubmitImage={handleSubmitImage}
+							handleUpdateImage={handleUpdateImage}
 							member={member}
 							errors={errors}
+							msg={msg}
 							title={
 								id
 									? 'Actualizar los datos del organizador'

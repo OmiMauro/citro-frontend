@@ -4,7 +4,8 @@ import {
 	getMemberById,
 	newMember,
 	deleteMember,
-	editMember
+	editMember,
+	editMemberImage
 } from '../../services/members-services'
 import { STATUS } from '../constants/action-types'
 
@@ -46,7 +47,7 @@ export const putMember = createAsyncThunk(
 	async (data, { rejectWithValue }) => {
 		try {
 			const response = await editMember(data, data._id)
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -54,10 +55,10 @@ export const putMember = createAsyncThunk(
 )
 export const patchMemberImage = createAsyncThunk(
 	'members/patch/image',
-	async (id, { rejectWithValue }) => {
+	async ({ data, id }, { rejectWithValue }) => {
 		try {
-			const response = await editMemberImage(data, data._id)
-			if (response) return response.data.data
+			const response = await editMemberImage(data, id)
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -80,7 +81,8 @@ const membersSlice = createSlice({
 		members: [],
 		member: {},
 		status: null,
-		errors: []
+		errors: [],
+		msg: ''
 	},
 	extraReducers: {
 		[fetchMembers.pending]: (state) => {
@@ -101,6 +103,7 @@ const membersSlice = createSlice({
 		[fetchMemberById.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.member = payload
+			state.msg = ''
 			state.errors = []
 		},
 		[fetchMemberById.rejected]: (state, { payload }) => {
@@ -114,6 +117,7 @@ const membersSlice = createSlice({
 			state.status = STATUS.SUCCESSFUL
 			state.member = payload
 			state.members = state.members.push(payload)
+			state.msg = payload.msg
 		},
 		[createMember.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -124,7 +128,8 @@ const membersSlice = createSlice({
 		},
 		[putMember.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.member = payload
+			state.member = payload.data
+			state.msg = payload.msg
 		},
 		[putMember.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -135,7 +140,7 @@ const membersSlice = createSlice({
 		},
 		[patchMemberImage.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.member = payload
+			state.member = payload.data
 		},
 		[patchMemberImage.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -150,9 +155,10 @@ const membersSlice = createSlice({
 		[removeMember.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.members = state.members.filter(
-				(member) => member._id !== payload._id
+				(member) => member._id !== payload.data._id
 			)
 			state.member = payload
+			state.msg = payload.msg
 		},
 		[removeMember.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
