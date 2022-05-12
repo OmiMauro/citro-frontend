@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const GaleryForm = ({ galery, handleSubmit, errors, title }) => {
+const GaleryForm = ({ galery, handleSubmit, errors, status, msg }) => {
 	const [values, setValues] = useState({
 		name: '',
 		image: ''
@@ -27,7 +27,7 @@ const GaleryForm = ({ galery, handleSubmit, errors, title }) => {
 		<>
 			<div className='container'>
 				<h3 className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
-					{title}
+					Cargar imagenes
 				</h3>
 				<div className='col-xl-11'>
 					<div className='row d-flex justify-content-center align-items-center '>
@@ -56,6 +56,7 @@ const GaleryForm = ({ galery, handleSubmit, errors, title }) => {
 												value={image}
 												type='file'
 												placeholder='image'
+												multiple
 												name='image'
 											/>
 											<label htmlFor='image' className='form-label'>
@@ -94,10 +95,17 @@ const GaleryForm = ({ galery, handleSubmit, errors, title }) => {
 										</div>
 									</div>
 									<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
-										<button type='submit' className='btn btn-primary btn-lg'>
-											Agregar fotos
-										</button>
+										{status === 'PENDING' ? (
+											<div class='spinner-border text-secondary' role='status'>
+												<span class='visually-hidden'>Loading...</span>
+											</div>
+										) : (
+											<button type='submit' className='btn btn-primary btn-lg'>
+												Agregar fotos
+											</button>
+										)}
 									</div>
+									{msg && <p className='text-success'>{msg}</p>}
 								</form>
 							</div>
 						</div>
