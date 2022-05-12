@@ -1,64 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-const Modal = ({ id, handleUpdateImage }) => {
-	return (
-		<>
-			<div
-				className='modal fade'
-				id='exampleModal'
-				tabIndex='-1'
-				aria-labelledby='exampleModalLabel'
-				aria-hidden='true'>
-				<div className='modal-dialog'>
-					<div className='modal-content'>
-						<div className='modal-header'>
-							<h5 className='modal-title' id='exampleModalLabel'>
-								Actualizar imagen
-							</h5>
-							<button
-								type='button'
-								className='btn-close'
-								data-bs-dismiss='modal'
-								aria-label='Close'></button>
-						</div>
-						<div className='modal-body'>
-							<form
-								onSubmit={(e) => {
-									e.preventDefault()
-									const formData = new FormData(e.currentTarget)
-									handleUpdateImage(formData)
-								}}>
-								<div>
-									<label htmlFor='image' className='form-label'>
-										Imagen* {id}
-									</label>
-									<input
-										className='form-control'
-										id='image'
-										type='file'
-										placeholder='image'
-										name='image'
-									/>
-								</div>
-								<div className='d-flex justify-content-center m-2'>
-									<button type='submit' className='btn btn-primary'>
-										Actualizar
-									</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
-	)
-}
+import Modal from '../Modal/Modal'
+
 const MembersForm = ({
 	member = {},
 	handleSubmit,
 	handleUpdateImage,
 	errors,
-	title,
 	msg
 }) => {
 	const [values, setValues] = useState({
@@ -95,7 +43,11 @@ const MembersForm = ({
 	}
 	return (
 		<div className='container'>
-			<h3 className='text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4'>{title}</h3>
+			<h3 className='text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4'>
+				{member._id
+					? 'Editar datos del organizador'
+					: 'Crear un nuevo organizador'}
+			</h3>
 			<div className='row d-flex justify-content-center align-items-center '>
 				<div className='col-lg-12 col-xl-11 '>
 					<div className='p-md-5'>
@@ -106,38 +58,38 @@ const MembersForm = ({
 									<div className='d-flex flex-row align-items-center mb-4'>
 										<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
-											{image_url && (
-												<div className='d-flex justify-content-center m-2'>
-													<img
-														src={image_url}
-														alt={image_url}
-														className='mt-2 w-50'
-													/>
-												</div>
+											{image_url ? (
+												<>
+													<div className='d-flex justify-content-start '>
+														<img
+															src={image_url}
+															alt={image_url}
+															className='mt-2 w-50'
+														/>
+													</div>
+													<button
+														type='button'
+														className='btn btn-primary d-flex justify-content-center mt-1 w-50'
+														data-bs-toggle='modal'
+														data-bs-target='#modalID'>
+														Cambiar imagen
+													</button>
+												</>
+											) : (
+												<input
+													className='form-control'
+													id='image'
+													onChange={handleChange}
+													value={image}
+													type='file'
+													placeholder='image'
+													name='image'
+												/>
 											)}
-											<input
-												className='form-control'
-												id='image'
-												onChange={handleChange}
-												value={image}
-												type='file'
-												placeholder='image'
-												name='image'
-											/>
 											<label htmlFor='image' className='form-label'>
 												Imagen*
 											</label>
-											{image_url && (
-												<div className='d-flex justify-content-center'>
-													<button
-														type='button'
-														className='btn btn-primary'
-														data-bs-toggle='modal'
-														data-bs-target='#exampleModal'>
-														Cambiar imagen
-													</button>
-												</div>
-											)}
+
 											{errors?.map(
 												(err) =>
 													err.param == 'image' && (
