@@ -16,10 +16,10 @@ const Organization = ({ organization }) => {
 							{organization?.welcomeText}
 						</h3>
 					</div>
-					<div>
+					<div className='d-flex justify-content-center'>
 						<img
 							alt={organization?.name}
-							className='img'
+							className='img w-50'
 							src={organization?.image}
 						/>
 					</div>
@@ -36,9 +36,15 @@ const Organization = ({ organization }) => {
 								<div class='card bg-success text-white mb-4'>
 									<p class='card-body'>Celular</p>
 									<div class='card-footer d-flex align-items-center justify-content-between'>
-										<a class='small text-white stretched-link' href='#'>
-											{organization?.phone}
-										</a>
+										{organization?.phone ? (
+											<a
+												class='small text-white stretched-link'
+												href={`tel:${organization?.phone}`}>
+												{organization?.phone}
+											</a>
+										) : (
+											<p>No has ingresado el celular</p>
+										)}
 									</div>
 								</div>
 							</div>
@@ -46,9 +52,16 @@ const Organization = ({ organization }) => {
 								<div class='card bg-success text-white mb-4'>
 									<p class='card-body'>Correo Electronico</p>
 									<div class='card-footer d-flex align-items-center justify-content-between'>
-										<a class='small text-white stretched-link' href='#'>
-											{organization?.email}
-										</a>
+										{organization?.email ? (
+											<a
+												class='small text-white stretched-link'
+												href={organization?.email}
+												target={'_blank'}>
+												{organization?.email}
+											</a>
+										) : (
+											<p>No has ingresado el email</p>
+										)}
 									</div>
 								</div>
 							</div>
@@ -56,11 +69,16 @@ const Organization = ({ organization }) => {
 								<div class='card bg-success text-white mb-4'>
 									<p class='card-body'>Facebook</p>
 									<div class='card-footer d-flex align-items-center justify-content-between'>
-										<a
-											class='small text-white stretched-link'
-											href={organization?.urlFacebook}>
-											{organization?.urlFacebook}
-										</a>
+										{organization?.urlFacebook ? (
+											<a
+												class='small text-white stretched-link'
+												href={organization?.urlFacebook}
+												target={'_blank'}>
+												{organization?.urlFacebook}
+											</a>
+										) : (
+											<p>No has ingresado la url</p>
+										)}
 									</div>
 								</div>
 							</div>
@@ -68,11 +86,16 @@ const Organization = ({ organization }) => {
 								<div class='card bg-success text-white mb-4'>
 									<p class='card-body'>Instagram</p>
 									<div class='card-footer d-flex align-items-center justify-content-between'>
-										<a
-											class='small text-white stretched-link'
-											href={organization?.urlInstagram}>
-											{organization?.urlInstagram}
-										</a>
+										{organization?.urlInstagram ? (
+											<a
+												class='small text-white stretched-link'
+												href={organization?.urlInstagram}
+												target={'_blank'}>
+												{organization?.urlInstagram}
+											</a>
+										) : (
+											<p>No has ingresado la url</p>
+										)}
 									</div>
 								</div>
 							</div>
@@ -80,11 +103,16 @@ const Organization = ({ organization }) => {
 								<div class='card bg-success text-white mb-4'>
 									<p class='card-body'>Whatsapp</p>
 									<div class='card-footer d-flex align-items-center justify-content-between'>
-										<a
-											class='small text-white stretched-link'
-											href={organization?.urlWhatsapp}>
-											{organization?.urlWhatsapp}
-										</a>
+										{organization?.urlWhatsapp ? (
+											<a
+												class='small text-white stretched-link'
+												href={organization?.urlWhatsapp}
+												target={'_blank'}>
+												{organization?.urlWhatsapp}
+											</a>
+										) : (
+											<p>No has ingresado la url</p>
+										)}
 									</div>
 								</div>
 							</div>
