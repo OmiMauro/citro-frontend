@@ -11,29 +11,29 @@ export const fetchGalery = createAsyncThunk(
 	async (page = 1, { rejectWithValue }) => {
 		try {
 			const response = await getGalery({ page })
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response)
 		}
 	}
 )
-const addImagesToGalery = createAsyncThunk(
+export const addImagesToGalery = createAsyncThunk(
 	'galery/post',
 	async (data, { rejectWithValue }) => {
 		try {
 			const response = await newPictures(data)
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response)
 		}
 	}
 )
-const removePicture = createAsyncThunk(
+export const removePicture = createAsyncThunk(
 	'galery/delete',
 	async (id, { rejectWithValue }) => {
 		try {
 			const response = await deletePicture(id)
-			if (response) return response.data.data
+			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response)
 		}
@@ -52,8 +52,9 @@ const galerySlice = createSlice({
 		},
 		[fetchGalery.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.galery = payload
-			errors: []
+			state.galery = payload.data
+			state.msg = payload.msg
+			state.errors = []
 		},
 		[fetchGalery.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -64,8 +65,9 @@ const galerySlice = createSlice({
 		},
 		[addImagesToGalery.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.galery = payload
-			errors: []
+			state.galery = payload.data
+			state.msg = payload.msg
+			state.errors = []
 		},
 		[addImagesToGalery.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -76,11 +78,13 @@ const galerySlice = createSlice({
 		},
 		[removePicture.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.galery = state.galery.filter((id) => id !== payload)
-			errors: []
+			state.galery = state.galery.filter((id) => id !== payload.data)
+			state.msg = payload.msg
+			state.errors = []
 		},
 		[removePicture.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
+			console.log(payload)
 			state.errors = payload.data.errors
 		}
 	}
