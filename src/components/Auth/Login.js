@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import imageLogin from './image-login.jpg'
-import Spinner from '../Spinner/Spinner'
-import { STATUS } from '../../redux/constants/action-types'
 const Login = () => {
 	const [values, setValues] = useState({
 		email: '',
@@ -112,7 +110,7 @@ const Login = () => {
 													)}
 												</div>
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
-													{status === STATUS.PENDING ? (
+													{status === 'PENDING' ? (
 														<button
 															class='btn btn-primary btn-lg '
 															type='button'
@@ -121,7 +119,7 @@ const Login = () => {
 																class='spinner-border spinner-border-sm'
 																role='status'
 																aria-hidden='true'></span>
-															Loading...
+															Por favor, espere...
 														</button>
 													) : (
 														<button
