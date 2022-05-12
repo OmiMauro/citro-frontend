@@ -1,5 +1,6 @@
 import React from 'react'
 import Error404Image from './error-404.svg'
+import { Link } from 'react-router-dom'
 const Error404 = () => {
 	return (
 		<div className='container'>
@@ -10,10 +11,10 @@ const Error404 = () => {
 						<p className='lead'>
 							La URL ingresada no se encontró en el servidor.
 						</p>
-						<a href='index.html'>
+						<Link to='/'>
 							<i className='fas fa-arrow-left me-1'></i>
 							Volver al Inicio
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>
