@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom'
 import GaleryForm from '../../components/Galery/GaleryForm'
 import GaleryList from '../../components/Galery/GaleryList'
 import Pagination from '../../components/Pagination/Pagination'
-import { selectorGalery, fetchGalery } from '../../redux/slices/galery-slice'
+import {
+	selectorGalery,
+	fetchGalery,
+	removePicture
+} from '../../redux/slices/galery-slice'
 
 const GaleriesListContainer = () => {
 	const dispatch = useDispatch()
@@ -12,17 +16,24 @@ const GaleriesListContainer = () => {
 	const [page, setPage] = useState(1)
 
 	const handlePageChange = (e) => {
-		setPage(e.selected)
+		setPage(e.selected + 1)
 	}
 	useEffect(() => {
-		if (!galery) dispatch(fetchGalery(page))
+		dispatch(fetchGalery(page))
 	}, [dispatch, page])
 
+	const handleDelete = (id) => {
+		dispatch(removePicture(id))
+	}
 	return (
 		<>
 			<div className='col'>
 				<div className='container'>
-					<GaleryList galery={galery} errors={errors} />
+					<GaleryList
+						galery={galery}
+						errors={errors}
+						handleDelete={handleDelete}
+					/>
 					<div className='d-flex justify-content-center'>
 						<Pagination
 							handlePageChange={handlePageChange}

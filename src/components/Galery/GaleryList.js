@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const GaleryList = ({ galery, onDelete }) => {
+const GaleryList = ({ galery, handleDelete }) => {
 	return (
 		<>
 			<div className='row justify-content-center d-flex mt-5'>
@@ -56,7 +56,7 @@ const GaleryList = ({ galery, onDelete }) => {
 										<button
 											className=''
 											title='Eliminar'
-											onClick={() => onDelete(picture._id)}>
+											onClick={() => handleDelete(picture._id)}>
 											Eliminar
 											<i className='fa fa-trash-alt' />
 										</button>
