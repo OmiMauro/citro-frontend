@@ -8,8 +8,10 @@ import {
 } from '../../redux/slices/organization-slice'
 
 import OrganizationForm from '../../components/Organization/OrganizationForm'
+import { useParams } from 'react-router-dom'
 
 const OrganizationFormContainer = () => {
+	const { id } = useParams()
 	const dispatch = useDispatch()
 	const { errors, organization } = useSelector(selectorOrganization)
 
@@ -18,7 +20,6 @@ const OrganizationFormContainer = () => {
 	}
 	return (
 		<div className='col'>
-			<p>OrganizationFormContainer</p>
 			<OrganizationForm
 				handleSumbmit={handleSumbmit}
 				organization={organization}
