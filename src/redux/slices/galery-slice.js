@@ -78,13 +78,15 @@ const galerySlice = createSlice({
 		},
 		[removePicture.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.galery = state.galery.filter((id) => id !== payload.data)
+			state.galery.docs = state.galery.docs.filter(
+				({ _id }) => _id !== payload.data._id
+			)
+			state.galery.total = state.galery.total - 1
 			state.msg = payload.msg
 			state.errors = []
 		},
 		[removePicture.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
-			console.log(payload)
 			state.errors = payload.data.errors
 		}
 	}

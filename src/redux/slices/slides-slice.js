@@ -102,6 +102,7 @@ const slidesSlice = createSlice({
 			state.status = STATUS.SUCCESSFUL
 			state.slide = payload.data
 			state.slides = state.slides.push(payload)
+			state.msg = payload.msg
 		},
 		[createSlide.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -123,11 +124,13 @@ const slidesSlice = createSlice({
 		},
 		[removeSlide.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.slides = state.slides.filter((id) => id !== payload)
+			state.slides = state.slides.filter(({ _id }) => _id !== payload.data._id)
+			state.msg = payload.msg
 		},
 		[removeSlide.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.errors = payload.errors
+			state.msg = ''
 		}
 	}
 })
