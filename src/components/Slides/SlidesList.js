@@ -1,24 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const SlidesList = ({ slides = [], handleDelete }) => {
-	const onDelete = () => {}
+const SlidesList = ({ slides = [], handleDelete, msg }) => {
 	return (
 		<>
 			<div className='col'>
-				<h3 className='text-center fw-bold mb-5 mx-1 mx-md-4 mt-4'>
+				<h3 className='text-center fw-bold mb-5 mx-1 mx-md-4 mt-4 text-uppercase'>
 					Lista de Slides
 				</h3>
 				<div className='container'>
-					<Link
-						to={`/backoffice/slides/create/`}
-						className='btn btn-outline-success'>
-						<i className='fas fa-pencil-alt' />
-						Crear Nuevo Slide
-					</Link>
-					<Link to={`/backoffice/`} className='btn btn-outline-success'>
-						<i className='fas fa-pencil-alt' />
-						Volver
-					</Link>
+					<div className='d-flex justify-content-center col-12'>
+						<Link
+							to={`/backoffice/slides/create/`}
+							className='btn btn-outline-success col-4'>
+							<i className='fas fa-pencil-alt' />
+							Crear Nuevo Slide
+						</Link>
+						<Link to={`/backoffice/`} className='btn btn-outline-success col-4'>
+							<i className='fas fa-pencil-alt' />
+							Volver
+						</Link>
+					</div>
 					<div className='row mt-4'>
 						{slides?.map((slide) => {
 							return (
@@ -39,7 +40,13 @@ const SlidesList = ({ slides = [], handleDelete }) => {
 											className=' btn btn-outline-dark'>
 											Editar Slide
 										</Link>
-										<button onClick={onDelete} className='btn btn-outline-dark'>
+										{msg && <p>{msg}</p>}
+										<button
+											onClick={(e) => {
+												e.preventDefault()
+												handleDelete(slide._id)
+											}}
+											className='btn btn-outline-dark'>
 											Eliminar Slide
 										</button>
 									</div>
