@@ -269,7 +269,7 @@ const Register = () => {
 												</div>
 											</form>
 											{status === STATUS.SUCCESSFUL && (
-												<p className='text-success'>
+												<p className='text-success text-center'>
 													Su cuenta fue creada con éxito
 												</p>
 											)}

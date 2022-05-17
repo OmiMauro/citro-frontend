@@ -41,7 +41,7 @@ const ImageEvent = () => {
 	}, [galery])
 
 	const handlePageChange = (e) => {
-		setValues({ ...values, page: e.selected })
+		setValues({ ...values, page: e.selected + 1 })
 	}
 
 	return (
