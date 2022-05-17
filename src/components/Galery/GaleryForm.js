@@ -43,7 +43,7 @@ const GaleryForm = ({ galery, handleSubmit, errors, status, msg }) => {
 							<i className='fas fa-pencil-alt' />
 							Volver
 						</Link>
-						<div className='row justify-content-start mt-5'>
+						<div className='row justify-content-center mt-5'>
 							<div className='col-md-10 col-lg-12 col-xl-5 order-2 order-lg-1'>
 								<form className='mx-1 mx-md-4' onSubmit={onSubmit}>
 									<div className='d-flex flex-row align-items-center mb-4'>
@@ -105,7 +105,7 @@ const GaleryForm = ({ galery, handleSubmit, errors, status, msg }) => {
 											</button>
 										)}
 									</div>
-									{msg && <p className='text-success'>{msg}</p>}
+									{msg && <p className='text-success text-center'>{msg}</p>}
 								</form>
 							</div>
 						</div>
