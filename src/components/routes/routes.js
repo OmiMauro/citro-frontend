@@ -26,13 +26,16 @@ import LayoutPrivate from '../Layout/LayoutPrivate'
 import GaleriesListContainer from '../../containers/Galeries/GaleriesListContainer'
 import GaleriesContainer from '../../containers/Galeries/GaleriesContainer'
 import AboutPage from '../../pages/AboutPage'
-
+import MembersPage from '../../pages/MembersPage'
+import ContactPage from '../../pages/ContactPage'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
 	{ path: 'register', element: RegisterPage },
-	{ path: '/unauthorized', element: Error401Page },
+	{ path: 'unauthorized', element: Error401Page },
 	{ path: 'about-us', element: AboutPage },
+	{ path: 'organizators', element: MembersPage },
+	{ path: 'contact', element: ContactPage },
 	{ path: '*', element: Error404Page }
 ]
 const routesPrivates = [
