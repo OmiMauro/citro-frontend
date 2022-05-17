@@ -33,7 +33,9 @@ const Members = () => {
 													alt={item.name}
 												/>
 											)}
-											<h4>{item.name}</h4>
+											<h4>
+												{item.name} {item.lastname}
+											</h4>
 											{item.urlFacebook && (
 												<a
 													className='btn btn-dark btn-social mx-2'
