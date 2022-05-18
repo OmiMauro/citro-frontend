@@ -3,6 +3,7 @@ import { routesPrivates } from '../../routes/routes'
 import './styles.css'
 import { logout, selectorAuth } from '../../../redux/slices/auth-slice'
 import { useDispatch, useSelector } from 'react-redux'
+
 const SideNav = () => {
 	const { user } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
@@ -20,7 +21,7 @@ const SideNav = () => {
 						id='menu'>
 						<li>
 							<Link to='/backoffice' className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-table'></i>{' '}
+								<i className='fs-4 bi-table fa fa-table'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Home</span>
 							</Link>
 						</li>
@@ -28,7 +29,7 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/organizations'
 								className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-table'></i>{' '}
+								<i className='fs-4 bi-table fa fa-building'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Organizations</span>
 							</Link>
 						</li>
@@ -36,7 +37,7 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/profile'
 								className='nav-link px-0 align-middle '>
-								<i className='fs-4'></i>{' '}
+								<i className='fs-4 fa fa-user-circle'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Profile</span>
 							</Link>
 						</li>
@@ -44,7 +45,7 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/members'
 								className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-grid'></i>{' '}
+								<i className='fs-4  fa fa-users'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Organizadores</span>
 							</Link>
 						</li>
@@ -52,7 +53,7 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/slides'
 								className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-grid'></i>{' '}
+								<i className='fs-4 fa fa-image'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Slides</span>
 							</Link>
 						</li>
@@ -60,7 +61,7 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/galery'
 								className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-grid'></i>{' '}
+								<i className='fs-4 fa fa-camera'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Galería</span>
 							</Link>
 						</li>
@@ -68,8 +69,16 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/users'
 								className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-grid'></i>{' '}
+								<i className='fs-4 fa fa-user'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Usuarios</span>
+							</Link>
+						</li>
+						<li>
+							<Link
+								to='/backoffice/events'
+								className='nav-link align-middle px-0'>
+								<i className='fs-4 fa fa-calendar'></i>{' '}
+								<span className='ms-1 d-none d-sm-inline'>Eventos</span>
 							</Link>
 						</li>
 					</ul>
@@ -89,7 +98,7 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/profile'
 								className='nav-link px-0 align-middle '>
-								<i className='fs-4'></i>{' '}
+								<i className='fs-4 fa fa-user-circle'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Profile</span>
 							</Link>
 						</li>
@@ -98,7 +107,7 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/events'
 								className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-grid'></i>{' '}
+								<i className='fs-4 fa-calendar'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Eventos</span>
 							</Link>
 						</li>
@@ -113,7 +122,7 @@ const SideNav = () => {
 						data-bs-toggle='dropdown'
 						aria-expanded='false'>
 						<img
-							src='https://github.com/mdo.png'
+							src='https://avatars.githubusercontent.com/u/64550079?v=4'
 							alt='hugenerd'
 							width='30'
 							height='30'
@@ -133,7 +142,11 @@ const SideNav = () => {
 						<li>
 							<button
 								className='dropdown-item'
-								onClick={() => dispatch(logout())}>
+								onClick={(e) => {
+									console.log(e)
+									e.preventDefault()
+									dispatch(logout())
+								}}>
 								Cerrar Sesion
 							</button>
 						</li>
