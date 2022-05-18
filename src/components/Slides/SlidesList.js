@@ -23,7 +23,7 @@ const SlidesList = ({ slides = [], handleDelete, msg }) => {
 					<div className='row mt-4'>
 						{slides?.map((slide) => {
 							return (
-								<div className='card col-12 m-3'>
+								<div className='card col-12 m-3' key={slide._id}>
 									<img
 										src={slide.image_id.url}
 										className='card-img-top m-2'
