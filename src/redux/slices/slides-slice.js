@@ -69,7 +69,8 @@ const slidesSlice = createSlice({
 		slides: [],
 		slide: {},
 		status: null,
-		errors: []
+		errors: [],
+		msg: ''
 	},
 	extraReducers: {
 		[fetchSlides.pending]: (state) => {
@@ -78,6 +79,7 @@ const slidesSlice = createSlice({
 		[fetchSlides.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.slides = payload.data
+			state.msg = payload.msg
 			state.errors = []
 		},
 		[fetchSlides.rejected]: (state, { payload }) => {
@@ -101,7 +103,7 @@ const slidesSlice = createSlice({
 		[createSlide.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.slide = payload.data
-			state.slides = state.slides.push(payload)
+			state.slides = state.slides.push(payload.data)
 			state.msg = payload.msg
 		},
 		[createSlide.rejected]: (state, { payload }) => {
@@ -114,6 +116,7 @@ const slidesSlice = createSlice({
 		[updateSlide.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.slide = payload.data
+			state.msg = payload.msg
 		},
 		[updateSlide.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED

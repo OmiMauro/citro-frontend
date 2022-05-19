@@ -2,13 +2,19 @@ import React, { useEffect } from 'react'
 import SlidesForm from '../../components/Slides/SlidesForm'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectorSlides, fetchSlideById } from '../../redux/slices/slides-slice'
+import {
+	selectorSlides,
+	fetchSlideById,
+	createSlide
+} from '../../redux/slices/slides-slice'
 
 const SlidesFormContainer = () => {
-	const handleSubmit = (formData) => {}
+	const handleSubmit = (formData) => {
+		dispatch(createSlide(formData))
+	}
 	const { id } = useParams()
 	const dispatch = useDispatch()
-	const { slide, errors, loading } = useSelector(selectorSlides())
+	const { slide, errors, status, msg } = useSelector(selectorSlides)
 
 	useEffect(() => {
 		if (id) {
@@ -17,7 +23,13 @@ const SlidesFormContainer = () => {
 	}, [dispatch])
 	return (
 		<>
-			<SlidesForm handleSubmit={handleSubmit} slide={slide} />
+			<SlidesForm
+				handleSubmit={handleSubmit}
+				slide={slide}
+				errors={errors}
+				status={status}
+				msg={msg}
+			/>
 		</>
 	)
 }
