@@ -8,6 +8,7 @@ import logo from './navbar-logo.png'
 const Nav = () => {
 	const { organization, status } = useSelector(selectorOrganization)
 	const { auth } = useSelector(selectorAuth)
+	const dispatch = useDispatch()
 	return (
 		<nav
 			className='navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm'

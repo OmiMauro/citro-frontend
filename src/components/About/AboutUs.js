@@ -35,8 +35,8 @@ const AboutUs = () => {
 					/>
 				</div>
 				<div className='row text-center fst-italic text-muted'>
-					{splitedDescription?.map((paragraph) => {
-						return <p>{paragraph}.</p>
+					{splitedDescription?.map((paragraph, index) => {
+						return <p key={index}>{paragraph}.</p>
 					})}
 				</div>
 			</div>
