@@ -18,9 +18,9 @@ const Carousel = () => {
 			{status === STATUS.SUCCESSFUL && (
 				<div className='carousel slide' data-bs-ride='carousel'>
 					<div className='carousel-inner'>
-						{slides?.map((item) => (
+						{slides?.map((item, index) => (
 							<div
-								className={`carousel-item ${item.order === 1 ? 'active' : ''}`}
+								className={`carousel-item ${index === 0 ? 'active' : ''}`}
 								key={item._id}>
 								<img
 									className='d-block w-100'
@@ -31,6 +31,11 @@ const Carousel = () => {
 							</div>
 						))}
 					</div>
+				</div>
+			)}
+			{status === STATUS.PENDING && (
+				<div class='spinner-border text-secondary' role='status'>
+					<span class='visually-hidden'>Loading...</span>
 				</div>
 			)}
 		</>
