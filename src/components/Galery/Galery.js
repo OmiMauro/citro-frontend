@@ -51,7 +51,7 @@ const ImageEvent = () => {
 					Imágenes de nuestros eventos
 				</h2>
 
-				{status === STATUS.SUCCESSFUL ? (
+				{status === STATUS.SUCCESSFUL && (
 					<div>
 						<PhotoAlbum photos={photos} layout='rows' />
 						<div className='m-0 row justify-content-center mt-2'>
@@ -64,10 +64,11 @@ const ImageEvent = () => {
 							</div>
 						</div>
 					</div>
-				) : (
+				)}
+				{status === STATUS.PENDING && (
 					<div className='d-flex justify-content-center '>
 						<div className='spinner-grow text-secondary ' role='status'>
-							<span class='visually-hidden'>Loading...</span>
+							<span className='visually-hidden'>Loading...</span>
 						</div>
 					</div>
 				)}
