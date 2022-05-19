@@ -5,7 +5,8 @@ const OrganizationForm = ({
 	organization,
 	handleSubmit,
 	errors,
-	handleUpdateImage
+	handleUpdateImage,
+	msg
 }) => {
 	const [values, setValues] = useState({
 		name: organization?.name ?? '',
@@ -40,7 +41,7 @@ const OrganizationForm = ({
 	return (
 		<div className='container'>
 			<h3 className='text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4'>
-				Editar datos de la organizacion
+				Editar datos de la organización
 			</h3>
 			<div className='row d-flex justify-content-center align-items-center '>
 				<div className='col-lg-12 col-xl-11 '>
@@ -53,7 +54,7 @@ const OrganizationForm = ({
 								/>
 								<form className='mx-1 mx-md-4' onSubmit={onSubmit}>
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-image fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											{image_url ? (
 												<div className='d-flex justify-content-center m-1'>
@@ -95,7 +96,7 @@ const OrganizationForm = ({
 									</div>
 
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-building fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											<input
 												className='form-control'
@@ -118,7 +119,7 @@ const OrganizationForm = ({
 										</div>
 									</div>
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-at fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											<input
 												className='form-control'
@@ -141,7 +142,7 @@ const OrganizationForm = ({
 										</div>
 									</div>
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-facebook fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											<input
 												className='form-control'
@@ -164,7 +165,7 @@ const OrganizationForm = ({
 										</div>
 									</div>
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-at fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-instagram fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											<input
 												type='text'
@@ -187,7 +188,7 @@ const OrganizationForm = ({
 										</div>
 									</div>
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-at fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-whatsapp fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											<input
 												type='text'
@@ -211,7 +212,7 @@ const OrganizationForm = ({
 									</div>
 
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-lock fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-phone fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											<input
 												id='phone'
@@ -234,9 +235,9 @@ const OrganizationForm = ({
 										</div>
 									</div>
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-lock fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-bold fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
-											<input
+											<textarea
 												id='aboutUs'
 												type='aboutUs'
 												value={aboutUs}
@@ -244,7 +245,8 @@ const OrganizationForm = ({
 												placeholder='Descripcion breve'
 												name='aboutUs'
 												className='form-control'
-											/>
+												cols='30'
+												rows='20'></textarea>
 											<label className='form-label' htmlFor='aboutUs'>
 												Sobre Nosotros* (Cada . indica un nuevo parrafo en las
 												vista principal)
@@ -258,9 +260,9 @@ const OrganizationForm = ({
 										</div>
 									</div>
 									<div className='d-flex flex-row align-items-center mb-4'>
-										<i className='fa fa-lock fa-lg me-3 fa-fw'></i>
+										<i className='fa fa-comment fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
-											<input
+											<textarea
 												id='welcomeText'
 												type='welcomeText'
 												value={welcomeText}
@@ -268,6 +270,8 @@ const OrganizationForm = ({
 												placeholder='Descripcion breve'
 												name='welcomeText'
 												className='form-control'
+												cols='30'
+												rows='10'
 											/>
 											<label className='form-label' htmlFor='welcomeText'>
 												Texto de bienvenida
