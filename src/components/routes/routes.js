@@ -28,6 +28,8 @@ import GaleriesContainer from '../../containers/Galeries/GaleriesContainer'
 import AboutPage from '../../pages/AboutPage'
 import MembersPage from '../../pages/MembersPage'
 import ContactPage from '../../pages/ContactPage'
+import ForgotPasswordPage from '../../pages/ForgotPasswordPage'
+import ResetPasswordPage from '../../pages/ResetPasswordPage'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
@@ -36,6 +38,8 @@ const routesPublics = [
 	{ path: 'about-us', element: AboutPage },
 	{ path: 'organizators', element: MembersPage },
 	{ path: 'contact', element: ContactPage },
+	{ path: 'forgot-password', element: ForgotPasswordPage },
+	{ path: 'reset-password/:token', element: ResetPasswordPage },
 	{ path: '*', element: Error404Page }
 ]
 const routesPrivates = [
