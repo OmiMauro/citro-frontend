@@ -96,7 +96,7 @@ const Login = () => {
 													</div>
 												</div>
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger'>
-													<Link className='text-dark' to='/forgotPassword'>
+													<Link className='text-dark' to='/forgot-password'>
 														Olvidó su contraseña?
 													</Link>
 												</div>

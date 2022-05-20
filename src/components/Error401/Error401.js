@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Error401 = () => {
 	return (
@@ -11,10 +12,10 @@ const Error401 = () => {
 						<p>
 							No tienes los permisos necesarios para acceder a este recurso.
 						</p>
-						<a href=''>
+						<Link to='/'>
 							<i class='fas fa-arrow-left me-1'></i>
 							Volver al Incio
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

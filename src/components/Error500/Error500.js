@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Error500 = () => {
 	return (
@@ -10,10 +11,10 @@ const Error500 = () => {
 						<p class='lead'>Error interno en el servidor</p>
 						<p class='lead'>Por favor, intente nuevamente en unos instantes.</p>
 
-						<a href=''>
+						<Link to='/'>
 							<i class='fas fa-arrow-left me-1'></i>
 							Volver al Inicio
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>
