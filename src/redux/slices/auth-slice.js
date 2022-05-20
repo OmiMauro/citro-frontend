@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { login, register } from '../../services/auth-services'
+import {
+	login,
+	register,
+	forgotPwd,
+	verifyTokenService,
+	resetPwd
+} from '../../services/auth-services'
 import { STATUS } from '../constants/action-types'
 
 export const logged = createAsyncThunk(
@@ -31,6 +37,39 @@ export const registered = createAsyncThunk(
 		}
 	}
 )
+export const forgotPassword = createAsyncThunk(
+	'authForgotPassowrd/post',
+	async (data, { rejectWithValue }) => {
+		try {
+			const response = await forgotPwd(data)
+			return response.data
+		} catch (error) {
+			return rejectWithValue(error)
+		}
+	}
+)
+export const verifyToken = createAsyncThunk(
+	'authVerifyToken',
+	async (token, { rejectWithValue }) => {
+		try {
+			const response = await verifyTokenService(token)
+			return response.data
+		} catch (error) {
+			return rejectWithValue(error)
+		}
+	}
+)
+export const resetPassword = createAsyncThunk(
+	'authResetPassword/post',
+	async ({ data, token }, { rejectWithValue }) => {
+		try {
+			const response = await resetPwd(data, token)
+			return response.data
+		} catch (error) {
+			return rejectWithValue(error)
+		}
+	}
+)
 const authSlice = createSlice({
 	name: 'auth',
 	initialState: {
@@ -38,7 +77,8 @@ const authSlice = createSlice({
 		user: {},
 		token: '',
 		status: null,
-		errors: []
+		errors: [],
+		msg: ''
 	},
 	reducers: {
 		logout: (state) => {
@@ -77,6 +117,42 @@ const authSlice = createSlice({
 			state.user = payload.user
 			state.token = payload.token
 			state.errors = []
+		},
+		[forgotPassword.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[forgotPassword.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.response.data.errors
+		},
+		[forgotPassword.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.auth = false
+			state.msg = payload.data.msg
+		},
+		[verifyToken.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[verifyToken.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.response.data.errors
+		},
+		[verifyToken.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.auth = false
+			state.msg = payload.data.msg
+		},
+		[resetPassword.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[resetPassword.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.response.data.errors
+		},
+		[resetPassword.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.auth = false
+			state.msg = payload.data.msg
 		}
 	}
 })
