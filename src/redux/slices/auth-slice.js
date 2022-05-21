@@ -4,7 +4,8 @@ import {
 	register,
 	forgotPwd,
 	verifyTokenService,
-	resetPwd
+	resetPwd,
+	verificationEmail
 } from '../../services/auth-services'
 import { STATUS } from '../constants/action-types'
 
@@ -70,6 +71,17 @@ export const resetPassword = createAsyncThunk(
 		}
 	}
 )
+export const verifyEmail = createAsyncThunk(
+	'authVerifyEmail/post',
+	async (token, { rejectWithValue }) => {
+		try {
+			const response = await verificationEmail(token)
+			return response.data
+		} catch (error) {
+			return rejectWithValue(error)
+		}
+	}
+)
 const authSlice = createSlice({
 	name: 'auth',
 	initialState: {
@@ -120,15 +132,18 @@ const authSlice = createSlice({
 		},
 		[forgotPassword.pending]: (state) => {
 			state.status = STATUS.PENDING
+			state.msg = ''
+			state.errors = []
 		},
 		[forgotPassword.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
+			state.msg = ''
 			state.errors = payload.response.data.errors
 		},
 		[forgotPassword.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.auth = false
-			state.msg = payload.data.msg
+			state.msg = payload.msg
 		},
 		[verifyToken.pending]: (state) => {
 			state.status = STATUS.PENDING
@@ -150,6 +165,18 @@ const authSlice = createSlice({
 			state.errors = payload.response.data.errors
 		},
 		[resetPassword.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.auth = false
+			state.msg = payload.data.msg
+		},
+		[verifyEmail.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[verifyEmail.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.response.data.errors
+		},
+		[verifyEmail.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.auth = false
 			state.msg = payload.data.msg

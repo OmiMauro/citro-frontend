@@ -30,6 +30,7 @@ import MembersPage from '../../pages/MembersPage'
 import ContactPage from '../../pages/ContactPage'
 import ForgotPasswordPage from '../../pages/ForgotPasswordPage'
 import ResetPasswordPage from '../../pages/ResetPasswordPage'
+import ConfirmEmailPage from '../../pages/ConfirmEmailPage'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
@@ -40,6 +41,7 @@ const routesPublics = [
 	{ path: 'contact', element: ContactPage },
 	{ path: 'forgot-password', element: ForgotPasswordPage },
 	{ path: 'reset-password/:token', element: ResetPasswordPage },
+	{ path: 'confirm-email/:token', element: ConfirmEmailPage },
 	{ path: '*', element: Error404Page }
 ]
 const routesPrivates = [
