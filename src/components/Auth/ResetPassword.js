@@ -24,15 +24,12 @@ const ResetPassword = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		if (password === confirmPassword) {
-			dispatch(resetPassword({ token, data: password }))
-		}
-		msg = 'Las contraseñas no coinciden'
+		dispatch(resetPassword({ token, data: { password } }))
 	}
 
 	const handleChange = (e) => {
 		const { value, name } = e.target
-		setEmail({ ...values, [name]: value })
+		setValues({ ...values, [name]: value })
 	}
 	return (
 		<>
@@ -95,11 +92,11 @@ const ResetPassword = () => {
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
 													{status === 'PENDING' ? (
 														<button
-															class='btn btn-primary btn-lg '
+															className='btn btn-primary btn-lg '
 															type='button'
 															disabled>
 															<span
-																class='spinner-border spinner-border-sm'
+																className='spinner-border spinner-border-sm'
 																role='status'
 																aria-hidden='true'></span>
 															Por favor, espere...
