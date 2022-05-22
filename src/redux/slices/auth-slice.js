@@ -98,6 +98,10 @@ const authSlice = createSlice({
 			state.auth = false
 			state.token = ''
 			state.user = {}
+		},
+		clearState: (state) => {
+			state.errors = []
+			state.msg = ''
 		}
 	},
 	extraReducers: {
@@ -142,7 +146,6 @@ const authSlice = createSlice({
 		},
 		[forgotPassword.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.auth = false
 			state.msg = payload.msg
 		},
 		[verifyToken.pending]: (state) => {
@@ -154,8 +157,7 @@ const authSlice = createSlice({
 		},
 		[verifyToken.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.auth = false
-			state.msg = payload.data.msg
+			state.msg = payload.msg
 		},
 		[resetPassword.pending]: (state) => {
 			state.status = STATUS.PENDING
@@ -166,11 +168,12 @@ const authSlice = createSlice({
 		},
 		[resetPassword.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.auth = false
 			state.msg = payload.data.msg
 		},
 		[verifyEmail.pending]: (state) => {
 			state.status = STATUS.PENDING
+			state.msg = ''
+			state.errors = []
 		},
 		[verifyEmail.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
@@ -178,12 +181,11 @@ const authSlice = createSlice({
 		},
 		[verifyEmail.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.auth = false
-			state.msg = payload.data.msg
+			state.msg = payload.msg
 		}
 	}
 })
 
 export const selectorAuth = (state) => state.auth
-export const { logout } = authSlice.actions
+export const { logout, clearState } = authSlice.actions
 export default authSlice.reducer
