@@ -168,7 +168,7 @@ const authSlice = createSlice({
 		},
 		[resetPassword.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.msg = payload.data.msg
+			state.msg = payload.msg
 		},
 		[verifyEmail.pending]: (state) => {
 			state.status = STATUS.PENDING
