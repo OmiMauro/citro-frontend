@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom'
 import {
 	selectorAuth,
 	verifyToken,
-	resetPassword
+	resetPassword,
+	clearState
 } from '../../redux/slices/auth-slice'
 import imageLogin from './image-login.jpg'
 
@@ -17,6 +18,10 @@ const ResetPassword = () => {
 	const dispatch = useDispatch()
 	const { token } = useParams()
 	const { errors, msg, status } = useSelector(selectorAuth)
+
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 
 	useEffect(() => {
 		dispatch(verifyToken(token))
@@ -112,6 +117,13 @@ const ResetPassword = () => {
 												</div>
 											</form>
 											{msg && <p className='text-center text-success'>{msg}</p>}
+											<div>
+												{errors?.map((err) => (
+													<div className='text-danger text-center'>
+														{err.msg}
+													</div>
+												))}
+											</div>
 										</div>
 
 										<div className='col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2'>

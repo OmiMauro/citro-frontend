@@ -1,5 +1,5 @@
 import './auth-styles.css'
-import { selectorAuth, logged } from '../../redux/slices/auth-slice'
+import { selectorAuth, logged, clearState } from '../../redux/slices/auth-slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
@@ -23,6 +23,9 @@ const Login = () => {
 			navigate('/backoffice')
 		}
 	}, [auth])
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		const body = {

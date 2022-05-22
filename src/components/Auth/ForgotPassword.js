@@ -1,8 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import imageLogin from './image-login.jpg'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { forgotPassword, selectorAuth } from '../../redux/slices/auth-slice'
+import {
+	forgotPassword,
+	selectorAuth,
+	clearState
+} from '../../redux/slices/auth-slice'
 
 const ForgotPassword = () => {
 	const [email, setEmail] = useState('')
@@ -18,6 +22,9 @@ const ForgotPassword = () => {
 		const { value, name } = e.target
 		setEmail(value)
 	}
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 	return (
 		<>
 			<div className='vh-90' style={{ backgroundColor: '#eee' }}>
@@ -80,6 +87,9 @@ const ForgotPassword = () => {
 												</div>
 											</form>
 											{msg && <p className='text-center text-success'>{msg}</p>}
+											{errors?.map((err) => (
+												<p className='text-center text-danger'>{err.msg}</p>
+											))}
 										</div>
 
 										<div className='col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2'>

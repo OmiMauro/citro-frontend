@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
-import { selectorAuth, registered } from '../../redux/slices/auth-slice'
+import {
+	selectorAuth,
+	registered,
+	clearState
+} from '../../redux/slices/auth-slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import imageLogin from './image-login.jpg'
-
+import { useEffect } from 'react'
 import './auth-styles.css'
 import { STATUS } from '../../redux/constants/action-types'
 
@@ -26,8 +30,12 @@ const Register = () => {
 		phone,
 		conditions
 	} = values
-	const { auth, user, errors, status } = useSelector(selectorAuth)
+	const { auth, user, errors, status, msg } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
@@ -248,11 +256,11 @@ const Register = () => {
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
 													{status === STATUS.PENDING ? (
 														<button
-															class='btn btn-primary btn-lg '
+															className='btn btn-primary btn-lg '
 															type='button'
 															disabled>
 															<span
-																class='spinner-border spinner-border-sm'
+																className='spinner-border spinner-border-sm'
 																role='status'
 																aria-hidden='true'></span>
 															Loading...
@@ -268,11 +276,7 @@ const Register = () => {
 													)}
 												</div>
 											</form>
-											{status === STATUS.SUCCESSFUL && (
-												<p className='text-success text-center'>
-													Su cuenta fue creada con éxito
-												</p>
-											)}
+											{msg && <p className='text-success text-center'>{msg}</p>}
 										</div>
 									</div>
 								</div>
