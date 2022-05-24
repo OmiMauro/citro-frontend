@@ -10,6 +10,7 @@ const Login = () => {
 		password: '',
 		submitted: false
 	})
+
 	const { email, password, submitted } = values
 	const { auth, user, status, errors } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
@@ -115,11 +116,11 @@ const Login = () => {
 												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
 													{status === 'PENDING' ? (
 														<button
-															class='btn btn-primary btn-lg '
+															className='btn btn-primary btn-lg '
 															type='button'
 															disabled>
 															<span
-																class='spinner-border spinner-border-sm'
+																className='spinner-border spinner-border-sm'
 																role='status'
 																aria-hidden='true'></span>
 															Por favor, espere...

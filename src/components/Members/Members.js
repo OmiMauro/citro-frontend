@@ -73,7 +73,7 @@ const Members = () => {
 			) : (
 				<div className='d-flex justify-content-center '>
 					<div className='spinner-grow text-secondary ' role='status'>
-						<span class='visually-hidden'>Loading...</span>
+						<span className='visually-hidden'>Loading...</span>
 					</div>
 				</div>
 			)}
