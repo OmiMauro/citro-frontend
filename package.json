@@ -3,6 +3,8 @@
 	"version": "2.0.0",
 	"private": true,
 	"dependencies": {
+		"@ckeditor/ckeditor5-build-classic": "^34.0.0",
+		"@ckeditor/ckeditor5-react": "^5.0.1",
 		"@reduxjs/toolkit": "^1.8.1",
 		"axios": "^0.26.1",
 		"bootstrap": "^5.1.3",
