@@ -15,13 +15,13 @@ const OrganizationFormContainer = () => {
 	const dispatch = useDispatch()
 	const { errors, organization } = useSelector(selectorOrganization)
 
-	const handleSumbmit = (data) => {
-		dispatch(editOrganization(data))
+	const handleSubmit = (data) => {
+		dispatch(editOrganization({ data }))
 	}
 	return (
 		<div className='col'>
 			<OrganizationForm
-				handleSumbmit={handleSumbmit}
+				handleSubmit={handleSubmit}
 				organization={organization}
 				errors={errors}
 			/>

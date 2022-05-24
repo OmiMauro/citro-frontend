@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import Modal from '../Modal/Modal'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import { editorConfig } from '../Editor/editorConfig'
 
 const OrganizationForm = ({
 	organization,
@@ -37,7 +40,11 @@ const OrganizationForm = ({
 		if (name === 'image') setValues({ ...values, name: e.target.files[0] })
 		setValues({ ...values, [name]: value })
 	}
-	const onSubmit = (e) => {}
+	const onSubmit = (e) => {
+		e.preventDefault()
+		handleSubmit(values)
+	}
+	ClassicEditor.defaultConfig = editorConfig
 	return (
 		<div className='container'>
 			<h3 className='text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4'>
@@ -47,7 +54,7 @@ const OrganizationForm = ({
 				<div className='col-lg-12 col-xl-11 '>
 					<div className='p-md-5'>
 						<div className='row justify-content-center'>
-							<div className='col-md-10 col-lg-6 col-xl-5'>
+							<div className='col-md-10 col-lg-8 col-xl-10'>
 								<Modal
 									id={organization._id}
 									handleUpdateImage={handleUpdateImage}
@@ -57,20 +64,22 @@ const OrganizationForm = ({
 										<i className='fa fa-image fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
 											{image_url ? (
-												<div className='d-flex justify-content-center m-1'>
-													<img
-														src={image_url}
-														alt={image_url}
-														className='mt-2 w-50'
-													/>
+												<>
+													<div className='d-flex justify-content-start '>
+														<img
+															src={image_url}
+															alt={image_url}
+															className='mt-2 w-50'
+														/>
+													</div>
 													<button
 														type='button'
-														className='btn btn-primary w-50'
+														className='btn btn-primary d-flex justify-content-center mt-1 w-50'
 														data-bs-toggle='modal'
-														data-bs-target='#exampleModal'>
+														data-bs-target='#modalID'>
 														Cambiar imagen
 													</button>
-												</div>
+												</>
 											) : (
 												<input
 													className='form-control'
@@ -237,19 +246,25 @@ const OrganizationForm = ({
 									<div className='d-flex flex-row align-items-center mb-4'>
 										<i className='fa fa-bold fa-lg me-3 fa-fw'></i>
 										<div className='form-outline flex-fill mb-0'>
-											<textarea
+											<CKEditor
+												editor={ClassicEditor}
+												required
+												config={{ placeholder: 'Descripción corta' }}
+												data={values.aboutUs}
+												data-testid='description'
+												editor={ClassicEditor}
 												id='aboutUs'
-												type='aboutUs'
-												value={aboutUs}
-												onChange={handleChange}
-												placeholder='Descripcion breve'
 												name='aboutUs'
-												className='form-control'
-												cols='30'
-												rows='20'></textarea>
+												onChange={(event, editor) => {
+													const data = editor.getData()
+													setValues({
+														...values,
+														aboutUs: data
+													})
+												}}
+											/>
 											<label className='form-label' htmlFor='aboutUs'>
-												Sobre Nosotros* (Cada . indica un nuevo parrafo en las
-												vista principal)
+												Sobre Nosotros - Decripcion larga*
 											</label>
 											{errors?.map(
 												(err) =>
