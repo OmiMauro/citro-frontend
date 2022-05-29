@@ -1,100 +1,278 @@
-import './table-styles.css'
-import './pagination-styles.css'
+import './styles.css'
+
 const Tables = () => {
 	return (
-		<div className='col py-3'>
-			<main>
-				<h1 className='mt-4'>Dashboard</h1>
-				<ol className='breadcrumb mb-4'>
-					<li className='breadcrumb-item active'>Dashboard</li>
-				</ol>
-				<div className='row'>
-					<div className='col-xl-3 col-md-6'>
-						<div className='card bg-primary text-white mb-4'>
-							<div className='card-body'>Primary Card</div>
-							<div className='card-footer d-flex align-items-center justify-content-between'>
-								<a className='small text-white stretched-link' href='#'>
-									View Details
-								</a>
-								<div className='small text-white'>
-									<i className='fas fa-angle-right'></i>
-								</div>
-							</div>
+		<section>
+			<div className='d-md-flex'>
+				<div id='topnavbar'>
+					<div className='topnav mb-3'>
+						<div className='d-flex px-1'>
+							<a href='#home' className='active'>
+								merchants
+							</a>{' '}
+							<a href='#news'>users</a>{' '}
+							<a href='#contact'>
+								company<span className='px-1'>&</span>mid
+							</a>{' '}
+							<a href='#contact'>account</a>{' '}
 						</div>
 					</div>
-					<div className='col-xl-3 col-md-6'>
-						<div className='card bg-warning text-white mb-4'>
-							<div className='card-body'>Warning Card</div>
-							<div className='card-footer d-flex align-items-center justify-content-between'>
-								<a className='small text-white stretched-link' href='#'>
-									View Details
-								</a>
-								<div className='small text-white'>
-									<i className='fas fa-angle-right'></i>
-								</div>
-							</div>
-						</div>
+					<div className='d-flex align-items-center mb-3 px-md-3 px-2'>
+						<span className='text-uppercase fs13 fw-bolder pe-3'>
+							search<span className='ps-1'>by</span>
+						</span>
+						<form className='example d-flex align-items-center'>
+							<input
+								type='text'
+								placeholder='Type in Company Name Or Mid id'
+								name='search'
+							/>{' '}
+							<button type='submit'>
+								<i className='fa fa-search'></i>
+							</button>{' '}
+						</form>
 					</div>
-					<div className='col-xl-3 col-md-6'>
-						<div className='card bg-success text-white mb-4'>
-							<div className='card-body'>Success Card</div>
-							<div className='card-footer d-flex align-items-center justify-content-between'>
-								<a className='small text-white stretched-link' href='#'>
-									View Details
-								</a>
-								<div className='small text-white'>
-									<i className='fas fa-angle-right'></i>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className='col-xl-3 col-md-6'>
-						<div className='card bg-danger text-white mb-4'>
-							<div className='card-body'>Danger Card</div>
-							<div className='card-footer d-flex align-items-center justify-content-between'>
-								<a className='small text-white stretched-link' href='#'>
-									View Details
-								</a>
-								<div className='small text-white'>
-									<i className='fas fa-angle-right'></i>
-								</div>
-							</div>
-						</div>
+					<div className='table-responsive px-2'>
+						<table className='table table-borderless'>
+							<thead>
+								<tr>
+									<th scope='col'>
+										COMPANY<span>ID</span>
+									</th>
+									<th scope='col'>COMPANY</th>
+									<th scope='col'>MID</th>
+									<th scope='col'>
+										BANK<span className='ps-1'>NAME</span>
+									</th>
+									<th scope='col'>CUR</th>
+									<th className='text-center' scope='col'>
+										3DS
+									</th>
+									<th className='text-center' scope='col'>
+										ACTIVE
+									</th>
+									<th className='text-center' scope='col'>
+										ACTION
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<span className='bg-blight'>235</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											ABC<span className='ps-1'>LOANS</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-blight'>1343</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											Faster<span>Trading</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>GBP</span>
+									</td>
+									<td className='text-center px-0'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-ellipsis-h'></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span className='bg-blight'>236</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											BCE<span className='ps-1'>LOANS</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-blight'>1298</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											Secure<span>Trading</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>GBP</span>
+									</td>
+									<td className='text-center px-0'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-ellipsis-h'></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span className='bg-blight'>237</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											CDE<span className='ps-1'>LOANS</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-blight'>1313</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											Secure<span>Trading</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>GBP</span>
+									</td>
+									<td className='text-center px-0'>
+										<span className='fas fa-times'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-ellipsis-h'></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span className='bg-blight'>235</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											DEF<span className='ps-1'>LOANS</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-blight'>1323</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											Secure<span>Trading</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>GBP</span>
+									</td>
+									<td className='text-center px-0'>
+										<span className='fas fa-times'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-ellipsis-h'></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span className='bg-blight'>235</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											FEG<span className='ps-1'>LOANS</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-blight'>1443</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											Secure<span>Trading</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>GBP</span>
+									</td>
+									<td className='text-center px-0'>
+										<span className='fas fa-times'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-ellipsis-h'></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span className='bg-blight'>237</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											GFR<span className='ps-1'>LOANS</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-blight'>1943</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											Faster<span>Trading</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>GBP</span>
+									</td>
+									<td className='text-center px-0'>
+										<span className='fas fa-times'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-ellipsis-h'></span>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span className='bg-blight'>235</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											ABC<span className='ps-1'>LOANS</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-blight'>1343</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>
+											Faster<span>Trading</span>
+										</span>
+									</td>
+									<td>
+										<span className='bg-bdark'>GBP</span>
+									</td>
+									<td className='text-center px-0'>
+										<span className='fas fa-times'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-check'></span>
+									</td>
+									<td className='text-center'>
+										<span className='fas fa-ellipsis-h'></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
-				<div className='row'>
-					<div className='col-xl-6'>
-						<div className='card mb-4'>
-							<div className='card-header'>
-								<i className='fas fa-chart-area me-1'></i>
-								Area Chart Example
-							</div>
-							<div className='card-body'>
-								<canvas id='myAreaChart' width='100%' height='40'></canvas>
-							</div>
-						</div>
-					</div>
-					<div className='col-xl-6'>
-						<div className='card mb-4'>
-							<div className='card-header'>
-								<i className='fas fa-chart-bar me-1'></i>
-								Bar Chart Example
-							</div>
-							<div className='card-body'>
-								<canvas id='myBarChart' width='100%' height='40'></canvas>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className='card mb-4'>
-					<div className='card-header'>
-						<i className='fas fa-table me-1'></i>
-						DataTable Example
-					</div>
-					<div className='card-body'></div>
-				</div>
-			</main>
-		</div>
+			</div>
+		</section>
 	)
 }
 
