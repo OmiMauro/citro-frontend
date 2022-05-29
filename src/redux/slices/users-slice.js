@@ -20,7 +20,7 @@ export const fetchUserById = createAsyncThunk(
 			const response = await getUserById(id)
 			if (response) return response.data.data
 		} catch (error) {
-			return rejectWithValue(error)
+			return rejectWithValue(error.response.data)
 		}
 	}
 )
@@ -30,6 +30,7 @@ const userSlice = createSlice({
 		users: [],
 		errors: [],
 		user: {},
+		msg: '',
 		status: null
 	},
 	extraReducers: {
