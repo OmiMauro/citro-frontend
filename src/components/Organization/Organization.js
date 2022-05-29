@@ -6,12 +6,12 @@ const Organization = ({ organization }) => {
 	return (
 		<>
 			<section className='col' key={organization._id}>
-				<div class='card'>
-					<div class='card__img'>
+				<div className='card'>
+					<div className='card__img'>
 						<img className='img' src={organization?.image_id?.url} />
 					</div>
-					<div class='card__name'>{organization?.name}</div>
-					<div class='card__job m-5'>
+					<div className='card__name'>{organization?.name}</div>
+					<div className='card__job m-5'>
 						<span className='h5'>Texto de bienvenida:</span>
 						<hr className='w-25 mx-auto' />
 						<span>{organization?.welcomeText}</span>
@@ -21,15 +21,13 @@ const Organization = ({ organization }) => {
 						<hr className='w-25 mx-auto' />
 						<DangerousSetInnerHTML content={organization?.aboutUs} />
 					</div>
-					<div class='card__link'>
+					<div className='card__link'>
 						<span className='h5'>Enlaces</span>
 						<hr className='w-25 mx-auto' />
 						<article>
 							Celular:
 							{organization?.phone ? (
-								<a
-									className='small  stretched-link'
-									href={`tel:${organization?.phone}`}>
+								<a className='small' href={`tel:${organization?.phone}`}>
 									<i className='fa fa-phone' aria-hidden='true'></i>
 								</a>
 							) : (
@@ -40,7 +38,7 @@ const Organization = ({ organization }) => {
 							Email:
 							{organization?.email ? (
 								<a
-									className='small  stretched-link'
+									className='small'
 									href={`mailto:${organization?.email}`}
 									target={'_blank'}>
 									<i className='fa fa-at' aria-hidden='true'></i>
@@ -53,7 +51,7 @@ const Organization = ({ organization }) => {
 							Facebook:
 							{organization?.urlFacebook ? (
 								<a
-									className='small  stretched-link'
+									className='small'
 									href={organization?.urlFacebook}
 									target={'_blank'}>
 									<i className='fa fa-facebook' aria-hidden='true'></i>
@@ -66,7 +64,7 @@ const Organization = ({ organization }) => {
 							Instagram:
 							{organization?.urlInstagram ? (
 								<a
-									className='small  stretched-link'
+									className='small'
 									href={organization?.urlInstagram}
 									target={'_blank'}>
 									<i className='fa fa-instagram' aria-hidden='true'></i>
@@ -79,7 +77,7 @@ const Organization = ({ organization }) => {
 							Whatsapp:
 							{organization?.urlWhatsapp ? (
 								<a
-									className='small  stretched-link'
+									className='small'
 									href={organization?.urlWhatsapp}
 									target={'_blank'}>
 									<i className='fa fa-whatsapp' aria-hidden='true'></i>
