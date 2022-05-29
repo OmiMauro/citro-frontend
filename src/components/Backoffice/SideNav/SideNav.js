@@ -142,9 +142,7 @@ const SideNav = () => {
 						<li>
 							<button
 								className='dropdown-item'
-								onClick={(e) => {
-									console.log(e)
-									e.preventDefault()
+								onClick={() => {
 									dispatch(logout())
 								}}>
 								Cerrar Sesion
