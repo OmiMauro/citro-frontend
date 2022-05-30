@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import Modal from '../Modal/Modal'
 const ProfileForm = ({
 	user,
 	handleSubmit,
@@ -29,16 +29,32 @@ const ProfileForm = ({
 	}
 	return (
 		<section className='container rounded bg-white mt-5 mb-5'>
-			<div className='row'>
+			<div className='row justify-content-center'>
 				<div className='col-md-3 border-right'>
 					<div className='d-flex flex-column align-items-center text-center p-3 py-5'>
+						<Modal
+							handleUpdateImage={handleUpdateImage}
+							key={user._id}
+							id={user._id}></Modal>
 						<img
 							className='rounded-circle mt-5'
 							width='150px'
-							src='https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
+							src={
+								values.image_url ||
+								'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
+							}
 						/>
-						<span className='font-weight-bold'>Edogaru</span>
-						<span className='text-black-50'>edogaru@mail.com.my</span>
+						<button
+							type='button'
+							className='btn btn-primary'
+							data-bs-toggle='modal'
+							data-bs-target='#modalID'>
+							<i className='fa fa-edit'></i>Cambiar
+						</button>
+						<span className='font-weight-bold'>
+							{user?.name}, {user?.lastname}
+						</span>
+						<span className='text-black-50'>{user?.email}</span>
 					</div>
 				</div>
 				<div className='col-md-5 border-right'>
@@ -143,7 +159,6 @@ const ProfileForm = ({
 										className='form-control'
 										value={values.dateBirth}
 										name='dateBirth'
-										placeholder='https://www.whatsapp.com/nombre_de_usuario'
 										onChange={handleChange}
 									/>
 									{errors?.map(
