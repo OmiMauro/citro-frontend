@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Profile = ({ user }) => {
 	return (
@@ -18,29 +19,40 @@ const Profile = ({ user }) => {
 											alt='Avatar'
 											className='img-fluid my-5'
 										/>
-										<h5>Marie Horwitz</h5>
-										<p>Web Designer</p>
-										<i className='far fa-edit mb-5'></i>
+										<h5>
+											{user?.name}, {user?.lastname}
+										</h5>
+										<Link to={`edit/${user._id}`}>
+											<i className='fa fa-edit mb-5'></i>Editar
+										</Link>
 									</div>
 									<div className='col-md-8'>
 										<div className='card-body p-4'>
-											<h6>Information</h6>
+											<h6>Datos personales</h6>
 											<hr className='mt-0 mb-4' />
 											<div className='row pt-1'>
+												<div className='col-6 mb-3'>
+													<h6>DNI</h6>
+													<p className='text-muted'>{user?.DNI}</p>
+												</div>
+												<div className='col-6 mb-3'>
+													<h6>Fecha de Nacimiento</h6>
+													<p className='text-muted'>{user?.dateBirth}</p>
+												</div>
 												<div className='col-6 mb-3'>
 													<h6>Email</h6>
-													<p className='text-muted'>info@example.com</p>
+													<p className='text-muted'>{user?.email}</p>
 												</div>
 												<div className='col-6 mb-3'>
-													<h6>Phone</h6>
-													<p className='text-muted'>123 456 789</p>
+													<h6>Celular</h6>
+													<p className='text-muted'>{user?.phone}</p>
 												</div>
 											</div>
-											<h6>Projects</h6>
+											<h6>Datos del Auto</h6>
 											<hr className='mt-0 mb-4' />
 											<div className='row pt-1'>
 												<div className='col-6 mb-3'>
-													<h6>Recent</h6>
+													<h6>Proximamente....</h6>
 													<p className='text-muted'>Lorem ipsum</p>
 												</div>
 												<div className='col-6 mb-3'>
@@ -48,7 +60,7 @@ const Profile = ({ user }) => {
 													<p className='text-muted'>Dolor sit amet</p>
 												</div>
 											</div>
-											<div className='d-flex justify-content-start'>
+											{/* <div className='d-flex justify-content-start'>
 												<a href='#!'>
 													<i className='fab fa-facebook-f fa-lg me-3'></i>
 												</a>
@@ -58,7 +70,7 @@ const Profile = ({ user }) => {
 												<a href='#!'>
 													<i className='fab fa-instagram fa-lg'></i>
 												</a>
-											</div>
+											</div> */}
 										</div>
 									</div>
 								</div>
