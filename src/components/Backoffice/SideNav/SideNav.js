@@ -3,9 +3,11 @@ import { routesPrivates } from '../../routes/routes'
 import './styles.css'
 import { logout, selectorAuth } from '../../../redux/slices/auth-slice'
 import { useDispatch, useSelector } from 'react-redux'
+import { selectorUsers } from '../../../redux/slices/users-slice'
 
 const SideNav = () => {
 	const { user } = useSelector(selectorAuth)
+	const { user: userId } = useSelector(selectorUsers)
 	const dispatch = useDispatch()
 	return (
 		<div className='col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark'>
@@ -89,7 +91,7 @@ const SideNav = () => {
 						id='menu'>
 						<li>
 							<Link to='/backoffice' className='nav-link align-middle px-0'>
-								<i className='fs-4 bi-table'></i>{' '}
+								<i className='fs-4 fa fa-table'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Home</span>
 							</Link>
 						</li>
@@ -107,14 +109,14 @@ const SideNav = () => {
 							<Link
 								to='/backoffice/events'
 								className='nav-link align-middle px-0'>
-								<i className='fs-4 fa-calendar'></i>{' '}
+								<i className='fs-4 fa fa-calendar'></i>{' '}
 								<span className='ms-1 d-none d-sm-inline'>Eventos</span>
 							</Link>
 						</li>
 					</ul>
 				)}
 				<hr />
-				<div className='dropdown pb-4'>
+				<div className='fixed-bottom dropdown p-4'>
 					<Link
 						to='profile/:id'
 						className='d-flex align-items-center text-white text-decoration-none dropdown-toggle'
@@ -122,8 +124,11 @@ const SideNav = () => {
 						data-bs-toggle='dropdown'
 						aria-expanded='false'>
 						<img
-							src='https://avatars.githubusercontent.com/u/64550079?v=4'
-							alt='hugenerd'
+							src={
+								userId?.image_id?.url ||
+								'https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg'
+							}
+							alt='avatar'
 							width='30'
 							height='30'
 							className='rounded-circle'
