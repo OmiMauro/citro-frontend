@@ -11,26 +11,28 @@ import slidesReducer from './slices/slides-slice'
 import galeryReducer from './slices/galery-slice'
 import authReducer from './slices/auth-slice'
 import userReducer from './slices/users-slice'
+import eventReducer from './slices/event-slice'
 const reducers = combineReducers({
 	organization: organizationReducer,
 	slides: slidesReducer,
 	members: membersReducer,
 	galery: galeryReducer,
 	auth: authReducer,
-	users: userReducer
+	users: userReducer,
+	events: eventReducer,
 })
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['user', 'admin', 'auth']
+	whitelist: ['user', 'admin', 'auth'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
 
 const store = configureStore({
 	reducer: persistedReducer,
-	middleware: [thunk]
+	middleware: [thunk],
 })
 
 export default store
