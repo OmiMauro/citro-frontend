@@ -6,7 +6,7 @@ const Events = ({ events, errors }) => {
 		<>
 			<section className="row">
 				{events?.map((event) => (
-					<div className="col-md-12 col-lg-6">
+					<div className="col-md-12 col-lg-6" key={event?._id}>
 						<div className="card-box">
 							<div className="card-thumbnail d-flex justify-content-center">
 								<img src={event?.image_id?.url} className="img-fluid " alt="" />

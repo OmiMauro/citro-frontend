@@ -15,9 +15,6 @@ const EventsContainer = () => {
 	return (
 		<>
 			<div className="container">
-				<h3 className="text-uppercase text-center text-black-50">
-					Próximos eventos
-				</h3>
 				<Events events={events} errors={errors} />
 			</div>
 		</>
