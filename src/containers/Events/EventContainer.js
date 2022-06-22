@@ -17,9 +17,6 @@ const EventContainer = () => {
 	return (
 		<>
 			<div className="container">
-				<h3 className="text-uppercase text-center text-black-50">
-					{event?.name}
-				</h3>
 				<Event event={event} errors={errors} />
 			</div>
 		</>
