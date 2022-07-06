@@ -34,6 +34,7 @@ import ConfirmEmailPage from '../../pages/ConfirmEmailPage'
 import EventsListContainer from '../../containers/Events/EventsListContainer'
 import EventsPage from '../../pages/EventsPage'
 import EventPage from '../../pages/EventPage'
+import EventsFormContainer from '../../containers/Events/EventsFormContainer'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
@@ -132,15 +133,11 @@ const routesPrivates = [
 		path: 'profile',
 		element: ProfileContainer,
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
-		styles: 'nav-link align-middle px-0',
-		name: 'Perfil',
 	},
 	{
 		path: 'profile/edit/:id',
 		element: ProfileFormContainer,
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
-		styles: 'nav-link align-middle px-0',
-		name: 'Editar Perfil',
 	},
 	{
 		path: 'galery',
@@ -156,6 +153,11 @@ const routesPrivates = [
 		path: 'events',
 		element: EventsListContainer,
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+	},
+	{
+		path: 'events/:id',
+		element: EventsFormContainer,
+		allowedRoles: [ROLES.ADMIN],
 	},
 ]
 

@@ -5,7 +5,7 @@ import { selectorEvent, fetchEventsById } from '../../redux/slices/event-slice'
 import Event from '../../components/Events/Event'
 const EventContainer = () => {
 	const dispatch = useDispatch()
-	const { event, errors } = useSelector(selectorEvent)
+	const { event, errors, status, msg } = useSelector(selectorEvent)
 	const { id } = useParams()
 
 	useEffect(() => {
@@ -17,7 +17,7 @@ const EventContainer = () => {
 	return (
 		<>
 			<div className="container">
-				<Event event={event} errors={errors} />
+				<Event event={event} errors={errors} status={status} />
 			</div>
 		</>
 	)
