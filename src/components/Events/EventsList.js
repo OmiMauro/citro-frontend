@@ -48,7 +48,7 @@ const EventList = ({ events }) => {
 							Inscribirme
 						</Link>
 						<Link
-							to={`/events/${event._id}/inscriptions`}
+							to={`${event._id}/inscriptions`}
 							className="btn btn-outline-primary m-1"
 						>
 							Ver inscripciones
