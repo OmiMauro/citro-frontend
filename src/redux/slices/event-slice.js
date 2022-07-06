@@ -31,7 +31,7 @@ export const fetchEventsById = createAsyncThunk(
 		}
 	}
 )
-const createEvent = createAsyncThunk(
+export const createEvent = createAsyncThunk(
 	'events/post',
 	async (data, { rejectWithValue }) => {
 		try {
@@ -42,7 +42,7 @@ const createEvent = createAsyncThunk(
 		}
 	}
 )
-const updateEvent = createAsyncThunk(
+export const updateEvent = createAsyncThunk(
 	'events/put',
 	async ({ id, data }, { rejectWithValue }) => {
 		try {
