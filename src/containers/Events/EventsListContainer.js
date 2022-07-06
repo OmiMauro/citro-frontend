@@ -6,10 +6,10 @@ import { selectorEvent, fetchEvents } from '../../redux/slices/event-slice'
 
 const EventsListContainer = () => {
 	const dispatch = useDispatch()
-	const { events, event, errors, msg } = useSelector(selectorEvent)
+	const { events, errors, msg } = useSelector(selectorEvent)
 
 	useEffect(() => {
-		dispatch(fetchEvents({}))
+		dispatch(fetchEvents(null))
 	}, [dispatch])
 
 	return (
