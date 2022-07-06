@@ -92,6 +92,15 @@ const SideNav = () => {
 								<span className="ms-1 d-none d-sm-inline">Eventos</span>
 							</Link>
 						</li>
+						<li>
+							<Link
+								to="/backoffice/inscriptions"
+								className="nav-link align-middle px-0"
+							>
+								<i className="fs-4 fa fa-calendar"></i>{' '}
+								<span className="ms-1 d-none d-sm-inline">Inscripciones</span>
+							</Link>
+						</li>
 					</ul>
 				)}
 				{user.roleId === 1 && (
@@ -123,6 +132,15 @@ const SideNav = () => {
 							>
 								<i className="fs-4 fa fa-calendar"></i>{' '}
 								<span className="ms-1 d-none d-sm-inline">Eventos</span>
+							</Link>
+						</li>
+						<li>
+							<Link
+								to="/backoffice/inscriptions"
+								className="nav-link align-middle px-0"
+							>
+								<i className="fs-4 fa fa-calendar"></i>{' '}
+								<span className="ms-1 d-none d-sm-inline">Inscripciones</span>
 							</Link>
 						</li>
 					</ul>
