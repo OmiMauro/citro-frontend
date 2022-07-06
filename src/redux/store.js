@@ -12,6 +12,7 @@ import galeryReducer from './slices/galery-slice'
 import authReducer from './slices/auth-slice'
 import userReducer from './slices/users-slice'
 import eventReducer from './slices/event-slice'
+import inscriptionsReducer from './slices/inscriptions-slice'
 const reducers = combineReducers({
 	organization: organizationReducer,
 	slides: slidesReducer,
@@ -20,6 +21,7 @@ const reducers = combineReducers({
 	auth: authReducer,
 	users: userReducer,
 	events: eventReducer,
+	inscriptions: inscriptionsReducer,
 })
 
 const persistConfig = {

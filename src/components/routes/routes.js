@@ -35,6 +35,7 @@ import EventsListContainer from '../../containers/Events/EventsListContainer'
 import EventsPage from '../../pages/EventsPage'
 import EventPage from '../../pages/EventPage'
 import EventsFormContainer from '../../containers/Events/EventsFormContainer'
+import InscriptionsContainer from '../../containers/Inscriptions/InscriptionsContainer'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
@@ -157,6 +158,11 @@ const routesPrivates = [
 	{
 		path: 'events/:id',
 		element: EventsFormContainer,
+		allowedRoles: [ROLES.ADMIN],
+	},
+	{
+		path: 'events/:eventId/inscriptions',
+		element: InscriptionsContainer,
 		allowedRoles: [ROLES.ADMIN],
 	},
 ]
