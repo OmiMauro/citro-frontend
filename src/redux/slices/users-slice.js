@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { getAllUsers, getUserById } from '../../services/users-services'
+import {
+	getAllUsers,
+	getUserById,
+	putUser,
+} from '../../services/users-services'
 import { STATUS } from '../constants/action-types'
 
 export const fetchUsers = createAsyncThunk(
@@ -24,6 +28,17 @@ export const fetchUserById = createAsyncThunk(
 		}
 	}
 )
+export const editUser = createAsyncThunk(
+	'users/put',
+	async ({ id, data }, { rejectWithValue }) => {
+		try {
+			const response = await putUser(id, data)
+			if (response) return response.data
+		} catch (error) {
+			return rejectWithValue(error.response.data)
+		}
+	}
+)
 const userSlice = createSlice({
 	name: 'users',
 	initialState: {
@@ -31,7 +46,7 @@ const userSlice = createSlice({
 		errors: [],
 		user: {},
 		msg: '',
-		status: null
+		status: null,
 	},
 	extraReducers: {
 		[fetchUsers.pending]: (state) => {
@@ -44,7 +59,7 @@ const userSlice = createSlice({
 		},
 		[fetchUsers.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
-			state.errors = payload
+			state.errors = payload.errors
 		},
 		[fetchUserById.pending]: (state) => {
 			state.status = STATUS.PENDING
@@ -56,9 +71,22 @@ const userSlice = createSlice({
 		},
 		[fetchUserById.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
-			state.errors = payload
-		}
-	}
+			state.errors = payload.errors
+		},
+		[editUser.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[editUser.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.user = payload
+			state.errors = []
+			state.msg = payload.msg
+		},
+		[editUser.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.errors
+		},
+	},
 })
 
 export const selectorUsers = (state) => state.users
