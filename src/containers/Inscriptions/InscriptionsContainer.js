@@ -8,7 +8,8 @@ import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 const InscriptionsContainer = () => {
 	const { eventId } = useParams()
-	const { inscriptions, status, errors } = useSelector(selectorInscriptions)
+	const { inscriptions, status, errors, msg } =
+		useSelector(selectorInscriptions)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -21,6 +22,7 @@ const InscriptionsContainer = () => {
 				inscriptions={inscriptions}
 				status={status}
 				errors={errors}
+				msg={msg}
 			/>
 		</div>
 	)

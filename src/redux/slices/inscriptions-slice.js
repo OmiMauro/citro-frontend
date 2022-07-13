@@ -6,7 +6,6 @@ export const fetchInscriptionsByEvent = createAsyncThunk(
 	async ({ eventId }, { rejectWithValue }) => {
 		try {
 			const response = await getInscriptionsByEvent(eventId)
-			console.log(response.data)
 			if (response) return response?.data
 		} catch (error) {
 			return rejectWithValue(error)
@@ -34,7 +33,6 @@ const inscriptionsSlice = createSlice({
 		[fetchInscriptionsByEvent.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.errors = null
-			console.log(payload)
 			state.inscriptions = payload.data
 		},
 	},

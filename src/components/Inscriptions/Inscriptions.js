@@ -29,7 +29,7 @@ const Inscriptions = ({ inscriptions, errors, status, msg }) => {
 						</tr>
 					</thead>
 					<tbody className="table-striped">
-						{inscriptions.map((inscription, index) => {
+						{inscriptions?.docs.map((inscription, index) => {
 							return (
 								<tr key="inscription._id">
 									<th>{index}</th>
