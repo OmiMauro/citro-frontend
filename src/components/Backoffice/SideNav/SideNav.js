@@ -4,6 +4,7 @@ import './styles.css'
 import { logout, selectorAuth } from '../../../redux/slices/auth-slice'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectorUsers } from '../../../redux/slices/users-slice'
+import { linksAdmin, linksUser } from './Links'
 
 const SideNav = () => {
 	const { user } = useSelector(selectorAuth)
@@ -23,84 +24,9 @@ const SideNav = () => {
 						className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
 						id="menu"
 					>
-						<li>
-							<Link to="/backoffice" className="nav-link align-middle px-0">
-								<i className="fs-4 bi-table fa fa-table"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Home</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/organizations"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 bi-table fa fa-building"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Organizations</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/profile"
-								className="nav-link px-0 align-middle "
-							>
-								<i className="fs-4 fa fa-user-circle"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Profile</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/members"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4  fa fa-users"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Organizadores</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/slides"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 fa fa-image"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Slides</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/galery"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 fa fa-camera"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Galería</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/users"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 fa fa-user"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Usuarios</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/events"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 fa fa-calendar"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Eventos</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/inscriptions"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 fa fa-calendar"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Inscripciones</span>
-							</Link>
-						</li>
+						{linksAdmin.map((item, index) => {
+							return <li key={index}>{item}</li>
+						})}
 					</ul>
 				)}
 				{user.roleId === 1 && (
@@ -108,41 +34,9 @@ const SideNav = () => {
 						className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start"
 						id="menu"
 					>
-						<li>
-							<Link to="/backoffice" className="nav-link align-middle px-0">
-								<i className="fs-4 fa fa-table"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Home</span>
-							</Link>
-						</li>
-
-						<li>
-							<Link
-								to="/backoffice/profile"
-								className="nav-link px-0 align-middle "
-							>
-								<i className="fs-4 fa fa-user-circle"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Profile</span>
-							</Link>
-						</li>
-
-						<li>
-							<Link
-								to="/backoffice/events"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 fa fa-calendar"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Eventos</span>
-							</Link>
-						</li>
-						<li>
-							<Link
-								to="/backoffice/inscriptions"
-								className="nav-link align-middle px-0"
-							>
-								<i className="fs-4 fa fa-calendar"></i>{' '}
-								<span className="ms-1 d-none d-sm-inline">Inscripciones</span>
-							</Link>
-						</li>
+						{linksUser.map((item, index) => {
+							return <li key={index}>{item}</li>
+						})}
 					</ul>
 				)}
 				<hr />
