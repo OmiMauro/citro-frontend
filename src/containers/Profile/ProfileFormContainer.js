@@ -2,7 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import ProfileForm from '../../components/Profile/ProfileForm'
-import { selectorUsers, editUser } from '../../redux/slices/users-slice'
+import {
+	selectorUsers,
+	editUser,
+	editPassword,
+} from '../../redux/slices/users-slice'
 
 const ProfileFormContainer = () => {
 	const { id } = useParams()
@@ -15,6 +19,9 @@ const ProfileFormContainer = () => {
 	const handleUpdateImage = async (data) => {
 		if (id) dispatch()
 	}
+	const handleSubmitPassword = async (data) => {
+		if (id) dispatch(editPassword({ id, data }))
+	}
 	return (
 		<>
 			<div className="col">
@@ -24,6 +31,7 @@ const ProfileFormContainer = () => {
 					msg={msg}
 					handleSubmit={handleSubmit}
 					handleUpdateImage={handleUpdateImage}
+					handleSubmitPassword={handleSubmitPassword}
 				/>
 			</div>
 		</>

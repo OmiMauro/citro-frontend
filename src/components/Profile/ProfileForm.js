@@ -6,6 +6,7 @@ const ProfileForm = ({
 	handleUpdateImage,
 	msg,
 	errors,
+	handleSubmitPassword,
 }) => {
 	const [values, setValues] = useState({
 		name: user?.name ?? '',
@@ -18,6 +19,8 @@ const ProfileForm = ({
 		password: '',
 		confirmPassword: '',
 	})
+	let dateBirth = new Date()
+	dateBirth.setDate(values.dateBirth)
 	const handleChange = (e) => {
 		const { value, name } = e.target
 		if (name === 'image') setValues({ ...values, name: e.target.files[0] })
@@ -31,11 +34,11 @@ const ProfileForm = ({
 	const onSubmitPassword = (e) => {
 		e.preventDefault()
 		if (values.password === values.confirmPassword) {
-			handleSubmitPassword(values.password)
+			handleSubmitPassword({ password: values.password })
 		}
 	}
 	return (
-		<section className="container rounded bg-white mt-5 mb-5">
+		<div className="container rounded bg-white mt-5 mb-5">
 			<div className="row justify-content-center">
 				<div className="col-md-3 border-right">
 					<div className="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -252,7 +255,7 @@ const ProfileForm = ({
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
 	)
 }
 

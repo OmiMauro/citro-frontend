@@ -3,6 +3,7 @@ import {
 	getAllUsers,
 	getUserById,
 	putUser,
+	patchPassword,
 } from '../../services/users-services'
 import { STATUS } from '../constants/action-types'
 
@@ -33,6 +34,17 @@ export const editUser = createAsyncThunk(
 	async ({ id, data }, { rejectWithValue }) => {
 		try {
 			const response = await putUser(id, data)
+			if (response) return response.data
+		} catch (error) {
+			return rejectWithValue(error.response.data)
+		}
+	}
+)
+export const editPassword = createAsyncThunk(
+	'users/put/password',
+	async ({ id, data }, { rejectWithValue }) => {
+		try {
+			const response = await patchPassword(id, data)
 			if (response) return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
@@ -83,6 +95,18 @@ const userSlice = createSlice({
 			state.msg = payload.msg
 		},
 		[editUser.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.errors
+		},
+		[editPassword.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[editPassword.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.errors = []
+			state.msg = payload.msg
+		},
+		[editPassword.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.errors = payload.errors
 		},
