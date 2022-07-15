@@ -11,10 +11,9 @@ const ProfileContainer = () => {
 	useEffect(() => {
 		dispatch(fetchUserById(userId.userId))
 	}, [dispatch])
-	console.log(user, userId)
 	return (
 		<>
-			<div className='col'>
+			<div className="col">
 				<Profile user={user} errors={errors} msg={msg} />
 			</div>
 		</>

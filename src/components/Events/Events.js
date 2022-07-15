@@ -18,9 +18,9 @@ const Events = ({ events, errors }) => {
 							<div>
 								<h6>
 									Fecha:
-									{event?.dates?.map((day) => {
+									{event?.dates?.map((day, index) => {
 										const date = new Date(day).toLocaleDateString()
-										return <span> - {date}</span>
+										return <span key={index}> - {date}</span>
 									})}
 								</h6>
 							</div>

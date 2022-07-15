@@ -106,7 +106,6 @@ const eventSlice = createSlice({
 		},
 		[fetchEvents.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			console.log(payload)
 			state.events = payload.data
 			state.msg = payload.msg
 		},
