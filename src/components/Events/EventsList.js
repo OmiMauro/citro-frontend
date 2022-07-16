@@ -7,6 +7,7 @@ const EventList = ({ events }) => {
 			<h3 className="h3 fw-bold text-center text-uppercase">
 				Próximos eventos
 			</h3>
+			<Link to="/create">Crear evento</Link>
 			<div className="row">
 				{events?.map((event) => (
 					<div className="card col-6" key={event._id}>
