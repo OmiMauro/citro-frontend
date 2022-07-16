@@ -1,17 +1,25 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { STATUS } from '../constants/action-types'
-import { getInscriptionsByEvent } from '../../services/inscriptions-services'
-export const fetchInscriptionsByEvent = createAsyncThunk(
+import { getInscriptions } from '../../services/inscriptions-services'
+
+export const fetchInscriptions = createAsyncThunk(
 	'inscriptions/get',
-	async ({ eventId }, { rejectWithValue }) => {
+	async (param, { rejectWithValue }) => {
 		try {
-			const response = await getInscriptionsByEvent(eventId)
+			const response = await getInscriptions()
 			if (response) return response?.data
 		} catch (error) {
 			return rejectWithValue(error)
 		}
 	}
 )
+export const fetchInscriptionsByUser = createAsyncThunk(
+	'',
+	(param, { rejectWithValue }) => {}
+)
+export const fetchInscription = createAsyncThunk('', (param, {}) => {})
+export const createInscription = createAsyncThunk('', (param, {}) => {})
+
 const inscriptionsSlice = createSlice({
 	name: 'inscriptions',
 	initialState: {
@@ -22,15 +30,15 @@ const inscriptionsSlice = createSlice({
 		msg: '',
 	},
 	extraReducers: {
-		[fetchInscriptionsByEvent.pending]: (state, { payload }) => {
+		[fetchInscriptions.pending]: (state, { payload }) => {
 			state.status = STATUS.PENDING
 		},
-		[fetchInscriptionsByEvent.rejected]: (state, { payload }) => {
+		[fetchInscriptions.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.inscriptions = []
 			state.errors = payload.data.errors
 		},
-		[fetchInscriptionsByEvent.fulfilled]: (state, { payload }) => {
+		[fetchInscriptions.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.errors = null
 			state.inscriptions = payload.data
