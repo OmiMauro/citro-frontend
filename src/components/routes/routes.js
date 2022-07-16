@@ -14,6 +14,12 @@ import SlidesFormContainer from '../../containers/Slides/SlidesFormContainer'
 import EventsContainer from '../../containers/Events/EventsListContainer'
 import UsersContainer from '../../containers/Users/UsersContainer'
 import UsersListContainer from '../../containers/Users/UsersListContainer'
+import InscriptionsListContainer from '../../containers/Inscriptions/InscriptionsListContainer'
+import EventsListContainer from '../../containers/Events/EventsListContainer'
+import EventsFormContainer from '../../containers/Events/EventsFormContainer'
+import InscriptionsContainer from '../../containers/Inscriptions/InscriptionsContainer'
+import InscriptionsFormContainer from '../../containers/Inscriptions/InscriptionsFormContainer'
+
 /* Routes Publics */
 
 import HomePage from '../../pages/HomePage'
@@ -31,11 +37,8 @@ import ContactPage from '../../pages/ContactPage'
 import ForgotPasswordPage from '../../pages/ForgotPasswordPage'
 import ResetPasswordPage from '../../pages/ResetPasswordPage'
 import ConfirmEmailPage from '../../pages/ConfirmEmailPage'
-import EventsListContainer from '../../containers/Events/EventsListContainer'
 import EventsPage from '../../pages/EventsPage'
 import EventPage from '../../pages/EventPage'
-import EventsFormContainer from '../../containers/Events/EventsFormContainer'
-import InscriptionsContainer from '../../containers/Inscriptions/InscriptionsContainer'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
@@ -156,14 +159,29 @@ const routesPrivates = [
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
 	},
 	{
+		path: 'events/create',
+		element: EventsFormContainer,
+		allowedRoles: [ROLES.ADMIN],
+	},
+	{
 		path: 'events/:id',
 		element: EventsFormContainer,
 		allowedRoles: [ROLES.ADMIN],
 	},
 	{
-		path: 'events/:eventId/inscriptions',
+		path: 'events/:id/inscriptions',
 		element: InscriptionsContainer,
 		allowedRoles: [ROLES.ADMIN],
+	},
+	{
+		path: 'inscriptions',
+		element: InscriptionsListContainer,
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+	},
+	{
+		path: 'events/:eventId/inscriptions/create',
+		element: InscriptionsFormContainer,
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
 	},
 ]
 
