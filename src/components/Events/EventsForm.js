@@ -6,16 +6,16 @@ import { editorConfig } from '../Editor/editorConfig'
 
 const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 	const [values, setValues] = useState({
-		name: organization?.name ?? '',
-		image_url: organization?.image_id?.url ?? '',
+		name: event?.name ?? '',
+		image_url: event?.image_id?.url ?? '',
 		price: '',
-		valid_until: organization?.valid_until ?? '',
-		dates: organization?.dates ?? '',
-		country: organization?.country ?? '',
-		province: organization?.province ?? '',
-		locality: organization?.locality ?? '',
-		description: organization?.description ?? '',
-		is_public: organization?.is_public ?? '',
+		valid_until: event?.valid_until ?? '',
+		dates: event?.dates ?? '',
+		country: event?.country ?? '',
+		province: event?.province ?? '',
+		locality: event?.locality ?? '',
+		description: event?.description ?? '',
+		is_public: event?.is_public ?? '',
 	})
 	const {
 		name,
@@ -43,17 +43,17 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 	return (
 		<div className="container">
 			<h3 className="text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-4">
-				Editar datos del evento
+				{event._id ? 'Editar datos del evento' : 'Agregar nuevo evento'}
 			</h3>
 			<div className="row d-flex justify-content-center align-items-center ">
-				<div className="col-lg-12 col-xl-11 ">
+				<div className="col-lg-12 col-xl-11">
 					<div className="p-md-5">
 						<div className="row justify-content-center">
 							<div className="col-md-10 col-lg-8 col-xl-10">
 								<Modal id={event._id} handleUpdateImage={handleUpdateImage} />
 								<form className="mx-1 mx-md-4" onSubmit={onSubmit}>
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-image fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-image fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											{image_url ? (
 												<>
@@ -98,7 +98,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 									</div>
 
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-building fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-building fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											<input
 												className="form-control"
@@ -110,7 +110,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 												name="name"
 											/>
 											<label htmlFor="name" className="form-label">
-												Nombre del evento
+												Nombre del evento*
 											</label>
 											{errors?.map(
 												(err) =>
@@ -121,7 +121,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 										</div>
 									</div>
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-at fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-at fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											<input
 												className="form-control"
@@ -132,7 +132,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 												name="dates"
 											/>
 											<label htmlFor="dates" className="form-label">
-												Fechas del evento
+												Fechas del evento*
 											</label>
 											{errors?.map(
 												(err) =>
@@ -143,7 +143,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 										</div>
 									</div>
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-whatsapp fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-country fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											<input
 												type="text"
@@ -151,11 +151,11 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 												className="form-control"
 												value={country}
 												name="country"
-												placeholder="https://www.whatsapp.com/nombre_de_usuario"
+												placeholder="Argentina"
 												onChange={handleChange}
 											/>
 											<label className="form-label" htmlFor="country">
-												URL Whatsapp*
+												País*
 											</label>
 											{errors?.map(
 												(err) =>
@@ -166,7 +166,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 										</div>
 									</div>
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-instagram fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-instagram fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											<input
 												type="text"
@@ -174,11 +174,11 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 												className="form-control"
 												value={province}
 												name="province"
-												placeholder="Provincia"
+												placeholder="Misiones"
 												onChange={handleChange}
 											/>
 											<label className="form-label" htmlFor="province">
-												Provincia
+												Provincia*
 											</label>
 											{errors?.map(
 												(err) =>
@@ -189,19 +189,19 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 										</div>
 									</div>
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-facebook fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-facebook fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											<input
 												className="form-control"
 												onChange={handleChange}
 												id="locality"
 												type="text"
-												placeholder="Localidad"
+												placeholder="Jardín América"
 												value={locality}
 												name="locality"
 											/>
 											<label htmlFor="locality" className="form-label">
-												Localidad
+												Localidad*
 											</label>
 											{errors?.map(
 												(err) =>
@@ -213,7 +213,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 									</div>
 
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-valid_until fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-valid_until fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											<input
 												id="valid_until"
@@ -225,7 +225,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 												className="form-control"
 											/>
 											<label className="form-label" htmlFor="valid_until">
-												Valido hasta:
+												Valido hasta:*
 											</label>
 											{errors?.map(
 												(err) =>
@@ -236,7 +236,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 										</div>
 									</div>
 									<div className="d-flex flex-row align-items-center mb-4">
-										<i className="fa fa-bold fa-lg me-3 fa-fw"></i>
+										{/* <i className="fa fa-bold fa-lg me-3 fa-fw"></i> */}
 										<div className="form-outline flex-fill mb-0">
 											<CKEditor
 												editor={ClassicEditor}
@@ -266,7 +266,7 @@ const EventForm = ({ event, handleSubmit, errors, handleUpdateImage, msg }) => {
 										</div>
 									</div>
 
-									<div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+									<div className="d-flex justify-content-center  mb-3 mb-lg-4">
 										<button type="submit" className="btn btn-primary btn-lg">
 											{event?._id ? 'Actualizar datos' : 'Crear evento'}
 										</button>
