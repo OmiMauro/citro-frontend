@@ -4,29 +4,28 @@ import Pagination from '../../components/Pagination/Pagination'
 
 import {
 	fetchInscriptionsByEvent,
-	selectorInscriptions,
-} from '../../redux/slices/inscriptions-slice'
+	selectorEvent,
+} from '../../redux/slices/event-slice'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
 const InscriptionsContainer = () => {
-	const { eventId } = useParams()
-	const { inscriptions, status, errors, msg } =
-		useSelector(selectorInscriptions)
+	const { id } = useParams()
+	const { inscriptions, status, errors, msg } = useSelector(selectorEvent)
 	const [values, setValues] = useState({
 		page: 1,
-		limit: 10,
+		limit: 20,
 	})
 	const dispatch = useDispatch()
 
 	const handlePageChange = (e) => {
 		setValues({ ...values, page: e.selected + 1 })
 	}
-
 	useEffect(() => {
-		if (eventId)
+		if (id)
 			dispatch(
 				fetchInscriptionsByEvent({
-					eventId,
+					eventId: id,
 					page: values.page,
 					limit: values.limit,
 				})

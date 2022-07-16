@@ -1,5 +1,5 @@
 import { get } from './public-api-services'
-import { post, put, remove } from './private-api-services'
+import { post, put, remove, get as getPrivate } from './private-api-services'
 const ENDPOINT = process.env.REACT_APP_API_EVENTS_ENDPOINT
 
 export const getEvents = async (search = null) => {
@@ -25,4 +25,10 @@ export const editChronogram = async ({ id, chronogramId }, data) => {
 }
 export const deleteChronogram = async ({ id, chronogramId }) => {
 	return await remove(`${ENDPOINT}/${id}/chronogram`, chronogramId)
+}
+
+export const getInscriptions = async (_eventId, search) => {
+	const url = `${ENDPOINT}/${_eventId}/inscriptions`
+	console.log(url)
+	return await getPrivate(url, search)
 }

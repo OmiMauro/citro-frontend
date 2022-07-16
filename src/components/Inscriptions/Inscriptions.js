@@ -31,6 +31,7 @@ const Inscriptions = ({ inscriptions, errors, status, msg }) => {
 								<th scope="col">Provincia</th>
 								<th scope="col">Localidad</th>
 								<th scope="col">Precio</th>
+								<th scope="col">Evento</th>
 							</tr>
 						</thead>
 						<tbody className="table-striped">
@@ -42,6 +43,7 @@ const Inscriptions = ({ inscriptions, errors, status, msg }) => {
 										<th>{inscription?.provinceOrigin}</th>
 										<th>{inscription?.locationOrigin}</th>
 										<th>{inscription?.unitPrice}</th>
+										<th>{inscription?._eventId?.name}</th>
 									</tr>
 								)
 							})}

@@ -6,6 +6,7 @@ import {
 	editChronogram,
 	newChronogram,
 	getEventById,
+	getInscriptions,
 } from '../../services/events-services'
 import { STATUS } from '../constants/action-types'
 
@@ -86,13 +87,24 @@ export const removeChronogram = createAsyncThunk(
 		}
 	}
 )
-
+export const fetchInscriptionsByEvent = createAsyncThunk(
+	'events/:id/inscriptions',
+	async ({ eventId, page, limit }, { rejectWithValue }) => {
+		try {
+			const response = await getInscriptions(eventId, { page, limit })
+			return response.data
+		} catch (error) {
+			return rejectWithValue(error.response.data)
+		}
+	}
+)
 const eventSlice = createSlice({
 	name: 'event',
 	initialState: {
 		events: [],
 		event: {},
 		errors: [],
+		inscriptions: {},
 		msg: '',
 	},
 	extraReducers: {
@@ -191,6 +203,19 @@ const eventSlice = createSlice({
 			state.events = state.events.filter(
 				(item) => item.chronogram._id !== payload.data._id
 			)
+		},
+		[fetchInscriptionsByEvent.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[fetchInscriptionsByEvent.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.msg = payload.msg
+			state.errors = payload.errors
+		},
+		[fetchInscriptionsByEvent.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.msg = payload.msg
+			state.inscriptions = payload.data
 		},
 	},
 })
