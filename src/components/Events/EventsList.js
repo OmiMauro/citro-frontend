@@ -44,7 +44,7 @@ const EventList = ({ events }) => {
 						</div>
 						<div className="d-flex justify-content-start ">
 							<Link
-								to={`/events/${event._id}/inscriptions/create`}
+								to={`${event._id}/inscriptions/create`}
 								className="btn btn-outline-primary m-1"
 							>
 								Inscribirme
