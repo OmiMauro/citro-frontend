@@ -13,6 +13,8 @@ import authReducer from './slices/auth-slice'
 import userReducer from './slices/users-slice'
 import eventReducer from './slices/event-slice'
 import inscriptionsReducer from './slices/inscriptions-slice'
+import locationsReducer from './slices/location-slice'
+
 const reducers = combineReducers({
 	organization: organizationReducer,
 	slides: slidesReducer,
@@ -22,12 +24,13 @@ const reducers = combineReducers({
 	users: userReducer,
 	events: eventReducer,
 	inscriptions: inscriptionsReducer,
+	locations: locationsReducer,
 })
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	whitelist: ['user', 'admin', 'auth'],
+	whitelist: ['users', 'admin', 'auth'],
 }
 
 const persistedReducer = persistReducer(persistConfig, reducers)
