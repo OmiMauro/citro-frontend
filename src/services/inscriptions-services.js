@@ -5,7 +5,10 @@ export const getInscriptions = async (search) => {
 	return await get(ENDPOINT, search)
 }
 
-export const createInscription = async () => {}
+export const newInscription = async ({ _eventId, data }) => {
+	let url = `${ENDPOINT}/${_eventId}`
+	return await post(url, data)
+}
 export const getAllInscriptionsByUser = async () => {}
 
 export const getInscription = async () => {}
