@@ -1,6 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { STATUS } from '../constants/action-types'
-import { getInscriptions } from '../../services/inscriptions-services'
+import {
+	getInscriptions,
+	newInscription,
+} from '../../services/inscriptions-services'
 
 export const fetchInscriptions = createAsyncThunk(
 	'inscriptions/get',
@@ -9,7 +12,7 @@ export const fetchInscriptions = createAsyncThunk(
 			const response = await getInscriptions()
 			if (response) return response?.data
 		} catch (error) {
-			return rejectWithValue(error)
+			return rejectWithValue(error.response.data)
 		}
 	}
 )
@@ -18,7 +21,16 @@ export const fetchInscriptionsByUser = createAsyncThunk(
 	(param, { rejectWithValue }) => {}
 )
 export const fetchInscription = createAsyncThunk('', (param, {}) => {})
-export const createInscription = createAsyncThunk('', (param, {}) => {})
+export const createInscription = createAsyncThunk(
+	'inscription/create',
+	async ({ _eventId, data }, { rejectWithValue }) => {
+		try {
+			const response = await newInscription({ _eventId, data })
+		} catch (error) {
+			return rejectWithValue(error.response.data)
+		}
+	}
+)
 
 const inscriptionsSlice = createSlice({
 	name: 'inscriptions',
@@ -26,7 +38,7 @@ const inscriptionsSlice = createSlice({
 		inscriptions: [],
 		inscription: {},
 		status: null,
-		errors: null,
+		errors: [],
 		msg: '',
 	},
 	extraReducers: {
@@ -40,7 +52,21 @@ const inscriptionsSlice = createSlice({
 		},
 		[fetchInscriptions.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
-			state.errors = null
+			state.errors = []
+			state.inscriptions = payload.data
+		},
+		[createInscription.pending]: (state, { payload }) => {
+			state.status = STATUS.PENDING
+		},
+		[createInscription.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			console.log(payload)
+			state.errors = payload.errors
+		},
+		[createInscription.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.errors = []
+			state.msg = payload.msg
 			state.inscriptions = payload.data
 		},
 	},
