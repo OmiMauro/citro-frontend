@@ -5,7 +5,7 @@ import {
 	forgotPwd,
 	verifyTokenService,
 	resetPwd,
-	verificationEmail
+	verificationEmail,
 } from '../../services/auth-services'
 import { STATUS } from '../constants/action-types'
 
@@ -82,27 +82,26 @@ export const verifyEmail = createAsyncThunk(
 		}
 	}
 )
+const initialState = {
+	auth: false,
+	user: {},
+	token: '',
+	status: null,
+	errors: [],
+	msg: '',
+}
 const authSlice = createSlice({
 	name: 'auth',
-	initialState: {
-		auth: false,
-		user: {},
-		token: '',
-		status: null,
-		errors: [],
-		msg: ''
-	},
+	initialState,
 	reducers: {
 		logout: (state) => {
 			localStorage.clear()
-			state.auth = false
-			state.token = ''
-			state.user = {}
+			initialState = initialState
 		},
 		clearState: (state) => {
 			state.errors = []
 			state.msg = ''
-		}
+		},
 	},
 	extraReducers: {
 		[logged.pending]: (state) => {
@@ -182,8 +181,8 @@ const authSlice = createSlice({
 		[verifyEmail.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.msg = payload.msg
-		}
-	}
+		},
+	},
 })
 
 export const selectorAuth = (state) => state.auth
