@@ -58,12 +58,12 @@ const SideNav = () => {
 							height="30"
 							className="rounded-circle"
 						/>
-						<span className="d-none d-sm-inline mx-1">{user.name}</span>
+						<span className="d-none d-sm-inline mx-1">{user?.name}</span>
 					</Link>
 					<ul className="dropdown-menu dropdown-menu-dark text-small shadow">
 						<li>
 							<Link to="/backoffice/profile" className="dropdown-item">
-								Profile
+								Perfil
 							</Link>
 						</li>
 						<li>
