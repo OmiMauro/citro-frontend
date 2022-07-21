@@ -82,21 +82,25 @@ export const verifyEmail = createAsyncThunk(
 		}
 	}
 )
-const initialState = {
-	auth: false,
-	user: {},
-	token: '',
-	status: null,
-	errors: [],
-	msg: '',
-}
 const authSlice = createSlice({
 	name: 'auth',
-	initialState,
+	initialState: {
+		auth: false,
+		user: {},
+		token: '',
+		status: null,
+		errors: [],
+		msg: '',
+	},
 	reducers: {
 		logout: (state) => {
 			localStorage.clear()
-			initialState = initialState
+			state.auth = false
+			state.user = {}
+			state.token = ''
+			state.errors = []
+			state.msg = ''
+			state.status = null
 		},
 		clearState: (state) => {
 			state.errors = []
