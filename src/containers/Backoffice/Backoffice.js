@@ -6,11 +6,11 @@ import { fetchUserById, selectorUsers } from '../../redux/slices/users-slice'
 import Home from '../../components/Backoffice/Home/Home'
 
 const Backoffice = () => {
-	const { user: userId } = useSelector(selectorAuth)
+	const { user } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
-		dispatch(fetchUserById(userId.userId))
+		dispatch(fetchUserById(user.userId))
 	}, [dispatch])
 
 	return (
