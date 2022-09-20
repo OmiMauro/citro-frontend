@@ -21,10 +21,10 @@ const ProtectedRoutes = ({ allowedRoles }) => {
 		allowedRoles?.includes(user?.roleId) ? (
 			<Outlet />
 		) : (
-			<Navigate to='unauthorized' replace></Navigate>
+			<Navigate to="/unauthorized" state={{ location }} replace></Navigate>
 		)
 	) : (
-		<Navigate to='login' replace state={{ location }}></Navigate>
+		<Navigate to="login" replace state={{ location }}></Navigate>
 	)
 }
 
