@@ -3,10 +3,9 @@ import config from './axios-config'
 
 const instance = axios.create(config)
 
-const token = localStorage.getItem('token')
-
 instance.interceptors.request.use(
 	(config) => {
+		let token = localStorage.getItem('token')
 		config.headers.Authorization = token ? `Bearer ${token}` : ''
 		return config
 	},
