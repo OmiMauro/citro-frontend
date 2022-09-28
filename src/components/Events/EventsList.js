@@ -1,16 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
-const EventList = ({ events }) => {
+import { ROLES } from '../../redux/constants/action-types'
+const EventList = ({ events, user }) => {
 	return (
 		<div className="mx-auto mt-5" /* style={{ maxWidth: '23rem' }} */>
 			<h3 className="h3 fw-bold text-center text-uppercase">
 				Próximos eventos
 			</h3>
-			<Link to="create">Crear evento</Link>
+
+			<div className="row justify-content-center d-flex m-2">
+				{user.roleId === ROLES.ADMIN && (
+					<Link to="create" className="btn btn-outline-warning col-3">
+						Crear evento
+					</Link>
+				)}
+
+				<Link to={`/backoffice/`} className="btn col-3 btn-outline-warning ">
+					Volver
+				</Link>
+			</div>
 			<div className="row">
 				{events?.map((event) => (
-					<div className="card col-6" key={event._id}>
+					<div className="card col-6 mt-5" key={event._id}>
 						<div
 							className="bg-image hover-overlay ripple"
 							data-mdb-ripple-color="light"
@@ -39,7 +50,7 @@ const EventList = ({ events }) => {
 							<strong>Día/s:</strong>
 							{event?.dates?.map((date) => {
 								const dateTransformed = new Date(date)
-								return <p>{dateTransformed.toLocaleDateString()}</p>
+								return <p key={date}>{dateTransformed.toLocaleDateString()}</p>
 							})}
 						</div>
 						<div className="d-flex justify-content-start ">
@@ -49,12 +60,15 @@ const EventList = ({ events }) => {
 							>
 								Inscribirme
 							</Link>
-							<Link
-								to={`${event._id}/inscriptions`}
-								className="btn btn-outline-primary m-1"
-							>
-								Ver inscripciones
-							</Link>
+
+							{user.roleId === ROLES.ADMIN && (
+								<Link
+									to={`${event._id}/inscriptions`}
+									className="btn btn-outline-primary m-1"
+								>
+									Ver inscripciones
+								</Link>
+							)}
 						</div>
 					</div>
 				))}
