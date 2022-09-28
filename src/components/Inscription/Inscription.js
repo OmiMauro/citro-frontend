@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
-const Inscription = ({ inscription, errors, status, user }) => {
-	const { _eventId, _orderId } = inscription
+const Inscription = ({ inscription, errors, status }) => {
+	const { _eventId, _orderId, _userId } = inscription
 	return (
 		<section className="mx-auto" style={{ maxWidth: '50rem' }}>
 			<div className="card">
@@ -19,16 +19,21 @@ const Inscription = ({ inscription, errors, status, user }) => {
 					<div className="text-start">
 						<p>
 							<strong className="text-uppercase">Nombre: </strong>
-							{user?.name}
+							{_userId?.name}
 						</p>
 						<p>
 							<strong className="text-uppercase">Apellido: </strong>
-							{user?.lastname}
+							{_userId?.lastname}
 						</p>
 						<p>
 							<strong className="text-uppercase">DNI: </strong>
-							{user?.DNI}
+							{_userId?.DNI}
 						</p>
+						<p>
+							<strong className="text-uppercase">Celular: </strong>
+							{_userId?.phone}
+						</p>
+
 						<p>
 							<strong className="text-uppercase">Localidad: </strong>
 							{inscription?.locality}
@@ -57,7 +62,9 @@ const Inscription = ({ inscription, errors, status, user }) => {
 						</p>
 						<p>
 							<strong className="text-uppercase">Detalle del Pago: </strong>
-							{_orderId?.status_detail}
+							{_orderId?.status_detail === 'accredited'
+								? 'Acreditado'
+								: _orderId?.status_detail}
 						</p>
 						<p>
 							<strong className="text-uppercase">Tipo de operación: </strong>
@@ -73,14 +80,16 @@ const Inscription = ({ inscription, errors, status, user }) => {
 						</p>
 						<p>
 							<strong className="text-uppercase">Precio: </strong> $
-							{_orderId?.transaction_amount}
+							{inscription?.unitPrice}
 						</p>
-						<a
-							className="text-uppercase mx-auto btn btn-outline-primary"
-							href={_orderId?.init_point}
-						>
-							Pagar
-						</a>
+						{_orderId?.status !== 'approved' && (
+							<a
+								className="text-uppercase mx-auto btn btn-outline-primary"
+								href={_orderId?.init_point}
+							>
+								Pagar
+							</a>
+						)}
 					</div>
 
 					<Link
