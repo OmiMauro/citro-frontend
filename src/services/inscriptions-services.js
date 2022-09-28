@@ -11,4 +11,6 @@ export const newInscription = async ({ _eventId, data }) => {
 }
 export const getAllInscriptionsByUser = async () => {}
 
-export const getInscription = async () => {}
+export const getInscriptionById = async (_inscriptionId) => {
+	return await get(ENDPOINT, null, _inscriptionId)
+}
