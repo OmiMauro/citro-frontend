@@ -3,6 +3,7 @@ import { STATUS } from '../constants/action-types'
 import {
 	getInscriptions,
 	newInscription,
+	getInscriptionById,
 } from '../../services/inscriptions-services'
 
 export const fetchInscriptions = createAsyncThunk(
@@ -20,12 +21,23 @@ export const fetchInscriptionsByUser = createAsyncThunk(
 	'',
 	(param, { rejectWithValue }) => {}
 )
-export const fetchInscription = createAsyncThunk('', (param, {}) => {})
+export const fetchInscriptionById = createAsyncThunk(
+	'inscription/:inscriptionId',
+	async (_inscriptionId, { rejectWithValue }) => {
+		try {
+			const response = await getInscriptionById(_inscriptionId)
+			if (response) return response?.data
+		} catch (error) {
+			return rejectWithValue(error.response.data)
+		}
+	}
+)
 export const createInscription = createAsyncThunk(
 	'inscription/create',
 	async ({ _eventId, data }, { rejectWithValue }) => {
 		try {
 			const response = await newInscription({ _eventId, data })
+			if (response) return response?.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
 		}
@@ -55,19 +67,31 @@ const inscriptionsSlice = createSlice({
 			state.errors = []
 			state.inscriptions = payload.data
 		},
-		[createInscription.pending]: (state, { payload }) => {
+		[createInscription.pending]: (state) => {
 			state.status = STATUS.PENDING
 		},
 		[createInscription.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
-			console.log(payload)
 			state.errors = payload.errors
 		},
 		[createInscription.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.errors = []
 			state.msg = payload.msg
-			state.inscriptions = payload.data
+			state.inscription = payload.data
+		},
+		[fetchInscriptionById.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[fetchInscriptionById.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.errors
+		},
+		[fetchInscriptionById.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.errors = []
+			state.msg = payload.msg
+			state.inscription = payload.data
 		},
 	},
 })
