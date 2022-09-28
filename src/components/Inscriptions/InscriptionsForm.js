@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 const InscriptionsForm = ({
 	user,
 	event,
+	inscription,
 	errors,
 	handleSubmit,
 	msg,
@@ -15,6 +16,8 @@ const InscriptionsForm = ({
 		_eventId: event?._id ?? '',
 		province: '',
 		locality: '',
+
+		_inscription: inscription._id ?? '',
 	})
 	const handleChange = (e) => {
 		const { value, name } = e.target
@@ -26,7 +29,6 @@ const InscriptionsForm = ({
 		e.preventDefault()
 		handleSubmit(values)
 	}
-
 	return (
 		<div className="container rounded bg-white mt-5 mb-5">
 			<div className="row justify-content-center">
@@ -173,9 +175,12 @@ const InscriptionsForm = ({
 										<div className="text-danger text-center">{err.msg}</div>
 									)
 							)}
-							{msg && <p className="text-center">{msg}</p>}
+							{msg && <p className="text-center text-success">{msg}</p>}
 						</form>
 					</div>
+
+					{inscription?.init_point &&
+						window.location.replace(inscription?.init_point)}
 				</div>
 			</div>
 		</div>
@@ -183,107 +188,3 @@ const InscriptionsForm = ({
 }
 
 export default InscriptionsForm
-{
-	/* <div className='form-floating'>
-                    <select
-                      value={locationOrigin}
-                      onChange={e =>
-                        setValues({
-                          ...values,
-                          error: false,
-                          locationOrigin: e.target.value
-                        })}
-                      className='form-select flex-fill mr-sm-2 mb-sm-0 mt-2'
-                      id='locationOrigin'
-                      name='locationOrigin'
-                      required='required'
-                    >
-                      <option hidden />
-                      {locations.map(item => (
-                        <option value={item.nombre} key={item.id}>
-                          {item.nombre}
-                        </option>
-                      ))}
-                      <option value='Other'>No se encuentra en la lista</option>
-                    </select>
-                    <label for='locationOrigin'>Localidad de Origen</label>
-                  </div>
-									
-									<div className='form-floating'>
-                    <select
-                      value={provinceOrigin}
-                      onChange={e => {
-                        setValues({
-                          ...values,
-                          error: false,
-                          provinceOrigin: e.target.value
-                        })
-                        const name = e.target.value
-                        handleLocality(name)
-                      }}
-                      className='form-select flex-fill mr-sm-2 mb-sm-0 mt-2'
-                      id='provinceOrigin'
-                      name='provinceOrigin'
-                      required='required'
-                    >
-                      <option hidden />
-                      {provinces.map(prov => (
-                        <option value={prov.nombre} key={prov.id}>
-                          {prov.nombre}
-                        </option>
-                      ))}
-                    </select>
-                    <label for='provinceOrigin p-4'>Provincia de Origen</label>
-                  </div>
-									
-						 const handleProvinces = async () => {
-    const response = await getProvinces()
-    const sorted = response.data.provincias.sort(function (a, b) {
-      if (a.nombre > b.nombre) return 1
-      if (a.nombre < b.nombre) return -1
-      return 0
-    })
-    setProvinces(sorted)
-  }			
-									
-				
-  const handleLocality = async name => {
-    const response = await getLocalidades(name)
-    const sorted = await response.data.municipios.sort(function (a, b) {
-      if (a.nombre > b.nombre) return 1
-      if (a.nombre < b.nombre) return -1
-      return 0
-    })
-    setLocations(sorted)
-  }					
-
-	import axios from 'axios'
-
-const urlBase = 'https://apis.datos.gob.ar/georef/api'
-const getProvinces = async () => {
-  try {
-    const response = await axios({
-      method: 'get',
-      url: `${urlBase}/provincias?campos=id,nombre`
-    })
-    return response
-  } catch (e) {
-    console.error(e)
-  }
-}
-const getLocalidades = async province => {
-  try {
-    const response = await axios({
-      method: 'get',
-      url: `${urlBase}/municipios?provincia=${province}&campos=id,nombre&max=600`
-    })
-    return response
-  } catch (e) {
-    console.error(e)
-  }
-}
-
-export { getProvinces, getLocalidades }
-
-									*/
-}
