@@ -16,8 +16,7 @@ import { selectorUsers } from '../../redux/slices/users-slice'
 const InscriptionsFormContainer = () => {
 	const { eventId } = useParams()
 	const { user } = useSelector(selectorUsers)
-	const { inscriptions, status, msg, errors } =
-		useSelector(selectorInscriptions)
+	const { inscription, status, msg, errors } = useSelector(selectorInscriptions)
 	const { provinces, localities } = useSelector(selectorLocations)
 	const dispatch = useDispatch()
 
@@ -36,7 +35,7 @@ const InscriptionsFormContainer = () => {
 			<div className="col">
 				<InscriptionsForm
 					user={user}
-					inscriptions={inscriptions}
+					inscription={inscription}
 					status={status}
 					msg={msg}
 					errors={errors}
