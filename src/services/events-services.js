@@ -27,8 +27,7 @@ export const deleteChronogram = async ({ id, chronogramId }) => {
 	return await remove(`${ENDPOINT}/${id}/chronogram`, chronogramId)
 }
 
-export const getInscriptions = async (_eventId, search) => {
+export const getInscriptionsByEvent = async (_eventId, search) => {
 	const url = `${ENDPOINT}/${_eventId}/inscriptions`
-	console.log(url)
 	return await getPrivate(url, search)
 }

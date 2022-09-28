@@ -6,7 +6,7 @@ import {
 	editChronogram,
 	newChronogram,
 	getEventById,
-	getInscriptions,
+	getInscriptionsByEvent,
 } from '../../services/events-services'
 import { STATUS } from '../constants/action-types'
 
@@ -88,10 +88,10 @@ export const removeChronogram = createAsyncThunk(
 	}
 )
 export const fetchInscriptionsByEvent = createAsyncThunk(
-	'events/:id/inscriptions',
+	'events/:eventId/inscriptions',
 	async ({ eventId, page, limit }, { rejectWithValue }) => {
 		try {
-			const response = await getInscriptions(eventId, { page, limit })
+			const response = await getInscriptionsByEvent(eventId, { page, limit })
 			return response.data
 		} catch (error) {
 			return rejectWithValue(error.response.data)
