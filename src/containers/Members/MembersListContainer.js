@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	selectorMembers,
 	fetchMembers,
-	removeMember
+	removeMember,
 } from '../../redux/slices/members-slice'
 
 const MembersListContainer = () => {
@@ -21,10 +21,7 @@ const MembersListContainer = () => {
 		}
 	}
 	return (
-		<div className='col'>
-			<h3 className='text-center fw-bold mb-5 mx-1 mx-md-4 mt-4'>
-				Lista de los organizadores
-			</h3>
+		<div className="col">
 			<MembersList members={members} handleDelete={handleDelete} />
 		</div>
 	)
