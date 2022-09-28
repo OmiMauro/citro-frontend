@@ -10,7 +10,7 @@ import { selectorUsers } from '../../redux/slices/users-slice'
 
 const InscriptionContainer = () => {
 	const { inscriptionId } = useParams()
-	const { errors, inscription, msg, status } = useSelector(selectorInscriptions)
+	const { errors, inscription } = useSelector(selectorInscriptions)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -18,15 +18,10 @@ const InscriptionContainer = () => {
 			dispatch(fetchInscriptionById(inscriptionId))
 		}
 	}, [dispatch])
-	const { user } = useSelector(selectorUsers)
+
 	return (
 		<div className="col">
-			<Inscription
-				inscription={inscription}
-				errors={errors}
-				status={status}
-				user={user}
-			/>
+			<Inscription inscription={inscription} errors={errors} />
 		</div>
 	)
 }
