@@ -39,6 +39,7 @@ import ResetPasswordPage from '../../pages/ResetPasswordPage'
 import ConfirmEmailPage from '../../pages/ConfirmEmailPage'
 import EventsPage from '../../pages/EventsPage'
 import EventPage from '../../pages/EventPage'
+import InscriptionContainer from '../../containers/Inscription/InscriptionContainer'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
@@ -169,7 +170,7 @@ const routesPrivates = [
 		allowedRoles: [ROLES.ADMIN],
 	},
 	{
-		path: 'events/:id/inscriptions',
+		path: 'events/:eventId/inscriptions',
 		element: InscriptionsContainer,
 		allowedRoles: [ROLES.ADMIN],
 	},
@@ -181,6 +182,11 @@ const routesPrivates = [
 	{
 		path: 'events/:eventId/inscriptions/create',
 		element: InscriptionsFormContainer,
+		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
+	},
+	{
+		path: 'inscription/:inscriptionId',
+		element: InscriptionContainer,
 		allowedRoles: [ROLES.ADMIN, ROLES.CUSTOMER],
 	},
 ]
