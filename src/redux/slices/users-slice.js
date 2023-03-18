@@ -51,6 +51,14 @@ export const editPassword = createAsyncThunk(
 		}
 	}
 )
+export const editImage = createAsyncThunk('users/put/image', async () => {
+	try {
+		const response = await patchImage(data)
+		if (response) return response.data
+	} catch (error) {
+		return rejectWithValue(error.response.data)
+	}
+})
 const userSlice = createSlice({
 	name: 'users',
 	initialState: {
@@ -107,6 +115,17 @@ const userSlice = createSlice({
 			state.msg = payload.msg
 		},
 		[editPassword.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.errors = payload.errors
+		},
+		[editImage.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[editImage.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.user = payload.data
+		},
+		[editImage.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.errors = payload.errors
 		},

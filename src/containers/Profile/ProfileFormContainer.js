@@ -6,6 +6,7 @@ import {
 	selectorUsers,
 	editUser,
 	editPassword,
+	editImage,
 } from '../../redux/slices/users-slice'
 
 const ProfileFormContainer = () => {
@@ -17,7 +18,9 @@ const ProfileFormContainer = () => {
 		if (id) dispatch(editUser({ id, data }))
 	}
 	const handleUpdateImage = async (data) => {
-		if (id) dispatch()
+		if (id) {
+			dispatch(patchMemberImage({ data, id }))
+		}
 	}
 	const handleSubmitPassword = async (data) => {
 		if (id) dispatch(editPassword({ id, data }))
