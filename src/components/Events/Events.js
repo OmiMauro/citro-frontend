@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './events.css'
+import moment from 'moment'
 const Events = ({ events, errors }) => {
 	return (
 		<>
@@ -19,8 +20,8 @@ const Events = ({ events, errors }) => {
 								<h6>
 									Fecha:
 									{event?.dates?.map((day, index) => {
-										const date = new Date(day).toLocaleDateString()
-										return <span key={index}> - {date}</span>
+										const date = moment(day).format('DD-MM-YYYY')
+										return <span key={index}> {date}</span>
 									})}
 								</h6>
 							</div>

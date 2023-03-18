@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ROLES } from '../../redux/constants/action-types'
+import moment from 'moment'
 const EventList = ({ events, user }) => {
 	return (
 		<div className="mx-auto mt-5" /* style={{ maxWidth: '23rem' }} */>
@@ -49,8 +50,8 @@ const EventList = ({ events, user }) => {
 							<hr className="my-4" />
 							<strong>Día/s:</strong>
 							{event?.dates?.map((date) => {
-								const dateTransformed = new Date(date)
-								return <p key={date}>{dateTransformed.toLocaleDateString()}</p>
+								const dateTransformed = moment(date).format('DD-MM-YYYY')
+								return <p key={dateTransformed}>{dateTransformed}</p>
 							})}
 						</div>
 						<div className="d-flex justify-content-start ">
