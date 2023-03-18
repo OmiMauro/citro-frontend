@@ -9,7 +9,7 @@ import ProtectedRoutes from './components/routes/ProtectedRoutes'
 import { routesPublics, routesPrivates } from './components/routes/routes'
 import {
 	selectorOrganization,
-	fetchOrganization
+	fetchOrganization,
 } from './redux/slices/organization-slice'
 
 import { ROLES } from './config'
@@ -24,7 +24,7 @@ const App = () => {
 	return (
 		<>
 			<Routes>
-				<Route path='/' element={<LayoutPublic />}>
+				<Route path="/" element={<LayoutPublic />}>
 					{routesPublics.map(({ path, element: Element }) => {
 						return <Route key={path} path={path} element={<Element />}></Route>
 					})}
@@ -33,13 +33,15 @@ const App = () => {
 				<Route
 					element={
 						<ProtectedRoutes allowedRoles={[ROLES.ADMIN, ROLES.CUSTOMER]} />
-					}>
-					<Route path='backoffice' element={<LayoutPrivate />}>
+					}
+				>
+					<Route path="backoffice" element={<LayoutPrivate />}>
 						{routesPrivates.map(({ path, element: Element, allowedRoles }) => {
 							return (
 								<Route
 									key={path}
-									element={<ProtectedRoutes allowedRoles={allowedRoles} />}>
+									element={<ProtectedRoutes allowedRoles={allowedRoles} />}
+								>
 									<Route path={path} element={<Element />}></Route>
 								</Route>
 							)
