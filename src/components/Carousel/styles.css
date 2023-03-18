@@ -1,6 +1,7 @@
 /* Carousel base class */
 .carousel {
 	margin-bottom: 4rem;
+	min-height: 100vh;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -18,4 +19,14 @@
 	left: 0;
 	min-width: 100%;
 	height: 32rem;
+}
+
+.carousel-img {
+	object-fit: cover;
+	height: 90vh !important;
+}
+
+.carousel-container {
+	min-height: 100vh !important;
+	height: 90vh !important;
 }
