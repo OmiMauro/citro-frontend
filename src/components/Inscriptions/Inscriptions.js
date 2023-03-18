@@ -22,7 +22,8 @@ const Inscriptions = ({ inscriptions, errors, status, msg }) => {
 			{status === STATUS.SUCCESSFUL && (
 				<>
 					<h4 className="text-center text-muted">INSCRIPCIONES</h4>
-					<h6>Cantidad de Inscripciones: {inscriptions?.total}</h6>
+					<h6>Cantidad de Inscripciones: {inscriptions?.total || 0} </h6>
+
 					<table className="table table-striped table-light table-bordered table-hover">
 						<thead className="thead-dark">
 							<tr>

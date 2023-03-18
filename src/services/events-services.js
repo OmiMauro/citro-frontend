@@ -1,5 +1,6 @@
 import { get } from './public-api-services'
 import { post, put, remove, get as getPrivate } from './private-api-services'
+//import download from 'download'
 const ENDPOINT = process.env.REACT_APP_API_EVENTS_ENDPOINT
 
 export const getEvents = async (search = null) => {
@@ -30,4 +31,10 @@ export const deleteChronogram = async ({ id, chronogramId }) => {
 export const getInscriptionsByEvent = async (_eventId, search) => {
 	const url = `${ENDPOINT}/${_eventId}/inscriptions`
 	return await getPrivate(url, search)
+}
+
+export const getInscriptionsByEventPDF = async (_eventId) => {
+	const url = `${ENDPOINT}/${_eventId}/inscriptions/create-pdf`
+
+	return await getPrivate(url, null, null, { responseType: 'blob' })
 }

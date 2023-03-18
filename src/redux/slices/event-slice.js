@@ -7,6 +7,7 @@ import {
 	newChronogram,
 	getEventById,
 	getInscriptionsByEvent,
+	getInscriptionsByEventPDF,
 } from '../../services/events-services'
 import { STATUS } from '../constants/action-types'
 
@@ -98,6 +99,18 @@ export const fetchInscriptionsByEvent = createAsyncThunk(
 		}
 	}
 )
+export const fetchInscriptionsByEventPDF = createAsyncThunk(
+	'events/:eventId/inscriptions',
+	async (eventId, { rejectWithValue }) => {
+		try {
+			const response = await getInscriptionsByEventPDF(eventId)
+			return download(response.data, 'file.pdf', result.headers['content-type'])
+			//			return response?.data
+		} catch (error) {
+			return rejectWithValue(error.response.data)
+		}
+	}
+)
 const eventSlice = createSlice({
 	name: 'event',
 	initialState: {
@@ -106,6 +119,7 @@ const eventSlice = createSlice({
 		errors: [],
 		inscriptions: {},
 		msg: '',
+		pdf: {},
 	},
 	extraReducers: {
 		[fetchEvents.pending]: (state) => {
@@ -216,6 +230,19 @@ const eventSlice = createSlice({
 			state.status = STATUS.SUCCESSFUL
 			state.msg = payload.msg
 			state.inscriptions = payload.data
+		},
+		[fetchInscriptionsByEventPDF.pending]: (state) => {
+			state.status = STATUS.PENDING
+		},
+		[fetchInscriptionsByEventPDF.rejected]: (state, { payload }) => {
+			state.status = STATUS.FAILED
+			state.msg = payload?.msg
+			state.errors = payload?.errors
+		},
+		[fetchInscriptionsByEventPDF.fulfilled]: (state, { payload }) => {
+			state.status = STATUS.SUCCESSFUL
+			state.msg = payload?.msg
+			state.pdf = payload?.data
 		},
 	},
 })

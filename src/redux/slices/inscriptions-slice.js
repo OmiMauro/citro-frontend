@@ -69,15 +69,19 @@ const inscriptionsSlice = createSlice({
 		},
 		[createInscription.pending]: (state) => {
 			state.status = STATUS.PENDING
+			state.msg = ''
+			state.errors = []
 		},
 		[createInscription.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.errors = payload.errors
+			state.msg = ''
 		},
 		[createInscription.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL
 			state.errors = []
 			state.msg = payload.msg
+
 			state.inscription = payload.data
 		},
 		[fetchInscriptionById.pending]: (state) => {
