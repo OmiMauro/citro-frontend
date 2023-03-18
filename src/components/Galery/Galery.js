@@ -5,107 +5,121 @@ import Lightbox from 'react-18-image-lightbox'
 import 'react-18-image-lightbox/style.css'
 import { fetchGalery, selectorGalery } from '../../redux/slices/galery-slice'
 import Pagination from '../Pagination/Pagination'
-import { STATUS } from '../../redux/constants/action-types'
 
 const ImageEvent = () => {
-	const [values, setValues] = useState({
-		page: 1,
-		indexPagination: '',
-		photos: [],
-	})
-	const [ligthbox, setLigthbox] = useState({
+	const dispatch = useDispatch()
+	const { galery } = useSelector(selectorGalery)
+
+	const { limit, pages, page } = galery || {}
+	useEffect(() => {
+		dispatch(fetchGalery())
+	}, [])
+	useEffect(() => {
+		if (!galery) {
+			dispatch(fetchGalery(page))
+		}
+	}, [dispatch, galery, page])
+
+	const [lightbox, setLightbox] = useState({
 		photoIndex: 0,
 		openLightbox: false,
 	})
 
-	const { page, indexPagination, photos } = values
-
-	const dispatch = useDispatch()
-	const { galery, status, errors } = useSelector(selectorGalery)
-
 	useEffect(() => {
-		dispatch(fetchGalery(page))
-	}, [page, dispatch])
+		setLightbox((prevLightbox) => ({
+			...prevLightbox,
+			photoIndex: prevLightbox.photoIndex % galery.limit,
+		}))
+	}, [limit])
 
-	useEffect(() => {
-		setValues({
-			...values,
-			photos: galery?.docs?.map((item, index) => {
-				return {
-					src: item.image_id.secure_url,
-					width: item.image_id.width || 200,
-					height: item.image_id.height || 200,
-				}
-			}),
-		})
-	}, [galery])
-
-	const handlePageChange = (e) => {
-		setValues({ ...values, page: e.selected + 1 })
+	const handlePageChange = (selectedPage) => {
+		dispatch(fetchGalery(selectedPage))
 	}
+
+	const getNextIndex = (currentIndex) => {
+		return (parseInt(currentIndex) + 1) % limit
+	}
+
+	const getPrevIndex = (currentIndex) => {
+		console.log(currentIndex)
+		return (parseInt(currentIndex) + limit - 1) % limit
+	}
+	const openLightboxAtIndex = (index) => {
+		setLightbox({ photoIndex: index, openLightbox: true })
+	}
+	const closeLightbox = () => {
+		setLightbox({ photoIndex: 0, openLightbox: false })
+	}
+
+	const movePrevLightbox = () => {
+		if (lightbox.photoIndex === 0 && parseInt(page) > 1) {
+			dispatch(fetchGalery(parseInt(page) - 1))
+			setLightbox({ photoIndex: limit - 1, openLightbox: true })
+		} else {
+			setLightbox((prevLightbox) => ({
+				...prevLightbox,
+				photoIndex: getPrevIndex(lightbox.photoIndex),
+				openLightbox: true,
+			}))
+		}
+	}
+	const moveNextLightbox = () => {
+		if (lightbox.photoIndex + 1 == limit && parseInt(page) + 1 <= pages) {
+			dispatch(fetchGalery(parseInt(page) + 1))
+			setLightbox({ photoIndex: 0, openLightbox: true })
+		} else {
+			setLightbox((prevLightbox) => ({
+				...prevLightbox,
+				photoIndex: getNextIndex(prevLightbox.photoIndex),
+				openLightbox: true,
+			}))
+		}
+	}
+
 	return (
 		<>
 			<div className="container ">
 				<h2 className="text-center py-5 text-uppercase">Algunas imagenes...</h2>
-				{status === STATUS.SUCCESSFUL && (
-					<div>
-						<PhotoAlbum
-							photos={photos}
-							layout="rows"
-							onClick={(event, photo, index) => {
-								setLigthbox({ photoIndex: index, openLightbox: true })
-							}}
-						/>
-						<div className="m-0 row justify-content-center mt-2">
-							{ligthbox.openLightbox && (
-								<Lightbox
-									mainSrc={photos[ligthbox.photoIndex]?.src}
-									nextSrc={
-										photos[(ligthbox.photoIndex + 1) % photos?.length]?.src
-									}
-									prevSrc={
-										photos[
-											(ligthbox.photoIndex + photos?.length - 1) %
-												photos?.length
-										]?.src
-									}
-									onCloseRequest={() => {
-										setLigthbox({ photoIndex: 0, openLightbox: false })
-									}}
-									onMovePrevRequest={() =>
-										setLigthbox({
-											...ligthbox,
-											photoIndex:
-												(ligthbox.photoIndex + photos.length - 1) %
-												photos.length,
-										})
-									}
-									onMoveNextRequest={() =>
-										setLigthbox({
-											...ligthbox,
-											photoIndex: (ligthbox.photoIndex + 1) % photos.length,
-										})
-									}
-								/>
-							)}
+				<div>
+					<PhotoAlbum
+						photos={galery.docs?.map((item) => ({
+							src: item.image_id.secure_url,
+							width: item.image_id.width || 200,
+							height: item.image_id.height || 200,
+						}))}
+						layout="rows"
+						onClick={(event, photo, index) => {
+							openLightboxAtIndex(index)
+						}}
+					/>
+					<div className="m-0 row justify-content-center mt-2">
+						{lightbox.openLightbox && (
+							<Lightbox
+								mainSrc={galery.docs[lightbox.photoIndex]?.image_id.secure_url}
+								nextSrc={
+									galery.docs[getNextIndex(lightbox.photoIndex)]?.image_id
+										.secure_url
+								}
+								prevSrc={
+									galery.docs[getPrevIndex(lightbox.photoIndex)]?.image_id
+										.secure_url
+								}
+								onCloseRequest={closeLightbox}
+								onMovePrevRequest={movePrevLightbox}
+								onMoveNextRequest={moveNextLightbox}
+							/>
+						)}
 
-							<div className="col-auto text-center">
-								<Pagination
-									handlePageChange={handlePageChange}
-									total={galery.total}
-									pages={galery.pages}
-								/>
-							</div>
+						<div className="col-auto text-center">
+							<Pagination
+								handlePageChange={handlePageChange}
+								pages={pages}
+								itemsPerPage={limit}
+								page={page}
+							/>
 						</div>
 					</div>
-				)}
-				{status === STATUS.PENDING && (
-					<div className="d-flex justify-content-center ">
-						<div className="spinner-grow text-secondary " role="status">
-							<span className="visually-hidden">Loading...</span>
-						</div>
-					</div>
-				)}
+				</div>
 			</div>
 		</>
 	)
