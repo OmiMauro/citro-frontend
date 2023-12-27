@@ -1,84 +1,71 @@
-// import { isAuthenticated } from '../../data/services/auth/index'
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectorOrganization } from '../../redux/slices/organization-slice'
 import { selectorAuth, logout } from '../../redux/slices/auth-slice'
-import { Link } from 'react-router-dom'
+import { Navbar, Nav, Button, Container } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignIn, faUserPlus, faHome } from '@fortawesome/free-solid-svg-icons'
 import logo from './navbar-logo.png'
+import './styles.css'
+import { Link } from 'react-router-dom'
+const NAV_LINKS = [
+	{ path: '/about-us', label: 'Nosotros' },
+	{ path: '/contact', label: 'Contacto' },
+	{ path: '/organizators', label: 'Organizadores' },
+]
 
-const Nav = () => {
-	const { organization, status } = useSelector(selectorOrganization)
+const AUTH_LINKS = {
+	loggedIn: [
+		{ path: '/backoffice', label: 'Backoffice', icon: faSignIn },
+		{ path: '/logout', label: 'Cerrar Sesion', icon: faSignIn, isLogout: true },
+	],
+	loggedOut: [
+		{ path: '/login', label: 'Log In', icon: faSignIn },
+		{ path: '/register', label: 'Registrarse', icon: faUserPlus },
+	],
+}
+
+const CustomNav = () => {
 	const { auth } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
+
+	const handleLogout = () => {
+		if (dispatch) dispatch(logout())
+	}
+
 	return (
-		<nav
-			className='navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm'
-			id='mainNav'>
-			<div className='container'>
-				<button
-					className='navbar-toggler'
-					type='button'
-					data-bs-toggle='collapse'
-					data-bs-target='#navbarSupportedContent'
-					aria-controls='navbarSupportedContent'
-					aria-expanded='false'
-					aria-label='Toggle navigation'>
-					<span className='navbar-toggler-icon'></span>
-				</button>
-				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
-					<ul className='navbar-nav mb-2 mb-lg-0'>
-						<li className='nav-item'>
-							<Link className='nav-link ' to='/about-us'>
-								Nosotros
-							</Link>
-						</li>
-						<li className='nav-item'>
-							<Link className='nav-link ' to='/contact'>
-								Contacto
-							</Link>
-						</li>
-						<li className='nav-item'>
-							<Link className='nav-link ' to='/organizators'>
-								Organizadores
-							</Link>
-						</li>
-					</ul>
-					<Link
-						className='navbar-brand fw-bold fs-4 mx-auto text-uppercase '
-						to='/'>
-						<img
-							src={logo}
-							alt='logo-organization '
-							className='d-none d-lg-block'></img>
-						<i className='fa fa-home d-block d-lg-none'>Inicio</i>
-					</Link>
-					{auth ? (
-						<ul className='navbar-nav'>
-							<Link to='/backoffice' className='btn btn-outline-dark '>
-								<i className='fa fa-sign-in me-1'></i>Backoffice
-							</Link>
-							<button
-								className='btn btn-outline-dark '
-								onClick={() => dispatch(logout())}>
-								<i className='fa fa-sign-in me-1 '></i>Cerrar Sesion
-							</button>
-						</ul>
-					) : (
-						<ul className='navbar-nav'>
-							<li className='nav-item'>
-								<Link className='btn btn-outline-dark ' to='/login'>
-									<i className='fa fa-sign-in me-1 '></i>Log In
+		<Navbar expand="lg" className="py-3 shadow-sm" id="mainNav">
+			<Navbar.Brand href="/" className="px-md-5">
+				<img src={logo} alt="Organization Logo" />
+				<FontAwesomeIcon icon={faHome} className="d-block d-lg-none" />
+			</Navbar.Brand>
+			<Navbar.Toggle aria-controls="basic-navbar-nav" />
+			<Navbar.Collapse className=" d-lg-flex justify-content-end">
+				<Nav className=" d-flex align-items-center">
+					{NAV_LINKS.map(({ path, label }) => (
+						<Link key={path} to={path} className="nav-link text-uppercase ">
+							{label}
+						</Link>
+					))}
+					{(auth ? AUTH_LINKS.loggedIn : AUTH_LINKS.loggedOut).map(
+						({ path, label, icon, isLogout }) =>
+							isLogout ? (
+								<Button key={path} onClick={handleLogout}>
+									<FontAwesomeIcon icon={icon} className="me-1" />
+									{label}
+								</Button>
+							) : (
+								<Link key={path} to={path} className="nav-link text-uppercase">
+									<Button className=" btn btn-outline-dark">
+										<FontAwesomeIcon icon={icon} className="me-1" />
+										{label}
+									</Button>
 								</Link>
-							</li>
-							<li className='nav-item'>
-								<Link className='btn btn-outline-dark ' to='/register'>
-									<i className='fa fa-user-plus me-1 '></i>Registrarse
-								</Link>
-							</li>
-						</ul>
+							)
 					)}
-				</div>
-			</div>
-		</nav>
+				</Nav>
+			</Navbar.Collapse>
+		</Navbar>
 	)
 }
-export default Nav
+
+export default CustomNav
