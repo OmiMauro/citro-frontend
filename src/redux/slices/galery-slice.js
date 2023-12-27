@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
 	getGalery,
 	newPictures,
-	deletePicture
+	deletePicture,
 } from '../../services/galery-services'
 import { STATUS } from '../constants/action-types'
 
 export const fetchGalery = createAsyncThunk(
 	'galery/get',
-	async (page = 1, { rejectWithValue }) => {
+	async (page, { rejectWithValue }) => {
 		try {
 			const response = await getGalery({ page })
 			if (response) return response.data
@@ -44,7 +44,7 @@ const galerySlice = createSlice({
 	initialState: {
 		galery: [],
 		status: null,
-		errors: []
+		errors: [],
 	},
 	extraReducers: {
 		[fetchGalery.pending]: (state) => {
@@ -88,8 +88,8 @@ const galerySlice = createSlice({
 		[removePicture.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.errors = payload.data.errors
-		}
-	}
+		},
+	},
 })
 
 export const selectorGalery = (state) => state.galery
