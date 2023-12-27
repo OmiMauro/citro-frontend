@@ -1,291 +1,218 @@
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import {
 	selectorAuth,
+	clearState,
 	registered,
-	clearState
 } from '../../redux/slices/auth-slice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { Row, Col, Card, Button, Spinner, Form } from 'react-bootstrap'
+import { Formik } from 'formik'
+
+import * as Yup from 'yup'
 import imageLogin from './image-login.jpg'
-import { useEffect } from 'react'
-import './auth-styles.css'
+import { TextInput } from '../Elements/TextInput'
+import {
+	faEnvelope,
+	faLock,
+	faUser,
+	faPhone,
+	faUsers,
+	faLockKeyhole,
+} from '@fortawesome/pro-regular-svg-icons'
 import { STATUS } from '../../redux/constants/action-types'
 
 const Register = () => {
-	const [values, setValues] = useState({
+	// dispatch(registered(body))
+	const { auth, status } = useSelector(selectorAuth)
+	const dispatch = useDispatch()
+
+	const navigate = useNavigate()
+
+	useEffect(() => {
+		if (auth) {
+			navigate('/backoffice')
+		}
+		dispatch(clearState())
+	}, [auth, dispatch, navigate])
+
+	const initialValues = {
+		name: '',
+		lastname: '',
+		phone: '',
 		email: '',
 		password: '',
 		confirmPassword: '',
-		lastname: '',
-		name: '',
-		phone: '',
-		conditions: false
+		conditions: false,
+	}
+	const validationSchema = Yup.object().shape({
+		name: Yup.string().required('Required name'),
+		lastname: Yup.string().required('Required lastname'),
+		phone: Yup.string().required('Required phone'),
+		email: Yup.string()
+			.email('Invalid email format')
+			.required('Required email'),
+		password: Yup.string().required('Required password'),
+		confirmPassword: Yup.string()
+			.required('Required password')
+			.oneOf([Yup.ref('password'), null], 'Passwords must match'),
+		conditions: Yup.bool().oneOf([true], 'Required conditions'),
 	})
-	const {
-		email,
-		password,
-		confirmPassword,
-		lastname,
-		name,
-		phone,
-		conditions
-	} = values
-	const { auth, user, errors, status, msg } = useSelector(selectorAuth)
-	const dispatch = useDispatch()
 
-	useEffect(() => {
-		dispatch(clearState())
-	}, [])
-
-	const handleChange = (e) => {
-		const { name, value } = e.target
-		setValues({ ...values, [name]: value })
-	}
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		const body = {
-			email,
-			name,
-			lastname,
-			password,
-			phone
-		}
-		dispatch(registered(body))
-	}
 	return (
-		<>
-			<div className='vh-90' style={{ 'background-color': '#eee' }}>
-				<div className='container h-100'>
-					<div className='row d-flex justify-content-center align-items-center h-100'>
-						<div className='col-lg-12 col-xl-11'>
-							<div
-								className='card text-black'
-								style={{ 'border-radius': '25px' }}>
-								<div className='card-body p-md-5'>
-									<div className='row justify-content-center'>
-										<div className='col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-2 order-lg-1'>
-											<img
-												src={imageLogin}
-												className='img-fluid'
-												alt='Sample image'
-											/>
-										</div>
-										<div className='col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1'>
-											<p className='text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4'>
-												Crear una nueva cuenta
-											</p>
-
-											<form className='mx-1 mx-md-4' onSubmit={handleSubmit}>
-												<div className='d-flex flex-row align-items-center mb-4'>
-													<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
-													<div className='form-outline flex-fill mb-0'>
-														<input
-															className='form-control'
-															onChange={handleChange}
-															id='name'
-															type='text'
-															placeholder='Ingrese su nombre/s'
-															value={name}
-															name='name'
-														/>
-														<label htmlFor='name' className='form-label'>
-															Nombre/s*
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'name' && (
-																	<div className='text-danger'>{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-												<div className='d-flex flex-row align-items-center mb-4'>
-													<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
-													<div className='form-outline flex-fill mb-0'>
-														<input
-															className='form-control'
-															id='lastname'
-															onChange={handleChange}
-															value={lastname}
-															type='text'
-															placeholder='Ingrese su apellido'
-															name='lastname'
-														/>
-														<label htmlFor='lastname' className='form-label'>
-															Apellido*
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'lastname' && (
-																	<div className='text-danger'>{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-												<div className='d-flex flex-row align-items-center mb-4'>
-													<i className='fa fa-long-arrow-right fa-lg me-3 fa-fw'></i>
-													<div className='form-outline flex-fill mb-0'>
-														<input
-															className='form-control'
-															onChange={handleChange}
-															id='phone'
-															type='text'
-															placeholder='Ingrese su nro de celular'
-															value={phone}
-															name='phone'
-														/>
-														<label htmlFor='phone' className='form-label'>
-															Celular *
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'phone' && (
-																	<div className='text-danger'>{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-												<div className='d-flex flex-row align-items-center mb-4'>
-													<i className='fa fa-at fa-lg me-3 fa-fw'></i>
-													<div className='form-outline flex-fill mb-0'>
-														<input
-															type='text'
-															id='email'
-															className='form-control'
-															value={email}
-															name='email'
-															placeholder='correo@gmail.com'
-															onChange={handleChange}
-														/>
-														<label className='form-label' htmlFor='email'>
-															Correo Electronico*
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'email' && (
-																	<div className='text-danger'>{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-
-												<div className='d-flex flex-row align-items-center mb-4'>
-													<i className='fa fa-lock fa-lg me-3 fa-fw'></i>
-													<div className='form-outline flex-fill mb-0'>
-														<input
-															id='password'
-															type='password'
-															value={password}
-															onChange={handleChange}
-															placeholder='Contraseña'
-															name='password'
-															className='form-control'
-														/>
-														<label className='form-label' htmlFor='password'>
-															Contraseña*
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'password' && (
-																	<div className='text-danger'>{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-
-												<div className='d-flex flex-row align-items-center mb-4'>
-													<i className='fa fa-lock fa-lg me-3 fa-fw'></i>
-													<div className='form-outline flex-fill mb-0'>
-														<input
-															id='confirmPassword'
-															type='password'
-															value={confirmPassword}
-															placeholder='Confirmar contraseña'
-															onChange={handleChange}
-															name='confirmPassword'
-															className='form-control'
-														/>
-														<label
-															className='form-label'
-															htmlFor='confirmPassword'>
-															Repetir la contraseña*
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'confirmPassword' && (
-																	<div className='text-danger'>{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-
-												<div className='form-check d-flex justify-content-center mb-5'>
-													<input
-														className='form-check-input me-2'
-														type='checkbox'
-														value={conditions}
-														onChange={(e) =>
-															setValues({
-																...values,
-																conditions: e.target.checked
-															})
-														}
-														id='conditions'
-													/>
-													<label
-														className='form-check-label'
-														htmlFor='conditions'>
-														He leído y acepto los{' '}
-														<a
-															href='terms_conditions.html'
-															target='_blank'
-															rel='noreferrer'>
-															Terminos y Condicones
-														</a>
-													</label>
-												</div>
-												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger'>
-													{errors?.map(
-														(err) =>
-															err.msg &&
-															!err.param && (
-																<div className='text-danger'>{err.msg}</div>
-															)
-													)}
-												</div>
-												<div className='d-flex justify-content-center mx-4 mb-3 mb-lg-4'>
-													{status === STATUS.PENDING ? (
-														<button
-															className='btn btn-primary btn-lg '
-															type='button'
-															disabled>
-															<span
-																className='spinner-border spinner-border-sm'
-																role='status'
-																aria-hidden='true'></span>
-															Loading...
-														</button>
-													) : (
-														<button
-															type='button'
-															className='btn btn-primary btn-lg'
-															onClick={handleSubmit}
-															disabled={!conditions}>
-															Registrarse
-														</button>
-													)}
-												</div>
-											</form>
-											{msg && <p className='text-success text-center'>{msg}</p>}
-										</div>
+		<Row className="d-flex align-items-center">
+			<Col xs={12} lg={6} className="order-lg-1">
+				<img
+					src={imageLogin}
+					className="w-100"
+					style={{
+						objectFit: 'cover',
+						height: '100vh',
+					}}
+					alt="Register"
+				/>
+			</Col>
+			<Col xs={12} lg={6} className="order-lg-2 px-lg-4">
+				<Card
+					className="text-black d-flex justify-content-center"
+					style={{ borderRadius: '25px' }}
+				>
+					<Card.Body>
+						<h1 className="text-center fw-bold mb-lg-2 ">Registrarse</h1>
+						<Formik
+							initialValues={initialValues}
+							validationSchema={validationSchema}
+							onSubmit={(values) => {
+								dispatch(registered(values))
+							}}
+						>
+							{({ errors: errFormik, values, handleChange }) => (
+								<Form>
+									<TextInput
+										name="name"
+										type="text"
+										label="Nombre"
+										value={values.name}
+										errors={errFormik}
+										icon={faUser}
+										placeholder={'Nombre'}
+										key={'name'}
+										handleChange={handleChange}
+										id="name"
+									/>
+									<TextInput
+										name="lastname"
+										type="text"
+										label="Apellido"
+										errors={errFormik}
+										value={values.lastname}
+										icon={faUsers}
+										placeholder={'Apellido'}
+										key={'lastname'}
+										handleChange={handleChange}
+										id="lastname"
+									/>
+									<TextInput
+										name="phone"
+										type="text"
+										label="Telefono"
+										errors={errFormik}
+										icon={faPhone}
+										value={values.phone}
+										placeholder={'Telefono'}
+										key={'phone'}
+										handleChange={handleChange}
+										id="phone"
+									/>
+									<TextInput
+										name="email"
+										type="email"
+										label="Correo Electrónico"
+										errors={errFormik}
+										icon={faEnvelope}
+										value={values.email}
+										placeholder="name_user@gmail.com"
+										key="email"
+										handleChange={handleChange}
+										id="email"
+									/>
+									<TextInput
+										name="password"
+										type="password"
+										label="Contraseña"
+										errors={errFormik}
+										icon={faLock}
+										placeholder={'********'}
+										key="password"
+										value={values.password}
+										handleChange={handleChange}
+										id="password"
+									/>
+									<TextInput
+										name="confirmPassword"
+										type="password"
+										label="Confirmar Contraseña"
+										errors={errFormik}
+										icon={faLockKeyhole}
+										placeholder={'********'}
+										key="confirmPassword"
+										value={values.confirmPassword}
+										handleChange={handleChange}
+										id="confirmPassword"
+									/>
+									<Form.Group className="mb-3 d-flex justify-content-start">
+										<Form.Check
+											type="checkbox"
+											name="conditions"
+											label="Acepto los terminos y condiciones"
+											errors={errFormik}
+											value={values.conditions}
+											onChange={handleChange}
+											id="conditions"
+										/>
+									</Form.Group>
+									<div className="d-flex justify-content-center">
+										{status === STATUS.PENDING ? (
+											<button
+												className="btn btn-primary btn-lg "
+												type="button"
+												disabled
+											>
+												<span
+													className="spinner-border spinner-border-sm"
+													role="status"
+													aria-hidden="true"
+												></span>
+												Loading...
+											</button>
+										) : (
+											<Button
+												type="submit"
+												className="btn btn-primary w-100"
+												disabled={!values.conditions}
+											>
+												Registrarse
+											</Button>
+										)}
 									</div>
-								</div>
-							</div>
+								</Form>
+							)}
+						</Formik>
+						{/* redirect to signin */}
+						<div className="d-flex justify-content-start my-2">
+							¿Ya tienes una cuenta?{' '}
+							<Link
+								to="/login"
+								className="text-primary ps-1"
+								style={{ textDecoration: 'none' }}
+							>
+								Inicia sesión
+							</Link>
 						</div>
-					</div>
-				</div>
-			</div>
-		</>
+					</Card.Body>
+				</Card>
+			</Col>
+		</Row>
 	)
 }
 export default Register

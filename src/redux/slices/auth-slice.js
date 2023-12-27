@@ -105,6 +105,7 @@ const authSlice = createSlice({
 		clearState: (state) => {
 			state.errors = []
 			state.msg = ''
+			state.status = null
 		},
 	},
 	extraReducers: {

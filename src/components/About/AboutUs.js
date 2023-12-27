@@ -1,43 +1,49 @@
 import { useSelector, useDispatch } from 'react-redux'
 import {
 	fetchOrganization,
-	selectorOrganization
+	selectorOrganization,
 } from '../../redux/slices/organization-slice'
 import { useEffect } from 'react'
+import { Container, Row, Col, Image } from 'react-bootstrap'
 
 import './styles.css'
-import { STATUS } from '../../redux/constants/action-types'
 import DangerousSetInnerHTML from '../DangerousSetInnerHTML/DangerousSetInnerHTML'
 const AboutUs = () => {
-	const { organization, status } = useSelector(selectorOrganization)
 	const dispatch = useDispatch()
+
+	const { organization } = useSelector(selectorOrganization)
+
 	useEffect(() => {
 		dispatch(fetchOrganization())
 	}, [dispatch])
 
 	return (
-		<section className='page-section' id=''>
-			<div className='container'>
-				<div className='text-center'>
-					<h2 className='section-heading text-uppercase'>
+		<Container as="section" className="page-section">
+			<Row className="text-center">
+				<Col>
+					<h2 className="section-heading text-uppercase">
 						{organization?.name}
 					</h2>
-					<h3 className='section-subheading text-muted'>
+					<h3 className="section-subheading text-muted">
 						{organization?.welcomeText}
 					</h3>
-				</div>
-				<div className='row d-flex justify-content-center'>
-					<img
+				</Col>
+			</Row>
+			<Row className="justify-content-center">
+				<Col md={8}>
+					<Image
 						src={organization?.image_id?.url}
 						alt={organization?.name}
-						className='col-8'
+						fluid
 					/>
-				</div>
-				<div className='row text-center fst-italic text-muted'>
+				</Col>
+			</Row>
+			<Row className="text-center fst-italic text-muted">
+				<Col>
 					<DangerousSetInnerHTML content={organization?.aboutUs} />
-				</div>
-			</div>
-		</section>
+				</Col>
+			</Row>
+		</Container>
 	)
 }
 export default AboutUs

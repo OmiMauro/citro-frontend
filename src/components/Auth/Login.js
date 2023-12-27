@@ -1,160 +1,120 @@
-import './auth-styles.css'
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import { selectorAuth, logged, clearState } from '../../redux/slices/auth-slice'
-import { useDispatch, useSelector } from 'react-redux'
-import { useState, useEffect } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { Row, Col, Card, Button, Spinner } from 'react-bootstrap'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import * as Yup from 'yup'
 import imageLogin from './image-login.jpg'
+import { TextInput } from '../Elements/TextInput'
+import { faEnvelope, faLock } from '@fortawesome/pro-regular-svg-icons'
+import { STATUS } from '../../redux/constants/action-types'
+import CustomButton from '../Elements/CustomButton'
 const Login = () => {
-	const [values, setValues] = useState({
-		email: '',
-		password: '',
-		submitted: false,
-	})
-
-	const { email, password, submitted } = values
-	const { auth, user, status, errors } = useSelector(selectorAuth)
+	const { auth, status, errors } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const handleChange = (e) => {
-		const { name, value } = e.target
-		setValues({ ...values, [name]: value })
-	}
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 	useEffect(() => {
 		if (auth) {
 			navigate('/backoffice')
 		}
-	}, [auth])
-	useEffect(() => {
 		dispatch(clearState())
-	}, [])
-	const handleSubmit = (e) => {
-		e.preventDefault()
-		const body = {
-			email,
-			password,
-		}
-		dispatch(logged(body))
+	}, [auth, dispatch, navigate])
+
+	const initialValues = {
+		email: '',
+		password: '',
 	}
+	const validationSchema = Yup.object().shape({
+		email: Yup.string()
+			.email('Invalid email format')
+			.required('Required email'),
+		password: Yup.string().required('Required password'),
+	})
 
 	return (
-		<>
-			<div className="vh-90" style={{ backgroundColor: '#eee' }}>
-				<div className="container h-100">
-					<div className="row d-flex justify-content-center align-items-center h-100">
-						<div className="col-lg-12 col-xl-11">
-							<div className="card text-black" style={{ borderRadius: '25px' }}>
-								<div className="card-body p-md-5">
-									<div className="row justify-content-center">
-										<div className="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-											<p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-												Iniciar Sesión
-											</p>
-											<form className="mx-1 mx-md-4 " onSubmit={handleSubmit}>
-												<div className="d-flex flex-row align-items-start mb-4">
-													<i className="fa fa-at fa-lg me-1 fa-fw"></i>
-													<div className="form-outline flex-fill mb-0 text-start">
-														<input
-															type="email"
-															id="email"
-															className="form-control"
-															value={email}
-															name="email"
-															placeholder="correo@ejemplo.com"
-															onChange={handleChange}
-														/>
+		<Row className="d-flex align-items-center">
+			<Col xs={12} lg={6} className="order-lg-1">
+				<img
+					src={imageLogin}
+					className="w-100"
+					style={{
+						objectFit: 'cover',
+						height: '90vh',
+					}}
+					alt="Login"
+				/>
+			</Col>
+			<Col xs={12} lg={6} className="order-lg-2 px-lg-4">
+				<Card
+					className="text-black d-flex justify-content-center"
+					style={{ borderRadius: '25px' }}
+				>
+					<Card.Body>
+						<h1 className="text-center fw-bold mb-5 border-danger">
+							Iniciar Sesión
+						</h1>
+						<Formik
+							initialValues={initialValues}
+							validationSchema={validationSchema}
+							onSubmit={(values) => {
+								dispatch(logged(values))
+							}}
+						>
+							{({ isSubmitting, errors: errFormik, values, handleChange }) => (
+								<Form>
+									<TextInput
+										name="email"
+										type="email"
+										label="Correo Electrónico"
+										errors={errFormik}
+										icon={faEnvelope}
+										placeholder="name_user@gmail.com"
+										key="email"
+										value={values.email}
+										handleChange={handleChange}
+										id="email"
+									/>
 
-														<label className="form-label" htmlFor="email">
-															Correo Electronico
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'email' && (
-																	<div className="text-danger">{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-
-												<div className="d-flex flex-row align-items-center mb-4">
-													<i className="fa fa-lock fa-lg me-3 fa-fw"></i>
-													<div className="form-outline flex-fill mb-0  text-start">
-														<input
-															id="password"
-															value={password}
-															type="password"
-															name="password"
-															onChange={handleChange}
-															placeholder="Contraseña"
-															className="form-control"
-														/>
-														<label className="form-label" htmlFor="password">
-															Contraseña
-														</label>
-														{errors?.map(
-															(err) =>
-																err.param == 'password' && (
-																	<div className="text-danger">{err.msg}</div>
-																)
-														)}
-													</div>
-												</div>
-												<div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger">
-													<Link className="text-dark" to="/forgot-password">
-														Olvidó su contraseña?
-													</Link>
-												</div>
-												<div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger">
-													{errors?.map(
-														(err) =>
-															err.msg &&
-															!err.param && (
-																<div className="text-danger">{err.msg}</div>
-															)
-													)}
-												</div>
-												<div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-													{status === 'PENDING' ? (
-														<button
-															className="btn btn-primary btn-lg "
-															type="button"
-															disabled
-														>
-															<span
-																className="spinner-border spinner-border-sm"
-																role="status"
-																aria-hidden="true"
-															></span>
-															Por favor, espere...
-														</button>
-													) : (
-														<button
-															type="button"
-															className="btn btn-primary btn-lg col-10"
-															onClick={handleSubmit}
-														>
-															Iniciar sesion
-														</button>
-													)}
-												</div>
-											</form>
-										</div>
-
-										<div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-											<img
-												src={imageLogin}
-												className="img-fluid"
-												height="100%"
-												alt="Sample image"
-											/>
-										</div>
+									<TextInput
+										name="password"
+										type="password"
+										label="Contraseña"
+										errors={errFormik}
+										icon={faLock}
+										placeholder="********"
+										key="password"
+										handleChange={handleChange}
+										id="password"
+										value={values.password}
+									/>
+									<div className="d-flex justify-content-start my-2">
+										<Link to="/forgot-password" className="text-primary">
+											Olvidé mi contraseña
+										</Link>
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</>
+									<CustomButton
+										type="submit"
+										variant="primary"
+										className="w-100"
+										disabled={status === STATUS.PENDING}
+										loading={status === STATUS.PENDING}
+										isLoading={status === STATUS.PENDING}
+										spinnerSize="sm"
+									>
+										Iniciar sesión
+									</CustomButton>
+								</Form>
+							)}
+						</Formik>
+					</Card.Body>
+				</Card>
+			</Col>
+		</Row>
 	)
 }
+
 export default Login
