@@ -1,4 +1,20 @@
 import React, { useState } from 'react'
+import { Row, Col } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+	faArrowLeft,
+	faBuilding,
+	faUser,
+	faPhone,
+	faAt,
+	faMapMarkedAlt,
+	faCalendarAlt,
+} from '@fortawesome/free-solid-svg-icons'
+import { Link } from 'react-router-dom'
+import { Formik, Form, Field } from 'formik'
+import * as Yup from 'yup'
+import { TextInput, CustomButton } from '../Elements'
+import { SelectInput } from '../Elements/SelectInput'
 
 const InscriptionsForm = ({
 	user,
@@ -11,179 +27,144 @@ const InscriptionsForm = ({
 	localities,
 	handleLocalities,
 }) => {
-	const [values, setValues] = useState({
+	const initialValues = {
 		_userId: user?._id ?? '',
 		_eventId: event?._id ?? '',
 		province: '',
 		locality: '',
-
 		_inscription: inscription._id ?? '',
+	}
+
+	const validationSchema = Yup.object().shape({
+		province: Yup.string().required('La provincia es obligatoria'),
+		locality: Yup.string().required('La localidad es obligatoria'),
 	})
-	const handleChange = (e) => {
-		const { value, name } = e.target
-		setValues({ ...values, [name]: value })
-		if (name === 'province') handleLocalities(value)
-	}
-
-	const onSubmit = (e) => {
-		e.preventDefault()
-		handleSubmit(values)
-	}
 	return (
-		<div className="container rounded bg-white mt-5 mb-5">
-			<div className="row justify-content-center">
-				<div className="col-md-5 border-right">
-					<div className="p-3">
-						<h4 className="text-center">Registrar mi inscripción</h4>
-						<form className="" onSubmit={onSubmit}>
-							<div className="row mt-2">
-								<div className="col-md-6">
-									<label htmlFor="name" className="form-label">
-										Nombre
-									</label>
-									<input
-										className="form-control"
-										id="name"
-										type="text"
-										placeholder="Nombre"
-										value={user?.name}
-										readOnly
-									/>
-								</div>
-								<div className="col-md-6">
-									<label htmlFor="lastname" className="form-label labels">
-										Apellido
-									</label>
-									<input
-										className="form-control"
-										id="lastname"
-										value={user?.lastname}
-										type="text"
-										placeholder="Apellido"
-										readOnly
-									/>
-								</div>
-							</div>
-							<div className="row mt-1">
-								<div className="col-md-12">
-									<label htmlFor="DNI" className="form-label labels">
-										DNI
-									</label>
-									<input
-										className="form-control"
-										id="DNI"
-										type="text"
-										placeholder="DNI"
-										value={user?.DNI}
-										readOnly
-									/>
-								</div>
-								<div className="col-md-12">
-									<label className="form-label" htmlFor="phone">
-										Numero de celular*
-									</label>
-									<input
-										type="tel"
-										id="phone"
-										className="form-control"
-										value={user?.phone}
-										placeholder="Numero de celular"
-										readOnly
-									/>
-								</div>
-								<div className="col-md-12">
-									<label className="form-label" htmlFor="email">
-										Email*
-									</label>
-									<input
-										type="email"
-										id="email"
-										className="form-control"
-										value={user?.email}
-										placeholder="email"
-										readOnly
-									/>
-								</div>
-							</div>
-							<div className="col-md-12">
-								<label className="form-label" htmlFor="province">
-									Provinca
-								</label>
-								<select
-									value={values.province}
-									onChange={handleChange}
-									className="form-select"
-									id="province"
+		<Row className="my-md-4">
+			<Col xs={12} md={8} lg={12} className="d-flex justify-content-center">
+				<Formik
+					initialValues={initialValues}
+					validationSchema={validationSchema}
+					onSubmit={handleSubmit}
+				>
+					{({ errors, touched }) => (
+						<Form className="w-100">
+							<Col xs={12} md={6}>
+								<SelectInput
+									label="Provincia"
 									name="province"
-									required="required"
-								>
-									<option hidden />
-									{provinces?.map((province) => (
-										<option value={province?.nombre} key={province?.id}>
-											{province?.nombre}
-										</option>
-									))}
-									<option value="Otro">No se encuentra en la lista</option>
-								</select>
-								{errors?.map(
-									(err) =>
-										err.param == 'province' && (
-											<div className="text-danger">{err.msg}</div>
-										)
-								)}
-							</div>
-							<div className="col-md-12">
-								<label className="form-label" htmlFor="province">
-									Localidad
-								</label>
-								<select
-									value={values.locality}
-									onChange={handleChange}
-									className="form-select"
-									id="locality"
+									type="text"
+									placeholder="Ingrese la provincia"
+									icon={faBuilding}
+									errors={errors}
+									touched={touched}
+									options={provinces}
+									onChange={handleLocalities}
+								/>
+							</Col>
+							<Col xs={12} md={6}>
+								<SelectInput
+									label="Localidad"
 									name="locality"
-									required="required"
-								>
-									<option hidden />
-									{localities?.map((locality) => (
-										<option value={locality?.nombre} key={locality?.id}>
-											{locality?.nombre}
-										</option>
-									))}
-									<option value="Other">No se encuentra en la lista</option>
-								</select>
-								{errors?.map(
-									(err) =>
-										err.param == 'locality' && (
-											<div className="text-danger">{err.msg}</div>
-										)
-								)}
-							</div>
+									type="text"
+									placeholder="Ingrese la localidad"
+									icon={faMapMarkedAlt}
+									errors={errors}
+									touched={touched}
+									options={localities}
+								/>
+							</Col>
 
-							<div className="mt-5 text-center">
-								<button
-									type="submit"
-									className="btn btn-primary profile-button"
-								>
-									Inscribirme
-								</button>
-							</div>
-							{errors?.map(
-								(err) =>
-									err.msg &&
-									!err.param && (
-										<div className="text-danger text-center">{err.msg}</div>
-									)
-							)}
-							{msg && <p className="text-center text-success">{msg}</p>}
-						</form>
-					</div>
+							<Col xs={12} md={6}>
+								<TextInput
+									label="Nombre"
+									name="name"
+									type="text"
+									placeholder="Ingrese su nombre"
+									icon={faUser}
+									errors={errors}
+									touched={touched}
+								/>
+							</Col>
+							<Col xs={12} md={6}>
+								<TextInput
+									label="Apellido"
+									name="surname"
+									type="text"
+									placeholder="Ingrese su apellido"
+									icon={faUser}
+									errors={errors}
+									touched={touched}
+								/>
+							</Col>
+							<Col xs={12} md={6}>
+								<TextInput
+									label="Email"
+									name="email"
+									type="email"
+									placeholder="Ingrese su email"
+									icon={faAt}
+									errors={errors}
+									touched={touched}
+								/>
+							</Col>
+							<Col xs={12} md={6}>
+								<TextInput
+									label="Teléfono"
+									name="phone"
+									type="text"
+									placeholder="Ingrese su teléfono"
+									icon={faPhone}
+									errors={errors}
+									touched
+								/>
+							</Col>
+							<Col xs={12} md={6}>
+								<TextInput
+									label="Fecha de nacimiento"
+									name="birthdate"
+									type="date"
+									placeholder="Ingrese su fecha de nacimiento"
+									icon={faCalendarAlt}
+									errors={errors}
+									touched={touched}
+								/>
+							</Col>
+							<Col xs={12} md={6}>
+								<TextInput
+									label="DNI"
+									name="dni"
+									type="text"
+									placeholder="Ingrese su DNI"
+									icon={faUser}
+									errors={errors}
+									touched={touched}
+								/>
+							</Col>
+							<Col xs={12} md={6}>
+								<CustomButton type="submit" className="btn btn-primary  w-100">
+									Enviar
+								</CustomButton>
+							</Col>
+							<Row className="mb-3">
+								<Col xs={12} md={12} className="d-flex justify-content-end">
+									<Link
+										to={`/events/${event?._id}`}
+										className="btn btn-outline-warning"
+									>
+										<FontAwesomeIcon icon={faArrowLeft} />
+										Volver
+									</Link>
+								</Col>
+							</Row>
+						</Form>
+					)}
+				</Formik>
 
-					{inscription?.init_point &&
-						window.location.replace(inscription?.init_point)}
-				</div>
-			</div>
-		</div>
+				{inscription?.init_point &&
+					window.location.replace(inscription?.init_point)}
+			</Col>
+		</Row>
 	)
 }
 

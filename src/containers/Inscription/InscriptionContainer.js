@@ -20,9 +20,9 @@ const InscriptionContainer = () => {
 	}, [dispatch])
 
 	return (
-		<div className="col">
+		<Col xs={12} md={12}>
 			<Inscription inscription={inscription} errors={errors} />
-		</div>
+		</Col>
 	)
 }
 

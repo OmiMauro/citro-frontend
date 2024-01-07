@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Inscriptions from '../../components/Inscriptions/Inscriptions'
 import Pagination from '../../components/Pagination/Pagination'
-
+import { Row, Col } from 'react-bootstrap'
 import {
 	fetchInscriptionsByEvent,
 	selectorEvent,
@@ -32,8 +32,8 @@ const InscriptionsContainer = () => {
 	}, [dispatch, values])
 
 	return (
-		<div className="col">
-			<div className="container">
+		<Row>
+			<Col>
 				<Inscriptions
 					inscriptions={inscriptions}
 					status={status}
@@ -45,8 +45,8 @@ const InscriptionsContainer = () => {
 					pages={inscriptions.pages}
 					handlePageChange={handlePageChange}
 				/>
-			</div>
-		</div>
+			</Col>
+		</Row>
 	)
 }
 
