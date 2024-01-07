@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import MemberCard from './MemberCard'
-import { Row } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 const MembersList = ({ members, handleDelete }) => {
 	const onDelete = (id) => {
@@ -9,21 +11,17 @@ const MembersList = ({ members, handleDelete }) => {
 	}
 	return (
 		<>
-			<h3 className="text-center fw-bold mb-5 mt-4 text-uppercase">
-				Lista de los organizadores
+			<h3 className="fw-bold mb-5 mt-4 text-uppercase">
+				<Link to={`/backoffice/`}>
+					<FontAwesomeIcon icon={faArrowLeft} className="me-2 primary-color" />
+				</Link>
+				Lista de organizadores
+				<Link to={`/backoffice/members/create/`}>
+					<FontAwesomeIcon icon={faPlus} className="mx-2" />
+				</Link>
 			</h3>
-			<Row className="justify-content-center mb-4">
-				<Link
-					to={`/backoffice/members/create`}
-					className="btn btn-outline-success mr-2"
-				>
-					Agregar Organizador
-				</Link>
-				<Link to={`/backoffice/`} className="btn btn-outline-success">
-					Volver
-				</Link>
-			</Row>
-			<Row>
+
+			<Row className="d-flex justify-content-center">
 				{members?.map((member) => (
 					<MemberCard
 						key={member._id}

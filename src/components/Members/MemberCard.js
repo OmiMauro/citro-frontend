@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Button, Col } from 'react-bootstrap'
+import { Card, Button, Col, Row } from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/pro-regular-svg-icons'
 
 const MemberCard = ({ member, handleDelete }) => {
 	return (
-		<Col lg={6} className="mb-2">
-			<Card className="align-items-center">
+		<Col lg={12} className="mb-2">
+			<Card className="d-flex align-items-center">
 				<Card.Img
 					variant="top"
 					src={member?.image_id?.url}
@@ -17,7 +20,7 @@ const MemberCard = ({ member, handleDelete }) => {
 					</Card.Title>
 					{/* URL Links */}
 					{member?.urlFacebook && (
-						<div className="d-flex justify-content-center">
+						<Row className="d-flex justify-content-center">
 							<a
 								className="card-subtitle mb-2 text-muted h-6 text-black"
 								href={member?.urlFacebook}
@@ -25,10 +28,10 @@ const MemberCard = ({ member, handleDelete }) => {
 							>
 								{member?.urlFacebook}
 							</a>
-						</div>
+						</Row>
 					)}
 					{member?.urlInstagram && (
-						<div className="d-flex justify-content-center">
+						<Row className="d-flex justify-content-center">
 							<a
 								className="card-subtitle mb-2 text-muted h-6 text-black"
 								href={member?.urlInstagram}
@@ -36,10 +39,10 @@ const MemberCard = ({ member, handleDelete }) => {
 							>
 								{member?.urlInstagram}
 							</a>
-						</div>
+						</Row>
 					)}
 					{member?.urlWhatsapp && (
-						<div className="d-flex justify-content-center">
+						<Row className="d-flex justify-content-center">
 							<a
 								className="card-subtitle mb-2 text-muted h-6 text-black"
 								href={member?.urlWhatsapp}
@@ -47,10 +50,10 @@ const MemberCard = ({ member, handleDelete }) => {
 							>
 								{member?.urlWhatsapp}
 							</a>
-						</div>
+						</Row>
 					)}
 					{member?.phone && (
-						<div className="d-flex justify-content-center">
+						<Row className="d-flex justify-content-center">
 							<a
 								className="card-subtitle mb-2 text-muted h-6 text-black"
 								href={member?.phone}
@@ -58,23 +61,21 @@ const MemberCard = ({ member, handleDelete }) => {
 							>
 								{member?.phone}
 							</a>
-						</div>
+						</Row>
 					)}
 
-					<div className="text-center mt-2">
-						<Link
-							to={`/backoffice/members/edit/${member._id}`}
-							className="btn btn-outline-dark mr-2"
-						>
-							Editar
-						</Link>
-						<Button
-							variant="outline-dark"
-							onClick={() => handleDelete(member._id)}
-						>
-							Eliminar
-						</Button>
-					</div>
+					<Link
+						to={`/backoffice/members/edit/${member._id}`}
+						className="btn btn-outline-dark mx-2"
+					>
+						<FontAwesomeIcon icon={faEdit} />
+					</Link>
+					<Button
+						variant="outline-dark"
+						onClick={() => handleDelete(member._id)}
+					>
+						<FontAwesomeIcon icon={faTrash} />
+					</Button>
 				</Card.Body>
 			</Card>
 		</Col>

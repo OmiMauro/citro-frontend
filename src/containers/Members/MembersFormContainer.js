@@ -8,11 +8,9 @@ import {
 	createMember,
 	putMember,
 	patchMemberImage,
-	removeMember,
-	fetchMembers
 } from '../../redux/slices/members-slice'
 import { STATUS } from '../../redux/constants/action-types'
-
+import { Col } from 'react-bootstrap'
 const MembersFormContainer = () => {
 	const { id } = useParams()
 	const dispatch = useDispatch()
@@ -37,37 +35,34 @@ const MembersFormContainer = () => {
 		}
 	}
 	return (
-		<>
-			<div className='col'>
-				<div className='container'>
-					{status === STATUS.SUCCESSFUL && (
-						<MembersForm
-							handleSubmit={handleSubmit}
-							handleUpdateImage={handleUpdateImage}
-							member={member}
-							errors={errors}
-							msg={msg}
-							title={
-								id
-									? 'Actualizar los datos del organizador'
-									: 'Crear un nuevo organizador'
-							}
-						/>
-					)}
-					{status === STATUS.PENDING && (
-						<div className='progress'>
-							<div
-								className='progress-bar progress-bar-striped bg-success'
-								role='progressbar'
-								style={{ width: '25%' }}
-								aria-valuenow='25'
-								aria-valuemin='0'
-								aria-valuemax='100'></div>
-						</div>
-					)}
+		<Col>
+			{status === STATUS.SUCCESSFUL && (
+				<MembersForm
+					handleSubmit={handleSubmit}
+					handleUpdateImage={handleUpdateImage}
+					member={member}
+					errors={errors}
+					msg={msg}
+					title={
+						id
+							? 'Actualizar los datos del organizador'
+							: 'Crear un nuevo organizador'
+					}
+				/>
+			)}
+			{status === STATUS.PENDING && (
+				<div className="progress">
+					<div
+						className="progress-bar progress-bar-striped bg-success"
+						role="progressbar"
+						style={{ width: '25%' }}
+						aria-valuenow="25"
+						aria-valuemin="0"
+						aria-valuemax="100"
+					></div>
 				</div>
-			</div>
-		</>
+			)}
+		</Col>
 	)
 }
 
