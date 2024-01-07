@@ -12,13 +12,7 @@ const EventsContainer = () => {
 		dispatch(fetchEvents(null))
 	}, [dispatch])
 
-	return (
-		<>
-			<div className="container">
-				<Events events={events} errors={errors} status={status} />
-			</div>
-		</>
-	)
+	return <Events events={events} errors={errors} status={status} />
 }
 
 export default EventsContainer

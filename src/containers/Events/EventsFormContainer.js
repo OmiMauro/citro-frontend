@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import EventForm from '../../components/Events/EventsForm'
 import {
 	selectorEvent,
 	fetchEventsById,
 	createEvent,
 	updateEvent,
 } from '../../redux/slices/event-slice'
-
+import EventsForm from '../../components/Events/EventForm'
+import { Col } from 'react-bootstrap'
 const EventsFormContainer = () => {
 	const { id } = useParams()
 	const dispatch = useDispatch()
@@ -24,16 +24,14 @@ const EventsFormContainer = () => {
 	}, [dispatch])
 
 	return (
-		<>
-			<div className="col">
-				<EventForm
-					event={event}
-					errors={errors}
-					msg={msg}
-					handleSubmit={handleSubmit}
-				/>
-			</div>
-		</>
+		<Col>
+			<EventsForm
+				event={event}
+				errors={errors}
+				msg={msg}
+				handleSubmit={handleSubmit}
+			/>
+		</Col>
 	)
 }
 
