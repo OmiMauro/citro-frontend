@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 import {
 	selectorSlides,
 	fetchSlides,
-	removeSlide
+	removeSlide,
 } from '../../redux/slices/slides-slice'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { Col } from 'react-bootstrap'
 const SlidesListContainer = () => {
 	const { slides, status, errors } = useSelector(selectorSlides)
 	const dispatch = useDispatch()
@@ -19,9 +19,9 @@ const SlidesListContainer = () => {
 	}, [dispatch])
 
 	return (
-		<>
+		<Col>
 			<SlidesList slides={slides} handleDelete={handleDelete} />
-		</>
+		</Col>
 	)
 }
 
