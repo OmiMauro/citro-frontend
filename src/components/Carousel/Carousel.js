@@ -3,82 +3,48 @@ import { selectorSlides, fetchSlides } from '../../redux/slices/slides-slice'
 import React, { useEffect } from 'react'
 import 'bootstrap/js/dist/carousel'
 import { STATUS } from '../../redux/constants/action-types'
-import './styles.css'
-
-const Carousel = () => {
+import { Row, Carousel } from 'react-bootstrap'
+import Spinner from '../Spinner/Spinner'
+const CustomCarousel = () => {
 	const dispatch = useDispatch()
 	const { slides, status } = useSelector(selectorSlides)
 
 	useEffect(() => {
 		dispatch(fetchSlides())
 	}, [])
-
 	return (
-		<>
+		<Row>
 			{status === STATUS.SUCCESSFUL && (
-				<div
-					className="carousel slide"
-					data-bs-ride="carousel"
-					data-bs-interval="5000"
-					id="carousel"
-				>
-					<div className="carousel-inner">
-						{slides?.map((item, index) => (
-							<div
-								className={`carousel-item carousel-container ${
-									index === 0 ? 'active' : ''
-								}`}
-								key={item._id}
-								data-bs-interval="5000"
-							>
-								<img
-									className="img-fluid w-100 carousel-img"
-									src={item.image_id?.url}
-									alt={item.text}
-									key={item._id}
-								/>
-							</div>
-						))}
-						<button
-							className="carousel-control-prev"
-							type="button"
-							data-bs-target="#carousel"
-							data-bs-slide="prev"
-							href="#"
-							role="button"
+				<Carousel fade interval="2000">
+					{slides.map((slide) => (
+						<Carousel.Item
+							key={slide.id}
+							style={{
+								height: '90vh',
+							}}
 						>
-							<span
-								className="carousel-control-prev-icon"
-								aria-hidden="true"
-							></span>
-							<span className="visually-hidden">Previous</span>
-						</button>
-						<button
-							className="carousel-control-next"
-							type="button"
-							data-bs-target="#carousel"
-							data-bs-slide="next"
-							href="#"
-							role="button"
-						>
-							<span
-								className="carousel-control-next-icon"
-								aria-hidden="true"
-							></span>
-							<span className="visually-hidden">Next</span>
-						</button>
-					</div>
-				</div>
+							<img
+								src={slide.image_id.url}
+								alt={slide.name}
+								style={{
+									width: '100%',
+									height: '100vh',
+									objectFit: 'cover',
+									objectPosition: 'center',
+								}}
+							/>
+							<Carousel.Caption>
+								<h3>{slide.name}</h3>
+								<p>{slide.description}</p>
+							</Carousel.Caption>
+						</Carousel.Item>
+					))}
+				</Carousel>
 			)}
-			{status === STATUS.PENDING && (
-				<div className="d-flex justify-content-center ">
-					<div className="spinner-border text-secondary" role="status">
-						<span className="visually-hidden">Loading...</span>
-					</div>
-				</div>
-			)}
-		</>
+
+			{status === STATUS.PENDING && <Spinner />}
+		</Row>
 	)
 }
 
-export default Carousel
+export default CustomCarousel
