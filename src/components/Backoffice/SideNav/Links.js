@@ -1,60 +1,57 @@
 import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+	faTable,
+	faCalendar,
+	faCamera,
+	faBuilding,
+	faUsers,
+	faUserCircle,
+	faImage,
+	faUser,
+} from '@fortawesome/pro-regular-svg-icons'
 
-export const linksAdmin = [
-	<Link to="/backoffice" className="nav-link align-middle px-0">
-		<i className="fs-4 bi-table fa fa-table"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Home</span>
-	</Link>,
-	<Link to="/backoffice/events" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-calendar"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Eventos</span>
-	</Link>,
-	<Link to="/backoffice/galery" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-camera"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Galería</span>
-	</Link>,
-
-	<Link to="/backoffice/inscriptions" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-calendar"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Inscripciones</span>
-	</Link>,
-	<Link to="/backoffice/organizations" className="nav-link align-middle px-0">
-		<i className="fs-4 bi-table fa fa-building"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Organización</span>
-	</Link>,
-	<Link to="/backoffice/members" className="nav-link align-middle px-0">
-		<i className="fs-4  fa fa-users"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Organizadores</span>
-	</Link>,
-	<Link to="/backoffice/profile" className="nav-link px-0 align-middle ">
-		<i className="fs-4 fa fa-user-circle"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Perfil</span>
-	</Link>,
-	<Link to="/backoffice/slides" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-image"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Slides</span>
-	</Link>,
-	<Link to="/backoffice/users" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-user"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Usuarios</span>
-	</Link>,
+const adminLinksData = [
+	{ path: '/backoffice', icon: faTable, label: 'Home' },
+	{ path: '/backoffice/events', icon: faCalendar, label: 'Eventos' },
+	{ path: '/backoffice/galery', icon: faCamera, label: 'Galería' },
+	{
+		path: '/backoffice/inscriptions',
+		icon: faCalendar,
+		label: 'Inscripciones',
+	},
+	{
+		path: '/backoffice/organizations',
+		icon: faBuilding,
+		label: 'Organización',
+	},
+	{ path: '/backoffice/members', icon: faUsers, label: 'Organizadores' },
+	{ path: '/backoffice/profile', icon: faUserCircle, label: 'Perfil' },
+	{ path: '/backoffice/slides', icon: faImage, label: 'Slides' },
+	{ path: '/backoffice/users', icon: faUser, label: 'Usuarios' },
 ]
 
-export const linksUser = [
-	<Link to="/backoffice" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-table"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Home</span>
-	</Link>,
-	<Link to="/backoffice/events" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-calendar"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Eventos</span>
-	</Link>,
-	<Link to="/backoffice/inscriptions" className="nav-link align-middle px-0">
-		<i className="fs-4 fa fa-calendar"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Inscripciones</span>
-	</Link>,
-	<Link to="/backoffice/profile" className="nav-link px-0 align-middle ">
-		<i className="fs-4 fa fa-user-circle"></i>{' '}
-		<span className="ms-1 d-none d-sm-inline">Perfil</span>
-	</Link>,
+const userLinksData = [
+	{ path: '/backoffice', icon: faTable, label: 'Home' },
+	{ path: '/backoffice/events', icon: faCalendar, label: 'Eventos' },
+	{
+		path: '/backoffice/inscriptions',
+		icon: faCalendar,
+		label: 'Inscripciones',
+	},
+	{ path: '/backoffice/profile', icon: faUserCircle, label: 'Perfil' },
 ]
+
+export const linksAdmin = adminLinksData.map(({ path, icon, label }) => (
+	<Link to={path} className="nav-link align-middle px-0">
+		<FontAwesomeIcon icon={icon} className="fs-4" />{' '}
+		<span className="ms-1 d-none d-sm-inline">{label}</span>
+	</Link>
+))
+
+export const linksUser = userLinksData.map(({ path, icon, label }) => (
+	<Link to={path} className="nav-link align-middle px-0">
+		<FontAwesomeIcon icon={icon} className="fs-4" />{' '}
+		<span className="ms-1 d-none d-sm-inline">{label}</span>
+	</Link>
+))
