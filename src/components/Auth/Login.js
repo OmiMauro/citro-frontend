@@ -6,10 +6,9 @@ import { Row, Col, Card, Button, Spinner } from 'react-bootstrap'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import imageLogin from './image-login.jpg'
-import { TextInput } from '../Elements/TextInput'
 import { faEnvelope, faLock } from '@fortawesome/pro-regular-svg-icons'
 import { STATUS } from '../../redux/constants/action-types'
-import CustomButton from '../Elements/CustomButton'
+import { CustomButton, TextInput } from '../Elements'
 const Login = () => {
 	const { auth, status, errors } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
@@ -92,9 +91,7 @@ const Login = () => {
 										value={values.password}
 									/>
 									<div className="d-flex justify-content-start my-2">
-										<Link to="/forgot-password" className="text-primary">
-											Olvidé mi contraseña
-										</Link>
+										<Link to="/forgot-password">Olvidé mi contraseña</Link>
 									</div>
 									<CustomButton
 										type="submit"

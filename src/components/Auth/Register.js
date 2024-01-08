@@ -164,12 +164,21 @@ const Register = () => {
 										<Form.Check
 											type="checkbox"
 											name="conditions"
-											label="Acepto los terminos y condiciones"
+											label="Acepto los"
 											errors={errFormik}
 											value={values.conditions}
 											onChange={handleChange}
 											id="conditions"
 										/>
+										{/* /terms_conditions.html */}
+										<a
+											className=" ms-1"
+											href="terms_conditions.html"
+											target="_blank"
+											rel="noreferrer"
+										>
+											terminos y condiciones
+										</a>
 									</Form.Group>
 									<div className="d-flex justify-content-center">
 										{status === STATUS.PENDING ? (
@@ -203,7 +212,7 @@ const Register = () => {
 							¿Ya tienes una cuenta?{' '}
 							<Link
 								to="/login"
-								className="text-primary ps-1"
+								className="ps-1"
 								style={{ textDecoration: 'none' }}
 							>
 								Inicia sesión
