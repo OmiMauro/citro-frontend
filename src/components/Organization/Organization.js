@@ -1,108 +1,84 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './styles.css'
+import { Card, Col } from 'react-bootstrap'
 import DangerousSetInnerHTML from '../DangerousSetInnerHTML/DangerousSetInnerHTML'
+import './styles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+	faFacebook,
+	faInstagram,
+	faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons'
+import { faArrowLeft, faEdit } from '@fortawesome/free-solid-svg-icons'
+const MediaSocial = ({ url, type, icon }) => (
+	<a href={url} target="_blank" rel="noreferrer" className="mx-1">
+		<FontAwesomeIcon icon={icon} size="2x" />
+	</a>
+)
+
 const Organization = ({ organization }) => {
 	return (
-		<>
-			<section className='col' key={organization._id}>
-				<div className='card'>
-					<div className='card__img'>
-						<img className='img' src={organization?.image_id?.url} />
-					</div>
-					<div className='card__name'>{organization?.name}</div>
-					<div className='card__job m-5'>
-						<span className='h5'>Texto de bienvenida:</span>
-						<hr className='w-25 mx-auto' />
+		<Col className="my-3">
+			<h4>
+				<Link to="/backoffice">
+					<FontAwesomeIcon icon={faArrowLeft} className="mx-1" />
+				</Link>
+				Información de la Organización
+				<Link to={`/backoffice/organizations/edit/${organization._id}`}>
+					<FontAwesomeIcon icon={faEdit} className="mx-1" />
+				</Link>
+			</h4>
+			<Card key={organization._id} className="py-2">
+				<Card.Img
+					variant="top"
+					src={organization?.image_id?.url}
+					className="card__img"
+				/>
+				<Card.Body>
+					<Card.Title className="card__name">{organization?.name}</Card.Title>
+
+					<Card.Text className="card__job m-5">
+						<span className="h5">Texto de bienvenida:</span>
+						<hr className="w-25 mx-auto" />
 						<span>{organization?.welcomeText}</span>
-					</div>
-					<div className='card__job mt-4'>
-						<span className='h5'>Sobre Nosotros:</span>
-						<hr className='w-25 mx-auto' />
+					</Card.Text>
+
+					<Card.Text className="card__job mt-4">
+						<span className="h5">Sobre Nosotros:</span>
+						<hr className="w-25 mx-auto" />
 						<DangerousSetInnerHTML content={organization?.aboutUs} />
-					</div>
-					<div className='card__link'>
-						<span className='h5'>Enlaces</span>
-						<hr className='w-25 mx-auto' />
-						<article>
-							Celular:
-							{organization?.phone ? (
-								<a className='small' href={`tel:${organization?.phone}`}>
-									<i className='fa fa-phone' aria-hidden='true'></i>
-								</a>
-							) : (
-								<span> No has ingresado el celular</span>
+					</Card.Text>
+
+					<Card.Text>
+						<span className="h5">Enlaces</span>
+						<hr className="w-25 mx-auto" />
+						<div className="d-flex justify-content-center">
+							{organization?.urlFacebook && (
+								<MediaSocial
+									url={organization?.urlFacebook}
+									type="facebook"
+									icon={faFacebook}
+								/>
 							)}
-						</article>
-						<article>
-							Email:
-							{organization?.email ? (
-								<a
-									className='small'
-									href={`mailto:${organization?.email}`}
-									target={'_blank'}>
-									<i className='fa fa-at' aria-hidden='true'></i>
-								</a>
-							) : (
-								<span> No has ingresado el email</span>
+							{organization?.urlInstagram && (
+								<MediaSocial
+									url={organization?.urlInstagram}
+									type="instagram"
+									icon={faInstagram}
+								/>
 							)}
-						</article>
-						<article>
-							Facebook:
-							{organization?.urlFacebook ? (
-								<a
-									className='small'
-									href={organization?.urlFacebook}
-									target={'_blank'}>
-									<i className='fa fa-facebook' aria-hidden='true'></i>
-								</a>
-							) : (
-								<span> No has ingresado la url</span>
+							{organization?.urlWhatsapp && (
+								<MediaSocial
+									url={organization?.urlWhatsapp}
+									type="whatsapp"
+									icon={faWhatsapp}
+								/>
 							)}
-						</article>
-						<article>
-							Instagram:
-							{organization?.urlInstagram ? (
-								<a
-									className='small'
-									href={organization?.urlInstagram}
-									target={'_blank'}>
-									<i className='fa fa-instagram' aria-hidden='true'></i>
-								</a>
-							) : (
-								<span> No has ingresado la url</span>
-							)}
-						</article>{' '}
-						<article>
-							Whatsapp:
-							{organization?.urlWhatsapp ? (
-								<a
-									className='small'
-									href={organization?.urlWhatsapp}
-									target={'_blank'}>
-									<i className='fa fa-whatsapp' aria-hidden='true'></i>
-								</a>
-							) : (
-								<span> No has ingresado la url</span>
-							)}
-						</article>
-					</div>
-					<hr className='w-25 mx-auto' />
-					<div className=''>
-						<Link
-							className=' card__btn-contact btn btn-outline-primary'
-							to={`/backoffice/organizations/edit/${1}`}>
-							Editar
-						</Link>
-						<Link
-							className='btn btn-outline-primary card__btn-contact'
-							to={'/backoffice'}>
-							Volver
-						</Link>
-					</div>
-				</div>
-			</section>
-		</>
+						</div>
+					</Card.Text>
+				</Card.Body>
+			</Card>
+		</Col>
 	)
 }
 
