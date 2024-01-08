@@ -8,11 +8,11 @@ import EventsContainer from '../containers/Events/EventsContainer'
 const HomePage = () => {
 	return (
 		<>
-			<Carousel></Carousel>
-			<AboutUs></AboutUs>
+			<Carousel />
+			<AboutUs />
 			<EventsContainer />
-			<ImageEvent></ImageEvent>
-			<Members></Members>
+			<ImageEvent />
+			<Members />
 		</>
 	)
 }

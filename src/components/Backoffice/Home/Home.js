@@ -1,45 +1,24 @@
 import { linksUser, linksAdmin } from '../SideNav/Links'
 import { selectorAuth } from '../../../redux/slices/auth-slice'
 import { useSelector } from 'react-redux'
-
+import { Row, Col, Card } from 'react-bootstrap'
 const Home = () => {
 	const { user } = useSelector(selectorAuth)
 
 	return (
-		<section className="container">
-			<div className="">
-				<div className="row">
-					{user.roleId === 2 &&
-						linksAdmin.map((item, index) => {
-							return (
-								<div className="col-xl-3 col-md-6 mb-4" key={index}>
-									<div className="card border-left-primary shadow h-100 py-2">
-										<div className="card-body">
-											<div className="row no-gutters align-items-center">
-												{item}
-											</div>
-										</div>
-									</div>
-								</div>
-							)
-						})}
-					{user.roleId === 1 &&
-						linksUser.map((item, index) => {
-							return (
-								<div className="col-xl-3 col-md-6 mb-4" key={index}>
-									<div className="card border-left-primary shadow h-100 py-2">
-										<div className="card-body">
-											<div className="row no-gutters align-items-center">
-												{item}
-											</div>
-										</div>
-									</div>
-								</div>
-							)
-						})}
-				</div>
-			</div>
-		</section>
+		<Row>
+			{(user.roleId === 2 ? linksAdmin : linksUser).map((item, index) => (
+				<Col md={6} xl={4} key={index} className="mb-4">
+					<Card className="border-left-primary shadow py-2">
+						<Card.Body>
+							<Row className="no-gutters align-items-center">
+								<Col>{item}</Col>
+							</Row>
+						</Card.Body>
+					</Card>
+				</Col>
+			))}
+		</Row>
 	)
 }
 
