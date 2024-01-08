@@ -1,6 +1,5 @@
 import { ROLES } from '../../config'
 import Backoffice from '../../containers/Backoffice/Backoffice'
-import BackofficeCards from '../../containers/Backoffice/BackofficeCards'
 
 import MembersFormContainer from '../../containers/Members/MembersFormContainer'
 import MembersListContainer from '../../containers/Members/MembersListContainer'
@@ -27,8 +26,7 @@ import LoginPage from '../../pages/LoginPage'
 import RegisterPage from '../../pages/RegisterPage'
 import Error404Page from '../../pages/Error404Page'
 import Error401Page from '../../pages/Error401Page'
-import LayoutPublic from '../Layout/LayoutPublic'
-import LayoutPrivate from '../Layout/LayoutPrivate'
+
 import GaleriesListContainer from '../../containers/Galeries/GaleriesListContainer'
 import GaleriesContainer from '../../containers/Galeries/GaleriesContainer'
 import AboutPage from '../../pages/AboutPage'
